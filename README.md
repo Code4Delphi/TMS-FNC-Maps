@@ -6,6 +6,3 @@ O TMS FNC Maps é um conjunto de componentes para Delphi e C++Builder voltado a 
 ## Links uteis
 - [Site oficial do TMS FNC Maps](https://www.tmssoftware.com/site/tmsfncmaps.asp)
 - [Documentação](https://download.tmssoftware.com/doc/tmsfncmaps/)
-
-
-https://github.com/user-attachments/assets/a1ea97eb-4967-4916-a359-413b6f02f89c
