@@ -3,17 +3,34 @@ unit Main.View;
 interface
 
 uses
-  TypInfo, Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCMapsCommonTypes, Vcl.StdCtrls, VCL.TMSFNCCustomControl, VCL.TMSFNCWebBrowser, VCL.TMSFNCMaps, Vcl.ExtCtrls;
+  TypInfo,
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Clipbrd,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  VCL.TMSFNCTypes,
+  VCL.TMSFNCUtils,
+  VCL.TMSFNCGraphics,
+  VCL.TMSFNCGraphicsTypes,
+  VCL.TMSFNCMapsCommonTypes,
+  Vcl.StdCtrls,
+  VCL.TMSFNCCustomControl,
+  VCL.TMSFNCWebBrowser,
+  VCL.TMSFNCMaps,
+  Vcl.ExtCtrls,
+  Vcl.ComCtrls,
+  Vcl.Buttons, Vcl.Menus;
 
 type
   TMainView = class(TForm)
     Panel1: TPanel;
     TMSFNCMaps1: TTMSFNCMaps;
-    Label1: TLabel;
-    cBoxService: TComboBox;
-    Button1: TButton;
     GroupBox1: TGroupBox;
     btnAddMarkerDefault: TButton;
     btnAddMarkerOk: TButton;
@@ -27,8 +44,27 @@ type
     GroupBox3: TGroupBox;
     btnAddLabel01: TButton;
     btnAddLabel02: TButton;
-    GroupBox4: TGroupBox;
-    Button11: TButton;
+    Panel2: TPanel;
+    Label1: TLabel;
+    cBoxService: TComboBox;
+    GroupBox5: TGroupBox;
+    TrackBarZoom: TTrackBar;
+    btnZoomMin: TButton;
+    btnZoomMenos: TButton;
+    btnZoomMax: TButton;
+    btnZoomMais: TButton;
+    Label2: TLabel;
+    cBoxLanguage: TComboBox;
+    StatusBar1: TStatusBar;
+    PopupMenu1: TPopupMenu;
+    CopyLatitudeAndLongitude1: TMenuItem;
+    Panel3: TPanel;
+    Label3: TLabel;
+    edtMarkerC4DLatitude: TEdit;
+    Label4: TLabel;
+    edtMarkerC4DLongitude: TEdit;
+    UsertomarkerC4D1: TMenuItem;
+    AddC4DMarkerHere1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure btnAddMarkerDefaultClick(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -37,13 +73,25 @@ type
     procedure btnAddCircleClick(Sender: TObject);
     procedure btnAddRectanglesClick(Sender: TObject);
     procedure btnAddLabel01Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure btnAddLabel02Click(Sender: TObject);
-    procedure Button11Click(Sender: TObject);
     procedure btnAddMarkerOkClick(Sender: TObject);
     procedure btnAddMarkerNoClick(Sender: TObject);
     procedure btnAddMarkerC4DClick(Sender: TObject);
+    procedure TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
+    procedure TMSFNCMaps1ZoomChanged(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TrackBarZoomTracking(Sender: TObject);
+    procedure btnZoomMinClick(Sender: TObject);
+    procedure btnZoomMenosClick(Sender: TObject);
+    procedure btnZoomMaisClick(Sender: TObject);
+    procedure btnZoomMaxClick(Sender: TObject);
+    procedure cBoxLanguageChange(Sender: TObject);
+    procedure TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure CopyLatitudeAndLongitude1Click(Sender: TObject);
+    procedure UsertomarkerC4D1Click(Sender: TObject);
+    procedure AddC4DMarkerHere1Click(Sender: TObject);
   private
+    FLastLat: Double;
+    FLastLon: Double;
     procedure PreencherComboboxServices;
   public
   end;
@@ -57,6 +105,8 @@ implementation
 
 procedure TMainView.FormCreate(Sender: TObject);
 begin
+  FormatSettings.DecimalSeparator := '.';
+
   Self.PreencherComboboxServices;
   cBoxService.ItemIndex := 6;
   cBoxServiceChange(cBoxService);
@@ -72,6 +122,71 @@ begin
   end;
 end;
 
+procedure TMainView.cBoxLanguageChange(Sender: TObject);
+begin
+  TMSFNCMaps1.Options.Locale := 'pt-BR';
+  TMSFNCMaps1.ReInitialize;
+end;
+
+procedure TMainView.TMSFNCMaps1ZoomChanged(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  TMSFNCMaps1.GetZoomLevel;
+end;
+
+procedure TMainView.TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
+begin
+  TrackBarZoom.Position := Round(AZoomLevel);
+
+  //FZoomLevel := AZoomLevel;
+  //TMSFNCMaps1.ExecuteJavaScript('document.getElementById("customRange1").value = ' + TTMSFNCUtils.FloatToStrDot(AZoomLevel));
+  //TMSFNCMaps1.ExecuteJavaScript('document.getElementById("customZoom1").innerText = ' + TTMSFNCUtils.FloatToStrDot(Round(AZoomLevel)));
+end;
+
+procedure TMainView.TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  FLastLat := AEventData.Coordinate.Latitude;
+  FLastLon := AEventData.Coordinate.Longitude;
+
+  StatusBar1.Panels[0].Text := 'Lat: ' + FLastLat.ToString;
+  StatusBar1.Panels[1].Text := 'Lon: ' + FLastLon.ToString;
+end;
+
+procedure TMainView.btnZoomMinClick(Sender: TObject);
+begin
+  TrackBarZoom.Position := TrackBarZoom.Min;
+  TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
+end;
+
+procedure TMainView.AddC4DMarkerHere1Click(Sender: TObject);
+begin
+  TMSFNCMaps1.BeginUpdate;
+  TMSFNCMaps1.AddMarker(FLastLat, FLastLon, 'Marker Here', 'https://code4delphi.com.br/img/c4d-24x24.png');
+  TMSFNCMaps1.EndUpdate;
+end;
+
+procedure TMainView.btnZoomMenosClick(Sender: TObject);
+begin
+  TrackBarZoom.Position := TrackBarZoom.Position - 1;
+  TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
+end;
+
+procedure TMainView.btnZoomMaisClick(Sender: TObject);
+begin
+  TrackBarZoom.Position := TrackBarZoom.Position + 1;
+  TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
+end;
+
+procedure TMainView.btnZoomMaxClick(Sender: TObject);
+begin
+  TrackBarZoom.Position := TrackBarZoom.Max;
+  TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
+end;
+
+procedure TMainView.TrackBarZoomTracking(Sender: TObject);
+begin
+  TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
+end;
+
 procedure TMainView.cBoxServiceChange(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
@@ -85,6 +200,17 @@ begin
   TMSFNCMaps1.APIKey := 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImYwYzZjMDA2OWQxMjQ5YTQ4M2NiYTBhOTdhZWYyYTgzIiwiaCI6Im11cm11cjY0In0=';
 
   TMSFNCMaps1.EndUpdate;
+end;
+
+procedure TMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
+begin
+  Clipboard.AsText := Format('%s, %s', [FLastLat.ToString, FLastLon.ToString]);
+end;
+
+procedure TMainView.UsertomarkerC4D1Click(Sender: TObject);
+begin
+  edtMarkerC4DLatitude.Text := FLastLat.ToString;
+  edtMarkerC4DLongitude.Text := FLastLon.ToString;
 end;
 
 procedure TMainView.btnAddMarkerDefaultClick(Sender: TObject);
@@ -111,7 +237,11 @@ end;
 procedure TMainView.btnAddMarkerC4DClick(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.AddMarker(-25.562780, -52.629749, 'Marker C4D', 'https://code4delphi.com.br/img/c4d-24x24.png');
+
+  var LLatitude: Double := StrToFloat(edtMarkerC4DLatitude.Text);
+  var LLongitude: Double := StrToFloat(edtMarkerC4DLongitude.Text);
+  TMSFNCMaps1.AddMarker(LLatitude, LLongitude, 'Marker C4D', 'https://code4delphi.com.br/img/c4d-24x24.png');
+
   TMSFNCMaps1.EndUpdate;
 end;
 
@@ -127,11 +257,6 @@ begin
   LMapsMarker.DefaultIcon.Size := 50;
 
   TMSFNCMaps1.EndUpdate;
-end;
-
-procedure TMainView.Button1Click(Sender: TObject);
-begin
-  TMSFNCMaps1.SetZoomLevel(1);
 end;
 
 procedure TMainView.btnAddPolygonClick(Sender: TObject);
@@ -212,36 +337,6 @@ begin
   LMapsLabel := TMSFNCMaps1.AddLabel(57.261558, -14.946536, '<b>C4D</b><br>Code4Delphi', gcWhite, gcDarkslateblue);
   LMapsLabel.Font.Size := 14;
   TMSFNCMaps1.EndUpdate;
-end;
-
-procedure TMainView.Button11Click(Sender: TObject);
-//var
-//  ca: TTMSFNCMapsCoordinateRecArray;
-//  hm: TTMSFNCMapsHeatMap;
-begin
-//  SetLength(ca, 2);
-//
-//  ca[0].Latitude := 37.782551;
-//  ca[0].Longitude := -122.445368;
-//  //Optional setting
-//  ca[0].Weight := 1;
-//  //
-//
-//  ca[1].Latitude := 37.782745;
-//  ca[1].Longitude := -122.444586;
-//  //Optional setting
-//  ca[1].Weight := 1;
-//  //
-//
-//  TMSFNCMaps1.BeginUpdate;
-//  hm := TMSFNCMaps1.AddHeatMap(ca);
-//  //Optional settings
-//  hm.Opacity := 1;
-//  hm.GradientStartColor := gcGreen;
-//  hm.GradientMidColor := gcYellow;
-//  hm.GradientEndColor := gcRed;
-//  //
-//  TMSFNCMaps1.EndUpdate;
 end;
 
 end.
