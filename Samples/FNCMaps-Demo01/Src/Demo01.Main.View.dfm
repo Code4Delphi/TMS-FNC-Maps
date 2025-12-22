@@ -1,4 +1,4 @@
-object MainView: TMainView
+object Demo01MainView: TDemo01MainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - Demo01'
@@ -30,7 +30,6 @@ object MainView: TMainView
       Align = alRight
       Caption = ' Markers '
       TabOrder = 0
-      ExplicitHeight = 185
       object btnAddMarkerDefault: TButton
         Left = 2
         Top = 17
@@ -40,7 +39,6 @@ object MainView: TMainView
         Caption = 'Add marker Default'
         TabOrder = 0
         OnClick = btnAddMarkerDefaultClick
-        ExplicitWidth = 181
       end
       object btnAddMarkerOk: TButton
         Left = 2
@@ -51,7 +49,8 @@ object MainView: TMainView
         Caption = 'Add marker OK'
         TabOrder = 1
         OnClick = btnAddMarkerOkClick
-        ExplicitWidth = 181
+        ExplicitLeft = 3
+        ExplicitTop = 36
       end
       object btnAddMarkerNo: TButton
         Left = 2
@@ -62,7 +61,6 @@ object MainView: TMainView
         Caption = 'Add marker NO'
         TabOrder = 2
         OnClick = btnAddMarkerNoClick
-        ExplicitWidth = 181
       end
       object btnAddMarkerC4D: TButton
         Left = 2
@@ -73,7 +71,6 @@ object MainView: TMainView
         Caption = 'Add marker C4D'
         TabOrder = 3
         OnClick = btnAddMarkerC4DClick
-        ExplicitTop = 167
       end
       object btnAddMarkerCustomized: TButton
         Left = 2
@@ -84,8 +81,6 @@ object MainView: TMainView
         Caption = 'Add marker Customized'
         TabOrder = 4
         OnClick = btnAddMarkerCustomizedClick
-        ExplicitTop = 117
-        ExplicitWidth = 181
       end
       object Panel3: TPanel
         Left = 2
@@ -94,8 +89,6 @@ object MainView: TMainView
         Height = 43
         Align = alBottom
         TabOrder = 5
-        ExplicitLeft = 4
-        ExplicitTop = 123
         object Label3: TLabel
           Left = 2
           Top = 0
@@ -136,9 +129,6 @@ object MainView: TMainView
       Align = alRight
       Caption = ' Polygon  '
       TabOrder = 1
-      ExplicitLeft = 620
-      ExplicitTop = 1
-      ExplicitHeight = 183
       object btnAddPolygon: TButton
         Left = 2
         Top = 17
@@ -178,9 +168,6 @@ object MainView: TMainView
       Align = alRight
       Caption = ' Labels '
       TabOrder = 2
-      ExplicitLeft = 805
-      ExplicitTop = 1
-      ExplicitHeight = 183
       object btnAddLabel01: TButton
         Left = 2
         Top = 17
@@ -210,8 +197,6 @@ object MainView: TMainView
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 3
-      ExplicitLeft = -2
-      ExplicitTop = -6
       object Label1: TLabel
         Left = 16
         Top = 16
@@ -244,9 +229,6 @@ object MainView: TMainView
         Align = alBottom
         Caption = ' Zoom '
         TabOrder = 1
-        ExplicitLeft = -4
-        ExplicitTop = 130
-        ExplicitWidth = 436
         object TrackBarZoom: TTrackBar
           Left = 64
           Top = 17
@@ -258,9 +240,6 @@ object MainView: TMainView
           Position = 2
           TabOrder = 0
           OnTracking = TrackBarZoomTracking
-          ExplicitLeft = 27
-          ExplicitTop = 13
-          ExplicitWidth = 378
         end
         object btnZoomMin: TButton
           Left = 2
@@ -277,8 +256,6 @@ object MainView: TMainView
           ParentFont = False
           TabOrder = 1
           OnClick = btnZoomMinClick
-          ExplicitLeft = -4
-          ExplicitTop = 16
         end
         object btnZoomMenos: TButton
           Left = 33
@@ -295,8 +272,6 @@ object MainView: TMainView
           ParentFont = False
           TabOrder = 2
           OnClick = btnZoomMenosClick
-          ExplicitLeft = 27
-          ExplicitTop = 16
         end
         object btnZoomMax: TButton
           Left = 472
@@ -313,8 +288,6 @@ object MainView: TMainView
           ParentFont = False
           TabOrder = 3
           OnClick = btnZoomMaxClick
-          ExplicitLeft = 27
-          ExplicitTop = 16
         end
         object btnZoomMais: TButton
           Left = 441
@@ -331,8 +304,6 @@ object MainView: TMainView
           ParentFont = False
           TabOrder = 4
           OnClick = btnZoomMaisClick
-          ExplicitLeft = 27
-          ExplicitTop = 16
         end
       end
       object cBoxLanguage: TComboBox
@@ -389,7 +360,6 @@ object MainView: TMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitTop = 197
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -407,9 +377,6 @@ object MainView: TMainView
         Text = 'F6 copies the latitude and longitude to the clipboard'
         Width = 250
       end>
-    ExplicitLeft = 568
-    ExplicitTop = 336
-    ExplicitWidth = 0
   end
   object PopupMenu1: TPopupMenu
     Left = 1016

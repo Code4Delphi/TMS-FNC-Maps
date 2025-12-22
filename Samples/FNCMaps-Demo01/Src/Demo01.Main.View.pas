@@ -1,4 +1,4 @@
-unit Main.View;
+unit Demo01.Main.View;
 
 interface
 
@@ -28,11 +28,13 @@ uses
   Vcl.Buttons, Vcl.Menus;
 
 type
-  TMainView = class(TForm)
+  TDemo01MainView = class(TForm)
     Panel1: TPanel;
     TMSFNCMaps1: TTMSFNCMaps;
     GroupBox1: TGroupBox;
     btnAddMarkerDefault: TButton;
+    btnAddMarkerOk: TButton;
+    btnAddMarkerNo: TButton;
     btnAddMarkerC4D: TButton;
     btnAddMarkerCustomized: TButton;
     GroupBox2: TGroupBox;
@@ -63,13 +65,6 @@ type
     edtMarkerC4DLongitude: TEdit;
     UsertomarkerC4D1: TMenuItem;
     AddC4DMarkerHere1: TMenuItem;
-    btClearAll: TButton;
-    Panel4: TPanel;
-    btnAddMarkerOk: TButton;
-    btnAddMarkerNo: TButton;
-    btnmarkerClearAll: TButton;
-    edtAPIMap: TEdit;
-    Label5: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnAddMarkerDefaultClick(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -94,52 +89,51 @@ type
     procedure CopyLatitudeAndLongitude1Click(Sender: TObject);
     procedure UsertomarkerC4D1Click(Sender: TObject);
     procedure AddC4DMarkerHere1Click(Sender: TObject);
-    procedure btClearAllClick(Sender: TObject);
-    procedure btnmarkerClearAllClick(Sender: TObject);
-    procedure edtAPIMapChange(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
-    procedure FillComboboxServices;
+    procedure PreencherComboboxServices;
   public
   end;
 
 var
-  MainView: TMainView;
+  Demo01MainView: TDemo01MainView;
 
 implementation
 
 {$R *.dfm}
 
-procedure TMainView.FormCreate(Sender: TObject);
+procedure TDemo01MainView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
 
-  TMSFNCMaps1.APIKey := edtAPIMap.Text;
-  Self.FillComboboxServices;
-  cBoxService.ItemIndex := Integer(TTMSFNCMapsService.msOpenLayers);;
+  Self.PreencherComboboxServices;
+  cBoxService.ItemIndex := 6;
   cBoxServiceChange(cBoxService);
 end;
 
-procedure TMainView.FillComboboxServices;
+procedure TDemo01MainView.PreencherComboboxServices;
 begin
   cBoxService.Clear;
   for var LService := Low(TTMSFNCMapsService) to High(TTMSFNCMapsService) do
+  begin
     cBoxService.Items.AddObject(GetEnumName(TypeInfo(TTMSFNCMapsService), Ord(LService)), TObject(Ord(LService)));
+    //cBoxService.Items.Add(GetEnumName(TypeInfo(TTMSFNCMapsService), Ord(LService)));
+  end;
 end;
 
-procedure TMainView.cBoxLanguageChange(Sender: TObject);
+procedure TDemo01MainView.cBoxLanguageChange(Sender: TObject);
 begin
-  TMSFNCMaps1.Options.Locale := Copy(cBoxLanguage.Text, 1, 5);
+  TMSFNCMaps1.Options.Locale := 'pt-BR';
   TMSFNCMaps1.ReInitialize;
 end;
 
-procedure TMainView.TMSFNCMaps1ZoomChanged(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+procedure TDemo01MainView.TMSFNCMaps1ZoomChanged(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   TMSFNCMaps1.GetZoomLevel;
 end;
 
-procedure TMainView.TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
+procedure TDemo01MainView.TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
 begin
   TrackBarZoom.Position := Round(AZoomLevel);
 
@@ -148,7 +142,7 @@ begin
   //TMSFNCMaps1.ExecuteJavaScript('document.getElementById("customZoom1").innerText = ' + TTMSFNCUtils.FloatToStrDot(Round(AZoomLevel)));
 end;
 
-procedure TMainView.TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+procedure TDemo01MainView.TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   FLastLat := AEventData.Coordinate.Latitude;
   FLastLon := AEventData.Coordinate.Longitude;
@@ -157,43 +151,43 @@ begin
   StatusBar1.Panels[1].Text := 'Lon: ' + FLastLon.ToString;
 end;
 
-procedure TMainView.btnZoomMinClick(Sender: TObject);
+procedure TDemo01MainView.btnZoomMinClick(Sender: TObject);
 begin
   TrackBarZoom.Position := TrackBarZoom.Min;
   TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
 end;
 
-procedure TMainView.AddC4DMarkerHere1Click(Sender: TObject);
+procedure TDemo01MainView.AddC4DMarkerHere1Click(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.AddMarker(FLastLat, FLastLon, 'Marker Here', 'https://code4delphi.com.br/img/c4d-24x24.png');
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnZoomMenosClick(Sender: TObject);
+procedure TDemo01MainView.btnZoomMenosClick(Sender: TObject);
 begin
   TrackBarZoom.Position := TrackBarZoom.Position - 1;
   TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
 end;
 
-procedure TMainView.btnZoomMaisClick(Sender: TObject);
+procedure TDemo01MainView.btnZoomMaisClick(Sender: TObject);
 begin
   TrackBarZoom.Position := TrackBarZoom.Position + 1;
   TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
 end;
 
-procedure TMainView.btnZoomMaxClick(Sender: TObject);
+procedure TDemo01MainView.btnZoomMaxClick(Sender: TObject);
 begin
   TrackBarZoom.Position := TrackBarZoom.Max;
   TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
 end;
 
-procedure TMainView.TrackBarZoomTracking(Sender: TObject);
+procedure TDemo01MainView.TrackBarZoomTracking(Sender: TObject);
 begin
   TMSFNCMaps1.SetZoomLevel(TrackBarZoom.Position);
 end;
 
-procedure TMainView.cBoxServiceChange(Sender: TObject);
+procedure TDemo01MainView.cBoxServiceChange(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
 
@@ -203,47 +197,44 @@ begin
 
   //DoKeyEditsChange(Self);
 
+  TMSFNCMaps1.APIKey := 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImYwYzZjMDA2OWQxMjQ5YTQ4M2NiYTBhOTdhZWYyYTgzIiwiaCI6Im11cm11cjY0In0=';
+
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
+procedure TDemo01MainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
 begin
   Clipboard.AsText := Format('%s, %s', [FLastLat.ToString, FLastLon.ToString]);
 end;
 
-procedure TMainView.edtAPIMapChange(Sender: TObject);
-begin
-  TMSFNCMaps1.APIKey := edtAPIMap.Text;
-end;
-
-procedure TMainView.UsertomarkerC4D1Click(Sender: TObject);
+procedure TDemo01MainView.UsertomarkerC4D1Click(Sender: TObject);
 begin
   edtMarkerC4DLatitude.Text := FLastLat.ToString;
   edtMarkerC4DLongitude.Text := FLastLon.ToString;
 end;
 
-procedure TMainView.btnAddMarkerDefaultClick(Sender: TObject);
+procedure TDemo01MainView.btnAddMarkerDefaultClick(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.AddMarker(DefaultCoordinate, 'Marker Default');
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnAddMarkerOkClick(Sender: TObject);
+procedure TDemo01MainView.btnAddMarkerOkClick(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.AddMarker(47.457421, -83.215685, 'Marker OK', 'https://code4delphi.com.br/img/ok.png');
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnAddMarkerNoClick(Sender: TObject);
+procedure TDemo01MainView.btnAddMarkerNoClick(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.AddMarker(52.321560, 75.866337, 'Marker No', 'https://code4delphi.com.br/img/no.png');
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnAddMarkerC4DClick(Sender: TObject);
+procedure TDemo01MainView.btnAddMarkerC4DClick(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
 
@@ -254,7 +245,7 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnAddMarkerCustomizedClick(Sender: TObject);
+procedure TDemo01MainView.btnAddMarkerCustomizedClick(Sender: TObject);
 var
   LMapsMarker: TTMSFNCMapsMarker;
 begin
@@ -268,12 +259,7 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnmarkerClearAllClick(Sender: TObject);
-begin
-  TMSFNCMaps1.ClearMarkers;
-end;
-
-procedure TMainView.btnAddPolygonClick(Sender: TObject);
+procedure TDemo01MainView.btnAddPolygonClick(Sender: TObject);
 var
   LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
   LPolygon: TTMSFNCMapsPolygon;
@@ -294,7 +280,7 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnAddCircleClick(Sender: TObject);
+procedure TDemo01MainView.btnAddCircleClick(Sender: TObject);
 var
   LCoordinateRec: TTMSFNCMapsCoordinateRec;
   LCircle: TTMSFNCMapsCircle;
@@ -314,7 +300,7 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnAddRectanglesClick(Sender: TObject);
+procedure TDemo01MainView.btnAddRectanglesClick(Sender: TObject);
 var
   LRectangle: TTMSFNCMapsRectangle;
   LBoundsRec: TTMSFNCMapsBoundsRec;
@@ -336,14 +322,14 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnAddLabel01Click(Sender: TObject);
+procedure TDemo01MainView.btnAddLabel01Click(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.AddLabel(50.105082, -118.859648, '<b>C4D</b><br>Code4Delphi');
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TMainView.btnAddLabel02Click(Sender: TObject);
+procedure TDemo01MainView.btnAddLabel02Click(Sender: TObject);
 var
   LMapsLabel: TTMSFNCMapsLabel;
 begin
@@ -351,11 +337,6 @@ begin
   LMapsLabel := TMSFNCMaps1.AddLabel(57.261558, -14.946536, '<b>C4D</b><br>Code4Delphi', gcWhite, gcDarkslateblue);
   LMapsLabel.Font.Size := 14;
   TMSFNCMaps1.EndUpdate;
-end;
-
-procedure TMainView.btClearAllClick(Sender: TObject);
-begin
-  TMSFNCMaps1.ClearLabels;
 end;
 
 end.

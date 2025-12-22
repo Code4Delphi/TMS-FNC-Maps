@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{DC3F98BB-2BB2-4D76-B7AC-BD5AB569596E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FNCMaps-Demo01\FNCMapsDemo01.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FNCMapsMarkers\FNCMapsMarkers.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FNCMapsDemo01">
+        <MSBuild Projects="FNCMaps-Demo01\FNCMapsDemo01.dproj"/>
+    </Target>
+    <Target Name="FNCMapsDemo01:Clean">
+        <MSBuild Projects="FNCMaps-Demo01\FNCMapsDemo01.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsDemo01:Make">
+        <MSBuild Projects="FNCMaps-Demo01\FNCMapsDemo01.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FNCMapsMarkers">
+        <MSBuild Projects="FNCMapsMarkers\FNCMapsMarkers.dproj"/>
+    </Target>
+    <Target Name="FNCMapsMarkers:Clean">
+        <MSBuild Projects="FNCMapsMarkers\FNCMapsMarkers.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsMarkers:Make">
+        <MSBuild Projects="FNCMapsMarkers\FNCMapsMarkers.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

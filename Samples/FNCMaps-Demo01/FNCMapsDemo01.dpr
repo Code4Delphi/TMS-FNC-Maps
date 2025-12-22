@@ -2,13 +2,13 @@ program FNCMapsDemo01;
 
 uses
   Vcl.Forms,
-  Main.View in 'Src\Main.View.pas' {MainView};
+  Demo01.Main.View in 'Src\Demo01.Main.View.pas' {Demo01MainView};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TMainView, MainView);
+  Application.CreateForm(TDemo01MainView, Demo01MainView);
   Application.Run;
 end.
