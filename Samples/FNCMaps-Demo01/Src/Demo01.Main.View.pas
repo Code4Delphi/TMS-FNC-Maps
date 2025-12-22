@@ -33,8 +33,6 @@ type
     TMSFNCMaps1: TTMSFNCMaps;
     GroupBox1: TGroupBox;
     btnAddMarkerDefault: TButton;
-    btnAddMarkerOk: TButton;
-    btnAddMarkerNo: TButton;
     btnAddMarkerC4D: TButton;
     btnAddMarkerCustomized: TButton;
     GroupBox2: TGroupBox;
@@ -65,6 +63,12 @@ type
     edtMarkerC4DLongitude: TEdit;
     UsertomarkerC4D1: TMenuItem;
     AddC4DMarkerHere1: TMenuItem;
+    Panel4: TPanel;
+    btnAddMarkerOk: TButton;
+    btnAddMarkerNo: TButton;
+    btnClearAllMarker: TButton;
+    btnClearAllShapes: TButton;
+    btnClearAllLabels: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnAddMarkerDefaultClick(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -89,6 +93,9 @@ type
     procedure CopyLatitudeAndLongitude1Click(Sender: TObject);
     procedure UsertomarkerC4D1Click(Sender: TObject);
     procedure AddC4DMarkerHere1Click(Sender: TObject);
+    procedure btnClearAllMarkerClick(Sender: TObject);
+    procedure btnClearAllShapesClick(Sender: TObject);
+    procedure btnClearAllLabelsClick(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
@@ -194,9 +201,6 @@ begin
   TMSFNCMaps1.Service := TTMSFNCMapsService(cBoxService.ItemIndex);
   //d.Service := TTMSFNCDirectionsService(cboDirections.ItemIndex{$IFDEF WEBLIB} + 1 {$ENDIF});
   //g.Service := TTMSFNCGeocodingService(cboGeocoding.ItemIndex);
-
-  //DoKeyEditsChange(Self);
-
   TMSFNCMaps1.APIKey := '';
 
   TMSFNCMaps1.EndUpdate;
@@ -243,6 +247,11 @@ begin
   TMSFNCMaps1.AddMarker(LLatitude, LLongitude, 'Marker C4D', 'https://code4delphi.com.br/img/c4d-24x24.png');
 
   TMSFNCMaps1.EndUpdate;
+end;
+
+procedure TDemo01MainView.btnClearAllMarkerClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ClearMarkers;
 end;
 
 procedure TDemo01MainView.btnAddMarkerCustomizedClick(Sender: TObject);
@@ -322,6 +331,13 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
+procedure TDemo01MainView.btnClearAllShapesClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ClearPolygons;
+  TMSFNCMaps1.ClearCircles;
+  TMSFNCMaps1.ClearRectangles;
+end;
+
 procedure TDemo01MainView.btnAddLabel01Click(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
@@ -337,6 +353,11 @@ begin
   LMapsLabel := TMSFNCMaps1.AddLabel(57.261558, -14.946536, '<b>C4D</b><br>Code4Delphi', gcWhite, gcDarkslateblue);
   LMapsLabel.Font.Size := 14;
   TMSFNCMaps1.EndUpdate;
+end;
+
+procedure TDemo01MainView.btnClearAllLabelsClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ClearLabels;
 end;
 
 end.
