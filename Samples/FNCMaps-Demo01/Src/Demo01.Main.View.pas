@@ -197,7 +197,7 @@ begin
 
   //DoKeyEditsChange(Self);
 
-  TMSFNCMaps1.APIKey := 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImYwYzZjMDA2OWQxMjQ5YTQ4M2NiYTBhOTdhZWYyYTgzIiwiaCI6Im11cm11cjY0In0=';
+  TMSFNCMaps1.APIKey := '';
 
   TMSFNCMaps1.EndUpdate;
 end;

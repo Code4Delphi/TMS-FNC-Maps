@@ -49,8 +49,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Add marker OK'
         TabOrder = 1
         OnClick = btnAddMarkerOkClick
-        ExplicitLeft = 3
-        ExplicitTop = 36
       end
       object btnAddMarkerNo: TButton
         Left = 2
@@ -360,6 +358,7 @@ object Demo01MainView: TDemo01MainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
+    ExplicitTop = 187
   end
   object StatusBar1: TStatusBar
     Left = 0

@@ -77,7 +77,6 @@ object MarkersMainView: TMarkersMainView
         Height = 23
         PasswordChar = '*'
         TabOrder = 1
-        Text = 'AIzaSyA6938sLzOzTl5ODf6ssnP1RQPC82cOJb4'
         OnExit = edtAPIKeyMapExit
       end
       object cBoxLanguage: TComboBox
@@ -168,9 +167,6 @@ object MarkersMainView: TMarkersMainView
       Align = alClient
       Caption = ' Market Customized '
       TabOrder = 2
-      ExplicitLeft = 719
-      ExplicitTop = -4
-      ExplicitWidth = 366
       object Label3: TLabel
         Left = 10
         Top = 20
