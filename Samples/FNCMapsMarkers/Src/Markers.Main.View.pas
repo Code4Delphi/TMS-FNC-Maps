@@ -63,6 +63,7 @@ type
     procedure Button6Click(Sender: TObject);
     procedure btnAddMarkerCustomizedClick(Sender: TObject);
   private
+    FMarkerCustomized: TTMSFNCMapsMarker;
     procedure ConfigBasicMaps;
   public
 
@@ -110,6 +111,7 @@ end;
 procedure TMarkersMainView.Button2Click(Sender: TObject);
 begin
   TMSFNCMaps1.ClearMarkers;
+  FMarkerCustomized := nil;
 end;
 
 procedure TMarkersMainView.Button1Click(Sender: TObject);
@@ -122,7 +124,7 @@ end;
 procedure TMarkersMainView.Button4Click(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.AddMarker(46.819249, -42.198792, 'Market C4D - OK', 'https://code4delphi.com.br/img/ok.png');
+  TMSFNCMaps1.AddMarker(56.819249, -42.198792, 'Market C4D - OK', 'https://code4delphi.com.br/img/ok.png');
   TMSFNCMaps1.EndUpdate;
 end;
 
@@ -139,7 +141,7 @@ var
 begin
   TMSFNCMaps1.BeginUpdate;
 
-  LMarker := TMSFNCMaps1.AddMarker(26.819249, -22.198792);
+  LMarker := TMSFNCMaps1.AddMarker(15.819249, -20.198792);
   LMarker.Title := 'Market C4D - Customized';
   LMarker.DefaultIcon.Enabled := True;
   LMarker.DefaultIcon.Fill := clBlue;
@@ -152,9 +154,13 @@ procedure TMarkersMainView.btnAddMarkerCustomizedClick(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
 
-  var LLatitude := StrToFloat(edtCustomizedLatitude.Text);
-  var LLongitude := StrToFloat(edtCustomizedLongitude.Text);
-  TMSFNCMaps1.AddMarker(LLatitude, LLongitude, edtCustomizedTitle.Text, edtCustomizedIconURL.Text);
+  if not Assigned(FMarkerCustomized) then
+    FMarkerCustomized := TMSFNCMaps1.Markers.Add;
+
+  FMarkerCustomized.Latitude := StrToFloatDef(edtCustomizedLatitude.Text, 0);
+  FMarkerCustomized.Longitude := StrToFloatDef(edtCustomizedLongitude.Text, 0);
+  FMarkerCustomized.Title := edtCustomizedTitle.Text;
+  FMarkerCustomized.IconURL := edtCustomizedIconURL.Text;
 
   TMSFNCMaps1.EndUpdate;
 end;

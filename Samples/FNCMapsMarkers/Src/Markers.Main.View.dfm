@@ -116,7 +116,7 @@ object MarkersMainView: TMarkersMainView
       end
       object Button2: TButton
         Left = 16
-        Top = 24
+        Top = 23
         Width = 209
         Height = 25
         Caption = 'Clear Markers'
@@ -214,7 +214,7 @@ object MarkersMainView: TMarkersMainView
       object btnAddMarkerCustomized: TButton
         Left = 6
         Top = 160
-        Width = 343
+        Width = 347
         Height = 25
         Caption = 'Add Marker C4D'
         TabOrder = 2
@@ -258,5 +258,6 @@ object MarkersMainView: TMarkersMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
+    ExplicitTop = 192
   end
 end
