@@ -33,8 +33,6 @@ type
     TMSFNCMaps1: TTMSFNCMaps;
     GroupBox1: TGroupBox;
     btnAddMarkerDefault: TButton;
-    btnAddMarkerOk: TButton;
-    btnAddMarkerNo: TButton;
     btnAddMarkerC4D: TButton;
     btnAddMarkerCustomized: TButton;
     GroupBox2: TGroupBox;
@@ -65,6 +63,13 @@ type
     edtMarkerC4DLongitude: TEdit;
     UsertomarkerC4D1: TMenuItem;
     AddC4DMarkerHere1: TMenuItem;
+    btClearAll: TButton;
+    Panel4: TPanel;
+    btnAddMarkerOk: TButton;
+    btnAddMarkerNo: TButton;
+    btnmarkerClearAll: TButton;
+    edtAPIMap: TEdit;
+    Label5: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnAddMarkerDefaultClick(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -89,10 +94,13 @@ type
     procedure CopyLatitudeAndLongitude1Click(Sender: TObject);
     procedure UsertomarkerC4D1Click(Sender: TObject);
     procedure AddC4DMarkerHere1Click(Sender: TObject);
+    procedure btClearAllClick(Sender: TObject);
+    procedure btnmarkerClearAllClick(Sender: TObject);
+    procedure edtAPIMapChange(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
-    procedure PreencherComboboxServices;
+    procedure FillComboboxServices;
   public
   end;
 
@@ -107,24 +115,22 @@ procedure TMainView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
 
-  Self.PreencherComboboxServices;
-  cBoxService.ItemIndex := 6;
+  TMSFNCMaps1.APIKey := edtAPIMap.Text;
+  Self.FillComboboxServices;
+  cBoxService.ItemIndex := Integer(TTMSFNCMapsService.msOpenLayers);;
   cBoxServiceChange(cBoxService);
 end;
 
-procedure TMainView.PreencherComboboxServices;
+procedure TMainView.FillComboboxServices;
 begin
   cBoxService.Clear;
   for var LService := Low(TTMSFNCMapsService) to High(TTMSFNCMapsService) do
-  begin
     cBoxService.Items.AddObject(GetEnumName(TypeInfo(TTMSFNCMapsService), Ord(LService)), TObject(Ord(LService)));
-    //cBoxService.Items.Add(GetEnumName(TypeInfo(TTMSFNCMapsService), Ord(LService)));
-  end;
 end;
 
 procedure TMainView.cBoxLanguageChange(Sender: TObject);
 begin
-  TMSFNCMaps1.Options.Locale := 'pt-BR';
+  TMSFNCMaps1.Options.Locale := Copy(cBoxLanguage.Text, 1, 5);
   TMSFNCMaps1.ReInitialize;
 end;
 
@@ -197,14 +203,17 @@ begin
 
   //DoKeyEditsChange(Self);
 
-  TMSFNCMaps1.APIKey := 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImYwYzZjMDA2OWQxMjQ5YTQ4M2NiYTBhOTdhZWYyYTgzIiwiaCI6Im11cm11cjY0In0=';
-
   TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
 begin
   Clipboard.AsText := Format('%s, %s', [FLastLat.ToString, FLastLon.ToString]);
+end;
+
+procedure TMainView.edtAPIMapChange(Sender: TObject);
+begin
+  TMSFNCMaps1.APIKey := edtAPIMap.Text;
 end;
 
 procedure TMainView.UsertomarkerC4D1Click(Sender: TObject);
@@ -257,6 +266,11 @@ begin
   LMapsMarker.DefaultIcon.Size := 50;
 
   TMSFNCMaps1.EndUpdate;
+end;
+
+procedure TMainView.btnmarkerClearAllClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ClearMarkers;
 end;
 
 procedure TMainView.btnAddPolygonClick(Sender: TObject);
@@ -337,6 +351,11 @@ begin
   LMapsLabel := TMSFNCMaps1.AddLabel(57.261558, -14.946536, '<b>C4D</b><br>Code4Delphi', gcWhite, gcDarkslateblue);
   LMapsLabel.Font.Size := 14;
   TMSFNCMaps1.EndUpdate;
+end;
+
+procedure TMainView.btClearAllClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ClearLabels;
 end;
 
 end.
