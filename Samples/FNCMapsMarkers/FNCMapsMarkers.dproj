@@ -1,15 +1,15 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{71AAC618-4582-4EAF-BE24-EDF5C27B2917}</ProjectGuid>
+        <ProjectGuid>{90957417-07DA-42B7-9965-1AE4567DF3DD}</ProjectGuid>
         <ProjectVersion>20.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
-        <ProjectName Condition="'$(ProjectName)'==''">FNCMapsDemo01</ProjectName>
+        <ProjectName Condition="'$(ProjectName)'==''">FNCMapsMarkers</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
-        <MainSource>FNCMapsDemo01.dpr</MainSource>
+        <MainSource>FNCMapsMarkers.dpr</MainSource>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -59,8 +59,8 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_DcuOutput>DCU\$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_ExeOutput>Bin</DCC_ExeOutput>
+        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
         <DCC_S>false</DCC_S>
@@ -70,12 +70,10 @@
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <SanitizedProjectName>FNCMapsDemo01</SanitizedProjectName>
-        <VerInfo_Locale>1046</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <SanitizedProjectName>FNCMapsMarkers</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UsePackage>VCLTMSFNCMapsPkg;vclwinx;DataSnapServer;ACBr_ONE;ACBr_TCP;ACBr_BPeDabpeESCPOS;ACBr_NFCom;FMXTMSFNCUIPackPkg;fs29;fmx;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;bsfd103Rio;aurelius;appanalytics;IndyProtocols;vclx;Skia.Package.RTL;ACBr_OpenSSL;dbxcds;vcledge;FmxTeeUI;ACBr_BoletoRL;DBXFirebirdDriver;ACBr_CTeDacteFR;ACBr_NFCeECFVirtual;ACBr_DCeDACERL;FireDACSqliteDriver;DbxClientDriver;soapmidas;ACBr_NF3eDANF3eESCPOS;TeeUI;ACBr_PagFor;dbexpress;ACBr_Reinf;ACBr_NFSeXDanfseFPDF;inet;ACBr_BoletoFPDF;vcltouch;FireDACDBXDriver;ACBr_NF3eDANF3eRL;fmxdae;tmsbcl;CustomIPTransport;FireDACMSSQLDriver;ZCore;C4DDateEdit;ACBr_NFSeX;ZParseSql;C4DWizard;ACBr_NFe;frxPDF29;VCLTMSFNCCloudPackPkg;ACBr_CTeDacteRL;C4DMaskEdit;IndySystem;ACBr_Diversos;ACBr_GNREGuiaRL;frxe29;ZipMasterR;ACBr_NFSeXDanfseRL;ACBr_SAT;TMSFNCCorePkg;ACBr_CIOT;VirtualTreesR;ACBr_TEFD;fsDB29;VDOPrint;vclFireDAC;ACBr_SPED;ACBr_CTe;ACBr_SATWS;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;DelphiAIDeveloper;TMSAIStudioPkg;ACBr_SEF2;ACBr_LCDPR;ACBr_SATExtratoFPDF;ZComponent;bindcompdbx;rtl;FireDACMySQLDriver;ACBr_NFeDanfeFR;ACBr_DCe;frce;ACBr_BPe;DBXSqliteDriver;ACBr_Sintegra;DBXSybaseASEDriver;TMSWEBCorePkgDXE15;ACBr_Serial;ACBr_Comum;ACBr_MDFe;ACBr_NFeDanfeESCPOS;vclimg;DataSnapFireDAC;inetdbxpress;FireDAC;VCLTMSFNCUIPackPkg;xmlrtl;dsnap;xdata;FireDACDb2Driver;ACBr_BPeDabpeFR;DBXOracleDriver;DBXInformixDriver;ACBr_SATECFVirtual;fmxobj;bindcompvclsmp;DataSnapNativeClient;frx29;ACBr_SATExtratoFR;FMXTMSFNCMapsPkg;DatasnapConnectorsFreePascal;ACBr_MDFeDAMDFEFPDF;frxIntIOIndy29;FMXTMSFNCCorePkg;ACBr_NF3e;ACBr_PAF;ACBr_OpenDelivery;ACBr_NFeDanfeFPDF;ACBr_MDFeDamdfeFR;ACBr_SPEDImportar;emshosting;sparkle;MSNPopUp_D104;frxDB29;FireDACCommonDriver;ACBr_ADRCST;ACBr_MTER;IndyIPClient;frxHTML29;FMXTMSFNCCloudPackPkg;bindcompvclwinx;ACBr_Convenio115;emsedge;bindcompfmx;ACBr_NFComDANFComRL;inetdb;FireDACASADriver;ACBr_LFD;Tee;vclactnband;fmxFireDAC;FireDACInfxDriver;DBXMySQLDriver;fsADO29;VclSmp;ACBr_Ponto;DataSnapCommon;fmxase;DBXOdbcDriver;dbrtl;FireDACOracleDriver;Skia.Package.FMX;ACBre_Social;TeeDB;FireDACMSAccDriver;frxcs29;DataSnapIndy10ServerTransport;DataSnapConnectors;ACBr_ANe;ACBr_SATExtratoRL;vcldsnap;DBXInterBaseDriver;FireDACMongoDBDriver;ACBR_DeSTDA;PngComponentsD;ACBr_GNRE;ACBr_EDI;FireDACTDataDriver;Skia.Package.VCL;vcldb;ACBr_Integrador;ACBr_PIXCD;ACBr_BoletoFR;bindcomp;inetstn;IndyCore;RESTBackendComponents;ZPlain;frxIntIO29;FireDACADSDriver;RESTComponents;TMSAIStudioPkgExtensions;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;ACBr_NFSeXDANFSeFR;ACBr_MDFeDamdfeRL;frxADO29;DBXDb2Driver;ACBr_Boleto;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;ACBr_BlocoX;ACBrBaaS;tethering;ACBr_SATExtratoESCPOS;ZDbc;bindcompvcl;ACBr_GTIN;CloudService;DBXSybaseASADriver;ACBr_OFX;VCLTMSFNCCorePkg;ACBr_PAFNFCe;FMXTee;TMSWEBCorePkgLibDXE15;ACBr_DebitoAutomatico;ACBr_NFeDanfeRL;DSPack_DXE2;ACBr_GNREGuiaFR;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>VCLTMSFNCMapsPkg;vclwinx;DataSnapServer;ACBr_ONE;ACBr_TCP;ACBr_BPeDabpeESCPOS;ACBr_NFCom;fs29;fmx;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;bsfd103Rio;ACBr_OpenSSL;appanalytics;IndyProtocols;vclx;Skia.Package.RTL;dbxcds;vcledge;FmxTeeUI;ACBr_BoletoRL;DBXFirebirdDriver;ACBr_CTeDacteFR;ACBr_NFCeECFVirtual;ACBr_DCeDACERL;FireDACSqliteDriver;DbxClientDriver;soapmidas;ACBr_NF3eDANF3eESCPOS;TeeUI;ACBr_PagFor;dbexpress;ACBr_Reinf;ACBr_NFSeXDanfseFPDF;inet;ACBr_BoletoFPDF;vcltouch;FireDACDBXDriver;ACBr_NF3eDANF3eRL;fmxdae;CustomIPTransport;FireDACMSSQLDriver;ZCore;C4DDateEdit;ACBr_NFSeX;ZParseSql;C4DWizard;ACBr_NFe;frxPDF29;ACBr_CTeDacteRL;C4DMaskEdit;IndySystem;ACBr_Diversos;ACBr_GNREGuiaRL;frxe29;ZipMasterR;ACBr_NFSeXDanfseRL;ACBr_SAT;TMSFNCCorePkg;ACBr_CIOT;VirtualTreesR;ACBr_TEFD;fsDB29;VDOPrint;vclFireDAC;ACBr_SPED;ACBr_CTe;ACBr_SATWS;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;DelphiAIDeveloper;TMSAIStudioPkg;ACBr_SEF2;ACBr_LCDPR;ACBr_SATExtratoFPDF;ZComponent;bindcompdbx;rtl;FireDACMySQLDriver;ACBr_NFeDanfeFR;ACBr_DCe;frce;ACBr_BPe;DBXSqliteDriver;ACBr_Sintegra;DBXSybaseASEDriver;TMSWEBCorePkgDXE15;ACBr_Serial;ACBr_Comum;ACBr_MDFe;ACBr_NFeDanfeESCPOS;vclimg;DataSnapFireDAC;inetdbxpress;FireDAC;xmlrtl;dsnap;FireDACDb2Driver;ACBr_BPeDabpeFR;DBXOracleDriver;DBXInformixDriver;ACBr_SATECFVirtual;fmxobj;bindcompvclsmp;DataSnapNativeClient;frx29;ACBr_SATExtratoFR;FMXTMSFNCMapsPkg;DatasnapConnectorsFreePascal;ACBr_MDFeDAMDFEFPDF;frxIntIOIndy29;FMXTMSFNCCorePkg;ACBr_NF3e;ACBr_PAF;ACBr_OpenDelivery;ACBr_NFeDanfeFPDF;ACBr_MDFeDamdfeFR;ACBr_SPEDImportar;emshosting;MSNPopUp_D104;frxDB29;FireDACCommonDriver;ACBr_ADRCST;ACBr_MTER;IndyIPClient;frxHTML29;bindcompvclwinx;ACBr_Convenio115;emsedge;bindcompfmx;ACBr_NFComDANFComRL;inetdb;FireDACASADriver;ACBr_LFD;Tee;vclactnband;fmxFireDAC;FireDACInfxDriver;DBXMySQLDriver;fsADO29;VclSmp;ACBr_Ponto;DataSnapCommon;fmxase;DBXOdbcDriver;dbrtl;FireDACOracleDriver;Skia.Package.FMX;ACBre_Social;TeeDB;FireDACMSAccDriver;frxcs29;DataSnapIndy10ServerTransport;DataSnapConnectors;ACBr_ANe;ACBr_SATExtratoRL;vcldsnap;DBXInterBaseDriver;FireDACMongoDBDriver;ACBR_DeSTDA;PngComponentsD;ACBr_GNRE;ACBr_EDI;FireDACTDataDriver;Skia.Package.VCL;vcldb;ACBr_Integrador;ACBr_PIXCD;ACBr_BoletoFR;bindcomp;inetstn;IndyCore;RESTBackendComponents;ZPlain;frxIntIO29;FireDACADSDriver;RESTComponents;TMSAIStudioPkgExtensions;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;ACBr_NFSeXDANFSeFR;ACBr_MDFeDamdfeRL;frxADO29;DBXDb2Driver;ACBr_Boleto;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;ACBr_BlocoX;ACBrBaaS;tethering;ACBr_SATExtratoESCPOS;ZDbc;bindcompvcl;ACBr_GTIN;CloudService;DBXSybaseASADriver;ACBr_OFX;VCLTMSFNCCorePkg;ACBr_PAFNFCe;FMXTee;TMSWEBCorePkgLibDXE15;ACBr_DebitoAutomatico;ACBr_NFeDanfeRL;DSPack_DXE2;ACBr_GNREGuiaFR;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -84,7 +82,7 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <DCC_UsePackage>VCLTMSFNCMapsPkg;vclwinx;DataSnapServer;FMXTMSFNCUIPackPkg;fmx;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;appanalytics;IndyProtocols;vclx;dbxcds;vcledge;FmxTeeUI;DBXFirebirdDriver;FireDACSqliteDriver;DbxClientDriver;soapmidas;TeeUI;dbexpress;inet;vcltouch;FireDACDBXDriver;fmxdae;CustomIPTransport;FireDACMSSQLDriver;ZCore;ZParseSql;VCLTMSFNCCloudPackPkg;IndySystem;ZipMasterR;TMSFNCCorePkg;VirtualTreesR;vclFireDAC;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;TMSAIStudioPkg;ZComponent;bindcompdbx;rtl;FireDACMySQLDriver;DBXSqliteDriver;DBXSybaseASEDriver;TMSWEBCorePkgDXE15;vclimg;DataSnapFireDAC;inetdbxpress;FireDAC;VCLTMSFNCUIPackPkg;xmlrtl;dsnap;FireDACDb2Driver;DBXOracleDriver;DBXInformixDriver;fmxobj;bindcompvclsmp;DataSnapNativeClient;FMXTMSFNCMapsPkg;DatasnapConnectorsFreePascal;FMXTMSFNCCorePkg;emshosting;FireDACCommonDriver;IndyIPClient;FMXTMSFNCCloudPackPkg;bindcompvclwinx;emsedge;bindcompfmx;inetdb;FireDACASADriver;Tee;vclactnband;fmxFireDAC;FireDACInfxDriver;DBXMySQLDriver;VclSmp;DataSnapCommon;fmxase;DBXOdbcDriver;dbrtl;FireDACOracleDriver;TeeDB;FireDACMSAccDriver;DataSnapIndy10ServerTransport;DataSnapConnectors;vcldsnap;DBXInterBaseDriver;FireDACMongoDBDriver;PngComponentsD;FireDACTDataDriver;Skia.Package.VCL;vcldb;bindcomp;inetstn;IndyCore;RESTBackendComponents;ZPlain;FireDACADSDriver;RESTComponents;TMSAIStudioPkgExtensions;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;DBXDb2Driver;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;tethering;ZDbc;bindcompvcl;CloudService;DBXSybaseASADriver;VCLTMSFNCCorePkg;FMXTee;TMSWEBCorePkgLibDXE15;DSPack_DXE2;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>VCLTMSFNCMapsPkg;vclwinx;DataSnapServer;fmx;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;appanalytics;IndyProtocols;vclx;dbxcds;vcledge;FmxTeeUI;DBXFirebirdDriver;FireDACSqliteDriver;DbxClientDriver;soapmidas;TeeUI;dbexpress;inet;vcltouch;FireDACDBXDriver;fmxdae;CustomIPTransport;FireDACMSSQLDriver;ZCore;ZParseSql;IndySystem;ZipMasterR;TMSFNCCorePkg;VirtualTreesR;vclFireDAC;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;TMSAIStudioPkg;ZComponent;bindcompdbx;rtl;FireDACMySQLDriver;DBXSqliteDriver;DBXSybaseASEDriver;TMSWEBCorePkgDXE15;vclimg;DataSnapFireDAC;inetdbxpress;FireDAC;xmlrtl;dsnap;FireDACDb2Driver;DBXOracleDriver;DBXInformixDriver;fmxobj;bindcompvclsmp;DataSnapNativeClient;FMXTMSFNCMapsPkg;DatasnapConnectorsFreePascal;FMXTMSFNCCorePkg;emshosting;FireDACCommonDriver;IndyIPClient;bindcompvclwinx;emsedge;bindcompfmx;inetdb;FireDACASADriver;Tee;vclactnband;fmxFireDAC;FireDACInfxDriver;DBXMySQLDriver;VclSmp;DataSnapCommon;fmxase;DBXOdbcDriver;dbrtl;FireDACOracleDriver;TeeDB;FireDACMSAccDriver;DataSnapIndy10ServerTransport;DataSnapConnectors;vcldsnap;DBXInterBaseDriver;FireDACMongoDBDriver;PngComponentsD;FireDACTDataDriver;Skia.Package.VCL;vcldb;bindcomp;inetstn;IndyCore;RESTBackendComponents;ZPlain;FireDACADSDriver;RESTComponents;TMSAIStudioPkgExtensions;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;DBXDb2Driver;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;tethering;ZDbc;bindcompvcl;CloudService;DBXSybaseASADriver;VCLTMSFNCCorePkg;FMXTee;TMSWEBCorePkgLibDXE15;DSPack_DXE2;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -105,8 +103,6 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -127,8 +123,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\Demo01.Main.View.pas">
-            <Form>Demo01MainView</Form>
+        <DCCReference Include="Src\Markers.Main.View.pas">
+            <Form>MarkersMainView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
@@ -149,18 +145,13 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">FNCMapsDemo01.dpr</Source>
+                    <Source Name="MainSource">FNCMapsMarkers.dpr</Source>
                 </Source>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\Cesar\Documents\tmssoftware\TMS XData\packages\d12\.\Win32\Release\dclxdata290.bpl">TMS XData - Design-Time Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
-                <DeployFile LocalName="Bin\FNCMapsDemo01.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\FNCMapsMarkers.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>FNCMapsDemo01.exe</RemoteName>
+                        <RemoteName>FNCMapsMarkers.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
