@@ -72,7 +72,7 @@ object MarkersMainView: TMarkersMainView
       end
       object edtAPIKeyMap: TEdit
         Left = 15
-        Top = 82
+        Top = 80
         Width = 200
         Height = 23
         PasswordChar = '*'
@@ -81,7 +81,7 @@ object MarkersMainView: TMarkersMainView
       end
       object cBoxLanguage: TComboBox
         Left = 15
-        Top = 128
+        Top = 130
         Width = 200
         Height = 23
         ItemIndex = 0
@@ -261,6 +261,7 @@ object MarkersMainView: TMarkersMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
+    ExplicitLeft = 1
     ExplicitTop = 192
   end
   object StatusBar1: TStatusBar
