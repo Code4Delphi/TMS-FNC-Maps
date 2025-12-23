@@ -117,19 +117,20 @@ object MarkersMainView: TMarkersMainView
       object Button2: TButton
         Left = 16
         Top = 23
-        Width = 209
+        Width = 424
         Height = 25
         Caption = 'Clear Markers'
         TabOrder = 1
         OnClick = Button2Click
       end
-      object Button3: TButton
-        Left = 239
-        Top = 37
+      object btnAddMarkerOnClick: TButton
+        Left = 231
+        Top = 117
         Width = 209
         Height = 25
-        Caption = 'Add Marker '
+        Caption = 'Add marker on click'
         TabOrder = 2
+        OnClick = btnAddMarkerOnClickClick
       end
       object Button4: TButton
         Left = 16
@@ -141,8 +142,8 @@ object MarkersMainView: TMarkersMainView
         OnClick = Button4Click
       end
       object Button5: TButton
-        Left = 16
-        Top = 117
+        Left = 231
+        Top = 86
         Width = 209
         Height = 25
         Caption = 'Add Marker No'
@@ -151,7 +152,7 @@ object MarkersMainView: TMarkersMainView
       end
       object Button6: TButton
         Left = 16
-        Top = 148
+        Top = 117
         Width = 209
         Height = 25
         Caption = 'Add Marker Customized'
@@ -242,11 +243,13 @@ object MarkersMainView: TMarkersMainView
     Left = 0
     Top = 193
     Width = 1080
-    Height = 453
+    Height = 434
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 1
+    OnMapClick = TMSFNCMaps1MapClick
+    OnMapMouseMove = TMSFNCMaps1MapMouseMove
     Polylines = <>
     Polygons = <>
     Circles = <>
@@ -259,5 +262,21 @@ object MarkersMainView: TMarkersMainView
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
     ExplicitTop = 192
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 627
+    Width = 1080
+    Height = 19
+    Panels = <
+      item
+        Width = 250
+      end
+      item
+        Width = 250
+      end
+      item
+        Width = 250
+      end>
   end
 end
