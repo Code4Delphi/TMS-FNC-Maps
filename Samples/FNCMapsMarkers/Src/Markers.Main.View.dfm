@@ -100,15 +100,17 @@ object MarkersMainView: TMarkersMainView
     object GroupBox2: TGroupBox
       Left = 233
       Top = 1
-      Width = 456
+      Width = 336
       Height = 191
       Align = alLeft
       Caption = ' Markers '
       TabOrder = 1
+      ExplicitLeft = 237
+      ExplicitTop = -4
       object Button1: TButton
         Left = 16
         Top = 55
-        Width = 209
+        Width = 150
         Height = 25
         Caption = 'Add Marker default'
         TabOrder = 0
@@ -117,57 +119,58 @@ object MarkersMainView: TMarkersMainView
       object Button2: TButton
         Left = 16
         Top = 23
-        Width = 424
+        Width = 304
         Height = 25
         Caption = 'Clear Markers'
         TabOrder = 1
         OnClick = Button2Click
       end
-      object btnAddMarkerOnClick: TButton
-        Left = 231
-        Top = 117
-        Width = 209
-        Height = 25
-        Caption = 'Add marker on click'
-        TabOrder = 2
-        OnClick = btnAddMarkerOnClickClick
-      end
       object Button4: TButton
         Left = 16
         Top = 86
-        Width = 209
+        Width = 150
         Height = 25
         Caption = 'Add Marker Ok'
-        TabOrder = 3
+        TabOrder = 2
         OnClick = Button4Click
       end
       object Button5: TButton
-        Left = 231
+        Left = 170
         Top = 86
-        Width = 209
+        Width = 150
         Height = 25
         Caption = 'Add Marker No'
-        TabOrder = 4
+        TabOrder = 3
         OnClick = Button5Click
       end
       object Button6: TButton
         Left = 16
         Top = 117
-        Width = 209
+        Width = 150
         Height = 25
         Caption = 'Add Marker Customized'
-        TabOrder = 5
+        TabOrder = 4
         OnClick = Button6Click
+      end
+      object ckAddMarkerOnClick: TCheckBox
+        Left = 16
+        Top = 148
+        Width = 132
+        Height = 17
+        Caption = 'Add marker on click'
+        TabOrder = 5
       end
     end
     object gBoxCustomized: TGroupBox
-      Left = 689
+      Left = 569
       Top = 1
-      Width = 390
+      Width = 510
       Height = 191
       Align = alClient
       Caption = ' Market Customized '
       TabOrder = 2
+      ExplicitLeft = 575
+      ExplicitTop = -4
       object Label3: TLabel
         Left = 10
         Top = 20
@@ -176,7 +179,7 @@ object MarkersMainView: TMarkersMainView
         Caption = 'Latitude'
       end
       object Label4: TLabel
-        Left = 183
+        Left = 145
         Top = 20
         Width = 54
         Height = 15
@@ -199,23 +202,23 @@ object MarkersMainView: TMarkersMainView
       object edtCustomizedLatitude: TEdit
         Left = 10
         Top = 37
-        Width = 170
+        Width = 132
         Height = 23
         TabOrder = 0
         Text = '56.819249'
       end
       object edtCustomizedLongitude: TEdit
-        Left = 183
+        Left = 145
         Top = 37
-        Width = 170
+        Width = 136
         Height = 23
         TabOrder = 1
         Text = '-32.198792'
       end
       object btnAddMarkerCustomized: TButton
-        Left = 6
+        Left = 10
         Top = 160
-        Width = 347
+        Width = 271
         Height = 25
         Caption = 'Add Marker C4D'
         TabOrder = 2
@@ -224,7 +227,7 @@ object MarkersMainView: TMarkersMainView
       object edtCustomizedTitle: TEdit
         Left = 10
         Top = 82
-        Width = 343
+        Width = 271
         Height = 23
         TabOrder = 3
         Text = 'Marker C4D teste'
@@ -232,7 +235,7 @@ object MarkersMainView: TMarkersMainView
       object edtCustomizedIconURL: TEdit
         Left = 10
         Top = 128
-        Width = 343
+        Width = 271
         Height = 23
         TabOrder = 4
         Text = 'https://code4delphi.com.br/img/c4d-24x24.png'
@@ -261,7 +264,6 @@ object MarkersMainView: TMarkersMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitLeft = 1
     ExplicitTop = 192
   end
   object StatusBar1: TStatusBar

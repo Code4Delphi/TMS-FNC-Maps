@@ -38,7 +38,6 @@ type
     GroupBox2: TGroupBox;
     Button1: TButton;
     Button2: TButton;
-    btnAddMarkerOnClick: TButton;
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
@@ -53,6 +52,7 @@ type
     Label7: TLabel;
     edtCustomizedIconURL: TEdit;
     StatusBar1: TStatusBar;
+    ckAddMarkerOnClick: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -64,13 +64,11 @@ type
     procedure Button6Click(Sender: TObject);
     procedure btnAddMarkerCustomizedClick(Sender: TObject);
     procedure TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
-    procedure btnAddMarkerOnClickClick(Sender: TObject);
     procedure TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
   private
     FLastLat: Double;
     FLastLon: Double;
     FMarkerCustomized: TTMSFNCMapsMarker;
-    FAddMarkerClick: Boolean;
     procedure ConfigBasicMaps;
   public
 
@@ -86,7 +84,6 @@ implementation
 procedure TMarkersMainView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
-  FAddMarkerClick := False;
   cBoxService.ItemIndex := Integer(TTMSFNCMapsService.msOpenLayers);
   Self.ConfigBasicMaps;
 end;
@@ -122,11 +119,6 @@ procedure TMarkersMainView.Button2Click(Sender: TObject);
 begin
   TMSFNCMaps1.ClearMarkers;
   FMarkerCustomized := nil;
-end;
-
-procedure TMarkersMainView.btnAddMarkerOnClickClick(Sender: TObject);
-begin
-  FAddMarkerClick := True;
 end;
 
 procedure TMarkersMainView.Button1Click(Sender: TObject);
@@ -191,13 +183,11 @@ end;
 
 procedure TMarkersMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
-  if not FAddMarkerClick then
+  if not ckAddMarkerOnClick.Checked then
     Exit;
 
-  FAddMarkerClick := False;
-
   TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.AddMarker(FLastLat, FLastLon, 'Market C4D - OK', 'https://code4delphi.com.br/img/ok.png');
+  TMSFNCMaps1.AddMarker(FLastLat, FLastLon, 'Market C4D - OK', 'https://code4delphi.com.br/img/home.png');
   TMSFNCMaps1.EndUpdate;
 end;
 
