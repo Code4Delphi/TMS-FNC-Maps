@@ -59,7 +59,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Add marker Customized'
         TabOrder = 2
         OnClick = btnAddMarkerCustomizedClick
-        ExplicitTop = 92
       end
       object Panel3: TPanel
         Left = 2
@@ -117,9 +116,6 @@ object Demo01MainView: TDemo01MainView
           Caption = 'Add marker OK'
           TabOrder = 0
           OnClick = btnAddMarkerOkClick
-          ExplicitLeft = 1
-          ExplicitTop = 1
-          ExplicitHeight = 39
         end
         object btnAddMarkerNo: TButton
           Left = 146
@@ -130,9 +126,6 @@ object Demo01MainView: TDemo01MainView
           Caption = 'Add marker NO'
           TabOrder = 1
           OnClick = btnAddMarkerNoClick
-          ExplicitLeft = 2
-          ExplicitTop = 67
-          ExplicitWidth = 297
         end
       end
       object btnClearAllMarker: TButton
@@ -144,8 +137,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Clear all marker'
         TabOrder = 5
         OnClick = btnClearAllMarkerClick
-        ExplicitLeft = 0
-        ExplicitTop = 98
       end
     end
     object GroupBox2: TGroupBox
@@ -185,8 +176,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Add Rectangles'
         TabOrder = 2
         OnClick = btnAddRectanglesClick
-        ExplicitLeft = 0
-        ExplicitTop = 61
       end
       object btnClearAllShapes: TButton
         Left = 2
@@ -197,8 +186,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Clear all Shapes'
         TabOrder = 3
         OnClick = btnClearAllShapesClick
-        ExplicitLeft = 6
-        ExplicitTop = 135
       end
     end
     object GroupBox3: TGroupBox
@@ -209,8 +196,6 @@ object Demo01MainView: TDemo01MainView
       Align = alRight
       Caption = ' Labels '
       TabOrder = 2
-      ExplicitLeft = 995
-      ExplicitTop = -6
       object btnAddLabel01: TButton
         Left = 2
         Top = 17
@@ -230,8 +215,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Add Label'
         TabOrder = 1
         OnClick = btnAddLabel02Click
-        ExplicitLeft = 4
-        ExplicitTop = 36
       end
       object btnClearAllLabels: TButton
         Left = 2
@@ -242,8 +225,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Clear all Labels'
         TabOrder = 2
         OnClick = btnClearAllLabelsClick
-        ExplicitLeft = 6
-        ExplicitTop = 121
       end
     end
     object Panel2: TPanel
@@ -417,6 +398,7 @@ object Demo01MainView: TDemo01MainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
+    ExplicitTop = 187
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -431,7 +413,6 @@ object Demo01MainView: TDemo01MainView
         Width = 250
       end
       item
-        Text = 'F6 copies the latitude and longitude to the clipboard'
         Width = 250
       end>
   end
