@@ -98,6 +98,8 @@ begin
   TMSFNCMaps1.APIKey := edtAPIKeyMap.Text;
   TMSFNCMaps1.Options.Locale := copy(cBoxLanguage.Text, 1, 5);
   TMSFNCMaps1.EndUpdate;
+
+  edtAPIKeyMap.Enabled := not (cBoxService.ItemIndex in [6, 8]);
 end;
 
 procedure TMarkersMainView.cBoxServiceChange(Sender: TObject);
