@@ -51,7 +51,6 @@ object MarkersMainView: TMarkersMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitHeight = 191
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -100,6 +99,7 @@ object MarkersMainView: TMarkersMainView
         Height = 23
         PasswordChar = '*'
         TabOrder = 1
+        Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
         OnExit = edtAPIKeyMapExit
       end
       object cBoxLanguage: TComboBox
@@ -128,9 +128,6 @@ object MarkersMainView: TMarkersMainView
       Align = alLeft
       Caption = ' Markers '
       TabOrder = 1
-      ExplicitLeft = 200
-      ExplicitTop = 2
-      ExplicitHeight = 191
       object Button1: TButton
         AlignWithMargins = True
         Left = 5
@@ -223,7 +220,6 @@ object MarkersMainView: TMarkersMainView
       Align = alClient
       Caption = ' Markers '
       TabOrder = 2
-      ExplicitHeight = 191
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -324,9 +320,10 @@ object MarkersMainView: TMarkersMainView
       Width = 333
       Height = 187
       Align = alRight
-      Caption = ' Logs '
+      Caption = ' Logs Events Markers '
       TabOrder = 3
-      ExplicitHeight = 191
+      ExplicitLeft = 982
+      ExplicitTop = 2
       object mmLog: TMemo
         Left = 2
         Top = 80
@@ -335,7 +332,8 @@ object MarkersMainView: TMarkersMainView
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitHeight = 109
+        ExplicitLeft = 3
+        ExplicitTop = 78
       end
       object Panel1: TPanel
         Left = 2
@@ -345,6 +343,8 @@ object MarkersMainView: TMarkersMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
+        ExplicitLeft = 6
+        ExplicitTop = 11
         DesignSize = (
           329
           63)
@@ -373,7 +373,7 @@ object MarkersMainView: TMarkersMainView
         object ckLogRightClick: TCheckBox
           Left = 4
           Top = 38
-          Width = 97
+          Width = 98
           Height = 17
           Cursor = crHandPoint
           Caption = 'Log RightClick'
@@ -392,6 +392,42 @@ object MarkersMainView: TMarkersMainView
           TabOrder = 3
           OnClick = btnClearLogClick
         end
+        object ckLogMouseDown: TCheckBox
+          Left = 107
+          Top = 3
+          Width = 138
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log Mouse Down'
+          TabOrder = 4
+        end
+        object ckLogMouseLeave: TCheckBox
+          Left = 107
+          Top = 21
+          Width = 122
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log Mouse Leave'
+          TabOrder = 5
+        end
+        object ckLogMouseUp: TCheckBox
+          Left = 107
+          Top = 38
+          Width = 102
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log Mouse Up'
+          TabOrder = 6
+        end
+        object ckLogMouseEnter: TCheckBox
+          Left = 214
+          Top = 38
+          Width = 111
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log Mouse Enter'
+          TabOrder = 7
+        end
       end
     end
     object PageControl1: TPageControl
@@ -402,7 +438,6 @@ object MarkersMainView: TMarkersMainView
       ActivePage = TabSheet2
       Align = alLeft
       TabOrder = 4
-      ExplicitHeight = 191
       object TabSheet2: TTabSheet
         Caption = 'Marker customized'
         ImageIndex = 1
@@ -414,7 +449,6 @@ object MarkersMainView: TMarkersMainView
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitHeight = 161
           object Label8: TLabel
             Left = 6
             Top = 0
@@ -520,7 +554,6 @@ object MarkersMainView: TMarkersMainView
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitHeight = 161
           object Label3: TLabel
             Left = 6
             Top = 0
@@ -610,7 +643,10 @@ object MarkersMainView: TMarkersMainView
     OnMarkerClick = TMSFNCMaps1MarkerClick
     OnMarkerRightClick = TMSFNCMaps1MarkerRightClick
     OnMarkerDblClick = TMSFNCMaps1MarkerDblClick
+    OnMarkerMouseUp = TMSFNCMaps1MarkerMouseUp
+    OnMarkerMouseDown = TMSFNCMaps1MarkerMouseDown
     OnMarkerMouseEnter = TMSFNCMaps1MarkerMouseEnter
+    OnMarkerMouseLeave = TMSFNCMaps1MarkerMouseLeave
     Polylines = <>
     Polygons = <>
     Circles = <>
@@ -622,8 +658,7 @@ object MarkersMainView: TMarkersMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 199
-    ExplicitHeight = 428
+    ExplicitLeft = 1
   end
   object StatusBar1: TStatusBar
     Left = 0

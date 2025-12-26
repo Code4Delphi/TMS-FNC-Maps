@@ -98,6 +98,10 @@ type
     UsertomarkerC4D1: TMenuItem;
     AddC4DMarkerHere1: TMenuItem;
     UsertomarkercustomizedIcon1: TMenuItem;
+    ckLogMouseDown: TCheckBox;
+    ckLogMouseLeave: TCheckBox;
+    ckLogMouseUp: TCheckBox;
+    ckLogMouseEnter: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -123,6 +127,9 @@ type
     procedure UsertomarkerC4D1Click(Sender: TObject);
     procedure AddC4DMarkerHere1Click(Sender: TObject);
     procedure UsertomarkercustomizedIcon1Click(Sender: TObject);
+    procedure TMSFNCMaps1MarkerMouseDown(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1MarkerMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1MarkerMouseUp(Sender: TObject; AEventData: TTMSFNCMapsEventData);
   private
     FLastLat: Double;
     FLastLon: Double;
@@ -308,12 +315,6 @@ begin
   end;
 end;
 
-procedure TMarkersMainView.TMSFNCMaps1MarkerMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
-begin
-  if not ClientDataSet1.IsEmpty then
-    ClientDataSet1.Locate('Id', AEventData.Marker.ID, [loCaseInsensitive]);
-end;
-
 procedure TMarkersMainView.btnRefreshClick(Sender: TObject);
 begin
   Self.RefreshMarkersInDataSet;
@@ -410,6 +411,33 @@ end;
 procedure TMarkersMainView.TMSFNCMaps1MarkerRightClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   if ckLogRightClick.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TMarkersMainView.TMSFNCMaps1MarkerMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogMouseEnter.Checked then
+    Self.AddLogEventMap(AEventData);
+
+  if not ClientDataSet1.IsEmpty then
+    ClientDataSet1.Locate('Id', AEventData.Marker.ID, [loCaseInsensitive]);
+end;
+
+procedure TMarkersMainView.TMSFNCMaps1MarkerMouseDown(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogMouseDown.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TMarkersMainView.TMSFNCMaps1MarkerMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogMouseLeave.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TMarkersMainView.TMSFNCMaps1MarkerMouseUp(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogMouseUp.Checked then
     Self.AddLogEventMap(AEventData);
 end;
 
