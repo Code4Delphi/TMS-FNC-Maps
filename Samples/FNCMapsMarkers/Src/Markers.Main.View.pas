@@ -8,6 +8,7 @@ uses
   System.SysUtils,
   System.Variants,
   System.Classes,
+  System.Types,
   TypInfo,
   Vcl.Graphics,
   Vcl.Controls,
@@ -22,11 +23,11 @@ uses
   VCL.TMSFNCWebBrowser,
   VCL.TMSFNCMaps,
   Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.ComCtrls;
+  Vcl.StdCtrls, Vcl.ComCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient;
 
 type
   TMarkersMainView = class(TForm)
-    Panel1: TPanel;
+    pnTop: TPanel;
     TMSFNCMaps1: TTMSFNCMaps;
     GroupBox1: TGroupBox;
     Label1: TLabel;
@@ -53,6 +54,29 @@ type
     edtCustomizedIconURL: TEdit;
     StatusBar1: TStatusBar;
     ckAddMarkerOnClick: TCheckBox;
+    GroupBox3: TGroupBox;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    btnRefresh: TButton;
+    ClientDataSet1: TClientDataSet;
+    DataSource1: TDataSource;
+    ClientDataSet1Id: TStringField;
+    ClientDataSet1Latitude: TFloatField;
+    ClientDataSet1Longitude: TFloatField;
+    ClientDataSet1Title: TStringField;
+    ClientDataSet1IconURL: TStringField;
+    ClientDataSet1Visible: TBooleanField;
+    Splitter1: TSplitter;
+    btnDelete: TButton;
+    btnVisibleInvisible: TButton;
+    GroupBox4: TGroupBox;
+    mmLog: TMemo;
+    Splitter2: TSplitter;
+    Panel1: TPanel;
+    ckLogClick: TCheckBox;
+    ckLogDblClick: TCheckBox;
+    ckLogRightClick: TCheckBox;
+    btnClearLog: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -65,11 +89,22 @@ type
     procedure btnAddMarkerCustomizedClick(Sender: TObject);
     procedure TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1MarkerMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure btnRefreshClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure btnVisibleInvisibleClick(Sender: TObject);
+    procedure TMSFNCMaps1MarkerClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1MarkerDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1MarkerRightClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure btnClearLogClick(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
     FMarkerCustomized: TTMSFNCMapsMarker;
     procedure ConfigBasicMaps;
+    procedure RefreshMarkers;
+    function GetMarkerBySelected: TTMSFNCMapsMarker;
+    procedure AddLogEventMap(AEventData: TTMSFNCMapsEventData);
   public
 
   end;
@@ -117,29 +152,39 @@ end;
 
 procedure TMarkersMainView.Button2Click(Sender: TObject);
 begin
+  TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.ClearMarkers;
+  TMSFNCMaps1.EndUpdate;
+
+  Self.RefreshMarkers;
   FMarkerCustomized := nil;
 end;
 
 procedure TMarkersMainView.Button1Click(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.AddMarker(DefaultCoordinate, 'Market C4D - 01');
+  TMSFNCMaps1.AddMarker(DefaultCoordinate, 'Market Default');
   TMSFNCMaps1.EndUpdate;
+
+  Self.RefreshMarkers;
 end;
 
 procedure TMarkersMainView.Button4Click(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.AddMarker(56.819249, -42.198792, 'Market C4D - OK', 'https://code4delphi.com.br/img/ok.png');
+  TMSFNCMaps1.AddMarker(56.819249, -42.198792, 'Market OK', 'https://code4delphi.com.br/img/ok.png');
   TMSFNCMaps1.EndUpdate;
+
+  Self.RefreshMarkers;
 end;
 
 procedure TMarkersMainView.Button5Click(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.AddMarker(36.819249, -32.198792, 'Market C4D - OK', 'https://code4delphi.com.br/img/no.png');
+  TMSFNCMaps1.AddMarker(36.819249, -32.198792, 'Market NO', 'https://code4delphi.com.br/img/no.png');
   TMSFNCMaps1.EndUpdate;
+
+  Self.RefreshMarkers;
 end;
 
 procedure TMarkersMainView.Button6Click(Sender: TObject);
@@ -149,12 +194,14 @@ begin
   TMSFNCMaps1.BeginUpdate;
 
   LMarker := TMSFNCMaps1.AddMarker(15.819249, -20.198792);
-  LMarker.Title := 'Market C4D - Customized';
+  LMarker.Title := 'Market Customized';
   LMarker.DefaultIcon.Enabled := True;
   LMarker.DefaultIcon.Fill := clBlue;
   LMarker.DefaultIcon.Size := 50;
 
   TMSFNCMaps1.EndUpdate;
+
+  Self.RefreshMarkers;
 end;
 
 procedure TMarkersMainView.btnAddMarkerCustomizedClick(Sender: TObject);
@@ -170,8 +217,9 @@ begin
   FMarkerCustomized.IconURL := edtCustomizedIconURL.Text;
 
   TMSFNCMaps1.EndUpdate;
-end;
 
+  Self.RefreshMarkers;
+end;
 procedure TMarkersMainView.TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   FLastLat := AEventData.Coordinate.Latitude;
@@ -183,12 +231,138 @@ end;
 
 procedure TMarkersMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
-  if not ckAddMarkerOnClick.Checked then
+  if ckAddMarkerOnClick.Checked then
+  begin
+    TMSFNCMaps1.BeginUpdate;
+    TMSFNCMaps1.AddMarker(FLastLat, FLastLon, 'Market Home', 'https://code4delphi.com.br/img/home.png');
+    TMSFNCMaps1.EndUpdate;
+
+    Self.RefreshMarkers;
+  end;
+end;
+
+procedure TMarkersMainView.TMSFNCMaps1MarkerMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if not ClientDataSet1.IsEmpty then
+    ClientDataSet1.Locate('Id', AEventData.Marker.ID, [loCaseInsensitive]);
+end;
+
+procedure TMarkersMainView.btnRefreshClick(Sender: TObject);
+begin
+  Self.RefreshMarkers;
+end;
+
+procedure TMarkersMainView.RefreshMarkers;
+var
+  i: Integer;
+  LMarker: TTMSFNCMapsMarker;
+begin
+  ClientDataSet1.EmptyDataSet;
+  ClientDataSet1.Open;
+
+  if TMSFNCMaps1.Markers.Count <= 0 then
     Exit;
 
+  for i := 0 to Pred(TMSFNCMaps1.Markers.Count) do
+  begin
+    LMarker := TMSFNCMaps1.Markers.Items[i];
+
+    ClientDataSet1.Append;
+    ClientDataSet1Id.AsString := LMarker.ID;
+    ClientDataSet1Latitude.AsFloat := LMarker.Latitude;
+    ClientDataSet1Longitude.AsFloat := LMarker.Longitude;
+    ClientDataSet1Title.AsString := LMarker.Title;
+    ClientDataSet1IconURL.AsString := LMarker.IconURL;
+    ClientDataSet1Visible.AsBoolean := LMarker.Visible;
+    ClientDataSet1.Post;
+  end;
+end;
+
+function TMarkersMainView.GetMarkerBySelected: TTMSFNCMapsMarker;
+var
+  LMarker: TTMSFNCMapsMarker;
+begin
+  if ClientDataSet1.IsEmpty then
+    raise Exception.Create('Select an item to be deleted');
+
+  LMarker := TMSFNCMaps1.Markers.ItemByID[ClientDataSet1Id.AsString];
+  if LMarker = nil then
+    raise Exception.Create('Marker not found');
+
+  Result := LMarker;
+end;
+
+procedure TMarkersMainView.btnDeleteClick(Sender: TObject);
+var
+  LMarker: TTMSFNCMapsMarker;
+begin
+  LMarker := Self.GetMarkerBySelected;
+
   TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.AddMarker(FLastLat, FLastLon, 'Market C4D - OK', 'https://code4delphi.com.br/img/home.png');
+  TMSFNCMaps1.Markers.Delete(LMarker.Index);
   TMSFNCMaps1.EndUpdate;
+
+  Self.RefreshMarkers;
+end;
+
+procedure TMarkersMainView.btnVisibleInvisibleClick(Sender: TObject);
+var
+  LMarker: TTMSFNCMapsMarker;
+begin
+  LMarker := Self.GetMarkerBySelected;
+
+  TMSFNCMaps1.BeginUpdate;
+  LMarker.Visible := not LMarker.Visible;
+  TMSFNCMaps1.EndUpdate;
+
+  ClientDataSet1.Edit;
+  ClientDataSet1Visible.AsBoolean := LMarker.Visible;
+  ClientDataSet1.Post;
+end;
+
+procedure TMarkersMainView.btnClearLogClick(Sender: TObject);
+begin
+  mmLog.Lines.Clear;
+end;
+
+procedure TMarkersMainView.TMSFNCMaps1MarkerClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogClick.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TMarkersMainView.TMSFNCMaps1MarkerDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogDblClick.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TMarkersMainView.TMSFNCMaps1MarkerRightClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogRightClick.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TMarkersMainView.AddLogEventMap(AEventData: TTMSFNCMapsEventData);
+begin
+  mmLog.Lines.Add('##################');
+  mmLog.Lines.Add('EventName: ' + AEventData.EventName);
+  mmLog.Lines.Add('ID: ' + AEventData.ID);
+  mmLog.Lines.Add('Coordinate.Latitude: ' + AEventData.Coordinate.Latitude.ToString);
+  mmLog.Lines.Add('Coordinate.Longitude: ' + AEventData.Coordinate.Longitude.ToString);
+  mmLog.Lines.Add(Format('X / Y: %s / %s', [AEventData.X.ToString, AEventData.Y.ToString]));
+  mmLog.Lines.Add('');
+  mmLog.Lines.Add('Marker.ID: ' + AEventData.Marker.ID);
+  mmLog.Lines.Add('Marker.Latitude: ' + AEventData.Marker.Latitude.ToString);
+  mmLog.Lines.Add('Marker.Longitude: ' + AEventData.Marker.Longitude.ToString);
+  mmLog.Lines.Add('Marker.Title: ' + AEventData.Marker.Title);
+  mmLog.Lines.Add('Marker.IconURL: ' + AEventData.Marker.IconURL);
+  mmLog.Lines.Add('Marker.Visible: ' + AEventData.Marker.Visible.ToString(TUseBoolStrs.True));
+  mmLog.Lines.Add('');
+  mmLog.Lines.Add('Marker.DefaultIcon.Enabled: ' + AEventData.Marker.DefaultIcon.Enabled.ToString(TUseBoolStrs.True));
+  mmLog.Lines.Add('Marker.DefaultIcon.Fill: ' + ColorToString(AEventData.Marker.DefaultIcon.Fill));
+  mmLog.Lines.Add('Marker.DefaultIcon.Size: ' + AEventData.Marker.DefaultIcon.Size.ToString);
+  mmLog.Lines.Add('');
 end;
 
 end.
