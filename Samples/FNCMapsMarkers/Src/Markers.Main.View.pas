@@ -10,6 +10,7 @@ uses
   System.Classes,
   System.Types,
   TypInfo,
+  Clipbrd,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
@@ -23,7 +24,7 @@ uses
   VCL.TMSFNCWebBrowser,
   VCL.TMSFNCMaps,
   Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.ComCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient;
+  Vcl.StdCtrls, Vcl.ComCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient, Vcl.Menus;
 
 type
   TMarkersMainView = class(TForm)
@@ -92,6 +93,11 @@ type
     cBoxCustomizedColor: TComboBox;
     Label12: TLabel;
     edtCustomizedSize: TEdit;
+    PopupMenu1: TPopupMenu;
+    CopyLatitudeAndLongitude1: TMenuItem;
+    UsertomarkerC4D1: TMenuItem;
+    AddC4DMarkerHere1: TMenuItem;
+    UsertomarkercustomizedIcon1: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -113,6 +119,10 @@ type
     procedure TMSFNCMaps1MarkerRightClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure btnClearLogClick(Sender: TObject);
     procedure btnAddMarkerCustomizedClick(Sender: TObject);
+    procedure CopyLatitudeAndLongitude1Click(Sender: TObject);
+    procedure UsertomarkerC4D1Click(Sender: TObject);
+    procedure AddC4DMarkerHere1Click(Sender: TObject);
+    procedure UsertomarkercustomizedIcon1Click(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
@@ -148,6 +158,30 @@ begin
   TMSFNCMaps1.EndUpdate;
 
   edtAPIKeyMap.Enabled := not (cBoxService.ItemIndex in [6, 8]);
+end;
+
+procedure TMarkersMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
+begin
+  Clipboard.AsText := Format('%s, %s', [FLastLat.ToString, FLastLon.ToString]);
+end;
+
+procedure TMarkersMainView.UsertomarkerC4D1Click(Sender: TObject);
+begin
+  edtCustomizedLatitude.Text := FLastLat.ToString;
+  edtCustomizedLongitude.Text := FLastLon.ToString;
+end;
+
+procedure TMarkersMainView.UsertomarkercustomizedIcon1Click(Sender: TObject);
+begin
+  edtCustomizedIconLatitude.Text := FLastLat.ToString;
+  edtCustomizedIconLongitude.Text := FLastLon.ToString;
+end;
+
+procedure TMarkersMainView.AddC4DMarkerHere1Click(Sender: TObject);
+begin
+  TMSFNCMaps1.BeginUpdate;
+  TMSFNCMaps1.AddMarker(FLastLat, FLastLon, 'Marker Here', 'https://code4delphi.com.br/img/c4d-24x24.png');
+  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TMarkersMainView.cBoxServiceChange(Sender: TObject);

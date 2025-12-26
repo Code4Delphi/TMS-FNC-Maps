@@ -16,41 +16,42 @@ object MarkersMainView: TMarkersMainView
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 193
+    Top = 189
     Width = 1310
     Height = 6
     Cursor = crVSplit
     Align = alTop
     Beveled = True
+    ExplicitTop = 193
     ExplicitWidth = 1193
   end
   object pnTop: TPanel
     Left = 0
     Top = 0
     Width = 1310
-    Height = 193
+    Height = 189
     Align = alTop
     TabOrder = 0
     object Splitter2: TSplitter
       Left = 966
       Top = 1
       Width = 10
-      Height = 191
+      Height = 187
       Align = alRight
       Beveled = True
       ExplicitLeft = 1075
+      ExplicitHeight = 191
     end
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 198
-      Height = 191
+      Height = 187
       Margins.Bottom = 2
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 2
+      ExplicitHeight = 191
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -123,10 +124,13 @@ object MarkersMainView: TMarkersMainView
       Left = 199
       Top = 1
       Width = 142
-      Height = 191
+      Height = 187
       Align = alLeft
       Caption = ' Markers '
       TabOrder = 1
+      ExplicitLeft = 200
+      ExplicitTop = 2
+      ExplicitHeight = 191
       object Button1: TButton
         AlignWithMargins = True
         Left = 5
@@ -140,7 +144,6 @@ object MarkersMainView: TMarkersMainView
         Caption = 'Add Marker default'
         TabOrder = 0
         OnClick = Button1Click
-        ExplicitTop = 50
       end
       object Button2: TButton
         AlignWithMargins = True
@@ -155,8 +158,6 @@ object MarkersMainView: TMarkersMainView
         Caption = 'Clear Markers'
         TabOrder = 1
         OnClick = Button2Click
-        ExplicitLeft = 4
-        ExplicitTop = 21
       end
       object Button4: TButton
         AlignWithMargins = True
@@ -171,7 +172,6 @@ object MarkersMainView: TMarkersMainView
         Caption = 'Add Marker Ok'
         TabOrder = 2
         OnClick = Button4Click
-        ExplicitTop = 77
       end
       object Button5: TButton
         AlignWithMargins = True
@@ -186,7 +186,6 @@ object MarkersMainView: TMarkersMainView
         Caption = 'Add Marker No'
         TabOrder = 3
         OnClick = Button5Click
-        ExplicitTop = 104
       end
       object Button6: TButton
         AlignWithMargins = True
@@ -201,7 +200,6 @@ object MarkersMainView: TMarkersMainView
         Caption = 'Marker Customized'
         TabOrder = 4
         OnClick = Button6Click
-        ExplicitLeft = 6
       end
       object ckAddMarkerOnClick: TCheckBox
         AlignWithMargins = True
@@ -215,20 +213,17 @@ object MarkersMainView: TMarkersMainView
         Align = alTop
         Caption = 'Add marker on click'
         TabOrder = 5
-        ExplicitTop = 159
       end
     end
     object GroupBox3: TGroupBox
       Left = 625
       Top = 1
       Width = 341
-      Height = 191
+      Height = 187
       Align = alClient
       Caption = ' Markers '
       TabOrder = 2
-      ExplicitLeft = 623
-      ExplicitTop = 2
-      ExplicitWidth = 451
+      ExplicitHeight = 191
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -239,7 +234,6 @@ object MarkersMainView: TMarkersMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 507
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -275,7 +269,7 @@ object MarkersMainView: TMarkersMainView
         Left = 2
         Top = 51
         Width = 337
-        Height = 138
+        Height = 134
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource1
@@ -328,18 +322,20 @@ object MarkersMainView: TMarkersMainView
       Left = 976
       Top = 1
       Width = 333
-      Height = 191
+      Height = 187
       Align = alRight
       Caption = ' Logs '
       TabOrder = 3
+      ExplicitHeight = 191
       object mmLog: TMemo
         Left = 2
         Top = 80
         Width = 329
-        Height = 109
+        Height = 105
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
+        ExplicitHeight = 109
       end
       object Panel1: TPanel
         Left = 2
@@ -349,9 +345,6 @@ object MarkersMainView: TMarkersMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitLeft = 3
-        ExplicitTop = 11
-        ExplicitWidth = 225
         DesignSize = (
           329
           63)
@@ -405,11 +398,11 @@ object MarkersMainView: TMarkersMainView
       Left = 341
       Top = 1
       Width = 284
-      Height = 191
-      ActivePage = TabSheet1
+      Height = 187
+      ActivePage = TabSheet2
       Align = alLeft
       TabOrder = 4
-      ExplicitTop = 2
+      ExplicitHeight = 191
       object TabSheet2: TTabSheet
         Caption = 'Marker customized'
         ImageIndex = 1
@@ -417,11 +410,11 @@ object MarkersMainView: TMarkersMainView
           Left = 0
           Top = 0
           Width = 276
-          Height = 161
+          Height = 157
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitTop = -1
+          ExplicitHeight = 161
           object Label8: TLabel
             Left = 6
             Top = 0
@@ -458,24 +451,24 @@ object MarkersMainView: TMarkersMainView
             Caption = 'Size'
           end
           object edtCustomizedLatitude: TEdit
-            Left = 3
-            Top = 13
+            Left = 5
+            Top = 15
             Width = 132
             Height = 23
             TabOrder = 0
             Text = '32.644482'
           end
           object edtCustomizedLongitude: TEdit
-            Left = 141
-            Top = 13
+            Left = 140
+            Top = 15
             Width = 127
             Height = 23
             TabOrder = 1
             Text = '-131.671452'
           end
           object btnAddMarkerCustomized: TButton
-            Left = 12
-            Top = 129
+            Left = 6
+            Top = 128
             Width = 262
             Height = 25
             Cursor = crHandPoint
@@ -523,14 +516,11 @@ object MarkersMainView: TMarkersMainView
           Left = 0
           Top = 0
           Width = 276
-          Height = 161
+          Height = 157
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitLeft = 2
-          ExplicitTop = -1
-          ExplicitWidth = 324
-          ExplicitHeight = 257
+          ExplicitHeight = 161
           object Label3: TLabel
             Left = 6
             Top = 0
@@ -576,7 +566,7 @@ object MarkersMainView: TMarkersMainView
             Text = '-32.198792'
           end
           object btnAddMarkerCustomizedIcon: TButton
-            Left = 12
+            Left = 6
             Top = 128
             Width = 262
             Height = 25
@@ -607,12 +597,13 @@ object MarkersMainView: TMarkersMainView
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 199
+    Top = 195
     Width = 1310
-    Height = 428
+    Height = 432
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
+    PopupMenu = PopupMenu1
     TabOrder = 1
     OnMapClick = TMSFNCMaps1MapClick
     OnMapMouseMove = TMSFNCMaps1MapMouseMove
@@ -631,7 +622,8 @@ object MarkersMainView: TMarkersMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitLeft = 1
+    ExplicitTop = 199
+    ExplicitHeight = 428
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -648,7 +640,6 @@ object MarkersMainView: TMarkersMainView
       item
         Width = 250
       end>
-    ExplicitWidth = 1193
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
@@ -694,5 +685,25 @@ object MarkersMainView: TMarkersMainView
     DataSet = ClientDataSet1
     Left = 829
     Top = 105
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 1016
+    Top = 216
+    object CopyLatitudeAndLongitude1: TMenuItem
+      Caption = 'Copy latitude and longitude'
+      OnClick = CopyLatitudeAndLongitude1Click
+    end
+    object UsertomarkerC4D1: TMenuItem
+      Caption = 'User to marker customized'
+      OnClick = UsertomarkerC4D1Click
+    end
+    object UsertomarkercustomizedIcon1: TMenuItem
+      Caption = 'User to marker customized Icon'
+      OnClick = UsertomarkercustomizedIcon1Click
+    end
+    object AddC4DMarkerHere1: TMenuItem
+      Caption = 'Add C4D marker here'
+      OnClick = AddC4DMarkerHere1Click
+    end
   end
 end
