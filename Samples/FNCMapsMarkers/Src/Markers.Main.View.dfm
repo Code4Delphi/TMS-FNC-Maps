@@ -31,7 +31,6 @@ object MarkersMainView: TMarkersMainView
     Height = 193
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 1193
     object Splitter2: TSplitter
       Left = 966
       Top = 1
@@ -202,7 +201,7 @@ object MarkersMainView: TMarkersMainView
         Caption = 'Marker Customized'
         TabOrder = 4
         OnClick = Button6Click
-        ExplicitTop = 131
+        ExplicitLeft = 6
       end
       object ckAddMarkerOnClick: TCheckBox
         AlignWithMargins = True
@@ -219,100 +218,21 @@ object MarkersMainView: TMarkersMainView
         ExplicitTop = 159
       end
     end
-    object gBoxCustomized: TGroupBox
-      Left = 341
-      Top = 1
-      Width = 278
-      Height = 191
-      Align = alLeft
-      Caption = ' Marker Customized '
-      TabOrder = 2
-      object Label3: TLabel
-        Left = 6
-        Top = 20
-        Width = 43
-        Height = 15
-        Caption = 'Latitude'
-      end
-      object Label4: TLabel
-        Left = 141
-        Top = 20
-        Width = 54
-        Height = 15
-        Caption = 'Longitude'
-      end
-      object Label6: TLabel
-        Left = 6
-        Top = 65
-        Width = 23
-        Height = 15
-        Caption = 'Title'
-      end
-      object Label7: TLabel
-        Left = 6
-        Top = 111
-        Width = 47
-        Height = 15
-        Caption = 'Icon URL'
-      end
-      object edtCustomizedLatitude: TEdit
-        Left = 6
-        Top = 37
-        Width = 132
-        Height = 23
-        TabOrder = 0
-        Text = '56.819249'
-      end
-      object edtCustomizedLongitude: TEdit
-        Left = 141
-        Top = 37
-        Width = 127
-        Height = 23
-        TabOrder = 1
-        Text = '-32.198792'
-      end
-      object btnAddMarkerCustomized: TButton
-        Left = 6
-        Top = 160
-        Width = 262
-        Height = 25
-        Cursor = crHandPoint
-        Caption = 'Add Marker C4D'
-        TabOrder = 2
-        OnClick = btnAddMarkerCustomizedClick
-      end
-      object edtCustomizedTitle: TEdit
-        Left = 6
-        Top = 82
-        Width = 262
-        Height = 23
-        TabOrder = 3
-        Text = 'Marker C4D teste'
-      end
-      object edtCustomizedIconURL: TEdit
-        Left = 6
-        Top = 128
-        Width = 262
-        Height = 23
-        TabOrder = 4
-        Text = 'https://code4delphi.com.br/img/c4d-24x24.png'
-      end
-    end
     object GroupBox3: TGroupBox
-      Left = 619
+      Left = 625
       Top = 1
-      Width = 347
+      Width = 341
       Height = 191
       Align = alClient
       Caption = ' Markers '
-      TabOrder = 3
+      TabOrder = 2
       ExplicitLeft = 623
       ExplicitTop = 2
       ExplicitWidth = 451
       object Panel2: TPanel
         Left = 2
         Top = 17
-        Width = 343
+        Width = 337
         Height = 34
         Align = alTop
         BevelEdges = [beBottom]
@@ -354,7 +274,7 @@ object MarkersMainView: TMarkersMainView
       object DBGrid1: TDBGrid
         Left = 2
         Top = 51
-        Width = 343
+        Width = 337
         Height = 138
         Align = alClient
         BorderStyle = bsNone
@@ -411,7 +331,7 @@ object MarkersMainView: TMarkersMainView
       Height = 191
       Align = alRight
       Caption = ' Logs '
-      TabOrder = 4
+      TabOrder = 3
       object mmLog: TMemo
         Left = 2
         Top = 80
@@ -478,6 +398,209 @@ object MarkersMainView: TMarkersMainView
           Caption = 'Clear log'
           TabOrder = 3
           OnClick = btnClearLogClick
+        end
+      end
+    end
+    object PageControl1: TPageControl
+      Left = 341
+      Top = 1
+      Width = 284
+      Height = 191
+      ActivePage = TabSheet1
+      Align = alLeft
+      TabOrder = 4
+      ExplicitTop = 2
+      object TabSheet2: TTabSheet
+        Caption = 'Marker customized'
+        ImageIndex = 1
+        object Panel4: TPanel
+          Left = 0
+          Top = 0
+          Width = 276
+          Height = 161
+          Align = alClient
+          BevelOuter = bvNone
+          TabOrder = 0
+          ExplicitTop = -1
+          object Label8: TLabel
+            Left = 6
+            Top = 0
+            Width = 43
+            Height = 15
+            Caption = 'Latitude'
+          end
+          object Label9: TLabel
+            Left = 141
+            Top = 0
+            Width = 54
+            Height = 15
+            Caption = 'Longitude'
+          end
+          object Label10: TLabel
+            Left = 6
+            Top = 42
+            Width = 23
+            Height = 15
+            Caption = 'Title'
+          end
+          object Label11: TLabel
+            Left = 6
+            Top = 85
+            Width = 29
+            Height = 15
+            Caption = 'Color'
+          end
+          object Label12: TLabel
+            Left = 194
+            Top = 83
+            Width = 20
+            Height = 15
+            Caption = 'Size'
+          end
+          object edtCustomizedLatitude: TEdit
+            Left = 3
+            Top = 13
+            Width = 132
+            Height = 23
+            TabOrder = 0
+            Text = '32.644482'
+          end
+          object edtCustomizedLongitude: TEdit
+            Left = 141
+            Top = 13
+            Width = 127
+            Height = 23
+            TabOrder = 1
+            Text = '-131.671452'
+          end
+          object btnAddMarkerCustomized: TButton
+            Left = 12
+            Top = 129
+            Width = 262
+            Height = 25
+            Cursor = crHandPoint
+            Caption = 'Add Marker Customized'
+            TabOrder = 2
+            OnClick = btnAddMarkerCustomizedClick
+          end
+          object edtCustomizedTitle: TEdit
+            Left = 6
+            Top = 59
+            Width = 262
+            Height = 23
+            TabOrder = 3
+            Text = 'Marker C4D Customized'
+          end
+          object cBoxCustomizedColor: TComboBox
+            Left = 6
+            Top = 101
+            Width = 185
+            Height = 23
+            ItemIndex = 1
+            TabOrder = 4
+            Text = 'clRed'
+            Items.Strings = (
+              'clBlue'
+              'clRed'
+              'clBlack'
+              'clPink'
+              'clGreen')
+          end
+          object edtCustomizedSize: TEdit
+            Left = 194
+            Top = 100
+            Width = 74
+            Height = 23
+            NumbersOnly = True
+            TabOrder = 5
+            Text = '40'
+          end
+        end
+      end
+      object TabSheet1: TTabSheet
+        Caption = 'Customized Icon '
+        object Panel3: TPanel
+          Left = 0
+          Top = 0
+          Width = 276
+          Height = 161
+          Align = alClient
+          BevelOuter = bvNone
+          TabOrder = 0
+          ExplicitLeft = 2
+          ExplicitTop = -1
+          ExplicitWidth = 324
+          ExplicitHeight = 257
+          object Label3: TLabel
+            Left = 6
+            Top = 0
+            Width = 43
+            Height = 15
+            Caption = 'Latitude'
+          end
+          object Label4: TLabel
+            Left = 141
+            Top = 0
+            Width = 54
+            Height = 15
+            Caption = 'Longitude'
+          end
+          object Label6: TLabel
+            Left = 6
+            Top = 42
+            Width = 23
+            Height = 15
+            Caption = 'Title'
+          end
+          object Label7: TLabel
+            Left = 6
+            Top = 82
+            Width = 47
+            Height = 15
+            Caption = 'Icon URL'
+          end
+          object edtCustomizedIconLatitude: TEdit
+            Left = 6
+            Top = 17
+            Width = 132
+            Height = 23
+            TabOrder = 0
+            Text = '56.819249'
+          end
+          object edtCustomizedIconLongitude: TEdit
+            Left = 141
+            Top = 17
+            Width = 127
+            Height = 23
+            TabOrder = 1
+            Text = '-32.198792'
+          end
+          object btnAddMarkerCustomizedIcon: TButton
+            Left = 12
+            Top = 128
+            Width = 262
+            Height = 25
+            Cursor = crHandPoint
+            Caption = 'Add Marker Icon C4D'
+            TabOrder = 2
+            OnClick = btnAddMarkerCustomizedIconClick
+          end
+          object edtCustomizedIconTitle: TEdit
+            Left = 6
+            Top = 58
+            Width = 262
+            Height = 23
+            TabOrder = 3
+            Text = 'Marker C4D Icon'
+          end
+          object edtCustomizedIconURL: TEdit
+            Left = 6
+            Top = 99
+            Width = 262
+            Height = 23
+            TabOrder = 4
+            Text = 'https://code4delphi.com.br/img/c4d-24x24.png'
+          end
         end
       end
     end

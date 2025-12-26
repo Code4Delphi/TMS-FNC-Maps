@@ -42,16 +42,6 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
-    gBoxCustomized: TGroupBox;
-    Label3: TLabel;
-    Label4: TLabel;
-    edtCustomizedLatitude: TEdit;
-    edtCustomizedLongitude: TEdit;
-    btnAddMarkerCustomized: TButton;
-    Label6: TLabel;
-    edtCustomizedTitle: TEdit;
-    Label7: TLabel;
-    edtCustomizedIconURL: TEdit;
     StatusBar1: TStatusBar;
     ckAddMarkerOnClick: TCheckBox;
     GroupBox3: TGroupBox;
@@ -77,6 +67,31 @@ type
     ckLogDblClick: TCheckBox;
     ckLogRightClick: TCheckBox;
     btnClearLog: TButton;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    Panel3: TPanel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    edtCustomizedIconLatitude: TEdit;
+    edtCustomizedIconLongitude: TEdit;
+    btnAddMarkerCustomizedIcon: TButton;
+    edtCustomizedIconTitle: TEdit;
+    edtCustomizedIconURL: TEdit;
+    Panel4: TPanel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    edtCustomizedLatitude: TEdit;
+    edtCustomizedLongitude: TEdit;
+    btnAddMarkerCustomized: TButton;
+    edtCustomizedTitle: TEdit;
+    cBoxCustomizedColor: TComboBox;
+    Label12: TLabel;
+    edtCustomizedSize: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -86,7 +101,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
-    procedure btnAddMarkerCustomizedClick(Sender: TObject);
+    procedure btnAddMarkerCustomizedIconClick(Sender: TObject);
     procedure TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1MarkerMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
@@ -97,12 +112,13 @@ type
     procedure TMSFNCMaps1MarkerDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1MarkerRightClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure btnClearLogClick(Sender: TObject);
+    procedure btnAddMarkerCustomizedClick(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
     FMarkerCustomized: TTMSFNCMapsMarker;
     procedure ConfigBasicMaps;
-    procedure RefreshMarkers;
+    procedure RefreshMarkersInDataSet;
     function GetMarkerBySelected: TTMSFNCMapsMarker;
     procedure AddLogEventMap(AEventData: TTMSFNCMapsEventData);
   public
@@ -156,7 +172,7 @@ begin
   TMSFNCMaps1.ClearMarkers;
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshMarkers;
+  Self.RefreshMarkersInDataSet;
   FMarkerCustomized := nil;
 end;
 
@@ -166,7 +182,7 @@ begin
   TMSFNCMaps1.AddMarker(DefaultCoordinate, 'Market Default');
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshMarkers;
+  Self.RefreshMarkersInDataSet;
 end;
 
 procedure TMarkersMainView.Button4Click(Sender: TObject);
@@ -175,7 +191,7 @@ begin
   TMSFNCMaps1.AddMarker(56.819249, -42.198792, 'Market OK', 'https://code4delphi.com.br/img/ok.png');
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshMarkers;
+  Self.RefreshMarkersInDataSet;
 end;
 
 procedure TMarkersMainView.Button5Click(Sender: TObject);
@@ -184,7 +200,7 @@ begin
   TMSFNCMaps1.AddMarker(36.819249, -32.198792, 'Market NO', 'https://code4delphi.com.br/img/no.png');
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshMarkers;
+  Self.RefreshMarkersInDataSet;
 end;
 
 procedure TMarkersMainView.Button6Click(Sender: TObject);
@@ -201,24 +217,41 @@ begin
 
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshMarkers;
+  Self.RefreshMarkersInDataSet;
 end;
 
 procedure TMarkersMainView.btnAddMarkerCustomizedClick(Sender: TObject);
+var
+  LMarker: TTMSFNCMapsMarker;
+begin
+  TMSFNCMaps1.BeginUpdate;
+
+  LMarker := TMSFNCMaps1.AddMarker(StrToFloatDef(edtCustomizedLatitude.Text, 0), StrToFloatDef(edtCustomizedLongitude.Text, 0));
+  LMarker.Title := edtCustomizedTitle.Text;
+  LMarker.DefaultIcon.Enabled := True;
+  LMarker.DefaultIcon.Fill := TTMSFNCGraphicsColor(StringToColor(cBoxCustomizedColor.Text));
+  LMarker.DefaultIcon.Size := StrToIntDef(edtCustomizedSize.Text, 14);
+
+  TMSFNCMaps1.EndUpdate;
+
+  Self.RefreshMarkersInDataSet;
+end;
+
+procedure TMarkersMainView.btnAddMarkerCustomizedIconClick(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
 
   if not Assigned(FMarkerCustomized) then
     FMarkerCustomized := TMSFNCMaps1.Markers.Add;
 
-  FMarkerCustomized.Latitude := StrToFloatDef(edtCustomizedLatitude.Text, 0);
-  FMarkerCustomized.Longitude := StrToFloatDef(edtCustomizedLongitude.Text, 0);
-  FMarkerCustomized.Title := edtCustomizedTitle.Text;
+  FMarkerCustomized.Latitude := StrToFloatDef(edtCustomizedIconLatitude.Text, 0);
+  FMarkerCustomized.Longitude := StrToFloatDef(edtCustomizedIconLongitude.Text, 0);
+  FMarkerCustomized.Title := edtCustomizedIconTitle.Text;
   FMarkerCustomized.IconURL := edtCustomizedIconURL.Text;
 
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshMarkers;
+  Self.RefreshMarkersInDataSet;
 end;
 procedure TMarkersMainView.TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
@@ -237,7 +270,7 @@ begin
     TMSFNCMaps1.AddMarker(FLastLat, FLastLon, 'Market Home', 'https://code4delphi.com.br/img/home.png');
     TMSFNCMaps1.EndUpdate;
 
-    Self.RefreshMarkers;
+    Self.RefreshMarkersInDataSet;
   end;
 end;
 
@@ -249,10 +282,10 @@ end;
 
 procedure TMarkersMainView.btnRefreshClick(Sender: TObject);
 begin
-  Self.RefreshMarkers;
+  Self.RefreshMarkersInDataSet;
 end;
 
-procedure TMarkersMainView.RefreshMarkers;
+procedure TMarkersMainView.RefreshMarkersInDataSet;
 var
   i: Integer;
   LMarker: TTMSFNCMapsMarker;
@@ -302,7 +335,10 @@ begin
   TMSFNCMaps1.Markers.Delete(LMarker.Index);
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshMarkers;
+  if LMarker = FMarkerCustomized then
+    FMarkerCustomized := nil;
+
+  Self.RefreshMarkersInDataSet;
 end;
 
 procedure TMarkersMainView.btnVisibleInvisibleClick(Sender: TObject);
