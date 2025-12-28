@@ -9,6 +9,9 @@
         <Projects Include="FNCMapsMarkers\FNCMapsMarkers.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMapsZoom\FNCMapsZoom.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="FNCMapsMarkers:Make">
         <MSBuild Projects="FNCMapsMarkers\FNCMapsMarkers.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsZoom">
+        <MSBuild Projects="FNCMapsZoom\FNCMapsZoom.dproj"/>
+    </Target>
+    <Target Name="FNCMapsZoom:Clean">
+        <MSBuild Projects="FNCMapsZoom\FNCMapsZoom.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsZoom:Make">
+        <MSBuild Projects="FNCMapsZoom\FNCMapsZoom.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

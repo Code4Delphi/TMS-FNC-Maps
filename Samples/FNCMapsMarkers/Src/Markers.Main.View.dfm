@@ -51,6 +51,8 @@ object MarkersMainView: TMarkersMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
+      ExplicitLeft = 0
+      ExplicitTop = 3
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -99,7 +101,7 @@ object MarkersMainView: TMarkersMainView
         Height = 23
         PasswordChar = '*'
         TabOrder = 1
-        Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
+        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxLanguage: TComboBox
@@ -322,8 +324,6 @@ object MarkersMainView: TMarkersMainView
       Align = alRight
       Caption = ' Logs Events Markers '
       TabOrder = 3
-      ExplicitLeft = 982
-      ExplicitTop = 2
       object mmLog: TMemo
         Left = 2
         Top = 80
@@ -332,8 +332,6 @@ object MarkersMainView: TMarkersMainView
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 78
       end
       object Panel1: TPanel
         Left = 2
@@ -343,8 +341,6 @@ object MarkersMainView: TMarkersMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitLeft = 6
-        ExplicitTop = 11
         DesignSize = (
           329
           63)
@@ -658,7 +654,6 @@ object MarkersMainView: TMarkersMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitLeft = 1
   end
   object StatusBar1: TStatusBar
     Left = 0
