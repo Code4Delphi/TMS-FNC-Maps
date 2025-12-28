@@ -62,7 +62,10 @@ type
     btnDelete: TButton;
     btnAddPolygonInMap: TButton;
     N1: TMenuItem;
-    btnClearAllPolugons: TButton;
+    btnClearAllPolygons: TButton;
+    gBoxPolylines: TGroupBox;
+    btnPolylinesAdd: TButton;
+    btnPolylinesClear: TButton;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -73,7 +76,9 @@ type
     procedure btnDeleteClick(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure btnAddPolygonInMapClick(Sender: TObject);
-    procedure btnClearAllPolugonsClick(Sender: TObject);
+    procedure btnClearAllPolygonsClick(Sender: TObject);
+    procedure btnPolylinesAddClick(Sender: TObject);
+    procedure btnPolylinesClearClick(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
@@ -201,9 +206,34 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TPolygonsMainView.btnClearAllPolugonsClick(Sender: TObject);
+procedure TPolygonsMainView.btnClearAllPolygonsClick(Sender: TObject);
 begin
   TMSFNCMaps1.ClearPolygons;
+end;
+
+procedure TPolygonsMainView.btnPolylinesAddClick(Sender: TObject);
+var
+  LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
+  LPolyline: TTMSFNCMapsPolyline;
+begin
+  SetLength(LCoordinateRecArray, 4);
+  LCoordinateRecArray[0] := CreateCoordinate(25.789106, -80.226529);
+  LCoordinateRecArray[1] := CreateCoordinate(18.4663188, -60.1057427);
+  LCoordinateRecArray[2] := CreateCoordinate(32.294887, -64.781380);
+  LCoordinateRecArray[3] := CreateCoordinate(25.789106, -80.226529); //Closing coordinates are required.
+
+  TMSFNCMaps1.BeginUpdate;
+
+  LPolyline := TMSFNCMaps1.AddPolyline(LCoordinateRecArray);
+  LPolyline.StrokeColor := gcBlack;
+  LPolyline.StrokeWidth := 4;
+
+  TMSFNCMaps1.EndUpdate;
+end;
+
+procedure TPolygonsMainView.btnPolylinesClearClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ClearPolylines;
 end;
 
 end.

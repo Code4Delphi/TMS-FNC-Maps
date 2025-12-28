@@ -1,9 +1,9 @@
 object PolygonsMainView: TPolygonsMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - Polygons'
+  Caption = 'TMS FNC Maps - Polygons and Polylines'
   ClientHeight = 663
-  ClientWidth = 1017
+  ClientWidth = 1296
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,11 +18,12 @@ object PolygonsMainView: TPolygonsMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1017
+    Width = 1296
     Height = 241
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1017
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -80,30 +81,30 @@ object PolygonsMainView: TPolygonsMainView
     object Panel1: TPanel
       Left = 665
       Top = 0
-      Width = 352
+      Width = 446
       Height = 241
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
       ExplicitLeft = 669
-      ExplicitTop = -6
+      ExplicitWidth = 631
       object btnAddPolygon: TButton
         Left = 6
-        Top = 40
+        Top = 12
         Width = 209
         Height = 25
         Caption = 'Add Polygon (Bermuda triangle)'
         TabOrder = 0
         OnClick = btnAddPolygonClick
       end
-      object btnClearAllPolugons: TButton
+      object btnClearAllPolygons: TButton
         Left = 6
-        Top = 12
+        Top = 43
         Width = 209
         Height = 25
         Caption = 'Clear All Polygons'
         TabOrder = 1
-        OnClick = btnClearAllPolugonsClick
+        OnClick = btnClearAllPolygonsClick
       end
     end
     object GroupBox2: TGroupBox
@@ -236,11 +237,46 @@ object PolygonsMainView: TPolygonsMainView
         end
       end
     end
+    object gBoxPolylines: TGroupBox
+      Left = 1111
+      Top = 0
+      Width = 185
+      Height = 241
+      Align = alRight
+      Caption = ' Polylines '
+      TabOrder = 3
+      ExplicitLeft = 1117
+      ExplicitTop = -6
+      object btnPolylinesAdd: TButton
+        Left = 2
+        Top = 17
+        Width = 181
+        Height = 25
+        Align = alTop
+        Caption = 'Add Polyline'
+        TabOrder = 0
+        OnClick = btnPolylinesAddClick
+        ExplicitLeft = 6
+        ExplicitTop = 12
+      end
+      object btnPolylinesClear: TButton
+        Left = 2
+        Top = 42
+        Width = 181
+        Height = 25
+        Align = alTop
+        Caption = 'Clear Polylines'
+        TabOrder = 1
+        OnClick = btnPolylinesClearClick
+        ExplicitLeft = 6
+        ExplicitTop = 109
+      end
+    end
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
     Top = 241
-    Width = 1017
+    Width = 1296
     Height = 403
     Align = alClient
     ParentDoubleBuffered = False
@@ -260,12 +296,11 @@ object PolygonsMainView: TPolygonsMainView
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
     ExplicitTop = 245
-    ExplicitHeight = 382
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 644
-    Width = 1017
+    Width = 1296
     Height = 19
     Panels = <
       item
@@ -302,6 +337,7 @@ object PolygonsMainView: TPolygonsMainView
         DataType = ftFloat
       end>
     IndexDefs = <>
+    IndexFieldNames = 'order'
     Params = <>
     StoreDefs = True
     Left = 313
