@@ -86,11 +86,10 @@ object PolygonsMainView: TPolygonsMainView
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 669
-      ExplicitWidth = 631
+      ExplicitLeft = 661
       object btnAddPolygon: TButton
-        Left = 6
-        Top = 12
+        Left = 4
+        Top = 30
         Width = 209
         Height = 25
         Caption = 'Add Polygon (Bermuda triangle)'
@@ -98,8 +97,8 @@ object PolygonsMainView: TPolygonsMainView
         OnClick = btnAddPolygonClick
       end
       object btnClearAllPolygons: TButton
-        Left = 6
-        Top = 43
+        Left = 4
+        Top = 82
         Width = 209
         Height = 25
         Caption = 'Clear All Polygons'
@@ -141,15 +140,15 @@ object PolygonsMainView: TPolygonsMainView
           Height = 15
           Caption = 'Longitude'
         end
-        object btnAdd: TButton
+        object btnAddCoordinate: TButton
           Left = 277
           Top = 12
-          Width = 75
+          Width = 156
           Height = 25
           Cursor = crHandPoint
-          Caption = 'Add'
+          Caption = 'Add Coordinate'
           TabOrder = 0
-          OnClick = btnAddClick
+          OnClick = btnAddCoordinateClick
         end
         object edtCustomizedLatitude: TEdit
           Left = 9
@@ -211,17 +210,15 @@ object PolygonsMainView: TPolygonsMainView
         TabOrder = 2
         ExplicitLeft = -2
         ExplicitTop = 210
-        object btnDelete: TButton
-          Left = 388
+        object btnDeleteCoordinate: TButton
+          Left = 344
           Top = 0
-          Width = 75
+          Width = 119
           Height = 28
           Align = alRight
-          Caption = 'Delete'
+          Caption = 'Delete Coordinate'
           TabOrder = 0
-          OnClick = btnDeleteClick
-          ExplicitLeft = 384
-          ExplicitTop = -4
+          OnClick = btnDeleteCoordinateClick
         end
         object btnAddPolygonInMap: TButton
           Left = 0
@@ -234,6 +231,14 @@ object PolygonsMainView: TPolygonsMainView
           OnClick = btnAddPolygonInMapClick
           ExplicitLeft = 4
           ExplicitTop = -4
+        end
+        object ckZoomInCreatedPolygon: TCheckBox
+          Left = 159
+          Top = 6
+          Width = 162
+          Height = 17
+          Caption = 'Zoom in created polygon '
+          TabOrder = 2
         end
       end
     end

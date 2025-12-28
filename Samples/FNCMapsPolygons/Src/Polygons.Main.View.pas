@@ -43,7 +43,7 @@ type
     btnAddPolygon: TButton;
     GroupBox2: TGroupBox;
     Panel2: TPanel;
-    btnAdd: TButton;
+    btnAddCoordinate: TButton;
     ClientDataSet1: TClientDataSet;
     ClientDataSet1Latitude: TFloatField;
     ClientDataSet1Longitude: TFloatField;
@@ -59,13 +59,14 @@ type
     AddToPolygonCustomized1: TMenuItem;
     StatusBar1: TStatusBar;
     Panel3: TPanel;
-    btnDelete: TButton;
+    btnDeleteCoordinate: TButton;
     btnAddPolygonInMap: TButton;
     N1: TMenuItem;
     btnClearAllPolygons: TButton;
     gBoxPolylines: TGroupBox;
     btnPolylinesAdd: TButton;
     btnPolylinesClear: TButton;
+    ckZoomInCreatedPolygon: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -73,8 +74,8 @@ type
     procedure CopyLatitudeAndLongitude1Click(Sender: TObject);
     procedure AddToPolygonCustomized1Click(Sender: TObject);
     procedure TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
-    procedure btnDeleteClick(Sender: TObject);
-    procedure btnAddClick(Sender: TObject);
+    procedure btnDeleteCoordinateClick(Sender: TObject);
+    procedure btnAddCoordinateClick(Sender: TObject);
     procedure btnAddPolygonInMapClick(Sender: TObject);
     procedure btnClearAllPolygonsClick(Sender: TObject);
     procedure btnPolylinesAddClick(Sender: TObject);
@@ -141,13 +142,11 @@ begin
   LCoordinateRecArray[2] := CreateCoordinate(32.294887, -64.781380);
 
   TMSFNCMaps1.BeginUpdate;
-
   LPolygon := TMSFNCMaps1.AddPolygon(LCoordinateRecArray);
   LPolygon.FillColor := gcOrange;
   LPolygon.FillOpacity := 0.5;
   LPolygon.StrokeColor := gcGreen;
   LPolygon.StrokeWidth := 4;
-
   TMSFNCMaps1.EndUpdate;
 end;
 
@@ -160,10 +159,10 @@ procedure TPolygonsMainView.AddToPolygonCustomized1Click(Sender: TObject);
 begin
   edtCustomizedLatitude.Text := FLastLat.ToString;
   edtCustomizedLongitude.Text := FLastLon.ToString;
-  btnAdd.Click;
+  btnAddCoordinate.Click;
 end;
 
-procedure TPolygonsMainView.btnAddClick(Sender: TObject);
+procedure TPolygonsMainView.btnAddCoordinateClick(Sender: TObject);
 begin
   ClientDataSet1.Append;
   ClientDataSet1Order.AsInteger := ClientDataSet1.RecordCount + 1;
@@ -172,7 +171,7 @@ begin
   ClientDataSet1.Post;
 end;
 
-procedure TPolygonsMainView.btnDeleteClick(Sender: TObject);
+procedure TPolygonsMainView.btnDeleteCoordinateClick(Sender: TObject);
 begin
   if ClientDataSet1.IsEmpty then
     raise Exception.Create('Select a record to be deleted');
@@ -204,6 +203,9 @@ begin
   LPolygon.StrokeColor := gcGreen;
   LPolygon.StrokeWidth := 4;
   TMSFNCMaps1.EndUpdate;
+
+  if ckZoomInCreatedPolygon.Checked then
+    TMSFNCMaps1.ZoomToBounds(LCoordinateRecArray);
 end;
 
 procedure TPolygonsMainView.btnClearAllPolygonsClick(Sender: TObject);
