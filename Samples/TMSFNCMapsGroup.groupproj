@@ -12,6 +12,9 @@
         <Projects Include="FNCMapsZoom\FNCMapsZoom.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMapsPolygons\FNCMapsPolygons.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
     <Target Name="FNCMapsZoom:Make">
         <MSBuild Projects="FNCMapsZoom\FNCMapsZoom.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsPolygons">
+        <MSBuild Projects="FNCMapsPolygons\FNCMapsPolygons.dproj"/>
+    </Target>
+    <Target Name="FNCMapsPolygons:Clean">
+        <MSBuild Projects="FNCMapsPolygons\FNCMapsPolygons.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsPolygons:Make">
+        <MSBuild Projects="FNCMapsPolygons\FNCMapsPolygons.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

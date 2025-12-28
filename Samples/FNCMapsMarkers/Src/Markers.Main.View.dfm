@@ -51,8 +51,6 @@ object MarkersMainView: TMarkersMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 3
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -101,7 +99,6 @@ object MarkersMainView: TMarkersMainView
         Height = 23
         PasswordChar = '*'
         TabOrder = 1
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxLanguage: TComboBox
@@ -232,6 +229,7 @@ object MarkersMainView: TMarkersMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitTop = 11
         object btnRefresh: TButton
           Left = 4
           Top = 3

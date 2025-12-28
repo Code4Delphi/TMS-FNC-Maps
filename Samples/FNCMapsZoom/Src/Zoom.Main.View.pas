@@ -21,10 +21,8 @@ type
     GroupBox1: TGroupBox;
     Label1: TLabel;
     Label5: TLabel;
-    Label2: TLabel;
     cBoxService: TComboBox;
     edtAPIKeyMap: TEdit;
-    cBoxLanguage: TComboBox;
     Panel1: TPanel;
     GroupBox5: TGroupBox;
     TrackBar1: TTrackBar;
@@ -35,7 +33,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
-    procedure cBoxLanguageChange(Sender: TObject);
     procedure btnZoomMinClick(Sender: TObject);
     procedure btnZoomMenosClick(Sender: TObject);
     procedure btnZoomMaisClick(Sender: TObject);
@@ -68,7 +65,6 @@ begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.Service := TTMSFNCMapsService(cBoxService.ItemIndex);
   TMSFNCMaps1.APIKey := edtAPIKeyMap.Text;
-  TMSFNCMaps1.Options.Locale := copy(cBoxLanguage.Text, 1, 5);
   TMSFNCMaps1.EndUpdate;
 
   edtAPIKeyMap.Enabled := not (cBoxService.ItemIndex in [6, 8]);
@@ -82,12 +78,6 @@ end;
 procedure TZoomMainView.edtAPIKeyMapExit(Sender: TObject);
 begin
   Self.ConfigBasicMaps;
-end;
-
-procedure TZoomMainView.cBoxLanguageChange(Sender: TObject);
-begin
-  Self.ConfigBasicMaps;
-  TMSFNCMaps1.ReInitialize;
 end;
 
 procedure TZoomMainView.btnZoomMinClick(Sender: TObject);

@@ -12,28 +12,27 @@ object ZoomMainView: TZoomMainView
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
+  WindowState = wsMaximized
   OnCreate = FormCreate
   TextHeight = 15
   object pnTop: TPanel
     Left = 0
     Top = 0
     Width = 957
-    Height = 169
+    Height = 121
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = -6
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
       Width = 198
-      Height = 169
+      Height = 121
       Margins.Bottom = 2
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitLeft = 8
-      ExplicitHeight = 161
+      ExplicitHeight = 169
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -47,13 +46,6 @@ object ZoomMainView: TZoomMainView
         Width = 70
         Height = 15
         Caption = 'Map API Key:'
-      end
-      object Label2: TLabel
-        Left = 5
-        Top = 112
-        Width = 52
-        Height = 15
-        Caption = 'Language'
       end
       object cBoxService: TComboBox
         Left = 5
@@ -84,44 +76,27 @@ object ZoomMainView: TZoomMainView
         TabOrder = 1
         OnExit = edtAPIKeyMapExit
       end
-      object cBoxLanguage: TComboBox
-        Left = 5
-        Top = 129
-        Width = 186
-        Height = 23
-        ItemIndex = 0
-        TabOrder = 2
-        Text = 'en-US (English '#8211' United States)'
-        OnChange = cBoxLanguageChange
-        Items.Strings = (
-          'en-US (English '#8211' United States)'
-          'en-GB (English '#8211' Great Britain)'
-          'fr-FR (French '#8211' France)'
-          'nl-NL (Dutch '#8211' Netherlands)'
-          'it-IT (Italian '#8211' Italy)'
-          'pt-BR (Portuguese '#8211' Brazil)')
-      end
     end
     object Panel1: TPanel
       Left = 198
       Top = 0
       Width = 759
-      Height = 169
+      Height = 121
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
       ExplicitLeft = 197
       ExplicitTop = -6
+      ExplicitHeight = 169
       object GroupBox5: TGroupBox
         Left = 0
-        Top = 120
+        Top = 72
         Width = 759
         Height = 49
         Align = alBottom
         Caption = ' Zoom '
         TabOrder = 0
-        ExplicitTop = 125
-        ExplicitWidth = 957
+        ExplicitTop = 120
         object TrackBar1: TTrackBar
           Left = 64
           Top = 17
@@ -133,7 +108,6 @@ object ZoomMainView: TZoomMainView
           Position = 2
           TabOrder = 0
           OnTracking = TrackBar1Tracking
-          ExplicitWidth = 629
         end
         object btnZoomMin: TButton
           Left = 2
@@ -182,7 +156,6 @@ object ZoomMainView: TZoomMainView
           ParentFont = False
           TabOrder = 3
           OnClick = btnZoomMaxClick
-          ExplicitLeft = 724
         end
         object btnZoomMais: TButton
           Left = 695
@@ -199,16 +172,15 @@ object ZoomMainView: TZoomMainView
           ParentFont = False
           TabOrder = 4
           OnClick = btnZoomMaisClick
-          ExplicitLeft = 693
         end
       end
     end
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 169
+    Top = 121
     Width = 957
-    Height = 487
+    Height = 535
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -226,6 +198,7 @@ object ZoomMainView: TZoomMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 173
+    ExplicitTop = 169
+    ExplicitHeight = 487
   end
 end

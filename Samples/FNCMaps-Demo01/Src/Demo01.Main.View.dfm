@@ -156,6 +156,8 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Add Polygon (Bermuda triangle)'
         TabOrder = 0
         OnClick = btnAddPolygonClick
+        ExplicitLeft = 0
+        ExplicitTop = 11
       end
       object btnAddCircle: TButton
         Left = 2
@@ -166,6 +168,8 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Add Circle'
         TabOrder = 1
         OnClick = btnAddCircleClick
+        ExplicitLeft = 0
+        ExplicitTop = 36
       end
       object btnAddRectangles: TButton
         Left = 2
@@ -398,7 +402,6 @@ object Demo01MainView: TDemo01MainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitTop = 187
   end
   object StatusBar1: TStatusBar
     Left = 0
