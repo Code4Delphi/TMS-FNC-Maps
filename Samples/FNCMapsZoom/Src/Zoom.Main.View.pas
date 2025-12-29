@@ -109,14 +109,14 @@ begin
   TMSFNCMaps1.SetZoomLevel(TrackBar1.Position);
 end;
 
-procedure TZoomMainView.TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
-begin
-  TrackBar1.Position := Round(AZoomLevel);
-end;
-
 procedure TZoomMainView.TMSFNCMaps1ZoomChanged(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   TMSFNCMaps1.GetZoomLevel;
+end;
+
+procedure TZoomMainView.TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
+begin
+  TrackBar1.Position := Round(AZoomLevel);
 end;
 
 end.

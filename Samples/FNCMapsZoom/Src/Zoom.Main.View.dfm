@@ -19,7 +19,7 @@ object ZoomMainView: TZoomMainView
     Left = 0
     Top = 0
     Width = 957
-    Height = 121
+    Height = 129
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
@@ -27,12 +27,14 @@ object ZoomMainView: TZoomMainView
       Left = 0
       Top = 0
       Width = 198
-      Height = 121
+      Height = 129
       Margins.Bottom = 2
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitHeight = 169
+      ExplicitLeft = -4
+      ExplicitTop = -5
+      ExplicitHeight = 121
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -81,22 +83,20 @@ object ZoomMainView: TZoomMainView
       Left = 198
       Top = 0
       Width = 759
-      Height = 121
+      Height = 129
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 197
-      ExplicitTop = -6
-      ExplicitHeight = 169
+      ExplicitHeight = 121
       object GroupBox5: TGroupBox
         Left = 0
-        Top = 72
+        Top = 80
         Width = 759
         Height = 49
         Align = alBottom
         Caption = ' Zoom '
         TabOrder = 0
-        ExplicitTop = 120
+        ExplicitTop = 72
         object TrackBar1: TTrackBar
           Left = 64
           Top = 17
@@ -178,9 +178,9 @@ object ZoomMainView: TZoomMainView
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 121
+    Top = 129
     Width = 957
-    Height = 535
+    Height = 527
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -198,7 +198,7 @@ object ZoomMainView: TZoomMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 169
-    ExplicitHeight = 487
+    ExplicitTop = 121
+    ExplicitHeight = 535
   end
 end
