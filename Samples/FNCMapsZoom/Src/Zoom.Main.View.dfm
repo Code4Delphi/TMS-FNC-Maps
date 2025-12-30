@@ -32,8 +32,6 @@ object ZoomMainView: TZoomMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitLeft = -4
-      ExplicitTop = -5
       object Label1: TLabel
         Left = 11
         Top = 21
@@ -70,7 +68,7 @@ object ZoomMainView: TZoomMainView
       end
       object edtAPIKeyMap: TEdit
         Left = 11
-        Top = 82
+        Top = 81
         Width = 186
         Height = 23
         PasswordChar = '*'
@@ -130,10 +128,6 @@ object ZoomMainView: TZoomMainView
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 197
-      ExplicitTop = -6
-      ExplicitWidth = 759
-      ExplicitHeight = 129
       object GroupBox5: TGroupBox
         Left = 0
         Top = 152
@@ -142,8 +136,6 @@ object ZoomMainView: TZoomMainView
         Align = alBottom
         Caption = ' Zoom '
         TabOrder = 0
-        ExplicitTop = 80
-        ExplicitWidth = 759
         object TrackBar1: TTrackBar
           Left = 64
           Top = 17
@@ -155,7 +147,8 @@ object ZoomMainView: TZoomMainView
           Position = 2
           TabOrder = 0
           OnTracking = TrackBar1Tracking
-          ExplicitWidth = 631
+          ExplicitLeft = 58
+          ExplicitTop = 16
         end
         object btnZoomMin: TButton
           Left = 2
@@ -204,7 +197,6 @@ object ZoomMainView: TZoomMainView
           ParentFont = False
           TabOrder = 3
           OnClick = btnZoomMaxClick
-          ExplicitLeft = 726
         end
         object btnZoomMais: TButton
           Left = 684
@@ -221,7 +213,6 @@ object ZoomMainView: TZoomMainView
           ParentFont = False
           TabOrder = 4
           OnClick = btnZoomMaisClick
-          ExplicitLeft = 695
         end
       end
     end
@@ -248,6 +239,7 @@ object ZoomMainView: TZoomMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 205
+    Service = msOpenLayers
+    ExplicitTop = 197
   end
 end
