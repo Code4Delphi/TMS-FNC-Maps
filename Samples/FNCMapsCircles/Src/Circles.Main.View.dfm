@@ -3,7 +3,7 @@ object CirclesMainView: TCirclesMainView
   Top = 0
   Caption = 'TMS FNC Maps - Circles'
   ClientHeight = 663
-  ClientWidth = 1569
+  ClientWidth = 1446
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,15 +15,35 @@ object CirclesMainView: TCirclesMainView
   WindowState = wsMaximized
   OnCreate = FormCreate
   TextHeight = 15
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 241
+    Width = 1446
+    Height = 10
+    Cursor = crVSplit
+    Align = alTop
+    Beveled = True
+    ExplicitWidth = 1569
+  end
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1569
+    Width = 1446
     Height = 241
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1162
+    ExplicitTop = 4
+    ExplicitWidth = 1569
+    object Splitter2: TSplitter
+      Left = 1026
+      Top = 0
+      Width = 10
+      Height = 241
+      Beveled = True
+      ExplicitLeft = 1075
+      ExplicitHeight = 191
+    end
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -78,9 +98,9 @@ object CirclesMainView: TCirclesMainView
       end
     end
     object Panel1: TPanel
-      Left = 933
+      Left = 198
       Top = 0
-      Width = 212
+      Width = 123
       Height = 241
       Align = alLeft
       BevelOuter = bvNone
@@ -88,11 +108,10 @@ object CirclesMainView: TCirclesMainView
       Padding.Top = 8
       Padding.Right = 5
       TabOrder = 1
-      ExplicitLeft = 805
       object btnAddCircle: TButton
         Left = 5
         Top = 8
-        Width = 202
+        Width = 113
         Height = 25
         Cursor = crHandPoint
         Align = alTop
@@ -105,7 +124,7 @@ object CirclesMainView: TCirclesMainView
       object btnClearAllCircles: TButton
         Left = 5
         Top = 33
-        Width = 202
+        Width = 113
         Height = 25
         Cursor = crHandPoint
         Align = alTop
@@ -122,19 +141,34 @@ object CirclesMainView: TCirclesMainView
         ExplicitTop = 69
         ExplicitWidth = 198
       end
+      object btnAddPolygon: TButton
+        Left = 5
+        Top = 216
+        Width = 113
+        Height = 25
+        Cursor = crHandPoint
+        Align = alBottom
+        Caption = 'Add Polygon Test'
+        TabOrder = 2
+        OnClick = btnAddPolygonClick
+        ExplicitLeft = 7
+        ExplicitTop = 30
+        ExplicitWidth = 198
+      end
     end
     object GroupBox2: TGroupBox
-      Left = 198
+      Left = 607
       Top = 0
-      Width = 443
+      Width = 419
       Height = 241
       Align = alLeft
       Caption = 'Circles '
       TabOrder = 2
+      ExplicitLeft = 702
       object Panel2: TPanel
         Left = 2
         Top = 17
-        Width = 439
+        Width = 415
         Height = 44
         Align = alTop
         BevelEdges = [beBottom]
@@ -178,7 +212,7 @@ object CirclesMainView: TCirclesMainView
       object DBGrid1: TDBGrid
         Left = 2
         Top = 61
-        Width = 439
+        Width = 415
         Height = 178
         Align = alClient
         BorderStyle = bsNone
@@ -223,14 +257,13 @@ object CirclesMainView: TCirclesMainView
       end
     end
     object GroupBox3: TGroupBox
-      Left = 641
+      Left = 321
       Top = 0
-      Width = 292
+      Width = 286
       Height = 241
       Align = alLeft
       Caption = ' Circles when clicking on the map '
       TabOrder = 3
-      ExplicitLeft = 804
       object Label11: TLabel
         Left = 11
         Top = 100
@@ -352,12 +385,115 @@ object CirclesMainView: TCirclesMainView
         Text = '400000'
       end
     end
+    object GroupBox4: TGroupBox
+      Left = 1036
+      Top = 0
+      Width = 401
+      Height = 241
+      Align = alLeft
+      Caption = ' Logs Events Circles '
+      TabOrder = 4
+      ExplicitLeft = 1168
+      object mmLog: TMemo
+        Left = 2
+        Top = 80
+        Width = 397
+        Height = 159
+        Align = alClient
+        ScrollBars = ssVertical
+        TabOrder = 0
+        ExplicitWidth = 329
+      end
+      object Panel3: TPanel
+        Left = 2
+        Top = 17
+        Width = 397
+        Height = 63
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 1
+        ExplicitWidth = 329
+        DesignSize = (
+          397
+          63)
+        object ckLogClick: TCheckBox
+          Left = 4
+          Top = 3
+          Width = 97
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log click'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+        end
+        object ckLogDblClick: TCheckBox
+          Left = 4
+          Top = 21
+          Width = 97
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log DblClick'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+        end
+        object btnClearLog: TButton
+          Left = 335
+          Top = 1
+          Width = 59
+          Height = 26
+          Cursor = crHandPoint
+          Anchors = [akTop, akRight]
+          Caption = 'Clear log'
+          TabOrder = 2
+          OnClick = btnClearLogClick
+          ExplicitLeft = 267
+        end
+        object ckLogMouseDown: TCheckBox
+          Left = 107
+          Top = 3
+          Width = 138
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log Mouse Down'
+          TabOrder = 3
+        end
+        object ckLogMouseLeave: TCheckBox
+          Left = 225
+          Top = 40
+          Width = 122
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log Mouse Leave'
+          TabOrder = 4
+        end
+        object ckLogMouseUp: TCheckBox
+          Left = 108
+          Top = 21
+          Width = 102
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log Mouse Up'
+          TabOrder = 5
+        end
+        object ckLogMouseEnter: TCheckBox
+          Left = 108
+          Top = 40
+          Width = 111
+          Height = 17
+          Cursor = crHandPoint
+          Caption = 'Log Mouse Enter'
+          TabOrder = 6
+        end
+      end
+    end
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 241
-    Width = 1569
-    Height = 403
+    Top = 251
+    Width = 1446
+    Height = 393
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -365,6 +501,12 @@ object CirclesMainView: TCirclesMainView
     TabOrder = 1
     OnMapClick = TMSFNCMaps1MapClick
     OnMapMouseMove = TMSFNCMaps1MapMouseMove
+    OnPolyElementClick = TMSFNCMaps1PolyElementClick
+    OnPolyElementDblClick = TMSFNCMaps1PolyElementDblClick
+    OnPolyElementMouseUp = TMSFNCMaps1PolyElementMouseUp
+    OnPolyElementMouseDown = TMSFNCMaps1PolyElementMouseDown
+    OnPolyElementMouseEnter = TMSFNCMaps1PolyElementMouseEnter
+    OnPolyElementMouseLeave = TMSFNCMaps1PolyElementMouseLeave
     Polylines = <>
     Polygons = <>
     Circles = <>
@@ -376,12 +518,12 @@ object CirclesMainView: TCirclesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitWidth = 1162
+    ExplicitTop = 247
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 644
-    Width = 1569
+    Width = 1446
     Height = 19
     Panels = <
       item
@@ -442,8 +584,8 @@ object CirclesMainView: TCirclesMainView
     IndexDefs = <>
     Params = <>
     StoreDefs = True
-    Left = 297
-    Top = 129
+    Left = 737
+    Top = 153
     object ClientDataSet1Id: TStringField
       DisplayWidth = 6
       FieldName = 'Id'
@@ -467,7 +609,7 @@ object CirclesMainView: TCirclesMainView
   end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
-    Left = 381
-    Top = 129
+    Left = 821
+    Top = 153
   end
 end

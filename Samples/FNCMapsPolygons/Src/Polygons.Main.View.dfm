@@ -15,6 +15,17 @@ object PolygonsMainView: TPolygonsMainView
   WindowState = wsMaximized
   OnCreate = FormCreate
   TextHeight = 15
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 241
+    Width = 1162
+    Height = 10
+    Cursor = crVSplit
+    Align = alTop
+    Beveled = True
+    ExplicitLeft = -407
+    ExplicitWidth = 1569
+  end
   object pnTop: TPanel
     Left = 0
     Top = 0
@@ -284,9 +295,9 @@ object PolygonsMainView: TPolygonsMainView
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 241
+    Top = 251
     Width = 1162
-    Height = 403
+    Height = 393
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -305,6 +316,8 @@ object PolygonsMainView: TPolygonsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
+    ExplicitTop = 241
+    ExplicitHeight = 403
   end
   object StatusBar1: TStatusBar
     Left = 0

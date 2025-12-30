@@ -68,6 +68,7 @@ type
     btnPolylinesClear: TButton;
     ckZoomInCreatedPolygon: TCheckBox;
     ckAddCoordinatesClickingMap: TCheckBox;
+    Splitter1: TSplitter;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);

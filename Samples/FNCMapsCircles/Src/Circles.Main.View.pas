@@ -72,6 +72,19 @@ type
     btnDelete: TButton;
     btnVisibleInvisible: TButton;
     ClientDataSet1Radius: TFloatField;
+    GroupBox4: TGroupBox;
+    mmLog: TMemo;
+    Panel3: TPanel;
+    ckLogClick: TCheckBox;
+    ckLogDblClick: TCheckBox;
+    btnClearLog: TButton;
+    ckLogMouseDown: TCheckBox;
+    ckLogMouseLeave: TCheckBox;
+    ckLogMouseUp: TCheckBox;
+    ckLogMouseEnter: TCheckBox;
+    btnAddPolygon: TButton;
+    Splitter1: TSplitter;
+    Splitter2: TSplitter;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -83,12 +96,21 @@ type
     procedure btnRefreshClick(Sender: TObject);
     procedure btnVisibleInvisibleClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
+    procedure TMSFNCMaps1PolyElementClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure btnClearLogClick(Sender: TObject);
+    procedure btnAddPolygonClick(Sender: TObject);
+    procedure TMSFNCMaps1PolyElementDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1PolyElementMouseDown(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1PolyElementMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1PolyElementMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCMaps1PolyElementMouseUp(Sender: TObject; AEventData: TTMSFNCMapsEventData);
   private
     FLastLat: Double;
     FLastLon: Double;
     procedure ConfigBasicMaps;
     procedure RefreshCircleInDataSet;
     function GetCircleBySelected: TTMSFNCMapsCircle;
+    procedure AddLogEventMap(AEventData: TTMSFNCMapsEventData);
   public
 
   end;
@@ -169,6 +191,25 @@ begin
   Self.RefreshCircleInDataSet;
 end;
 
+procedure TCirclesMainView.btnAddPolygonClick(Sender: TObject);
+var
+  LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
+  LPolygon: TTMSFNCMapsPolygon;
+begin
+  SetLength(LCoordinateRecArray, 3);
+  LCoordinateRecArray[0] := CreateCoordinate(25.789106, -80.226529);
+  LCoordinateRecArray[1] := CreateCoordinate(18.4663188, -60.1057427);
+  LCoordinateRecArray[2] := CreateCoordinate(32.294887, -64.781380);
+
+  TMSFNCMaps1.BeginUpdate;
+  LPolygon := TMSFNCMaps1.AddPolygon(LCoordinateRecArray);
+  LPolygon.FillColor := gcOrange;
+  LPolygon.FillOpacity := 0.5;
+  LPolygon.StrokeColor := gcGreen;
+  LPolygon.StrokeWidth := 4;
+  TMSFNCMaps1.EndUpdate;
+end;
+
 procedure TCirclesMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
 begin
   Clipboard.AsText := Format('%s, %s', [FLastLat.ToString, FLastLon.ToString]);
@@ -185,6 +226,9 @@ var
 begin
   LCircle := Self.GetCircleBySelected;
 
+  if LCircle = nil then
+    Exit;
+
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.Circles.Delete(LCircle.Index);
   TMSFNCMaps1.EndUpdate;
@@ -197,6 +241,9 @@ var
   LCircle: TTMSFNCMapsCircle;
 begin
   LCircle := Self.GetCircleBySelected;
+
+  if LCircle = nil then
+    Exit;
 
   TMSFNCMaps1.BeginUpdate;
   LCircle.Visible := not LCircle.Visible;
@@ -212,6 +259,8 @@ var
   LPolyElement : TTMSFNCMapsPolyElement;
   LCircle: TTMSFNCMapsCircle;
 begin
+  Result := nil;
+
   if ClientDataSet1.IsEmpty then
     raise Exception.Create('Select an item to be deleted');
 
@@ -256,6 +305,75 @@ begin
   TMSFNCMaps1.ClearCircles;
 
   Self.RefreshCircleInDataSet;
+end;
+
+procedure TCirclesMainView.btnClearLogClick(Sender: TObject);
+begin
+  mmLog.Lines.Clear;
+end;
+
+procedure TCirclesMainView.TMSFNCMaps1PolyElementClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogClick.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TCirclesMainView.TMSFNCMaps1PolyElementDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogDblClick.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TCirclesMainView.TMSFNCMaps1PolyElementMouseDown(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogMouseDown.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TCirclesMainView.TMSFNCMaps1PolyElementMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogMouseEnter.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TCirclesMainView.TMSFNCMaps1PolyElementMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogMouseLeave.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TCirclesMainView.TMSFNCMaps1PolyElementMouseUp(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  if ckLogMouseUp.Checked then
+    Self.AddLogEventMap(AEventData);
+end;
+
+procedure TCirclesMainView.AddLogEventMap(AEventData: TTMSFNCMapsEventData);
+var
+  LCircle: TTMSFNCMapsCircle;
+begin
+  if AEventData.PolyElement.ClassName <> TTMSFNCMapsCircle.ClassName then
+    Exit;
+
+  mmLog.Lines.Add('##################');
+  mmLog.Lines.Add('EventName: ' + AEventData.EventName);
+  mmLog.Lines.Add('ID: ' + AEventData.ID);
+  mmLog.Lines.Add('Coordinate.Latitude: ' + AEventData.Coordinate.Latitude.ToString);
+  mmLog.Lines.Add('Coordinate.Longitude: ' + AEventData.Coordinate.Longitude.ToString);
+  mmLog.Lines.Add(Format('X / Y: %s / %s', [AEventData.X.ToString, AEventData.Y.ToString]));
+
+  LCircle := TTMSFNCMapsCircle(AEventData.PolyElement);
+  mmLog.Lines.Add('Circle.ID: ' + LCircle.ID);
+  mmLog.Lines.Add('Circle.Center.Latitude: ' + LCircle.Center.Latitude.ToString);
+  mmLog.Lines.Add('Circle.Center.Longitude: ' + LCircle.Center.Longitude.ToString);
+  mmLog.Lines.Add('Circle.Radius: ' + LCircle.Radius.ToString);
+  mmLog.Lines.Add('Circle.Visible: ' + LCircle.Visible.ToString(TUseBoolStrs.True));
+  mmLog.Lines.Add('Circle.FillColor: ' + ColorToString(LCircle.FillColor));
+  mmLog.Lines.Add('Circle.FillOpacity: ' + LCircle.FillOpacity.ToString);
+  mmLog.Lines.Add('Circle.StrokeColor: ' + ColorToString(LCircle.StrokeColor));
+  mmLog.Lines.Add('Circle.StrokeOpacity: ' + LCircle.StrokeOpacity.ToString);
+  mmLog.Lines.Add('Circle.StrokeWidth: ' + LCircle.StrokeWidth.ToString);
+  mmLog.Lines.Add('');
 end;
 
 end.
