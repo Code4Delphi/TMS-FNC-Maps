@@ -13,6 +13,7 @@ O TMS FNC Maps é um conjunto de componentes para Delphi e C++Builder voltado a 
 - [Instalando TMS FNC Maps (Trial, .exe site TMS, Smart Setup e TMS Dashboard)](https://www.youtube.com/watch?v=IyVQWe5quRo&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 03 - Primeiros passos com TMS FNC Maps e marcadores](https://www.youtube.com/watch?v=GMiPCNzOcWw&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 04 - Marcadores](https://www.youtube.com/watch?v=_SlfEp_TT3U&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
+- [Mapas com Delphi 04 - Zoom](https://www.youtube.com/watch?v=MV1cXvx4xSY&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 
 <br>
 
