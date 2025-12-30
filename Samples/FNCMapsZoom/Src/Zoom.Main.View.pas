@@ -16,8 +16,8 @@ uses
 
 type
   TZoomMainView = class(TForm)
-    pnTop: TPanel;
     TMSFNCMaps1: TTMSFNCMaps;
+    pnTop: TPanel;
     GroupBox1: TGroupBox;
     Label1: TLabel;
     Label5: TLabel;

@@ -1,7 +1,7 @@
-object PolygonsMainView: TPolygonsMainView
+object PolygonsGoogleMainView: TPolygonsGoogleMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - Polygons and Polylines'
+  Caption = 'TMS FNC Maps Google - Polygons and Polylines'
   ClientHeight = 663
   ClientWidth = 1296
   Color = clBtnFace
@@ -32,13 +32,6 @@ object PolygonsMainView: TPolygonsMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      object Label1: TLabel
-        Left = 5
-        Top = 22
-        Width = 37
-        Height = 15
-        Caption = 'Service'
-      end
       object Label5: TLabel
         Left = 5
         Top = 66
@@ -46,33 +39,13 @@ object PolygonsMainView: TPolygonsMainView
         Height = 15
         Caption = 'Map API Key:'
       end
-      object cBoxService: TComboBox
-        Left = 5
-        Top = 38
-        Width = 186
-        Height = 23
-        Style = csDropDownList
-        DropDownCount = 15
-        TabOrder = 0
-        OnChange = cBoxServiceChange
-        Items.Strings = (
-          'GoogleMaps'
-          'Here'
-          'AzureMaps'
-          'BingMaps'
-          'TomTom'
-          'MapBox'
-          'OpenLayers'
-          'MapKit'
-          'Leaflet')
-      end
       object edtAPIKeyMap: TEdit
         Left = 5
         Top = 83
         Width = 186
         Height = 23
         PasswordChar = '*'
-        TabOrder = 1
+        TabOrder = 0
         OnExit = edtAPIKeyMapExit
       end
     end
@@ -84,27 +57,64 @@ object PolygonsMainView: TPolygonsMainView
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 818
+      ExplicitLeft = 197
       ExplicitTop = -6
+      ExplicitWidth = 913
       object btnAddPolygon: TButton
-        Left = 7
+        Left = 4
         Top = 30
         Width = 209
         Height = 25
-        Cursor = crHandPoint
         Caption = 'Add Polygon (Bermuda triangle)'
         TabOrder = 0
         OnClick = btnAddPolygonClick
       end
       object btnClearAllPolygons: TButton
-        Left = 7
-        Top = 58
+        Left = 4
+        Top = 86
         Width = 209
         Height = 25
-        Cursor = crHandPoint
         Caption = 'Clear All Polygons'
         TabOrder = 1
         OnClick = btnClearAllPolygonsClick
+      end
+      object btnAddPolygonHoles: TButton
+        Left = 4
+        Top = 58
+        Width = 209
+        Height = 25
+        Caption = 'Add Polygon Holes'
+        TabOrder = 2
+        OnClick = btnAddPolygonHolesClick
+      end
+    end
+    object gBoxPolylines: TGroupBox
+      Left = 1111
+      Top = 0
+      Width = 185
+      Height = 241
+      Align = alRight
+      Caption = ' Polylines '
+      TabOrder = 2
+      object btnPolylinesAdd: TButton
+        Left = 2
+        Top = 17
+        Width = 181
+        Height = 25
+        Align = alTop
+        Caption = 'Add Polyline'
+        TabOrder = 0
+        OnClick = btnPolylinesAddClick
+      end
+      object btnPolylinesClear: TButton
+        Left = 2
+        Top = 42
+        Width = 181
+        Height = 25
+        Align = alTop
+        Caption = 'Clear Polylines'
+        TabOrder = 1
+        OnClick = btnPolylinesClearClick
       end
     end
     object GroupBox2: TGroupBox
@@ -114,7 +124,7 @@ object PolygonsMainView: TPolygonsMainView
       Height = 241
       Align = alLeft
       Caption = ' Polygon Customized '
-      TabOrder = 2
+      TabOrder = 3
       ExplicitLeft = 197
       ExplicitTop = -6
       object Panel2: TPanel
@@ -127,9 +137,6 @@ object PolygonsMainView: TPolygonsMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 11
-        ExplicitWidth = 463
         object Label8: TLabel
           Left = 10
           Top = -1
@@ -203,13 +210,13 @@ object PolygonsMainView: TPolygonsMainView
           item
             Expanded = False
             FieldName = 'Latitude'
-            Width = 117
+            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'Longitude'
-            Width = 115
+            Width = 200
             Visible = True
           end>
       end
@@ -221,7 +228,6 @@ object PolygonsMainView: TPolygonsMainView
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitWidth = 463
         object btnDeleteCoordinate: TButton
           Left = 0
           Top = 0
@@ -232,7 +238,6 @@ object PolygonsMainView: TPolygonsMainView
           Caption = 'Delete selected item'
           TabOrder = 0
           OnClick = btnDeleteCoordinateClick
-          ExplicitLeft = 336
         end
         object btnAddPolygonInMap: TButton
           Left = 292
@@ -244,8 +249,6 @@ object PolygonsMainView: TPolygonsMainView
           Caption = 'Add polygon in map'
           TabOrder = 1
           OnClick = btnAddPolygonInMapClick
-          ExplicitLeft = 327
-          ExplicitTop = 6
         end
         object ckZoomInCreatedPolygon: TCheckBox
           AlignWithMargins = True
@@ -258,70 +261,9 @@ object PolygonsMainView: TPolygonsMainView
           Align = alRight
           Caption = 'Zoom in created polygon '
           TabOrder = 2
-          ExplicitLeft = 297
-          ExplicitTop = 6
-          ExplicitHeight = 17
         end
       end
     end
-    object gBoxPolylines: TGroupBox
-      Left = 1111
-      Top = 0
-      Width = 185
-      Height = 241
-      Align = alRight
-      Caption = ' Polylines '
-      TabOrder = 3
-      object btnPolylinesAdd: TButton
-        Left = 2
-        Top = 17
-        Width = 181
-        Height = 25
-        Cursor = crHandPoint
-        Align = alTop
-        Caption = 'Add Polyline'
-        TabOrder = 0
-        OnClick = btnPolylinesAddClick
-        ExplicitLeft = 3
-        ExplicitTop = 11
-      end
-      object btnPolylinesClear: TButton
-        Left = 2
-        Top = 42
-        Width = 181
-        Height = 25
-        Cursor = crHandPoint
-        Align = alTop
-        Caption = 'Clear Polylines'
-        TabOrder = 1
-        OnClick = btnPolylinesClearClick
-      end
-    end
-  end
-  object TMSFNCMaps1: TTMSFNCMaps
-    Left = 0
-    Top = 241
-    Width = 1296
-    Height = 403
-    Align = alClient
-    ParentDoubleBuffered = False
-    DoubleBuffered = True
-    PopupMenu = PopupMenu1
-    TabOrder = 1
-    OnMapClick = TMSFNCMaps1MapClick
-    OnMapMouseMove = TMSFNCMaps1MapMouseMove
-    Polylines = <>
-    Polygons = <>
-    Circles = <>
-    Rectangles = <>
-    Markers = <>
-    ElementContainers = <>
-    Labels = <>
-    HeadLinks = <>
-    Options.DefaultLatitude = 40.689247000000000000
-    Options.DefaultLongitude = -74.044501999999990000
-    Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 242
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -338,6 +280,39 @@ object PolygonsMainView: TPolygonsMainView
       item
         Width = 250
       end>
+  end
+  object TMSFNCGoogleMaps1: TTMSFNCGoogleMaps
+    Left = 0
+    Top = 241
+    Width = 1296
+    Height = 403
+    Align = alClient
+    ParentDoubleBuffered = False
+    DoubleBuffered = True
+    TabOrder = 2
+    OnMapClick = TMSFNCGoogleMaps1MapClick
+    OnMapMouseMove = TMSFNCGoogleMaps1MapMouseMove
+    Polylines = <>
+    Polygons = <>
+    Circles = <>
+    Rectangles = <>
+    Markers = <>
+    Options.DefaultLatitude = 40.689247000000000000
+    Options.DefaultLongitude = -74.044501999999990000
+    Options.DefaultZoomLevel = 2.000000000000000000
+    Options.BackgroundColor = clBlack
+    Options.StreetView.Coordinate.Longitude = -74.044501999999990000
+    Options.StreetView.Coordinate.Latitude = 40.689247000000000000
+    Options.DisablePOI = False
+    Options.Version = 'weekly'
+    ElementContainers = <>
+    HeadLinks = <>
+    KMLLayers = <>
+    Directions = <>
+    Clusters = <>
+    OverlayViews = <>
+    HeatMaps = <>
+    ExplicitTop = 242
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
@@ -364,7 +339,7 @@ object PolygonsMainView: TPolygonsMainView
     Params = <>
     StoreDefs = True
     Left = 313
-    Top = 129
+    Top = 105
     object ClientDataSet1Order: TIntegerField
       FieldName = 'Order'
     end
@@ -380,21 +355,6 @@ object PolygonsMainView: TPolygonsMainView
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
     Left = 397
-    Top = 129
-  end
-  object PopupMenu1: TPopupMenu
-    Left = 693
-    Top = 272
-    object CopyLatitudeAndLongitude1: TMenuItem
-      Caption = 'Copy latitude and longitude'
-      OnClick = CopyLatitudeAndLongitude1Click
-    end
-    object N1: TMenuItem
-      Caption = '-'
-    end
-    object AddToPolygonCustomized1: TMenuItem
-      Caption = 'Add to Polygon customized'
-      OnClick = AddToPolygonCustomized1Click
-    end
+    Top = 105
   end
 end

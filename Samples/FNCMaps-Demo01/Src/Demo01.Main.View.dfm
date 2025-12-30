@@ -105,7 +105,6 @@ object Demo01MainView: TDemo01MainView
         Height = 25
         Align = alTop
         BevelOuter = bvNone
-        Caption = 'Panel4'
         TabOrder = 4
         object btnAddMarkerOk: TButton
           Left = 0
@@ -156,8 +155,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Add Polygon (Bermuda triangle)'
         TabOrder = 0
         OnClick = btnAddPolygonClick
-        ExplicitLeft = 0
-        ExplicitTop = 11
       end
       object btnAddCircle: TButton
         Left = 2
@@ -168,8 +165,6 @@ object Demo01MainView: TDemo01MainView
         Caption = 'Add Circle'
         TabOrder = 1
         OnClick = btnAddCircleClick
-        ExplicitLeft = 0
-        ExplicitTop = 36
       end
       object btnAddRectangles: TButton
         Left = 2

@@ -1,4 +1,4 @@
-unit Polygons.Main.View;
+unit PolygonsGoogle.Main.View;
 
 interface
 
@@ -9,6 +9,8 @@ uses
   System.Variants,
   System.Classes,
   Clipbrd,
+  Data.DB,
+  Datasnap.DBClient,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
@@ -16,72 +18,64 @@ uses
   Vcl.StdCtrls,
   Vcl.ComCtrls,
   Vcl.ExtCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.Menus,
   VCL.TMSFNCTypes,
   VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCMapsCommonTypes,
   VCL.TMSFNCCustomControl,
   VCL.TMSFNCWebBrowser,
   VCL.TMSFNCMaps,
-  Data.DB,
-  Datasnap.DBClient,
-  Vcl.Grids,
-  Vcl.DBGrids,
-  Vcl.Menus;
+  VCL.TMSFNCGoogleMaps,
+  VCL.TMSFNCMapsCommonTypes;
 
 type
-  TPolygonsMainView = class(TForm)
-    TMSFNCMaps1: TTMSFNCMaps;
+  TPolygonsGoogleMainView = class(TForm)
+    TMSFNCGoogleMaps1: TTMSFNCGoogleMaps;
     pnTop: TPanel;
     GroupBox1: TGroupBox;
-    Label1: TLabel;
     Label5: TLabel;
-    cBoxService: TComboBox;
     edtAPIKeyMap: TEdit;
     Panel1: TPanel;
     btnAddPolygon: TButton;
-    GroupBox2: TGroupBox;
-    Panel2: TPanel;
-    btnAddCoordinate: TButton;
     ClientDataSet1: TClientDataSet;
     ClientDataSet1Latitude: TFloatField;
     ClientDataSet1Longitude: TFloatField;
     DataSource1: TDataSource;
-    DBGrid1: TDBGrid;
     ClientDataSet1Order: TIntegerField;
-    Label8: TLabel;
-    Label9: TLabel;
-    edtCustomizedLatitude: TEdit;
-    edtCustomizedLongitude: TEdit;
-    PopupMenu1: TPopupMenu;
-    CopyLatitudeAndLongitude1: TMenuItem;
-    AddToPolygonCustomized1: TMenuItem;
     StatusBar1: TStatusBar;
-    Panel3: TPanel;
-    btnDeleteCoordinate: TButton;
-    btnAddPolygonInMap: TButton;
-    N1: TMenuItem;
     btnClearAllPolygons: TButton;
     gBoxPolylines: TGroupBox;
     btnPolylinesAdd: TButton;
     btnPolylinesClear: TButton;
-    ckZoomInCreatedPolygon: TCheckBox;
+    GroupBox2: TGroupBox;
+    Panel2: TPanel;
+    Label8: TLabel;
+    Label9: TLabel;
+    btnAddCoordinate: TButton;
+    edtCustomizedLatitude: TEdit;
+    edtCustomizedLongitude: TEdit;
     ckAddCoordinatesClickingMap: TCheckBox;
+    DBGrid1: TDBGrid;
+    Panel3: TPanel;
+    btnDeleteCoordinate: TButton;
+    btnAddPolygonInMap: TButton;
+    ckZoomInCreatedPolygon: TCheckBox;
+    btnAddPolygonHoles: TButton;
     procedure FormCreate(Sender: TObject);
-    procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure btnAddPolygonClick(Sender: TObject);
-    procedure CopyLatitudeAndLongitude1Click(Sender: TObject);
-    procedure AddToPolygonCustomized1Click(Sender: TObject);
-    procedure TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure btnDeleteCoordinateClick(Sender: TObject);
     procedure btnAddCoordinateClick(Sender: TObject);
     procedure btnAddPolygonInMapClick(Sender: TObject);
     procedure btnClearAllPolygonsClick(Sender: TObject);
     procedure btnPolylinesAddClick(Sender: TObject);
     procedure btnPolylinesClearClick(Sender: TObject);
-    procedure TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure TMSFNCGoogleMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure btnAddPolygonHolesClick(Sender: TObject);
+    procedure TMSFNCGoogleMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
   private
     FLastLat: Double;
     FLastLon: Double;
@@ -91,20 +85,41 @@ type
   end;
 
 var
-  PolygonsMainView: TPolygonsMainView;
+  PolygonsGoogleMainView: TPolygonsGoogleMainView;
 
 implementation
 
 {$R *.dfm}
 
-procedure TPolygonsMainView.FormCreate(Sender: TObject);
+procedure TPolygonsGoogleMainView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
-  cBoxService.ItemIndex := Integer(TTMSFNCMapsService.msOpenLayers);
   Self.ConfigBasicMaps;
 end;
 
-procedure TPolygonsMainView.TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+procedure TPolygonsGoogleMainView.ConfigBasicMaps;
+begin
+  TMSFNCGoogleMaps1.BeginUpdate;
+  TMSFNCGoogleMaps1.APIKey := edtAPIKeyMap.Text;
+  TMSFNCGoogleMaps1.EndUpdate;
+end;
+
+procedure TPolygonsGoogleMainView.edtAPIKeyMapExit(Sender: TObject);
+begin
+  Self.ConfigBasicMaps;
+end;
+
+procedure TPolygonsGoogleMainView.TMSFNCGoogleMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+   if ckAddCoordinatesClickingMap.Checked then
+  begin
+    edtCustomizedLatitude.Text := FLastLat.ToString;
+    edtCustomizedLongitude.Text := FLastLon.ToString;
+    btnAddCoordinate.Click;
+  end;
+end;
+
+procedure TPolygonsGoogleMainView.TMSFNCGoogleMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   FLastLat := AEventData.Coordinate.Latitude;
   FLastLon := AEventData.Coordinate.Longitude;
@@ -113,37 +128,7 @@ begin
   StatusBar1.Panels[1].Text := 'Lon: ' + FLastLon.ToString;
 end;
 
-procedure TPolygonsMainView.ConfigBasicMaps;
-begin
-  TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.Service := TTMSFNCMapsService(cBoxService.ItemIndex);
-  TMSFNCMaps1.APIKey := edtAPIKeyMap.Text;
-  TMSFNCMaps1.EndUpdate;
-
-  edtAPIKeyMap.Enabled := not (cBoxService.ItemIndex in [6, 8]);
-end;
-
-procedure TPolygonsMainView.cBoxServiceChange(Sender: TObject);
-begin
-  Self.ConfigBasicMaps;
-end;
-
-procedure TPolygonsMainView.edtAPIKeyMapExit(Sender: TObject);
-begin
-  Self.ConfigBasicMaps;
-end;
-
-procedure TPolygonsMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
-begin
-  if ckAddCoordinatesClickingMap.Checked then
-  begin
-    edtCustomizedLatitude.Text := FLastLat.ToString;
-    edtCustomizedLongitude.Text := FLastLon.ToString;
-    btnAddCoordinate.Click;
-  end;
-end;
-
-procedure TPolygonsMainView.btnAddCoordinateClick(Sender: TObject);
+procedure TPolygonsGoogleMainView.btnAddCoordinateClick(Sender: TObject);
 begin
   ClientDataSet1.Append;
   ClientDataSet1Order.AsInteger := ClientDataSet1.RecordCount + 1;
@@ -152,7 +137,7 @@ begin
   ClientDataSet1.Post;
 end;
 
-procedure TPolygonsMainView.btnAddPolygonClick(Sender: TObject);
+procedure TPolygonsGoogleMainView.btnAddPolygonClick(Sender: TObject);
 var
   LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
   LPolygon: TTMSFNCMapsPolygon;
@@ -162,28 +147,16 @@ begin
   LCoordinateRecArray[1] := CreateCoordinate(18.4663188, -60.1057427);
   LCoordinateRecArray[2] := CreateCoordinate(32.294887, -64.781380);
 
-  TMSFNCMaps1.BeginUpdate;
-  LPolygon := TMSFNCMaps1.AddPolygon(LCoordinateRecArray);
+  TMSFNCGoogleMaps1.BeginUpdate;
+  LPolygon := TMSFNCGoogleMaps1.AddPolygon(LCoordinateRecArray);
   LPolygon.FillColor := gcOrange;
   LPolygon.FillOpacity := 0.5;
   LPolygon.StrokeColor := gcGreen;
   LPolygon.StrokeWidth := 4;
-  TMSFNCMaps1.EndUpdate;
+  TMSFNCGoogleMaps1.EndUpdate;
 end;
 
-procedure TPolygonsMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
-begin
-  Clipboard.AsText := Format('%s, %s', [FLastLat.ToString, FLastLon.ToString]);
-end;
-
-procedure TPolygonsMainView.AddToPolygonCustomized1Click(Sender: TObject);
-begin
-  edtCustomizedLatitude.Text := FLastLat.ToString;
-  edtCustomizedLongitude.Text := FLastLon.ToString;
-  btnAddCoordinate.Click;
-end;
-
-procedure TPolygonsMainView.btnDeleteCoordinateClick(Sender: TObject);
+procedure TPolygonsGoogleMainView.btnDeleteCoordinateClick(Sender: TObject);
 begin
   if ClientDataSet1.IsEmpty then
     raise Exception.Create('Select a record to be deleted');
@@ -191,7 +164,7 @@ begin
   ClientDataSet1.Delete;
 end;
 
-procedure TPolygonsMainView.btnAddPolygonInMapClick(Sender: TObject);
+procedure TPolygonsGoogleMainView.btnAddPolygonInMapClick(Sender: TObject);
 var
   LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
   LPolygon: TTMSFNCMapsPolygon;
@@ -208,24 +181,24 @@ begin
     ClientDataSet1.Next;
   end;
 
-  TMSFNCMaps1.BeginUpdate;
-  LPolygon := TMSFNCMaps1.AddPolygon(LCoordinateRecArray);
+  TMSFNCGoogleMaps1.BeginUpdate;
+  LPolygon := TMSFNCGoogleMaps1.AddPolygon(LCoordinateRecArray);
   LPolygon.FillColor := gcRed;
   LPolygon.FillOpacity := 0.1;
   LPolygon.StrokeColor := gcGreen;
   LPolygon.StrokeWidth := 4;
-  TMSFNCMaps1.EndUpdate;
+  TMSFNCGoogleMaps1.EndUpdate;
 
   if ckZoomInCreatedPolygon.Checked then
-    TMSFNCMaps1.ZoomToBounds(LCoordinateRecArray);
+    TMSFNCGoogleMaps1.ZoomToBounds(LCoordinateRecArray);
 end;
 
-procedure TPolygonsMainView.btnClearAllPolygonsClick(Sender: TObject);
+procedure TPolygonsGoogleMainView.btnClearAllPolygonsClick(Sender: TObject);
 begin
-  TMSFNCMaps1.ClearPolygons;
+  TMSFNCGoogleMaps1.ClearPolygons;
 end;
 
-procedure TPolygonsMainView.btnPolylinesAddClick(Sender: TObject);
+procedure TPolygonsGoogleMainView.btnPolylinesAddClick(Sender: TObject);
 var
   LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
   LPolyline: TTMSFNCMapsPolyline;
@@ -236,18 +209,45 @@ begin
   LCoordinateRecArray[2] := CreateCoordinate(8.896288, -27.286689);
   LCoordinateRecArray[3] := CreateCoordinate(26.244485,-38.536689); //Closing coordinates are required.
 
-  TMSFNCMaps1.BeginUpdate;
+  TMSFNCGoogleMaps1.BeginUpdate;
 
-  LPolyline := TMSFNCMaps1.AddPolyline(LCoordinateRecArray);
+  LPolyline := TMSFNCGoogleMaps1.AddPolyline(LCoordinateRecArray);
   LPolyline.StrokeColor := gcBlack;
   LPolyline.StrokeWidth := 4;
 
-  TMSFNCMaps1.EndUpdate;
+  TMSFNCGoogleMaps1.EndUpdate;
 end;
 
-procedure TPolygonsMainView.btnPolylinesClearClick(Sender: TObject);
+procedure TPolygonsGoogleMainView.btnPolylinesClearClick(Sender: TObject);
 begin
-  TMSFNCMaps1.ClearPolylines;
+  TMSFNCGoogleMaps1.ClearPolylines;
+end;
+
+procedure TPolygonsGoogleMainView.btnAddPolygonHolesClick(Sender: TObject);
+var
+  LArrPolygon: TTMSFNCMapsCoordinateRecArray;
+  LArrHole: TTMSFNCMapsCoordinateRecArray;
+  LPolygon: TTMSFNCGoogleMapsPolygon;
+begin
+  Setlength(LArrPolygon, 3);
+  LArrPolygon[0].Latitude := 68.025706;
+  LArrPolygon[0].Longitude := -29.123500;
+  LArrPolygon[1] := CreateCoordinate(68.352255, -3.459437);
+  LArrPolygon[2] := CreateCoordinate(56.875456, -20.510219);
+
+
+  Setlength(LArrHole, 4);
+  LArrHole[0] := CreateCoordinate(66.741679, -25.080532);
+  LArrHole[1] := CreateCoordinate(66.741679, -10.314906);
+  LArrHole[2] := CreateCoordinate(63.176225, -12.951625);
+  LArrHole[3] := CreateCoordinate(63.255438, -23.783657);
+
+  LPolygon := TMSFNCGoogleMaps1.AddPolygon(LArrPolygon);
+  LPolygon.FillColor := gcBlue;
+  LPolygon.StrokeWidth := 0;
+  LPolygon.AddHole(LArrHole);
+
+  TMSFNCGoogleMaps1.ZoomToBounds(LArrPolygon);
 end;
 
 end.
