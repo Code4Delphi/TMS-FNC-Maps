@@ -23,7 +23,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1296
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -58,8 +57,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 805
-      ExplicitTop = -6
       object btnAddPolygon: TButton
         Left = 7
         Top = 30
@@ -84,6 +81,12 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
         Width = 198
         Height = 25
         Caption = 'Add Polygon Holes'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 2
         OnClick = btnAddPolygonHolesClick
       end
@@ -105,7 +108,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
         Caption = 'Add Polyline'
         TabOrder = 0
         OnClick = btnPolylinesAddClick
-        ExplicitWidth = 181
       end
       object btnPolylinesClear: TButton
         Left = 2
@@ -116,7 +118,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
         Caption = 'Clear Polylines'
         TabOrder = 1
         OnClick = btnPolylinesClearClick
-        ExplicitWidth = 181
       end
     end
     object GroupBox2: TGroupBox
@@ -137,7 +138,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 615
         object Label8: TLabel
           Left = 10
           Top = -1
@@ -229,7 +229,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitWidth = 615
         object btnDeleteCoordinate: TButton
           Left = 0
           Top = 0
@@ -251,7 +250,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
           Caption = 'Add polygon in map'
           TabOrder = 1
           OnClick = btnAddPolygonInMapClick
-          ExplicitLeft = 292
         end
         object ckZoomInCreatedPolygon: TCheckBox
           AlignWithMargins = True
@@ -264,7 +262,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
           Align = alRight
           Caption = 'Zoom in created polygon '
           TabOrder = 2
-          ExplicitLeft = 450
         end
       end
     end
@@ -284,7 +281,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
       item
         Width = 250
       end>
-    ExplicitWidth = 1296
   end
   object TMSFNCGoogleMaps1: TTMSFNCGoogleMaps
     Left = 0
@@ -317,7 +313,6 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
     Clusters = <>
     OverlayViews = <>
     HeatMaps = <>
-    ExplicitWidth = 1296
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {

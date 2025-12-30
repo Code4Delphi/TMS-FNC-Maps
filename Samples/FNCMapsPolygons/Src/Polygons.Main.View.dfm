@@ -23,7 +23,6 @@ object PolygonsMainView: TPolygonsMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1296
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -114,8 +113,6 @@ object PolygonsMainView: TPolygonsMainView
       Align = alLeft
       Caption = ' Polygon Customized '
       TabOrder = 2
-      ExplicitLeft = 199
-      ExplicitTop = -6
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -126,7 +123,6 @@ object PolygonsMainView: TPolygonsMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 615
         object Label8: TLabel
           Left = 10
           Top = -1
@@ -168,8 +164,8 @@ object PolygonsMainView: TPolygonsMainView
           Text = '-131.671452'
         end
         object ckAddCoordinatesClickingMap: TCheckBox
-          Left = 364
-          Top = 16
+          Left = 366
+          Top = 18
           Width = 246
           Height = 17
           Cursor = crHandPoint
@@ -218,7 +214,6 @@ object PolygonsMainView: TPolygonsMainView
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitWidth = 615
         object btnDeleteCoordinate: TButton
           Left = 0
           Top = 0
@@ -240,7 +235,6 @@ object PolygonsMainView: TPolygonsMainView
           Caption = 'Add polygon in map'
           TabOrder = 1
           OnClick = btnAddPolygonInMapClick
-          ExplicitLeft = 292
         end
         object ckZoomInCreatedPolygon: TCheckBox
           AlignWithMargins = True
@@ -253,7 +247,6 @@ object PolygonsMainView: TPolygonsMainView
           Align = alRight
           Caption = 'Zoom in created polygon '
           TabOrder = 2
-          ExplicitLeft = 450
         end
       end
     end
@@ -265,7 +258,6 @@ object PolygonsMainView: TPolygonsMainView
       Align = alLeft
       Caption = ' Polylines '
       TabOrder = 3
-      ExplicitLeft = 1017
       object btnPolylinesAdd: TButton
         Left = 2
         Top = 17
@@ -276,7 +268,6 @@ object PolygonsMainView: TPolygonsMainView
         Caption = 'Add Polyline'
         TabOrder = 0
         OnClick = btnPolylinesAddClick
-        ExplicitWidth = 181
       end
       object btnPolylinesClear: TButton
         Left = 2
@@ -288,7 +279,6 @@ object PolygonsMainView: TPolygonsMainView
         Caption = 'Clear Polylines'
         TabOrder = 1
         OnClick = btnPolylinesClearClick
-        ExplicitWidth = 181
       end
     end
   end
@@ -315,7 +305,6 @@ object PolygonsMainView: TPolygonsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitWidth = 1296
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -332,7 +321,6 @@ object PolygonsMainView: TPolygonsMainView
       item
         Width = 250
       end>
-    ExplicitWidth = 1296
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
