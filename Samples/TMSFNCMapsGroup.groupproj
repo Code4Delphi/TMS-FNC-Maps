@@ -18,6 +18,9 @@
         <Projects Include="FNCMapsPolygonsGoogle\FNCMapsPolygonsGoogle.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMapsCircles\FNCMapsCircles.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +74,23 @@
     <Target Name="FNCMapsPolygonsGoogle:Make">
         <MSBuild Projects="FNCMapsPolygonsGoogle\FNCMapsPolygonsGoogle.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsCircles">
+        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj"/>
+    </Target>
+    <Target Name="FNCMapsCircles:Clean">
+        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsCircles:Make">
+        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsCircles"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsCircles:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsCircles:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
