@@ -3,7 +3,7 @@ object PolygonsMainView: TPolygonsMainView
   Top = 0
   Caption = 'TMS FNC Maps - Polygons and Polylines'
   ClientHeight = 663
-  ClientWidth = 1296
+  ClientWidth = 1162
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,11 +18,12 @@ object PolygonsMainView: TPolygonsMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1296
+    Width = 1162
     Height = 241
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1296
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -77,19 +78,17 @@ object PolygonsMainView: TPolygonsMainView
       end
     end
     object Panel1: TPanel
-      Left = 817
+      Left = 804
       Top = 0
-      Width = 294
+      Width = 212
       Height = 241
-      Align = alClient
+      Align = alLeft
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 818
-      ExplicitTop = -6
       object btnAddPolygon: TButton
         Left = 7
         Top = 30
-        Width = 209
+        Width = 198
         Height = 25
         Cursor = crHandPoint
         Caption = 'Add Polygon (Bermuda triangle)'
@@ -99,7 +98,7 @@ object PolygonsMainView: TPolygonsMainView
       object btnClearAllPolygons: TButton
         Left = 7
         Top = 58
-        Width = 209
+        Width = 198
         Height = 25
         Cursor = crHandPoint
         Caption = 'Clear All Polygons'
@@ -110,26 +109,24 @@ object PolygonsMainView: TPolygonsMainView
     object GroupBox2: TGroupBox
       Left = 198
       Top = 0
-      Width = 619
+      Width = 606
       Height = 241
       Align = alLeft
       Caption = ' Polygon Customized '
       TabOrder = 2
-      ExplicitLeft = 197
+      ExplicitLeft = 199
       ExplicitTop = -6
       object Panel2: TPanel
         Left = 2
         Top = 17
-        Width = 615
+        Width = 602
         Height = 44
         Align = alTop
         BevelEdges = [beBottom]
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 11
-        ExplicitWidth = 463
+        ExplicitWidth = 615
         object Label8: TLabel
           Left = 10
           Top = -1
@@ -183,7 +180,7 @@ object PolygonsMainView: TPolygonsMainView
       object DBGrid1: TDBGrid
         Left = 2
         Top = 61
-        Width = 615
+        Width = 602
         Height = 150
         Align = alClient
         BorderStyle = bsNone
@@ -203,25 +200,25 @@ object PolygonsMainView: TPolygonsMainView
           item
             Expanded = False
             FieldName = 'Latitude'
-            Width = 117
+            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'Longitude'
-            Width = 115
+            Width = 200
             Visible = True
           end>
       end
       object Panel3: TPanel
         Left = 2
         Top = 211
-        Width = 615
+        Width = 602
         Height = 28
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitWidth = 463
+        ExplicitWidth = 615
         object btnDeleteCoordinate: TButton
           Left = 0
           Top = 0
@@ -232,10 +229,9 @@ object PolygonsMainView: TPolygonsMainView
           Caption = 'Delete selected item'
           TabOrder = 0
           OnClick = btnDeleteCoordinateClick
-          ExplicitLeft = 336
         end
         object btnAddPolygonInMap: TButton
-          Left = 292
+          Left = 279
           Top = 0
           Width = 153
           Height = 28
@@ -244,12 +240,11 @@ object PolygonsMainView: TPolygonsMainView
           Caption = 'Add polygon in map'
           TabOrder = 1
           OnClick = btnAddPolygonInMapClick
-          ExplicitLeft = 327
-          ExplicitTop = 6
+          ExplicitLeft = 292
         end
         object ckZoomInCreatedPolygon: TCheckBox
           AlignWithMargins = True
-          Left = 450
+          Left = 437
           Top = 3
           Width = 162
           Height = 22
@@ -258,50 +253,49 @@ object PolygonsMainView: TPolygonsMainView
           Align = alRight
           Caption = 'Zoom in created polygon '
           TabOrder = 2
-          ExplicitLeft = 297
-          ExplicitTop = 6
-          ExplicitHeight = 17
+          ExplicitLeft = 450
         end
       end
     end
     object gBoxPolylines: TGroupBox
-      Left = 1111
+      Left = 1016
       Top = 0
-      Width = 185
+      Width = 136
       Height = 241
-      Align = alRight
+      Align = alLeft
       Caption = ' Polylines '
       TabOrder = 3
+      ExplicitLeft = 1017
       object btnPolylinesAdd: TButton
         Left = 2
         Top = 17
-        Width = 181
+        Width = 132
         Height = 25
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Add Polyline'
         TabOrder = 0
         OnClick = btnPolylinesAddClick
-        ExplicitLeft = 3
-        ExplicitTop = 11
+        ExplicitWidth = 181
       end
       object btnPolylinesClear: TButton
         Left = 2
         Top = 42
-        Width = 181
+        Width = 132
         Height = 25
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Clear Polylines'
         TabOrder = 1
         OnClick = btnPolylinesClearClick
+        ExplicitWidth = 181
       end
     end
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
     Top = 241
-    Width = 1296
+    Width = 1162
     Height = 403
     Align = alClient
     ParentDoubleBuffered = False
@@ -321,12 +315,12 @@ object PolygonsMainView: TPolygonsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 242
+    ExplicitWidth = 1296
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 644
-    Width = 1296
+    Width = 1162
     Height = 19
     Panels = <
       item
@@ -338,6 +332,7 @@ object PolygonsMainView: TPolygonsMainView
       item
         Width = 250
       end>
+    ExplicitWidth = 1296
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {

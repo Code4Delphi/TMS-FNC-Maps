@@ -3,7 +3,7 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
   Top = 0
   Caption = 'TMS FNC Maps Google - Polygons and Polylines'
   ClientHeight = 663
-  ClientWidth = 1296
+  ClientWidth = 1162
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,11 +18,12 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1296
+    Width = 1162
     Height = 241
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1296
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -50,38 +51,37 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
       end
     end
     object Panel1: TPanel
-      Left = 817
+      Left = 804
       Top = 0
-      Width = 294
+      Width = 212
       Height = 241
-      Align = alClient
+      Align = alLeft
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 197
+      ExplicitLeft = 805
       ExplicitTop = -6
-      ExplicitWidth = 913
       object btnAddPolygon: TButton
-        Left = 4
+        Left = 7
         Top = 30
-        Width = 209
+        Width = 198
         Height = 25
         Caption = 'Add Polygon (Bermuda triangle)'
         TabOrder = 0
         OnClick = btnAddPolygonClick
       end
       object btnClearAllPolygons: TButton
-        Left = 4
+        Left = 7
         Top = 86
-        Width = 209
+        Width = 198
         Height = 25
         Caption = 'Clear All Polygons'
         TabOrder = 1
         OnClick = btnClearAllPolygonsClick
       end
       object btnAddPolygonHoles: TButton
-        Left = 4
+        Left = 7
         Top = 58
-        Width = 209
+        Width = 198
         Height = 25
         Caption = 'Add Polygon Holes'
         TabOrder = 2
@@ -89,54 +89,55 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
       end
     end
     object gBoxPolylines: TGroupBox
-      Left = 1111
+      Left = 1016
       Top = 0
-      Width = 185
+      Width = 136
       Height = 241
-      Align = alRight
+      Align = alLeft
       Caption = ' Polylines '
       TabOrder = 2
       object btnPolylinesAdd: TButton
         Left = 2
         Top = 17
-        Width = 181
+        Width = 132
         Height = 25
         Align = alTop
         Caption = 'Add Polyline'
         TabOrder = 0
         OnClick = btnPolylinesAddClick
+        ExplicitWidth = 181
       end
       object btnPolylinesClear: TButton
         Left = 2
         Top = 42
-        Width = 181
+        Width = 132
         Height = 25
         Align = alTop
         Caption = 'Clear Polylines'
         TabOrder = 1
         OnClick = btnPolylinesClearClick
+        ExplicitWidth = 181
       end
     end
     object GroupBox2: TGroupBox
       Left = 198
       Top = 0
-      Width = 619
+      Width = 606
       Height = 241
       Align = alLeft
       Caption = ' Polygon Customized '
       TabOrder = 3
-      ExplicitLeft = 197
-      ExplicitTop = -6
       object Panel2: TPanel
         Left = 2
         Top = 17
-        Width = 615
+        Width = 602
         Height = 44
         Align = alTop
         BevelEdges = [beBottom]
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitWidth = 615
         object Label8: TLabel
           Left = 10
           Top = -1
@@ -190,7 +191,7 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
       object DBGrid1: TDBGrid
         Left = 2
         Top = 61
-        Width = 615
+        Width = 602
         Height = 150
         Align = alClient
         BorderStyle = bsNone
@@ -223,11 +224,12 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
       object Panel3: TPanel
         Left = 2
         Top = 211
-        Width = 615
+        Width = 602
         Height = 28
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 2
+        ExplicitWidth = 615
         object btnDeleteCoordinate: TButton
           Left = 0
           Top = 0
@@ -240,7 +242,7 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
           OnClick = btnDeleteCoordinateClick
         end
         object btnAddPolygonInMap: TButton
-          Left = 292
+          Left = 279
           Top = 0
           Width = 153
           Height = 28
@@ -249,10 +251,11 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
           Caption = 'Add polygon in map'
           TabOrder = 1
           OnClick = btnAddPolygonInMapClick
+          ExplicitLeft = 292
         end
         object ckZoomInCreatedPolygon: TCheckBox
           AlignWithMargins = True
-          Left = 450
+          Left = 437
           Top = 3
           Width = 162
           Height = 22
@@ -261,6 +264,7 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
           Align = alRight
           Caption = 'Zoom in created polygon '
           TabOrder = 2
+          ExplicitLeft = 450
         end
       end
     end
@@ -268,7 +272,7 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
   object StatusBar1: TStatusBar
     Left = 0
     Top = 644
-    Width = 1296
+    Width = 1162
     Height = 19
     Panels = <
       item
@@ -280,11 +284,12 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
       item
         Width = 250
       end>
+    ExplicitWidth = 1296
   end
   object TMSFNCGoogleMaps1: TTMSFNCGoogleMaps
     Left = 0
     Top = 241
-    Width = 1296
+    Width = 1162
     Height = 403
     Align = alClient
     ParentDoubleBuffered = False
@@ -312,7 +317,7 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
     Clusters = <>
     OverlayViews = <>
     HeatMaps = <>
-    ExplicitTop = 242
+    ExplicitWidth = 1296
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
