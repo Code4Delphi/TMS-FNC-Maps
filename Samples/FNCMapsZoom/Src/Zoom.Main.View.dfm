@@ -19,39 +19,38 @@ object ZoomMainView: TZoomMainView
     Left = 0
     Top = 0
     Width = 957
-    Height = 129
+    Height = 201
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
-      Width = 198
-      Height = 129
+      Width = 209
+      Height = 201
       Margins.Bottom = 2
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
       ExplicitLeft = -4
       ExplicitTop = -5
-      ExplicitHeight = 121
       object Label1: TLabel
-        Left = 5
-        Top = 22
+        Left = 11
+        Top = 21
         Width = 37
         Height = 15
         Caption = 'Service'
       end
       object Label5: TLabel
-        Left = 5
-        Top = 66
+        Left = 11
+        Top = 65
         Width = 70
         Height = 15
         Caption = 'Map API Key:'
       end
       object cBoxService: TComboBox
-        Left = 5
-        Top = 39
+        Left = 11
+        Top = 38
         Width = 186
         Height = 23
         Style = csDropDownList
@@ -70,37 +69,85 @@ object ZoomMainView: TZoomMainView
           'Leaflet')
       end
       object edtAPIKeyMap: TEdit
-        Left = 5
-        Top = 83
+        Left = 11
+        Top = 82
         Width = 186
         Height = 23
         PasswordChar = '*'
         TabOrder = 1
         OnExit = edtAPIKeyMapExit
       end
+      object ckShowZoomControl: TCheckBox
+        Left = 11
+        Top = 113
+        Width = 186
+        Height = 17
+        Caption = 'ShowZoomControl'
+        Checked = True
+        State = cbChecked
+        TabOrder = 2
+        OnClick = ckShowZoomControlClick
+      end
+      object ckZoomOnDblClick: TCheckBox
+        Left = 11
+        Top = 134
+        Width = 186
+        Height = 17
+        Caption = 'ZoomOnDblClick'
+        Checked = True
+        State = cbChecked
+        TabOrder = 3
+        OnClick = ckShowZoomControlClick
+      end
+      object ckZoomOnWheelScroll: TCheckBox
+        Left = 11
+        Top = 154
+        Width = 186
+        Height = 17
+        Caption = 'ZoomOnWheelScroll'
+        Checked = True
+        State = cbChecked
+        TabOrder = 4
+        OnClick = ckShowZoomControlClick
+      end
+      object ckPanning: TCheckBox
+        Left = 11
+        Top = 174
+        Width = 186
+        Height = 17
+        Caption = 'Panning'
+        Checked = True
+        State = cbChecked
+        TabOrder = 5
+        OnClick = ckShowZoomControlClick
+      end
     end
     object Panel1: TPanel
-      Left = 198
+      Left = 209
       Top = 0
-      Width = 759
-      Height = 129
+      Width = 748
+      Height = 201
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitHeight = 121
+      ExplicitLeft = 197
+      ExplicitTop = -6
+      ExplicitWidth = 759
+      ExplicitHeight = 129
       object GroupBox5: TGroupBox
         Left = 0
-        Top = 80
-        Width = 759
+        Top = 152
+        Width = 748
         Height = 49
         Align = alBottom
         Caption = ' Zoom '
         TabOrder = 0
-        ExplicitTop = 72
+        ExplicitTop = 80
+        ExplicitWidth = 759
         object TrackBar1: TTrackBar
           Left = 64
           Top = 17
-          Width = 631
+          Width = 620
           Height = 30
           Align = alClient
           Max = 30
@@ -108,6 +155,7 @@ object ZoomMainView: TZoomMainView
           Position = 2
           TabOrder = 0
           OnTracking = TrackBar1Tracking
+          ExplicitWidth = 631
         end
         object btnZoomMin: TButton
           Left = 2
@@ -142,7 +190,7 @@ object ZoomMainView: TZoomMainView
           OnClick = btnZoomMenosClick
         end
         object btnZoomMax: TButton
-          Left = 726
+          Left = 715
           Top = 17
           Width = 31
           Height = 30
@@ -156,9 +204,10 @@ object ZoomMainView: TZoomMainView
           ParentFont = False
           TabOrder = 3
           OnClick = btnZoomMaxClick
+          ExplicitLeft = 726
         end
         object btnZoomMais: TButton
-          Left = 695
+          Left = 684
           Top = 17
           Width = 31
           Height = 30
@@ -172,15 +221,16 @@ object ZoomMainView: TZoomMainView
           ParentFont = False
           TabOrder = 4
           OnClick = btnZoomMaisClick
+          ExplicitLeft = 695
         end
       end
     end
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 129
+    Top = 201
     Width = 957
-    Height = 527
+    Height = 455
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -198,7 +248,6 @@ object ZoomMainView: TZoomMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 121
-    ExplicitHeight = 535
+    ExplicitTop = 205
   end
 end

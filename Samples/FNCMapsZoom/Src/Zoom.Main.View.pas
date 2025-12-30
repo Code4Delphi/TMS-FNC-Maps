@@ -11,8 +11,18 @@ uses
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
-  Vcl.Dialogs, Vcl.ExtCtrls, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCMapsCommonTypes, VCL.TMSFNCCustomControl, VCL.TMSFNCWebBrowser, VCL.TMSFNCMaps, Vcl.StdCtrls, Vcl.ComCtrls;
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  VCL.TMSFNCTypes,
+  VCL.TMSFNCUtils,
+  VCL.TMSFNCGraphics,
+  VCL.TMSFNCGraphicsTypes,
+  VCL.TMSFNCMapsCommonTypes,
+  VCL.TMSFNCCustomControl,
+  VCL.TMSFNCWebBrowser,
+  VCL.TMSFNCMaps,
+  Vcl.StdCtrls,
+  Vcl.ComCtrls;
 
 type
   TZoomMainView = class(TForm)
@@ -30,6 +40,10 @@ type
     btnZoomMenos: TButton;
     btnZoomMax: TButton;
     btnZoomMais: TButton;
+    ckShowZoomControl: TCheckBox;
+    ckZoomOnDblClick: TCheckBox;
+    ckZoomOnWheelScroll: TCheckBox;
+    ckPanning: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -40,6 +54,7 @@ type
     procedure TrackBar1Tracking(Sender: TObject);
     procedure TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
     procedure TMSFNCMaps1ZoomChanged(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure ckShowZoomControlClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
   public
@@ -65,6 +80,10 @@ begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.Service := TTMSFNCMapsService(cBoxService.ItemIndex);
   TMSFNCMaps1.APIKey := edtAPIKeyMap.Text;
+  TMSFNCMaps1.Options.ShowZoomControl := ckShowZoomControl.Checked;
+  TMSFNCMaps1.Options.ZoomOnDblClick := ckZoomOnDblClick.Checked;
+  TMSFNCMaps1.Options.ZoomOnWheelScroll := ckZoomOnWheelScroll.Checked;
+  TMSFNCMaps1.Options.Panning := ckPanning.Checked;
   TMSFNCMaps1.EndUpdate;
 
   edtAPIKeyMap.Enabled := not (cBoxService.ItemIndex in [6, 8]);
@@ -76,6 +95,11 @@ begin
 end;
 
 procedure TZoomMainView.edtAPIKeyMapExit(Sender: TObject);
+begin
+  Self.ConfigBasicMaps;
+end;
+
+procedure TZoomMainView.ckShowZoomControlClick(Sender: TObject);
 begin
   Self.ConfigBasicMaps;
 end;
