@@ -21,6 +21,9 @@
         <Projects Include="FNCMapsCircles\FNCMapsCircles.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMapsRectangles\FNCMapsRectangles.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -83,14 +86,23 @@
     <Target Name="FNCMapsCircles:Make">
         <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsRectangles">
+        <MSBuild Projects="FNCMapsRectangles\FNCMapsRectangles.dproj"/>
+    </Target>
+    <Target Name="FNCMapsRectangles:Clean">
+        <MSBuild Projects="FNCMapsRectangles\FNCMapsRectangles.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsRectangles:Make">
+        <MSBuild Projects="FNCMapsRectangles\FNCMapsRectangles.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsCircles"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsCircles;FNCMapsRectangles"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsCircles:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsCircles:Clean;FNCMapsRectangles:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsCircles:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsCircles:Make;FNCMapsRectangles:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -108,7 +108,7 @@ type
     FLastLat: Double;
     FLastLon: Double;
     procedure ConfigBasicMaps;
-    procedure RefreshCircleInDataSet;
+    procedure RefreshCirclesInDataSet;
     function GetCircleBySelected: TTMSFNCMapsCircle;
     procedure AddLogEventMap(AEventData: TTMSFNCMapsEventData);
   public
@@ -172,7 +172,7 @@ begin
     LCircle.StrokeWidth := StrToIntDef(edtStrokeWidth.Text, 2);
     TMSFNCMaps1.EndUpdate;
 
-    Self.RefreshCircleInDataSet;
+    Self.RefreshCirclesInDataSet;
   end;
 end;
 
@@ -188,7 +188,7 @@ begin
   LCircle.StrokeWidth := 4;
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshCircleInDataSet;
+  Self.RefreshCirclesInDataSet;
 end;
 
 procedure TCirclesMainView.btnAddPolygonClick(Sender: TObject);
@@ -217,7 +217,7 @@ end;
 
 procedure TCirclesMainView.btnRefreshClick(Sender: TObject);
 begin
-  Self.RefreshCircleInDataSet;
+  Self.RefreshCirclesInDataSet;
 end;
 
 procedure TCirclesMainView.btnDeleteClick(Sender: TObject);
@@ -233,7 +233,7 @@ begin
   TMSFNCMaps1.Circles.Delete(LCircle.Index);
   TMSFNCMaps1.EndUpdate;
 
-  Self.RefreshCircleInDataSet;
+  Self.RefreshCirclesInDataSet;
 end;
 
 procedure TCirclesMainView.btnVisibleInvisibleClick(Sender: TObject);
@@ -275,7 +275,7 @@ begin
   Result := LCircle;
 end;
 
-procedure TCirclesMainView.RefreshCircleInDataSet;
+procedure TCirclesMainView.RefreshCirclesInDataSet;
 var
   i: Integer;
   LCircle: TTMSFNCMapsCircle;
@@ -304,7 +304,7 @@ procedure TCirclesMainView.btnClearAllCirclesClick(Sender: TObject);
 begin
   TMSFNCMaps1.ClearCircles;
 
-  Self.RefreshCircleInDataSet;
+  Self.RefreshCirclesInDataSet;
 end;
 
 procedure TCirclesMainView.btnClearLogClick(Sender: TObject);
@@ -363,16 +363,16 @@ begin
   mmLog.Lines.Add(Format('X / Y: %s / %s', [AEventData.X.ToString, AEventData.Y.ToString]));
 
   LCircle := TTMSFNCMapsCircle(AEventData.PolyElement);
-  mmLog.Lines.Add('Circle.ID: ' + LCircle.ID);
-  mmLog.Lines.Add('Circle.Center.Latitude: ' + LCircle.Center.Latitude.ToString);
-  mmLog.Lines.Add('Circle.Center.Longitude: ' + LCircle.Center.Longitude.ToString);
-  mmLog.Lines.Add('Circle.Radius: ' + LCircle.Radius.ToString);
-  mmLog.Lines.Add('Circle.Visible: ' + LCircle.Visible.ToString(TUseBoolStrs.True));
-  mmLog.Lines.Add('Circle.FillColor: ' + ColorToString(LCircle.FillColor));
-  mmLog.Lines.Add('Circle.FillOpacity: ' + LCircle.FillOpacity.ToString);
-  mmLog.Lines.Add('Circle.StrokeColor: ' + ColorToString(LCircle.StrokeColor));
-  mmLog.Lines.Add('Circle.StrokeOpacity: ' + LCircle.StrokeOpacity.ToString);
-  mmLog.Lines.Add('Circle.StrokeWidth: ' + LCircle.StrokeWidth.ToString);
+  mmLog.Lines.Add('ID: ' + LCircle.ID);
+  mmLog.Lines.Add('Center.Latitude: ' + LCircle.Center.Latitude.ToString);
+  mmLog.Lines.Add('Center.Longitude: ' + LCircle.Center.Longitude.ToString);
+  mmLog.Lines.Add('Radius: ' + LCircle.Radius.ToString);
+  mmLog.Lines.Add('Visible: ' + LCircle.Visible.ToString(TUseBoolStrs.True));
+  mmLog.Lines.Add('FillColor: ' + ColorToString(LCircle.FillColor));
+  mmLog.Lines.Add('FillOpacity: ' + LCircle.FillOpacity.ToString);
+  mmLog.Lines.Add('StrokeColor: ' + ColorToString(LCircle.StrokeColor));
+  mmLog.Lines.Add('StrokeOpacity: ' + LCircle.StrokeOpacity.ToString);
+  mmLog.Lines.Add('StrokeWidth: ' + LCircle.StrokeWidth.ToString);
   mmLog.Lines.Add('');
 end;
 
