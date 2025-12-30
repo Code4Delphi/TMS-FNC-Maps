@@ -105,7 +105,6 @@ object Demo01MainView: TDemo01MainView
         Height = 25
         Align = alTop
         BevelOuter = bvNone
-        Caption = 'Panel4'
         TabOrder = 4
         object btnAddMarkerOk: TButton
           Left = 0
@@ -398,7 +397,6 @@ object Demo01MainView: TDemo01MainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitTop = 187
   end
   object StatusBar1: TStatusBar
     Left = 0

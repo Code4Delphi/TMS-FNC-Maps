@@ -9,6 +9,15 @@
         <Projects Include="FNCMapsMarkers\FNCMapsMarkers.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMapsZoom\FNCMapsZoom.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FNCMapsPolygons\FNCMapsPolygons.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FNCMapsPolygonsGoogle\FNCMapsPolygonsGoogle.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +44,41 @@
     <Target Name="FNCMapsMarkers:Make">
         <MSBuild Projects="FNCMapsMarkers\FNCMapsMarkers.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsZoom">
+        <MSBuild Projects="FNCMapsZoom\FNCMapsZoom.dproj"/>
+    </Target>
+    <Target Name="FNCMapsZoom:Clean">
+        <MSBuild Projects="FNCMapsZoom\FNCMapsZoom.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsZoom:Make">
+        <MSBuild Projects="FNCMapsZoom\FNCMapsZoom.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FNCMapsPolygons">
+        <MSBuild Projects="FNCMapsPolygons\FNCMapsPolygons.dproj"/>
+    </Target>
+    <Target Name="FNCMapsPolygons:Clean">
+        <MSBuild Projects="FNCMapsPolygons\FNCMapsPolygons.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsPolygons:Make">
+        <MSBuild Projects="FNCMapsPolygons\FNCMapsPolygons.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FNCMapsPolygonsGoogle">
+        <MSBuild Projects="FNCMapsPolygonsGoogle\FNCMapsPolygonsGoogle.dproj"/>
+    </Target>
+    <Target Name="FNCMapsPolygonsGoogle:Clean">
+        <MSBuild Projects="FNCMapsPolygonsGoogle\FNCMapsPolygonsGoogle.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsPolygonsGoogle:Make">
+        <MSBuild Projects="FNCMapsPolygonsGoogle\FNCMapsPolygonsGoogle.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
