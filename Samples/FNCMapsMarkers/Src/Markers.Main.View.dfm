@@ -229,7 +229,6 @@ object MarkersMainView: TMarkersMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitTop = 11
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -251,7 +250,7 @@ object MarkersMainView: TMarkersMainView
           OnClick = btnDeleteClick
         end
         object btnVisibleInvisible: TButton
-          Left = 159
+          Left = 162
           Top = 3
           Width = 108
           Height = 25
