@@ -117,6 +117,8 @@ object RectanglesMainView: TRectanglesMainView
         Caption = 'Add Rectangles'
         TabOrder = 0
         OnClick = btnAddRectanglesClick
+        ExplicitLeft = 6
+        ExplicitTop = 16
       end
       object btnClearAllRectangles: TButton
         Left = 5
@@ -155,6 +157,8 @@ object RectanglesMainView: TRectanglesMainView
       Align = alLeft
       Caption = ' Rectangles '
       TabOrder = 2
+      ExplicitLeft = 565
+      ExplicitTop = 4
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -176,7 +180,7 @@ object RectanglesMainView: TRectanglesMainView
           OnClick = btnRefreshClick
         end
         object btnDelete: TButton
-          Left = 81
+          Left = 82
           Top = 3
           Width = 75
           Height = 25
