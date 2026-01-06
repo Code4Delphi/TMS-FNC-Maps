@@ -1,4 +1,4 @@
-# TMS FNC Maps - Retângulos
+# TMS FNC Maps - Retângulos e quadrados (Rectangles and squares)
 
 [Acessar a documentação oficial sobre retângulos no TMS FNC Maps](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#rectangles)
 
