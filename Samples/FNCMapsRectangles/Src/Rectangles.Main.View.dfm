@@ -34,8 +34,6 @@ object RectanglesMainView: TRectanglesMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 4
-    ExplicitWidth = 1609
     object Splitter2: TSplitter
       Left = 1097
       Top = 0
@@ -54,7 +52,6 @@ object RectanglesMainView: TRectanglesMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitHeight = 241
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -110,7 +107,8 @@ object RectanglesMainView: TRectanglesMainView
       Padding.Top = 8
       Padding.Right = 5
       TabOrder = 1
-      ExplicitHeight = 241
+      ExplicitLeft = 197
+      ExplicitTop = 4
       object btnAddRectangles: TButton
         Left = 5
         Top = 8
@@ -121,7 +119,6 @@ object RectanglesMainView: TRectanglesMainView
         Caption = 'Add Rectangles'
         TabOrder = 0
         OnClick = btnAddRectanglesClick
-        ExplicitWidth = 113
       end
       object btnClearAllRectangles: TButton
         Left = 5
@@ -139,7 +136,6 @@ object RectanglesMainView: TRectanglesMainView
         ParentFont = False
         TabOrder = 1
         OnClick = btnClearAllRectanglesClick
-        ExplicitWidth = 113
       end
       object btnAddPolygon: TButton
         Left = 5
@@ -151,8 +147,6 @@ object RectanglesMainView: TRectanglesMainView
         Caption = 'Add Polygon Test'
         TabOrder = 2
         OnClick = btnAddPolygonClick
-        ExplicitTop = 216
-        ExplicitWidth = 113
       end
     end
     object GroupBox2: TGroupBox
@@ -173,7 +167,6 @@ object RectanglesMainView: TRectanglesMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 415
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -269,8 +262,6 @@ object RectanglesMainView: TRectanglesMainView
       Align = alLeft
       Caption = ' Rectangles when clicking on the map '
       TabOrder = 3
-      ExplicitLeft = 321
-      ExplicitHeight = 241
       object Label11: TLabel
         Left = 11
         Top = 142
@@ -432,8 +423,6 @@ object RectanglesMainView: TRectanglesMainView
       Align = alLeft
       Caption = ' Logs Events Rectangles '
       TabOrder = 4
-      ExplicitLeft = 907
-      ExplicitHeight = 241
       object mmLog: TMemo
         Left = 2
         Top = 80
@@ -442,8 +431,6 @@ object RectanglesMainView: TRectanglesMainView
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 397
-        ExplicitHeight = 159
       end
       object Panel3: TPanel
         Left = 2
@@ -453,9 +440,6 @@ object RectanglesMainView: TRectanglesMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitLeft = 6
-        ExplicitTop = 11
-        ExplicitWidth = 347
         DesignSize = (
           330
           63)
@@ -560,9 +544,6 @@ object RectanglesMainView: TRectanglesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 251
-    ExplicitWidth = 1446
-    ExplicitHeight = 393
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -579,7 +560,6 @@ object RectanglesMainView: TRectanglesMainView
       item
         Width = 250
       end>
-    ExplicitWidth = 1446
   end
   object PopupMenu1: TPopupMenu
     Left = 693

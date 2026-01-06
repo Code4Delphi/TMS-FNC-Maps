@@ -28,7 +28,8 @@ uses
   Datasnap.DBClient,
   Vcl.Grids,
   Vcl.DBGrids,
-  Vcl.Menus, Vcl.Imaging.pngimage;
+  Vcl.Menus,
+  Vcl.Imaging.pngimage;
 
 type
   TRectanglesMainView = class(TForm)
@@ -162,13 +163,12 @@ procedure TRectanglesMainView.edtAPIKeyMapExit(Sender: TObject);
 begin
   Self.ConfigBasicMaps;
 end;
-
 procedure TRectanglesMainView.btnAddRectanglesClick(Sender: TObject);
 var
-  LRectangle: TTMSFNCMapsRectangle;
+  LNorthEast: TTMSFNCMapsCoordinateRec; //NORDESTE / CANTO SUPERIOR DIREITO / UPPER RIGHT CORNER
+  LSouthWest: TTMSFNCMapsCoordinateRec; //SUDOESTE / CANTO INFERIOR ESQUERDO /BOTTOM LEFT CORNER
   LBoundsRec: TTMSFNCMapsBoundsRec;
-  LNorthEast: TTMSFNCMapsCoordinateRec; //CANTO SUPERIOR DIREITO / UPPER RIGHT CORNER
-  LSouthWest: TTMSFNCMapsCoordinateRec; //CANTO INFERIOR ESQUERDO /BOTTOM LEFT CORNER
+  LRectangle: TTMSFNCMapsRectangle;
 begin
   TMSFNCMaps1.BeginUpdate;
 
@@ -242,24 +242,6 @@ begin
     ClientDataSet1Visible.AsBoolean := LRectangle.Visible;
     ClientDataSet1.Post;
   end;
-end;
-procedure TRectanglesMainView.btnAddPolygonClick(Sender: TObject);
-var
-  LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
-  LPolygon: TTMSFNCMapsPolygon;
-begin
-  SetLength(LCoordinateRecArray, 3);
-  LCoordinateRecArray[0] := CreateCoordinate(25.789106, -80.226529);
-  LCoordinateRecArray[1] := CreateCoordinate(18.4663188, -60.1057427);
-  LCoordinateRecArray[2] := CreateCoordinate(32.294887, -64.781380);
-
-  TMSFNCMaps1.BeginUpdate;
-  LPolygon := TMSFNCMaps1.AddPolygon(LCoordinateRecArray);
-  LPolygon.FillColor := gcOrange;
-  LPolygon.FillOpacity := 0.5;
-  LPolygon.StrokeColor := gcGreen;
-  LPolygon.StrokeWidth := 4;
-  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TRectanglesMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
@@ -339,6 +321,26 @@ begin
   mmLog.Lines.Clear;
 end;
 
+procedure TRectanglesMainView.btnAddPolygonClick(Sender: TObject);
+var
+  LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
+  LPolygon: TTMSFNCMapsPolygon;
+begin
+  SetLength(LCoordinateRecArray, 3);
+  LCoordinateRecArray[0] := CreateCoordinate(25.789106, -80.226529);
+  LCoordinateRecArray[1] := CreateCoordinate(18.4663188, -60.1057427);
+  LCoordinateRecArray[2] := CreateCoordinate(32.294887, -64.781380);
+
+  TMSFNCMaps1.BeginUpdate;
+  LPolygon := TMSFNCMaps1.AddPolygon(LCoordinateRecArray);
+  LPolygon.FillColor := gcOrange;
+  LPolygon.FillOpacity := 0.5;
+  LPolygon.StrokeColor := gcGreen;
+  LPolygon.StrokeWidth := 4;
+  TMSFNCMaps1.EndUpdate;
+end;
+
+
 procedure TRectanglesMainView.TMSFNCMaps1PolyElementClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   if ckLogClick.Checked then
@@ -403,5 +405,7 @@ begin
   mmLog.Lines.Add('StrokeWidth: ' + LRectangle.StrokeWidth.ToString);
   mmLog.Lines.Add('');
 end;
+
+
 
 end.
