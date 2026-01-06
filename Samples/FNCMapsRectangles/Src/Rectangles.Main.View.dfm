@@ -2,8 +2,8 @@ object RectanglesMainView: TRectanglesMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - Rectangles'
-  ClientHeight = 663
-  ClientWidth = 1464
+  ClientHeight = 633
+  ClientWidth = 1304
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object RectanglesMainView: TRectanglesMainView
   object Splitter1: TSplitter
     Left = 0
     Top = 250
-    Width = 1464
+    Width = 1304
     Height = 10
     Cursor = crVSplit
     Align = alTop
@@ -29,13 +29,14 @@ object RectanglesMainView: TRectanglesMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1464
+    Width = 1304
     Height = 250
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1464
     object Splitter2: TSplitter
-      Left = 1097
+      Left = 985
       Top = 0
       Width = 10
       Height = 250
@@ -46,7 +47,7 @@ object RectanglesMainView: TRectanglesMainView
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
-      Width = 198
+      Width = 169
       Height = 250
       Margins.Bottom = 2
       Align = alLeft
@@ -69,7 +70,7 @@ object RectanglesMainView: TRectanglesMainView
       object cBoxService: TComboBox
         Left = 5
         Top = 38
-        Width = 186
+        Width = 150
         Height = 23
         Style = csDropDownList
         DropDownCount = 15
@@ -89,7 +90,7 @@ object RectanglesMainView: TRectanglesMainView
       object edtAPIKeyMap: TEdit
         Left = 5
         Top = 83
-        Width = 186
+        Width = 150
         Height = 23
         PasswordChar = '*'
         TabOrder = 1
@@ -97,7 +98,7 @@ object RectanglesMainView: TRectanglesMainView
       end
     end
     object Panel1: TPanel
-      Left = 198
+      Left = 169
       Top = 0
       Width = 133
       Height = 250
@@ -107,8 +108,7 @@ object RectanglesMainView: TRectanglesMainView
       Padding.Top = 8
       Padding.Right = 5
       TabOrder = 1
-      ExplicitLeft = 197
-      ExplicitTop = 4
+      ExplicitLeft = 198
       object btnAddRectangles: TButton
         Left = 5
         Top = 8
@@ -150,9 +150,9 @@ object RectanglesMainView: TRectanglesMainView
       end
     end
     object GroupBox2: TGroupBox
-      Left = 617
+      Left = 561
       Top = 0
-      Width = 480
+      Width = 424
       Height = 250
       Align = alLeft
       Caption = ' Rectangles '
@@ -160,13 +160,16 @@ object RectanglesMainView: TRectanglesMainView
       object Panel2: TPanel
         Left = 2
         Top = 17
-        Width = 476
+        Width = 420
         Height = 44
         Align = alTop
         BevelEdges = [beBottom]
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitLeft = -2
+        ExplicitTop = 11
+        ExplicitWidth = 476
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -201,7 +204,7 @@ object RectanglesMainView: TRectanglesMainView
       object DBGrid1: TDBGrid
         Left = 2
         Top = 61
-        Width = 476
+        Width = 420
         Height = 187
         Align = alClient
         BorderStyle = bsNone
@@ -217,6 +220,7 @@ object RectanglesMainView: TRectanglesMainView
           item
             Expanded = False
             FieldName = 'Id'
+            Width = 21
             Visible = True
           end
           item
@@ -228,36 +232,33 @@ object RectanglesMainView: TRectanglesMainView
             Expanded = False
             FieldName = 'NorthEast_Latitude'
             Title.Caption = 'NorthEast Lat'
-            Width = 82
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NorthEast_Longitude'
             Title.Caption = 'NorthEast Long'
-            Width = 94
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'SouthWest_Latitude'
             Title.Caption = 'SouthWest Lat'
-            Width = 86
+            Width = 75
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'SouthWest_Longitude'
             Title.Caption = 'SouthWest Long'
-            Width = 95
             Visible = True
           end>
       end
     end
     object GroupBox3: TGroupBox
-      Left = 331
+      Left = 302
       Top = 0
-      Width = 286
+      Width = 259
       Height = 250
       Align = alLeft
       Caption = ' Rectangles when clicking on the map '
@@ -270,7 +271,7 @@ object RectanglesMainView: TRectanglesMainView
         Caption = 'FillColor'
       end
       object Label12: TLabel
-        Left = 199
+        Left = 144
         Top = 141
         Width = 56
         Height = 15
@@ -284,7 +285,7 @@ object RectanglesMainView: TRectanglesMainView
         Caption = 'StrokeColor'
       end
       object lbStrokeWidth: TLabel
-        Left = 202
+        Left = 144
         Top = 189
         Width = 65
         Height = 15
@@ -302,14 +303,20 @@ object RectanglesMainView: TRectanglesMainView
         Top = 98
         Width = 97
         Height = 15
+        Hint = 'Graus para Nordeste'
         Caption = 'NorthEast Degrees'
+        ParentShowHint = False
+        ShowHint = True
       end
       object Label6: TLabel
         Left = 144
         Top = 98
-        Width = 97
+        Width = 102
         Height = 15
-        Caption = 'NorthEast Degrees'
+        Hint = 'Graus para Sudoeste'
+        Caption = 'SouthWest Degrees'
+        ParentShowHint = False
+        ShowHint = True
       end
       object ckAddRectanglesClickingMap: TCheckBox
         Left = 11
@@ -323,7 +330,7 @@ object RectanglesMainView: TRectanglesMainView
       object cBoxFillColor: TComboBox
         Left = 11
         Top = 158
-        Width = 185
+        Width = 131
         Height = 23
         DropDownCount = 15
         TabOrder = 1
@@ -346,9 +353,9 @@ object RectanglesMainView: TRectanglesMainView
           'clSilver')
       end
       object edtFillOpacity: TEdit
-        Left = 199
+        Left = 144
         Top = 158
-        Width = 74
+        Width = 105
         Height = 23
         TabOrder = 2
         Text = '0.2'
@@ -356,7 +363,7 @@ object RectanglesMainView: TRectanglesMainView
       object cBoxStrokeColor: TComboBox
         Left = 11
         Top = 206
-        Width = 185
+        Width = 131
         Height = 23
         DropDownCount = 15
         TabOrder = 3
@@ -379,9 +386,9 @@ object RectanglesMainView: TRectanglesMainView
           'clSilver')
       end
       object edtStrokeWidth: TEdit
-        Left = 202
+        Left = 144
         Top = 206
-        Width = 71
+        Width = 105
         Height = 23
         NumbersOnly = True
         TabOrder = 4
@@ -390,7 +397,7 @@ object RectanglesMainView: TRectanglesMainView
       object edtDistance: TEdit
         Left = 11
         Top = 70
-        Width = 185
+        Width = 131
         Height = 23
         NumbersOnly = True
         TabOrder = 5
@@ -408,7 +415,7 @@ object RectanglesMainView: TRectanglesMainView
       object edtSouthWestDegrees: TEdit
         Left = 144
         Top = 115
-        Width = 129
+        Width = 105
         Height = 23
         NumbersOnly = True
         TabOrder = 7
@@ -416,9 +423,9 @@ object RectanglesMainView: TRectanglesMainView
       end
     end
     object GroupBox4: TGroupBox
-      Left = 1107
+      Left = 995
       Top = 0
-      Width = 334
+      Width = 307
       Height = 250
       Align = alLeft
       Caption = ' Logs Events Rectangles '
@@ -426,22 +433,24 @@ object RectanglesMainView: TRectanglesMainView
       object mmLog: TMemo
         Left = 2
         Top = 80
-        Width = 330
+        Width = 303
         Height = 168
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
+        ExplicitWidth = 330
       end
       object Panel3: TPanel
         Left = 2
         Top = 17
-        Width = 330
+        Width = 303
         Height = 63
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
+        ExplicitWidth = 330
         DesignSize = (
-          330
+          303
           63)
         object ckLogClick: TCheckBox
           Left = 4
@@ -466,8 +475,8 @@ object RectanglesMainView: TRectanglesMainView
           TabOrder = 1
         end
         object btnClearLog: TButton
-          Left = 265
-          Top = 2
+          Left = 241
+          Top = 3
           Width = 59
           Height = 26
           Cursor = crHandPoint
@@ -477,7 +486,7 @@ object RectanglesMainView: TRectanglesMainView
           OnClick = btnClearLogClick
         end
         object ckLogMouseDown: TCheckBox
-          Left = 96
+          Left = 93
           Top = 3
           Width = 138
           Height = 17
@@ -486,16 +495,16 @@ object RectanglesMainView: TRectanglesMainView
           TabOrder = 3
         end
         object ckLogMouseLeave: TCheckBox
-          Left = 214
+          Left = 211
           Top = 40
-          Width = 122
+          Width = 94
           Height = 17
           Cursor = crHandPoint
-          Caption = 'Log Mouse Leave'
+          Caption = 'Mouse Leave'
           TabOrder = 4
         end
         object ckLogMouseUp: TCheckBox
-          Left = 97
+          Left = 94
           Top = 21
           Width = 102
           Height = 17
@@ -504,7 +513,7 @@ object RectanglesMainView: TRectanglesMainView
           TabOrder = 5
         end
         object ckLogMouseEnter: TCheckBox
-          Left = 97
+          Left = 94
           Top = 40
           Width = 111
           Height = 17
@@ -518,8 +527,8 @@ object RectanglesMainView: TRectanglesMainView
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
     Top = 260
-    Width = 1464
-    Height = 384
+    Width = 1304
+    Height = 354
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -544,11 +553,13 @@ object RectanglesMainView: TRectanglesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
+    ExplicitWidth = 1464
+    ExplicitHeight = 384
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 644
-    Width = 1464
+    Top = 614
+    Width = 1304
     Height = 19
     Panels = <
       item
@@ -560,6 +571,8 @@ object RectanglesMainView: TRectanglesMainView
       item
         Width = 250
       end>
+    ExplicitTop = 644
+    ExplicitWidth = 1464
   end
   object PopupMenu1: TPopupMenu
     Left = 693

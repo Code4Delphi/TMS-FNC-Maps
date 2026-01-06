@@ -165,23 +165,23 @@ begin
 end;
 procedure TRectanglesMainView.btnAddRectanglesClick(Sender: TObject);
 var
-  LNorthEast: TTMSFNCMapsCoordinateRec; //NORDESTE / CANTO SUPERIOR DIREITO / UPPER RIGHT CORNER
-  LSouthWest: TTMSFNCMapsCoordinateRec; //SUDOESTE / CANTO INFERIOR ESQUERDO /BOTTOM LEFT CORNER
+  LCenterCoordinate: TTMSFNCMapsCoordinateRec;
+  LNorthEast: TTMSFNCMapsCoordinateRec; //NORDESTE (Norte Leste) / CANTO SUPERIOR DIREITO / UPPER RIGHT CORNER
+  LSouthWest: TTMSFNCMapsCoordinateRec; //SUDOESTE (Sul Oeste) / CANTO INFERIOR ESQUERDO /BOTTOM LEFT CORNER
   LBoundsRec: TTMSFNCMapsBoundsRec;
   LRectangle: TTMSFNCMapsRectangle;
 begin
-  TMSFNCMaps1.BeginUpdate;
-
-  LNorthEast := CalculateCoordinate(CreateCoordinate(39.562607, -46.135251), 45, 500000);
-  LSouthWest := CalculateCoordinate(CreateCoordinate(39.562607, -46.135251), 225, 500000);
+  LCenterCoordinate := CreateCoordinate(39.562607, -46.135251);
+  LNorthEast := CalculateCoordinate(LCenterCoordinate, 45, 500000); //45 degrees | 500000 meter = 500KM
+  LSouthWest := CalculateCoordinate(LCenterCoordinate, 225, 500000); //225 degrees | 500000 meter = 500KM
   LBoundsRec := CreateBounds(LNorthEast.Latitude, LNorthEast.Longitude, LSouthWest.Latitude, LSouthWest.Longitude);
 
+  TMSFNCMaps1.BeginUpdate;
   LRectangle := TMSFNCMaps1.AddRectangle(LBoundsRec);
   LRectangle.FillColor := gcOrange;
   LRectangle.FillOpacity := 0.5;
   LRectangle.StrokeColor := gcRed;
   LRectangle.StrokeWidth := 4;
-
   TMSFNCMaps1.EndUpdate;
 
   Self.RefreshRectanglesInDataSet;
@@ -189,24 +189,27 @@ end;
 
 procedure TRectanglesMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 var
-  LRectangle: TTMSFNCMapsRectangle;
+  LCenterCoordinate: TTMSFNCMapsCoordinateRec;
+  LNorthEast: TTMSFNCMapsCoordinateRec; //NORDESTE (Norte Leste) / CANTO SUPERIOR DIREITO / UPPER RIGHT CORNER
+  LSouthWest: TTMSFNCMapsCoordinateRec; //SUDOESTE (Sul Oeste) / CANTO INFERIOR ESQUERDO /BOTTOM LEFT CORNER
   LBoundsRec: TTMSFNCMapsBoundsRec;
-  LNorthEast: TTMSFNCMapsCoordinateRec; //CANTO SUPERIOR DIREITO / UPPER RIGHT CORNER
-  LSouthWest: TTMSFNCMapsCoordinateRec; //CANTO INFERIOR ESQUERDO /BOTTOM LEFT CORNER
+  LRectangle: TTMSFNCMapsRectangle;
   LDistance: Double;
-  LNorthEastDegrees: Double; //CANTO SUPERIOR DIREITO GRAUS / UPPER RIGHT CORNER DEGREES
-  LSouthWestDegrees: Double; //CANTO INFERIOR ESQUERDO GRAUS /BOTTOM LEFT CORNER DEGREES
+  LNorthEastDegrees: Double;
+  LSouthWestDegrees: Double;
 begin
   if ckAddRectanglesClickingMap.Checked then
   begin
+    LCenterCoordinate := CreateCoordinate(FLastLat, FLastLon);
     LDistance := StrToFloatDef(edtDistance.Text, 500000);
     LNorthEastDegrees := StrToFloatDef(edtNorthEastDegrees.Text, 45);
     LSouthWestDegrees := StrToFloatDef(edtSouthWestDegrees.Text, 225);
 
-    TMSFNCMaps1.BeginUpdate;
-    LNorthEast := CalculateCoordinate(CreateCoordinate(FLastLat, FLastLon), LNorthEastDegrees, LDistance);
-    LSouthWest := CalculateCoordinate(CreateCoordinate(FLastLat, FLastLon), LSouthWestDegrees, LDistance);
+    LNorthEast := CalculateCoordinate(LCenterCoordinate, LNorthEastDegrees, LDistance);
+    LSouthWest := CalculateCoordinate(LCenterCoordinate, LSouthWestDegrees, LDistance);
     LBoundsRec := CreateBounds(LNorthEast.Latitude, LNorthEast.Longitude, LSouthWest.Latitude, LSouthWest.Longitude);
+
+    TMSFNCMaps1.BeginUpdate;
     LRectangle := TMSFNCMaps1.AddRectangle(LBoundsRec);
     LRectangle.FillColor := TTMSFNCGraphicsColor(StringToColor(cBoxFillColor.Text));
     LRectangle.FillOpacity := StrToFloatDef(edtFillOpacity.Text, 0.2);
