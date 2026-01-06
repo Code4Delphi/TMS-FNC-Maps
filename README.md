@@ -15,6 +15,7 @@ O TMS FNC Maps é um conjunto de componentes para Delphi e C++Builder voltado a 
 - [Mapas com Delphi 04 - Marcadores](https://www.youtube.com/watch?v=_SlfEp_TT3U&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 05 - Zoom](https://www.youtube.com/watch?v=MV1cXvx4xSY&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 06 - Polígonos (Polygons and Polylines)](https://www.youtube.com/watch?v=KQhPWK7iUdg&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
+- [Mapas com Delphi 07 - Retângulos e quadrados (Rectangles and squares)](https://www.youtube.com/watch?v=RsSJtkNJ2Ec&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 
 <br>
 
