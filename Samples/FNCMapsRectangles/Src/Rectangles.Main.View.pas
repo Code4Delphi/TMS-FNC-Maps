@@ -5,6 +5,7 @@ interface
 uses
   Winapi.Windows,
   Winapi.Messages,
+   Winapi.ShellAPI,
   System.SysUtils,
   System.Variants,
   System.Classes,
@@ -91,6 +92,7 @@ type
     edtNorthEastDegrees: TEdit;
     Label6: TLabel;
     edtSouthWestDegrees: TEdit;
+    Label7: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -110,6 +112,7 @@ type
     procedure TMSFNCMaps1PolyElementMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementMouseUp(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure Label7Click(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
@@ -245,6 +248,11 @@ begin
     ClientDataSet1Visible.AsBoolean := LRectangle.Visible;
     ClientDataSet1.Post;
   end;
+end;
+
+procedure TRectanglesMainView.Label7Click(Sender: TObject);
+begin
+  ShellExecute(0, 'open', PChar('https://github.com/Code4Delphi/TMS-FNC-Maps/tree/master/Samples/FNCMapsRectangles#imagem-para-refer%C3%AAncia'), nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TRectanglesMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);

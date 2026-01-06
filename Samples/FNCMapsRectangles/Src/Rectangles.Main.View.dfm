@@ -318,6 +318,21 @@ object RectanglesMainView: TRectanglesMainView
         ParentShowHint = False
         ShowHint = True
       end
+      object Label7: TLabel
+        Left = 56
+        Top = 232
+        Width = 142
+        Height = 15
+        Cursor = crHandPoint
+        Caption = 'Access image for reference'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        OnClick = Label7Click
+      end
       object ckAddRectanglesClickingMap: TCheckBox
         Left = 11
         Top = 26
