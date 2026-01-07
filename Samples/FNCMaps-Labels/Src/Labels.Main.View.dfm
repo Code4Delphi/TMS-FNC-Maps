@@ -2,7 +2,7 @@ object LabelsMainView: TLabelsMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - Labels'
-  ClientHeight = 623
+  ClientHeight = 614
   ClientWidth = 1228
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -23,6 +23,13 @@ object LabelsMainView: TLabelsMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    object Splitter1: TSplitter
+      Left = 620
+      Top = 0
+      Width = 8
+      Height = 263
+      Beveled = True
+    end
     object GroupBox3: TGroupBox
       Left = 169
       Top = 0
@@ -122,8 +129,8 @@ object LabelsMainView: TLabelsMainView
           'Leaflet')
       end
       object edtAPIKeyMap: TEdit
-        Left = 9
-        Top = 83
+        Left = 13
+        Top = 87
         Width = 150
         Height = 23
         PasswordChar = '*'
@@ -139,6 +146,9 @@ object LabelsMainView: TLabelsMainView
       Align = alLeft
       Caption = ' Labels when clicking on the map '
       TabOrder = 2
+      DesignSize = (
+        259
+        263)
       object Label11: TLabel
         Left = 11
         Top = 85
@@ -288,6 +298,7 @@ object LabelsMainView: TLabelsMainView
         Top = 58
         Width = 239
         Height = 23
+        Anchors = [akLeft, akTop, akRight]
         TabOrder = 8
         Text = 'Code4Delphi'
       end
@@ -328,13 +339,15 @@ object LabelsMainView: TLabelsMainView
       end
     end
     object GroupBox4: TGroupBox
-      Left = 620
+      Left = 628
       Top = 0
       Width = 581
       Height = 263
       Align = alLeft
       Caption = 'Labels'
       TabOrder = 3
+      ExplicitLeft = 617
+      ExplicitTop = -6
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -345,8 +358,6 @@ object LabelsMainView: TLabelsMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 6
-        ExplicitTop = 11
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -430,7 +441,7 @@ object LabelsMainView: TLabelsMainView
     Left = 0
     Top = 263
     Width = 1228
-    Height = 341
+    Height = 332
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -448,10 +459,11 @@ object LabelsMainView: TLabelsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
+    ExplicitTop = 260
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 604
+    Top = 595
     Width = 1228
     Height = 19
     Panels = <
@@ -464,6 +476,7 @@ object LabelsMainView: TLabelsMainView
       item
         Width = 250
       end>
+    ExplicitTop = 604
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {

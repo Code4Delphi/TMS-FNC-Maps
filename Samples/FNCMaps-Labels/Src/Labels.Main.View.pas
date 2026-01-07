@@ -79,6 +79,7 @@ type
     Label6: TLabel;
     cBoxBorderColor: TComboBox;
     edtBorderWidth: TEdit;
+    Splitter1: TSplitter;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure btnAddSimpleLabelClick(Sender: TObject);

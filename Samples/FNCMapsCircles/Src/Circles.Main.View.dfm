@@ -2,7 +2,7 @@ object CirclesMainView: TCirclesMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - Circles'
-  ClientHeight = 623
+  ClientHeight = 615
   ClientWidth = 1261
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -362,13 +362,13 @@ object CirclesMainView: TCirclesMainView
         Text = '2'
       end
       object edtRadius: TEdit
-        Left = 11
+        Left = 7
         Top = 70
         Width = 130
         Height = 23
         NumbersOnly = True
         TabOrder = 5
-        Text = '400000'
+        Text = '200000'
       end
     end
     object GroupBox4: TGroupBox
@@ -475,7 +475,7 @@ object CirclesMainView: TCirclesMainView
     Left = 0
     Top = 211
     Width = 1261
-    Height = 393
+    Height = 385
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -499,10 +499,11 @@ object CirclesMainView: TCirclesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
+    ExplicitTop = 207
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 604
+    Top = 596
     Width = 1261
     Height = 19
     Panels = <
@@ -515,6 +516,7 @@ object CirclesMainView: TCirclesMainView
       item
         Width = 250
       end>
+    ExplicitTop = 604
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
