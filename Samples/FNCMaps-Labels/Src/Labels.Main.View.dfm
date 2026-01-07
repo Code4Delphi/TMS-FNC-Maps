@@ -88,21 +88,21 @@ object LabelsMainView: TLabelsMainView
       Caption = ' Config basic '
       TabOrder = 1
       object Label1: TLabel
-        Left = 5
+        Left = 9
         Top = 22
         Width = 37
         Height = 15
         Caption = 'Service'
       end
       object Label5: TLabel
-        Left = 5
+        Left = 9
         Top = 66
         Width = 70
         Height = 15
         Caption = 'Map API Key:'
       end
       object cBoxService: TComboBox
-        Left = 5
+        Left = 9
         Top = 38
         Width = 150
         Height = 23
@@ -122,7 +122,7 @@ object LabelsMainView: TLabelsMainView
           'Leaflet')
       end
       object edtAPIKeyMap: TEdit
-        Left = 5
+        Left = 9
         Top = 83
         Width = 150
         Height = 23
@@ -345,6 +345,8 @@ object LabelsMainView: TLabelsMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitLeft = 6
+        ExplicitTop = 11
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -446,7 +448,6 @@ object LabelsMainView: TLabelsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitTop = 260
   end
   object StatusBar1: TStatusBar
     Left = 0

@@ -184,6 +184,15 @@ object CirclesMainView: TCirclesMainView
           TabOrder = 2
           OnClick = btnVisibleInvisibleClick
         end
+        object btnFocarInCircle: TButton
+          Left = 269
+          Top = 3
+          Width = 75
+          Height = 25
+          Caption = 'Focar'
+          TabOrder = 3
+          OnClick = btnFocarInCircleClick
+        end
       end
       object DBGrid1: TDBGrid
         Left = 2
@@ -470,7 +479,6 @@ object CirclesMainView: TCirclesMainView
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    PopupMenu = PopupMenu1
     TabOrder = 1
     OnMapClick = TMSFNCMaps1MapClick
     OnMapMouseMove = TMSFNCMaps1MapMouseMove
@@ -507,20 +515,6 @@ object CirclesMainView: TCirclesMainView
       item
         Width = 250
       end>
-  end
-  object PopupMenu1: TPopupMenu
-    Left = 693
-    Top = 272
-    object CopyLatitudeAndLongitude1: TMenuItem
-      Caption = 'Copy latitude and longitude'
-      OnClick = CopyLatitudeAndLongitude1Click
-    end
-    object N1: TMenuItem
-      Caption = '-'
-    end
-    object AddToPolygonCustomized1: TMenuItem
-      Caption = 'Add to Polygon customized'
-    end
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {

@@ -93,6 +93,7 @@ type
     Label6: TLabel;
     edtSouthWestDegrees: TEdit;
     Label7: TLabel;
+    btnFocar: TButton;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -113,6 +114,7 @@ type
     procedure TMSFNCMaps1PolyElementMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementMouseUp(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure Label7Click(Sender: TObject);
+    procedure btnFocarClick(Sender: TObject);
   private
     FLastLat: Double;
     FLastLon: Double;
@@ -375,6 +377,12 @@ procedure TRectanglesMainView.TMSFNCMaps1PolyElementMouseEnter(Sender: TObject; 
 begin
   if ckLogMouseEnter.Checked then
     Self.AddLogEventMap(AEventData);
+
+  if not ClientDataSet1.IsEmpty then
+  begin
+    if AEventData.PolyElement.ClassName = TTMSFNCMapsRectangle.ClassName then
+       ClientDataSet1.Locate('Id', AEventData.PolyElement.ID, [loCaseInsensitive]);
+  end;
 end;
 
 procedure TRectanglesMainView.TMSFNCMaps1PolyElementMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
@@ -418,6 +426,16 @@ begin
   mmLog.Lines.Add('');
 end;
 
+procedure TRectanglesMainView.btnFocarClick(Sender: TObject);
+var
+  LRectangle: TTMSFNCMapsRectangle;
+begin
+  LRectangle := Self.GetRectangleBySelected;
 
+  if LRectangle = nil then
+    Exit;
+
+  TMSFNCMaps1.ZoomToBounds(LRectangle.Bounds.ToRec);
+end;
 
 end.

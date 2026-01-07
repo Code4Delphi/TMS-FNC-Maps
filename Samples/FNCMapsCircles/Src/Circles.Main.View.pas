@@ -43,11 +43,7 @@ type
     btnAddCircle: TButton;
     GroupBox2: TGroupBox;
     Panel2: TPanel;
-    PopupMenu1: TPopupMenu;
-    CopyLatitudeAndLongitude1: TMenuItem;
-    AddToPolygonCustomized1: TMenuItem;
     StatusBar1: TStatusBar;
-    N1: TMenuItem;
     btnClearAllCircles: TButton;
     GroupBox3: TGroupBox;
     ckAddCircleClickingMap: TCheckBox;
@@ -84,11 +80,11 @@ type
     ckLogMouseEnter: TCheckBox;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
+    btnFocarInCircle: TButton;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure btnAddCircleClick(Sender: TObject);
-    procedure CopyLatitudeAndLongitude1Click(Sender: TObject);
     procedure TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure btnClearAllCirclesClick(Sender: TObject);
     procedure TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
@@ -102,9 +98,8 @@ type
     procedure TMSFNCMaps1PolyElementMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementMouseUp(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure btnFocarInCircleClick(Sender: TObject);
   private
-    FLastLat: Double;
-    FLastLon: Double;
     procedure ConfigBasicMaps;
     procedure RefreshCirclesInDataSet;
     function GetCircleBySelected: TTMSFNCMapsCircle;
@@ -129,11 +124,8 @@ end;
 
 procedure TCirclesMainView.TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
-  FLastLat := AEventData.Coordinate.Latitude;
-  FLastLon := AEventData.Coordinate.Longitude;
-
-  StatusBar1.Panels[0].Text := 'Lat: ' + FLastLat.ToString;
-  StatusBar1.Panels[1].Text := 'Lon: ' + FLastLon.ToString;
+  StatusBar1.Panels[0].Text := 'Lat: ' + AEventData.Coordinate.Latitude.ToString;
+  StatusBar1.Panels[1].Text := 'Lon: ' + AEventData.Coordinate.Longitude.ToString;
 end;
 
 procedure TCirclesMainView.ConfigBasicMaps;
@@ -162,8 +154,11 @@ var
 begin
   if ckAddCircleClickingMap.Checked then
   begin
+    var LLatitude := AEventData.Coordinate.Latitude;
+    var LLongitude := AEventData.Coordinate.Longitude;
+
     TMSFNCMaps1.BeginUpdate;
-    LCircle := TMSFNCMaps1.AddCircle(CreateCoordinate(FLastLat, FLastLon), StrToIntDef(edtRadius.Text, 400000));
+    LCircle := TMSFNCMaps1.AddCircle(CreateCoordinate(LLatitude, LLongitude), StrToIntDef(edtRadius.Text, 400000));
     LCircle.FillColor := TTMSFNCGraphicsColor(StringToColor(cBoxFillColor.Text));
     LCircle.FillOpacity := StrToFloatDef(edtFillOpacity.Text, 0.2);
     LCircle.StrokeColor := TTMSFNCGraphicsColor(StringToColor(cBoxStrokeColor.Text));
@@ -187,11 +182,6 @@ begin
   TMSFNCMaps1.EndUpdate;
 
   Self.RefreshCirclesInDataSet;
-end;
-
-procedure TCirclesMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);
-begin
-  Clipboard.AsText := Format('%s, %s', [FLastLat.ToString, FLastLon.ToString]);
 end;
 
 procedure TCirclesMainView.btnRefreshClick(Sender: TObject);
@@ -313,6 +303,12 @@ procedure TCirclesMainView.TMSFNCMaps1PolyElementMouseEnter(Sender: TObject; AEv
 begin
   if ckLogMouseEnter.Checked then
     Self.AddLogEventMap(AEventData);
+
+  if not ClientDataSet1.IsEmpty then
+  begin
+    if AEventData.PolyElement.ClassName = TTMSFNCMapsCircle.ClassName then
+       ClientDataSet1.Locate('Id', AEventData.PolyElement.ID, [loCaseInsensitive]);
+  end;
 end;
 
 procedure TCirclesMainView.TMSFNCMaps1PolyElementMouseLeave(Sender: TObject; AEventData: TTMSFNCMapsEventData);
@@ -353,6 +349,26 @@ begin
   mmLog.Lines.Add('StrokeOpacity: ' + LCircle.StrokeOpacity.ToString);
   mmLog.Lines.Add('StrokeWidth: ' + LCircle.StrokeWidth.ToString);
   mmLog.Lines.Add('');
+end;
+
+procedure TCirclesMainView.btnFocarInCircleClick(Sender: TObject);
+var
+  LCircle: TTMSFNCMapsCircle;
+  LCenterCoordinate: TTMSFNCMapsCoordinateRec;
+  LNorthEast: TTMSFNCMapsCoordinateRec; //NORDESTE (Norte Leste)
+  LSouthWest: TTMSFNCMapsCoordinateRec; //SUDOESTE (Sul Oeste)
+  LBoundsRec: TTMSFNCMapsBoundsRec;
+begin
+  LCircle := GetCircleBySelected;
+  if LCircle = nil then
+    Exit;
+
+  LCenterCoordinate := LCircle.Center.ToRec;
+  LNorthEast := CalculateCoordinate(LCenterCoordinate, 45, LCircle.Radius); //45 degrees
+  LSouthWest := CalculateCoordinate(LCenterCoordinate, 225, LCircle.Radius); //225 degrees
+  LBoundsRec := CreateBounds(LNorthEast.Latitude, LNorthEast.Longitude, LSouthWest.Latitude, LSouthWest.Longitude);
+
+  TMSFNCMaps1.ZoomToBounds(LBoundsRec);
 end;
 
 end.

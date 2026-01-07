@@ -316,8 +316,6 @@ object PolygonsMainView: TPolygonsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 241
-    ExplicitHeight = 403
   end
   object StatusBar1: TStatusBar
     Left = 0

@@ -117,8 +117,6 @@ object RectanglesMainView: TRectanglesMainView
         Caption = 'Add Rectangles'
         TabOrder = 0
         OnClick = btnAddRectanglesClick
-        ExplicitLeft = 6
-        ExplicitTop = 16
       end
       object btnClearAllRectangles: TButton
         Left = 5
@@ -157,8 +155,6 @@ object RectanglesMainView: TRectanglesMainView
       Align = alLeft
       Caption = ' Rectangles '
       TabOrder = 2
-      ExplicitLeft = 565
-      ExplicitTop = 4
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -198,6 +194,15 @@ object RectanglesMainView: TRectanglesMainView
           Caption = 'Visible/Invisible'
           TabOrder = 2
           OnClick = btnVisibleInvisibleClick
+        end
+        object btnFocar: TButton
+          Left = 269
+          Top = 3
+          Width = 75
+          Height = 25
+          Caption = 'Focar'
+          TabOrder = 3
+          OnClick = btnFocarClick
         end
       end
       object DBGrid1: TDBGrid
