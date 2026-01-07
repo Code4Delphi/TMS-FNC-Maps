@@ -52,7 +52,6 @@ object CirclesMainView: TCirclesMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitHeight = 241
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -108,7 +107,6 @@ object CirclesMainView: TCirclesMainView
       Padding.Top = 8
       Padding.Right = 5
       TabOrder = 1
-      ExplicitHeight = 241
       object btnAddCircle: TButton
         Left = 5
         Top = 8
@@ -119,7 +117,6 @@ object CirclesMainView: TCirclesMainView
         Caption = 'Add clircle'
         TabOrder = 0
         OnClick = btnAddCircleClick
-        ExplicitWidth = 113
       end
       object btnClearAllCircles: TButton
         Left = 5
@@ -137,7 +134,6 @@ object CirclesMainView: TCirclesMainView
         ParentFont = False
         TabOrder = 1
         OnClick = btnClearAllCirclesClick
-        ExplicitWidth = 113
       end
     end
     object GroupBox2: TGroupBox
@@ -148,7 +144,6 @@ object CirclesMainView: TCirclesMainView
       Align = alLeft
       Caption = 'Circles '
       TabOrder = 2
-      ExplicitHeight = 241
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -159,7 +154,6 @@ object CirclesMainView: TCirclesMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 415
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -247,7 +241,6 @@ object CirclesMainView: TCirclesMainView
       Align = alLeft
       Caption = ' Circles when clicking on the map '
       TabOrder = 3
-      ExplicitHeight = 241
       object Label11: TLabel
         Left = 11
         Top = 100
@@ -357,7 +350,7 @@ object CirclesMainView: TCirclesMainView
         Height = 23
         NumbersOnly = True
         TabOrder = 4
-        Text = '4'
+        Text = '2'
       end
       object edtRadius: TEdit
         Left = 11
@@ -377,7 +370,6 @@ object CirclesMainView: TCirclesMainView
       Align = alLeft
       Caption = ' Logs Events Circles '
       TabOrder = 4
-      ExplicitHeight = 241
       object mmLog: TMemo
         Left = 2
         Top = 80
@@ -386,8 +378,6 @@ object CirclesMainView: TCirclesMainView
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 397
-        ExplicitHeight = 159
       end
       object Panel3: TPanel
         Left = 2
@@ -397,7 +387,6 @@ object CirclesMainView: TCirclesMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitWidth = 397
         DesignSize = (
           354
           63)
@@ -433,7 +422,6 @@ object CirclesMainView: TCirclesMainView
           Caption = 'Clear log'
           TabOrder = 2
           OnClick = btnClearLogClick
-          ExplicitLeft = 335
         end
         object ckLogMouseDown: TCheckBox
           Left = 107
@@ -503,8 +491,6 @@ object CirclesMainView: TCirclesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 251
-    ExplicitWidth = 1446
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -521,8 +507,6 @@ object CirclesMainView: TCirclesMainView
       item
         Width = 250
       end>
-    ExplicitTop = 644
-    ExplicitWidth = 1446
   end
   object PopupMenu1: TPopupMenu
     Left = 693

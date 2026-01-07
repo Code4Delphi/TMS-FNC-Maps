@@ -152,7 +152,7 @@ end;
 procedure TLabelsMainView.btnAddSimpleLabelClick(Sender: TObject);
 begin
   TMSFNCMaps1.BeginUpdate;
-  TMSFNCMaps1.AddLabel(50.105082, -118.859648, '<b>C4D</b><br>Code4Delphi');
+  TMSFNCMaps1.AddLabel(50.105082, -138.859648, '<b>C4D</b><br>Code4Delphi');
   TMSFNCMaps1.EndUpdate;
 
   Self.RefreshLabelsInDataSet;
@@ -256,8 +256,7 @@ begin
       LMapsLabel.Font.Style := LMapsLabel.Font.Style + [TFontStyle.fsStrikeOut];
 
     LMapsLabel.BorderWidth := StrToIntDef(edtBorderWidth.Text, 0);
-    LMapsLabel.BorderColor := TTMSFNCGraphicsColor(StringToColor(cBoxBorderColor.Text));;
-
+    LMapsLabel.BorderColor := TTMSFNCGraphicsColor(StringToColor(cBoxBorderColor.Text));
     TMSFNCMaps1.EndUpdate;
 
     Self.RefreshLabelsInDataSet;

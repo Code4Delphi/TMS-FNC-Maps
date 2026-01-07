@@ -31,9 +31,6 @@ object LabelsMainView: TLabelsMainView
       Align = alLeft
       Caption = ' Labels '
       TabOrder = 0
-      ExplicitLeft = 174
-      ExplicitTop = -6
-      ExplicitHeight = 241
       object btnAddSimpleLabel: TButton
         Left = 2
         Top = 17
@@ -43,9 +40,6 @@ object LabelsMainView: TLabelsMainView
         Caption = 'Add simple label'
         TabOrder = 0
         OnClick = btnAddSimpleLabelClick
-        ExplicitLeft = 3
-        ExplicitTop = 11
-        ExplicitWidth = 126
       end
       object btnAddLabelBackgroundColor: TButton
         Left = 2
@@ -56,9 +50,6 @@ object LabelsMainView: TLabelsMainView
         Caption = 'Add label with background color'
         TabOrder = 1
         OnClick = btnAddLabelBackgroundColorClick
-        ExplicitLeft = 3
-        ExplicitTop = 36
-        ExplicitWidth = 265
       end
       object btnClearAllLabels: TButton
         Left = 2
@@ -75,8 +66,6 @@ object LabelsMainView: TLabelsMainView
         ParentFont = False
         TabOrder = 2
         OnClick = btnClearAllLabelsClick
-        ExplicitLeft = -2
-        ExplicitTop = 165
       end
       object btnAddLabelWithHTMLAndCSS: TButton
         Left = 2
@@ -87,9 +76,6 @@ object LabelsMainView: TLabelsMainView
         Caption = 'Add label with HTML and CSS'
         TabOrder = 3
         OnClick = btnAddLabelWithHTMLAndCSSClick
-        ExplicitLeft = 9
-        ExplicitTop = 49
-        ExplicitWidth = 265
       end
     end
     object GroupBox1: TGroupBox
@@ -101,8 +87,6 @@ object LabelsMainView: TLabelsMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 1
-      ExplicitLeft = 8
-      ExplicitHeight = 193
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -155,8 +139,6 @@ object LabelsMainView: TLabelsMainView
       Align = alLeft
       Caption = ' Labels when clicking on the map '
       TabOrder = 2
-      ExplicitTop = -6
-      ExplicitHeight = 241
       object Label11: TLabel
         Left = 11
         Top = 85
@@ -353,7 +335,6 @@ object LabelsMainView: TLabelsMainView
       Align = alLeft
       Caption = 'Labels'
       TabOrder = 3
-      ExplicitHeight = 329
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -364,9 +345,6 @@ object LabelsMainView: TLabelsMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 11
-        ExplicitWidth = 521
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -468,10 +446,7 @@ object LabelsMainView: TLabelsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitLeft = 8
-    ExplicitTop = 333
-    ExplicitWidth = 1309
-    ExplicitHeight = 305
+    ExplicitTop = 260
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -488,8 +463,6 @@ object LabelsMainView: TLabelsMainView
       item
         Width = 250
       end>
-    ExplicitTop = 634
-    ExplicitWidth = 1121
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
