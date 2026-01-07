@@ -128,6 +128,8 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
       Align = alLeft
       Caption = ' Polygon Customized '
       TabOrder = 3
+      ExplicitLeft = 199
+      ExplicitTop = -6
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -138,6 +140,8 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitLeft = 5
+        ExplicitTop = 11
         object Label8: TLabel
           Left = 10
           Top = -1
@@ -171,8 +175,8 @@ object PolygonsGoogleMainView: TPolygonsGoogleMainView
           Text = '32.644482'
         end
         object edtCustomizedLongitude: TEdit
-          Left = 135
-          Top = 14
+          Left = 134
+          Top = 15
           Width = 119
           Height = 23
           TabOrder = 2
