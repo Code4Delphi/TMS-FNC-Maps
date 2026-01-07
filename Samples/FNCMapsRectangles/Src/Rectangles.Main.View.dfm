@@ -1,7 +1,7 @@
 object RectanglesMainView: TRectanglesMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - Rectangles'
+  Caption = 'TMS FNC Maps - Rectangles and squares'
   ClientHeight = 633
   ClientWidth = 1304
   Color = clBtnFace
@@ -34,7 +34,6 @@ object RectanglesMainView: TRectanglesMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1464
     object Splitter2: TSplitter
       Left = 985
       Top = 0
@@ -108,7 +107,6 @@ object RectanglesMainView: TRectanglesMainView
       Padding.Top = 8
       Padding.Right = 5
       TabOrder = 1
-      ExplicitLeft = 198
       object btnAddRectangles: TButton
         Left = 5
         Top = 8
@@ -119,6 +117,8 @@ object RectanglesMainView: TRectanglesMainView
         Caption = 'Add Rectangles'
         TabOrder = 0
         OnClick = btnAddRectanglesClick
+        ExplicitLeft = 6
+        ExplicitTop = 16
       end
       object btnClearAllRectangles: TButton
         Left = 5
@@ -157,6 +157,8 @@ object RectanglesMainView: TRectanglesMainView
       Align = alLeft
       Caption = ' Rectangles '
       TabOrder = 2
+      ExplicitLeft = 565
+      ExplicitTop = 4
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -167,9 +169,6 @@ object RectanglesMainView: TRectanglesMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = -2
-        ExplicitTop = 11
-        ExplicitWidth = 476
         object btnRefresh: TButton
           Left = 4
           Top = 3
@@ -181,7 +180,7 @@ object RectanglesMainView: TRectanglesMainView
           OnClick = btnRefreshClick
         end
         object btnDelete: TButton
-          Left = 81
+          Left = 82
           Top = 3
           Width = 75
           Height = 25
@@ -453,7 +452,6 @@ object RectanglesMainView: TRectanglesMainView
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 330
       end
       object Panel3: TPanel
         Left = 2
@@ -463,7 +461,6 @@ object RectanglesMainView: TRectanglesMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitWidth = 330
         DesignSize = (
           303
           63)
@@ -568,8 +565,6 @@ object RectanglesMainView: TRectanglesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitWidth = 1464
-    ExplicitHeight = 384
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -586,8 +581,6 @@ object RectanglesMainView: TRectanglesMainView
       item
         Width = 250
       end>
-    ExplicitTop = 644
-    ExplicitWidth = 1464
   end
   object PopupMenu1: TPopupMenu
     Left = 693

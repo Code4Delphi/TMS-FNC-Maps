@@ -82,7 +82,6 @@ type
     ckLogMouseLeave: TCheckBox;
     ckLogMouseUp: TCheckBox;
     ckLogMouseEnter: TCheckBox;
-    btnAddPolygon: TButton;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     procedure FormCreate(Sender: TObject);
@@ -98,7 +97,6 @@ type
     procedure btnDeleteClick(Sender: TObject);
     procedure TMSFNCMaps1PolyElementClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure btnClearLogClick(Sender: TObject);
-    procedure btnAddPolygonClick(Sender: TObject);
     procedure TMSFNCMaps1PolyElementDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementMouseDown(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementMouseEnter(Sender: TObject; AEventData: TTMSFNCMapsEventData);
@@ -189,25 +187,6 @@ begin
   TMSFNCMaps1.EndUpdate;
 
   Self.RefreshCirclesInDataSet;
-end;
-
-procedure TCirclesMainView.btnAddPolygonClick(Sender: TObject);
-var
-  LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
-  LPolygon: TTMSFNCMapsPolygon;
-begin
-  SetLength(LCoordinateRecArray, 3);
-  LCoordinateRecArray[0] := CreateCoordinate(25.789106, -80.226529);
-  LCoordinateRecArray[1] := CreateCoordinate(18.4663188, -60.1057427);
-  LCoordinateRecArray[2] := CreateCoordinate(32.294887, -64.781380);
-
-  TMSFNCMaps1.BeginUpdate;
-  LPolygon := TMSFNCMaps1.AddPolygon(LCoordinateRecArray);
-  LPolygon.FillColor := gcOrange;
-  LPolygon.FillOpacity := 0.5;
-  LPolygon.StrokeColor := gcGreen;
-  LPolygon.StrokeWidth := 4;
-  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TCirclesMainView.CopyLatitudeAndLongitude1Click(Sender: TObject);

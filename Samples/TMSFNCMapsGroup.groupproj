@@ -24,6 +24,9 @@
         <Projects Include="FNCMapsRectangles\FNCMapsRectangles.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMaps-Labels\FNCMapsLabels.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -95,14 +98,23 @@
     <Target Name="FNCMapsRectangles:Make">
         <MSBuild Projects="FNCMapsRectangles\FNCMapsRectangles.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsLabels">
+        <MSBuild Projects="FNCMaps-Labels\FNCMapsLabels.dproj"/>
+    </Target>
+    <Target Name="FNCMapsLabels:Clean">
+        <MSBuild Projects="FNCMaps-Labels\FNCMapsLabels.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsLabels:Make">
+        <MSBuild Projects="FNCMaps-Labels\FNCMapsLabels.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsCircles;FNCMapsRectangles"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsCircles;FNCMapsRectangles;FNCMapsLabels"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsCircles:Clean;FNCMapsRectangles:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsCircles:Clean;FNCMapsRectangles:Clean;FNCMapsLabels:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsCircles:Make;FNCMapsRectangles:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsCircles:Make;FNCMapsRectangles:Make;FNCMapsLabels:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

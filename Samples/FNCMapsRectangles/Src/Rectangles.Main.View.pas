@@ -166,6 +166,7 @@ procedure TRectanglesMainView.edtAPIKeyMapExit(Sender: TObject);
 begin
   Self.ConfigBasicMaps;
 end;
+
 procedure TRectanglesMainView.btnAddRectanglesClick(Sender: TObject);
 var
   LCenterCoordinate: TTMSFNCMapsCoordinateRec;
@@ -307,7 +308,7 @@ begin
   Result := nil;
 
   if ClientDataSet1.IsEmpty then
-    raise Exception.Create('Select an item to be deleted');
+    raise Exception.Create('Select an item to be continue');
 
   LPolyElement := TMSFNCMaps1.Rectangles.ItemByID[ClientDataSet1Id.AsString];
   if LPolyElement.ClassName <> TTMSFNCMapsRectangle.ClassName then
