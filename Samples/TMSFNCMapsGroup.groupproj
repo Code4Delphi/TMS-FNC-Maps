@@ -18,10 +18,10 @@
         <Projects Include="FNCMapsPolygonsGoogle\FNCMapsPolygonsGoogle.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="FNCMapsCircles\FNCMapsCircles.dproj">
+        <Projects Include="FNCMapsRectangles\FNCMapsRectangles.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="FNCMapsRectangles\FNCMapsRectangles.dproj">
+        <Projects Include="FNCMapsCircles\FNCMapsCircles.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="FNCMaps-Labels\FNCMapsLabels.dproj">
@@ -80,15 +80,6 @@
     <Target Name="FNCMapsPolygonsGoogle:Make">
         <MSBuild Projects="FNCMapsPolygonsGoogle\FNCMapsPolygonsGoogle.dproj" Targets="Make"/>
     </Target>
-    <Target Name="FNCMapsCircles">
-        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj"/>
-    </Target>
-    <Target Name="FNCMapsCircles:Clean">
-        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="FNCMapsCircles:Make">
-        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj" Targets="Make"/>
-    </Target>
     <Target Name="FNCMapsRectangles">
         <MSBuild Projects="FNCMapsRectangles\FNCMapsRectangles.dproj"/>
     </Target>
@@ -97,6 +88,15 @@
     </Target>
     <Target Name="FNCMapsRectangles:Make">
         <MSBuild Projects="FNCMapsRectangles\FNCMapsRectangles.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FNCMapsCircles">
+        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj"/>
+    </Target>
+    <Target Name="FNCMapsCircles:Clean">
+        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsCircles:Make">
+        <MSBuild Projects="FNCMapsCircles\FNCMapsCircles.dproj" Targets="Make"/>
     </Target>
     <Target Name="FNCMapsLabels">
         <MSBuild Projects="FNCMaps-Labels\FNCMapsLabels.dproj"/>
@@ -108,13 +108,13 @@
         <MSBuild Projects="FNCMaps-Labels\FNCMapsLabels.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsCircles;FNCMapsRectangles;FNCMapsLabels"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsCircles:Clean;FNCMapsRectangles:Clean;FNCMapsLabels:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsCircles:Make;FNCMapsRectangles:Make;FNCMapsLabels:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
