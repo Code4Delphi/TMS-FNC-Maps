@@ -1,7 +1,7 @@
-object GeocodingMainView: TGeocodingMainView
+object PlacesMainView: TPlacesMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - Geocoding'
+  Caption = 'TMS FNC Maps - Places'
   ClientHeight = 614
   ClientWidth = 1323
   Color = clBtnFace

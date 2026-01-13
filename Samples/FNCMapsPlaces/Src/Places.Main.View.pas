@@ -1,4 +1,4 @@
-unit Geocoding.Main.View;
+unit Places.Main.View;
 
 interface
 
@@ -37,7 +37,7 @@ uses
   VCL.TMSFNCGeocoding;
 
 type
-  TGeocodingMainView = class(TForm)
+  TPlacesMainView = class(TForm)
     pnTop: TPanel;
     GroupBox3: TGroupBox;
     StatusBar1: TStatusBar;
@@ -77,36 +77,36 @@ type
   end;
 
 var
-  GeocodingMainView: TGeocodingMainView;
+  PlacesMainView: TPlacesMainView;
 
 implementation
 
 {$R *.dfm}
 
-procedure TGeocodingMainView.FormCreate(Sender: TObject);
+procedure TPlacesMainView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
   cBoxService.ItemIndex := Integer(TTMSFNCMapsService.msGoogleMaps);
   Self.ConfigBasicMaps;
 end;
 
-procedure TGeocodingMainView.cBoxLanguageChange(Sender: TObject);
+procedure TPlacesMainView.cBoxLanguageChange(Sender: TObject);
 begin
   TMSFNCMaps1.Options.Locale := 'pt-BR';
   TMSFNCMaps1.ReInitialize;
 end;
 
-procedure TGeocodingMainView.cBoxServiceChange(Sender: TObject);
+procedure TPlacesMainView.cBoxServiceChange(Sender: TObject);
 begin
   Self.ConfigBasicMaps;
 end;
 
-procedure TGeocodingMainView.edtAPIKeyMapExit(Sender: TObject);
+procedure TPlacesMainView.edtAPIKeyMapExit(Sender: TObject);
 begin
   Self.ConfigBasicMaps;
 end;
 
-procedure TGeocodingMainView.ConfigBasicMaps;
+procedure TPlacesMainView.ConfigBasicMaps;
 begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.Service := TTMSFNCMapsService(cBoxService.ItemIndex);
@@ -116,18 +116,18 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TGeocodingMainView.btnClearAllMarkersClick(Sender: TObject);
+procedure TPlacesMainView.btnClearAllMarkersClick(Sender: TObject);
 begin
   TMSFNCMaps1.ClearMarkers;
 end;
 
-procedure TGeocodingMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+procedure TPlacesMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   if ckGetReverseGeocodingByClickingMap.Checked then
     TMSFNCGeocoding1.GetReverseGeocoding(AEventData.Coordinate.ToRec);
 end;
 
-procedure TGeocodingMainView.TMSFNCGeocoding1GetReverseGeocodingResult(Sender: TObject; const AResult: TTMSFNCGeocodingRequest);
+procedure TPlacesMainView.TMSFNCGeocoding1GetReverseGeocodingResult(Sender: TObject; const AResult: TTMSFNCGeocodingRequest);
 begin
   if AResult.Items.Count > 0 then
   begin
@@ -149,13 +149,13 @@ begin
   end;
 end;
 
-procedure TGeocodingMainView.btnOnGetGeocodingEventClick(Sender: TObject);
+procedure TPlacesMainView.btnOnGetGeocodingEventClick(Sender: TObject);
 begin
   TMSFNCGeocoding1.GetGeocoding(edtAddress.Text, nil, 'origin');
   //TMSFNCGeocoding1.GetGeocoding('Philadelphia', nil, 'destination');
 end;
 
-procedure TGeocodingMainView.TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
+procedure TPlacesMainView.TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
   const ARequestResult: TTMSFNCCloudBaseRequestResult);
 var
  LGeocodingItem: TTMSFNCGeocodingItem;
@@ -182,7 +182,7 @@ begin
   end;
 end;
 
-procedure TGeocodingMainView.ZoomInCoordinateRec(const ACoordinateRec: TTMSFNCMapsCoordinateRec);
+procedure TPlacesMainView.ZoomInCoordinateRec(const ACoordinateRec: TTMSFNCMapsCoordinateRec);
 begin
   if not ckZoomInCreated.Checked then
     Exit;
@@ -191,7 +191,7 @@ begin
   TMSFNCMaps1.SetZoomLevel(18);
 end;
 
-procedure TGeocodingMainView.Button2Click(Sender: TObject);
+procedure TPlacesMainView.Button2Click(Sender: TObject);
 var
  LStartAddress: TTMSFNCMapsCoordinateRec;
 begin
