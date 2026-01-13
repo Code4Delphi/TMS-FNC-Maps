@@ -40,28 +40,8 @@ type
     StatusBar1: TStatusBar;
     btnClearAll: TButton;
     GroupBox1: TGroupBox;
-    Label1: TLabel;
     Label5: TLabel;
-    cBoxService: TComboBox;
     edtAPIKeyMap: TEdit;
-    GroupBox2: TGroupBox;
-    Label11: TLabel;
-    Label2: TLabel;
-    lbFontSize: TLabel;
-    ckAddLabelClickingMap: TCheckBox;
-    cBoxFontColor: TComboBox;
-    cBoxBackgroundColor: TComboBox;
-    edtFontSize: TEdit;
-    ckBold: TCheckBox;
-    ckItalic: TCheckBox;
-    ckUnderline: TCheckBox;
-    ckStrikeOut: TCheckBox;
-    Label3: TLabel;
-    edtText: TEdit;
-    Label4: TLabel;
-    Label6: TLabel;
-    cBoxBorderColor: TComboBox;
-    edtBorderWidth: TEdit;
     Splitter1: TSplitter;
     btnAddPoint: TButton;
     TMSFNCGoogleMaps1: TTMSFNCGoogleMaps;
@@ -76,16 +56,30 @@ type
     Panel3: TPanel;
     btnDeleteCoordinate: TButton;
     btnAddHeatmaps: TButton;
-    ckZoomInCreated: TCheckBox;
     ClientDataSet1: TClientDataSet;
     ClientDataSet1Order: TIntegerField;
     ClientDataSet1Latitude: TFloatField;
     ClientDataSet1Longitude: TFloatField;
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
-    Button1: TButton;
+    gBoxPointAToPointB: TGroupBox;
+    Label1: TLabel;
+    Label7: TLabel;
+    edtLatitudePointA: TEdit;
+    edtLatitudePointB: TEdit;
+    Label10: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    edtLongitudePointA: TEdit;
+    edtLongitudePointB: TEdit;
+    Label14: TLabel;
+    btnPointAToPointB: TButton;
+    Label15: TLabel;
+    edtNumberMarkings: TEdit;
+    Label16: TLabel;
+    edtWeight: TEdit;
+    ckZoomInCreated: TCheckBox;
     procedure FormCreate(Sender: TObject);
-    procedure cBoxServiceChange(Sender: TObject);
     procedure cBoxLanguageChange(Sender: TObject);
     procedure btnClearAllClick(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -94,10 +88,9 @@ type
     procedure btnAddCoordinateClick(Sender: TObject);
     procedure btnDeleteCoordinateClick(Sender: TObject);
     procedure btnAddHeatmapsClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnPointAToPointBClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
-    procedure RefreshLabelsInDataSet;
   public
   end;
 
@@ -111,19 +104,13 @@ implementation
 procedure THeatmapsMainView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
-  cBoxService.ItemIndex := 6;
-  cBoxServiceChange(cBoxService);
+  Self.ConfigBasicMaps;
 end;
 
 procedure THeatmapsMainView.cBoxLanguageChange(Sender: TObject);
 begin
   TMSFNCGoogleMaps1.Options.Locale := 'pt-BR';
   TMSFNCGoogleMaps1.ReInitialize;
-end;
-
-procedure THeatmapsMainView.cBoxServiceChange(Sender: TObject);
-begin
-  Self.ConfigBasicMaps;
 end;
 
 procedure THeatmapsMainView.edtAPIKeyMapExit(Sender: TObject);
@@ -136,8 +123,6 @@ begin
   TMSFNCGoogleMaps1.BeginUpdate;
   TMSFNCGoogleMaps1.APIKey := edtAPIKeyMap.Text;
   TMSFNCGoogleMaps1.EndUpdate;
-
-  edtAPIKeyMap.Enabled := not (cBoxService.ItemIndex in [6, 8]);
 end;
 
 procedure THeatmapsMainView.btnAddCoordinateClick(Sender: TObject);
@@ -160,30 +145,6 @@ begin
     raise Exception.Create('Select a record to be deleted');
 
   ClientDataSet1.Delete;
-end;
-
-procedure THeatmapsMainView.RefreshLabelsInDataSet;
-//var
-//  LLabel: TTMSFNCMapsLabel;
-begin
-//  ClientDataSet1.EmptyDataSet;
-//  ClientDataSet1.Open;
-//
-//  if TMSFNCGoogleMaps1.Labels.Count <= 0 then
-//    Exit;
-//
-//  for var i := 0 to Pred(TMSFNCGoogleMaps1.Labels.Count) do
-//  begin
-//    LLabel := TMSFNCGoogleMaps1.Labels.Items[i];
-//
-//    ClientDataSet1.Append;
-//    ClientDataSet1Id.AsString := LLabel.ID;
-//    ClientDataSet1Text.AsString := LLabel.Text;
-//    ClientDataSet1Latitude.AsFloat := LLabel.Coordinate.Latitude;
-//    ClientDataSet1Longitude.AsFloat := LLabel.Coordinate.Longitude;
-//    ClientDataSet1Visible.AsBoolean := LLabel.Visible;
-//    ClientDataSet1.Post;
-//  end;
 end;
 
 procedure THeatmapsMainView.btnAddPointClick(Sender: TObject);
@@ -254,33 +215,31 @@ begin
     TMSFNCGoogleMaps1.ZoomToBounds(LCoordinateRecArray);
 end;
 
-procedure THeatmapsMainView.Button1Click(Sender: TObject);
-var
-  LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
-  LLat: Double;
-  LLong: Double;
-  LHeatMap: TTMSFNCMapsHeatMap;
+procedure THeatmapsMainView.btnPointAToPointBClick(Sender: TObject);
 begin
-  LLat := 37.782551;
-  LLong := -122.445368;
+  var LNumberOfPoints := StrToIntDef(edtNumberMarkings.Text, 0);
+  var LLatPointA := StrToFloatDef(edtLatitudePointA.Text, 0);
+  var LLonPointA := StrToFloatDef(edtLongitudePointA.Text, 0);
+  var LLatPointB := StrToFloatDef(edtLatitudePointB.Text, 0);
+  var LLonPointB := StrToFloatDef(edtLongitudePointB.Text, 0);
 
-  SetLength(LCoordinateRecArray, 20);
-
-  for var i := 0 to 19 do
-  begin
-    LCoordinateRecArray[i].Latitude := LLat;
-    LCoordinateRecArray[i].Longitude := LLong;
-    LCoordinateRecArray[i].Weight := 1; //Optional setting
-
-    LLat := LLat + 1000;
-    LLong := LLong - 1000;
-
-    TMSFNCGoogleMaps1.BeginUpdate;
-    LHeatMap := TMSFNCGoogleMaps1.AddHeatMap(LCoordinateRecArray);
+  TMSFNCGoogleMaps1.BeginUpdate;
+  try
+    var LHeatMap := TMSFNCGoogleMaps1.AddHeatMap(nil);
     LHeatMap.Opacity := 1;
     LHeatMap.GradientStartColor := gcGreen;
     LHeatMap.GradientMidColor := gcYellow;
     LHeatMap.GradientEndColor := gcRed;
+
+    for var i := 0 to LNumberOfPoints do
+    begin
+      var LInterpolationFactor := i / LNumberOfPoints; //INTERPOLACAO 0..1 | 0.25 = 25% do caminho | 0.5 = 50% do caminho ...
+      var LWeightedCoordinate := LHeatMap.WeightedCoordinates.Add;
+      LWeightedCoordinate.Coordinate.Latitude := LLatPointA + (LLatPointB - LLatPointA) * LInterpolationFactor;
+      LWeightedCoordinate.Coordinate.Longitude := LLonPointA + (LLonPointB - LLonPointA) * LInterpolationFactor;
+      LWeightedCoordinate.Weight := 10;
+    end;
+  finally
     TMSFNCGoogleMaps1.EndUpdate;
   end;
 end;
