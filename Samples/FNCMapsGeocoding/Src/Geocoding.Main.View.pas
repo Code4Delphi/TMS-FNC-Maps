@@ -172,9 +172,8 @@ begin
       TMSFNCMaps1.AddMarker(LStartAddress);
 
       Self.ZoomInCoordinateRec(LStartAddress);
-    end;
-
-    if ARequest.ID = 'destination' then
+    end
+    else if ARequest.ID = 'destination' then
     begin
       var LEndAddress := LGeocodingItem.Coordinate.ToRec;
       TMSFNCMaps1.AddMarker(LEndAddress);

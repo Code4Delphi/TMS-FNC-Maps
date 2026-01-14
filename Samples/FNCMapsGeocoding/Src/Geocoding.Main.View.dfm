@@ -24,7 +24,7 @@ object GeocodingMainView: TGeocodingMainView
     BevelOuter = bvNone
     TabOrder = 0
     object Splitter1: TSplitter
-      Left = 705
+      Left = 793
       Top = 0
       Width = 8
       Height = 263
@@ -35,13 +35,13 @@ object GeocodingMainView: TGeocodingMainView
     object GroupBox3: TGroupBox
       Left = 169
       Top = 0
-      Width = 536
+      Width = 624
       Height = 263
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
       DesignSize = (
-        536
+        624
         263)
       object Label3: TLabel
         Left = 6
@@ -86,7 +86,7 @@ object GeocodingMainView: TGeocodingMainView
       object edtAddress: TEdit
         Left = 6
         Top = 38
-        Width = 524
+        Width = 612
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 3
@@ -161,17 +161,17 @@ object GeocodingMainView: TGeocodingMainView
       end
     end
     object GroupBox2: TGroupBox
-      Left = 713
+      Left = 801
       Top = 0
-      Width = 376
+      Width = 522
       Height = 263
-      Align = alLeft
+      Align = alClient
       Caption = ' Logs '
       TabOrder = 2
       object Panel1: TPanel
         Left = 2
         Top = 17
-        Width = 372
+        Width = 518
         Height = 31
         Align = alTop
         BevelOuter = bvNone
@@ -190,7 +190,7 @@ object GeocodingMainView: TGeocodingMainView
       object mmLog: TMemo
         Left = 2
         Top = 48
-        Width = 372
+        Width = 518
         Height = 213
         Align = alClient
         TabOrder = 1
@@ -204,13 +204,10 @@ object GeocodingMainView: TGeocodingMainView
     Height = 19
     Panels = <
       item
-        Width = 250
-      end
-      item
-        Width = 250
-      end
-      item
-        Width = 250
+        Text = 
+          'TMSFNCGeocoding: Geocodifica'#231#227'o de um endere'#231'o ou a geocodifica'#231 +
+          #227'o reversa de uma coordenada utilizando um servi'#231'o de API REST'
+        Width = 1000
       end>
   end
   object TMSFNCGeocoding1: TTMSFNCGeocoding

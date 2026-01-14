@@ -102,6 +102,9 @@ end;
 
 procedure TPlacesMainView.ProcessItemSelectListBox;
 begin
+  if ListBoxSearch.ItemIndex < 0 then
+    Exit;
+
   var LText := ListBoxSearch.Items[ListBoxSearch.ItemIndex].Trim;
   if LText.IsEmpty then
     Exit;
