@@ -19,17 +19,15 @@ object PlacesMainView: TPlacesMainView
     Left = 0
     Top = 0
     Width = 1218
-    Height = 225
+    Height = 180
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = -6
-    ExplicitWidth = 1323
     object Splitter1: TSplitter
-      Left = 1129
+      Left = 1209
       Top = 0
       Width = 8
-      Height = 225
+      Height = 180
       Beveled = True
       ExplicitLeft = 826
       ExplicitTop = 16
@@ -38,14 +36,14 @@ object PlacesMainView: TPlacesMainView
     object GroupBox3: TGroupBox
       Left = 174
       Top = 0
-      Width = 955
-      Height = 225
+      Width = 1035
+      Height = 180
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
       DesignSize = (
-        955
-        225)
+        1035
+        180)
       object Label3: TLabel
         Left = 8
         Top = 22
@@ -54,10 +52,11 @@ object PlacesMainView: TPlacesMainView
         Caption = 'Address'
       end
       object btnClearAllMarkers: TButton
-        Left = 704
+        Left = 899
         Top = 147
         Width = 130
         Height = 25
+        Anchors = [akTop, akRight]
         Caption = 'Clear all Markers'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -67,34 +66,36 @@ object PlacesMainView: TPlacesMainView
         ParentFont = False
         TabOrder = 1
         OnClick = btnClearAllMarkersClick
+        ExplicitLeft = 819
       end
       object btnAddMarker: TButton
-        Left = 858
-        Top = 32
+        Left = 938
+        Top = 36
         Width = 91
         Height = 25
         Anchors = [akTop, akRight]
         Caption = 'Add marker'
         TabOrder = 2
         OnClick = btnAddMarkerClick
-        ExplicitLeft = 743
+        ExplicitLeft = 858
       end
       object edtSearch: TEdit
         Left = 7
         Top = 37
-        Width = 845
+        Width = 925
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
         OnChange = edtSearchChange
         OnKeyDown = edtSearchKeyDown
-        ExplicitWidth = 730
+        ExplicitWidth = 845
       end
       object ListBoxSearch: TListBox
-        Left = 7
+        Left = 8
         Top = 63
-        Width = 828
+        Width = 924
         Height = 78
+        Anchors = [akLeft, akTop, akRight]
         BevelInner = bvNone
         BevelOuter = bvNone
         BorderStyle = bsNone
@@ -104,30 +105,34 @@ object PlacesMainView: TPlacesMainView
         TabOrder = 3
         OnDblClick = ListBoxSearchDblClick
         OnKeyDown = ListBoxSearchKeyDown
+        ExplicitWidth = 844
       end
       object ckZoomInCreated: TCheckBox
         AlignWithMargins = True
-        Left = 582
-        Top = 148
+        Left = 779
+        Top = 149
         Width = 116
         Height = 22
         Cursor = crHandPoint
         Margins.Left = 5
+        Anchors = [akTop, akRight]
         Caption = 'Zoom in created'
         Checked = True
         State = cbChecked
         TabOrder = 4
+        ExplicitLeft = 699
       end
     end
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
       Width = 174
-      Height = 225
+      Height = 180
       Margins.Bottom = 2
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 1
+      ExplicitHeight = 225
       object Label5: TLabel
         Left = 9
         Top = 66
@@ -181,22 +186,17 @@ object PlacesMainView: TPlacesMainView
     Height = 19
     Panels = <
       item
-        Width = 250
-      end
-      item
-        Width = 250
-      end
-      item
-        Width = 250
+        Text = 
+          'TTMSFNCPlaces: Sugest'#245'es de preenchimento autom'#225'tico de endere'#231'o' +
+          ' utilizando um servi'#231'o de API REST'
+        Width = 1000
       end>
-    ExplicitTop = 595
-    ExplicitWidth = 1323
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 225
+    Top = 180
     Width = 1218
-    Height = 381
+    Height = 426
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -212,8 +212,8 @@ object PlacesMainView: TPlacesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
-    ExplicitWidth = 1323
-    ExplicitHeight = 370
+    ExplicitTop = 225
+    ExplicitHeight = 381
   end
   object TMSFNCGeocoding1: TTMSFNCGeocoding
     Left = 360

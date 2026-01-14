@@ -3,7 +3,7 @@ object HeatmapsMainView: THeatmapsMainView
   Top = 0
   Caption = 'TMS FNC Maps - Heatmaps (mapa de calor)'
   ClientHeight = 614
-  ClientWidth = 1323
+  ClientWidth = 1258
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,11 +18,12 @@ object HeatmapsMainView: THeatmapsMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1323
+    Width = 1258
     Height = 263
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1323
     object Splitter1: TSplitter
       Left = 849
       Top = 0
@@ -65,6 +66,8 @@ object HeatmapsMainView: THeatmapsMainView
         Caption = 'Add point heatmaps'
         TabOrder = 1
         OnClick = btnAddPointClick
+        ExplicitLeft = 0
+        ExplicitTop = 11
       end
     end
     object GroupBox1: TGroupBox
@@ -203,7 +206,8 @@ object HeatmapsMainView: THeatmapsMainView
           Align = alRight
           Caption = 'Zoom in created'
           TabOrder = 2
-          ExplicitLeft = 262
+          ExplicitLeft = 260
+          ExplicitTop = 2
         end
       end
       object DBGrid1: TDBGrid
@@ -351,8 +355,8 @@ object HeatmapsMainView: THeatmapsMainView
         OnClick = btnPointAToPointBClick
       end
       object edtNumberMarkings: TEdit
-        Left = 7
-        Top = 155
+        Left = 6
+        Top = 159
         Width = 195
         Height = 23
         NumbersOnly = True
@@ -364,7 +368,7 @@ object HeatmapsMainView: THeatmapsMainView
   object StatusBar1: TStatusBar
     Left = 0
     Top = 595
-    Width = 1323
+    Width = 1258
     Height = 19
     Panels = <
       item
@@ -376,11 +380,12 @@ object HeatmapsMainView: THeatmapsMainView
       item
         Width = 250
       end>
+    ExplicitWidth = 1323
   end
   object TMSFNCGoogleMaps1: TTMSFNCGoogleMaps
     Left = 0
     Top = 263
-    Width = 1323
+    Width = 1258
     Height = 332
     Align = alClient
     ParentDoubleBuffered = False
@@ -407,6 +412,7 @@ object HeatmapsMainView: THeatmapsMainView
     Clusters = <>
     OverlayViews = <>
     HeatMaps = <>
+    ExplicitTop = 264
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
