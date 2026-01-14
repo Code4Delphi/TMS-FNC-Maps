@@ -191,11 +191,7 @@ begin
   ClientDataSet1.First;
   while not ClientDataSet1.Eof do
   begin
-    var LIndex := Pred(ClientDataSet1.RecNo);
-    LCoordinateRecArray[LIndex] := CreateCoordinate(ClientDataSet1Latitude.AsFloat, ClientDataSet1Longitude.AsFloat);
-
-    LCoordinateRecArray[LIndex].Latitude := ClientDataSet1Latitude.AsFloat;
-    LCoordinateRecArray[LIndex].Longitude := ClientDataSet1Longitude.AsFloat;
+    LCoordinateRecArray[Pred(ClientDataSet1.RecNo)] := CreateCoordinate(ClientDataSet1Latitude.AsFloat, ClientDataSet1Longitude.AsFloat);
     ClientDataSet1.Next;
   end;
 
