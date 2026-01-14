@@ -2,8 +2,8 @@ object PlacesMainView: TPlacesMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - Places'
-  ClientHeight = 614
-  ClientWidth = 1323
+  ClientHeight = 625
+  ClientWidth = 1218
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,42 +18,45 @@ object PlacesMainView: TPlacesMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1323
-    Height = 263
+    Width = 1218
+    Height = 225
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitTop = -6
+    ExplicitWidth = 1323
     object Splitter1: TSplitter
-      Left = 705
+      Left = 1129
       Top = 0
       Width = 8
-      Height = 263
+      Height = 225
       Beveled = True
       ExplicitLeft = 826
       ExplicitTop = 16
+      ExplicitHeight = 263
     end
     object GroupBox3: TGroupBox
-      Left = 169
+      Left = 174
       Top = 0
-      Width = 536
-      Height = 263
+      Width = 955
+      Height = 225
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
       DesignSize = (
-        536
-        263)
+        955
+        225)
       object Label3: TLabel
-        Left = 6
-        Top = 21
+        Left = 8
+        Top = 22
         Width = 42
         Height = 15
         Caption = 'Address'
       end
       object btnClearAllMarkers: TButton
-        Left = 6
-        Top = 139
-        Width = 267
+        Left = 704
+        Top = 147
+        Width = 130
         Height = 25
         Caption = 'Clear all Markers'
         Font.Charset = DEFAULT_CHARSET
@@ -62,41 +65,51 @@ object PlacesMainView: TPlacesMainView
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 1
         OnClick = btnClearAllMarkersClick
       end
-      object btnOnGetGeocodingEvent: TButton
-        Left = 6
-        Top = 67
-        Width = 267
+      object btnAddMarker: TButton
+        Left = 858
+        Top = 32
+        Width = 91
         Height = 25
-        Caption = 'Using the OnGetGeocoding event with ID'
-        TabOrder = 1
-        OnClick = btnOnGetGeocodingEventClick
-      end
-      object Button2: TButton
-        Left = 6
-        Top = 98
-        Width = 267
-        Height = 25
-        Caption = 'GetGeocoding with callback'
+        Anchors = [akTop, akRight]
+        Caption = 'Add marker'
         TabOrder = 2
-        OnClick = Button2Click
+        OnClick = btnAddMarkerClick
+        ExplicitLeft = 743
       end
-      object edtAddress: TEdit
-        Left = 6
-        Top = 38
-        Width = 524
+      object edtSearch: TEdit
+        Left = 7
+        Top = 37
+        Width = 845
         Height = 23
         Anchors = [akLeft, akTop, akRight]
+        TabOrder = 0
+        OnChange = edtSearchChange
+        OnKeyDown = edtSearchKeyDown
+        ExplicitWidth = 730
+      end
+      object ListBoxSearch: TListBox
+        Left = 7
+        Top = 63
+        Width = 828
+        Height = 78
+        BevelInner = bvNone
+        BevelOuter = bvNone
+        BorderStyle = bsNone
+        Color = clBtnFace
+        ItemHeight = 15
+        ScrollWidth = 50
         TabOrder = 3
-        Text = 'P'#227'o de a'#231'ucar Rio de Janeiro'
+        OnDblClick = ListBoxSearchDblClick
+        OnKeyDown = ListBoxSearchKeyDown
       end
       object ckZoomInCreated: TCheckBox
         AlignWithMargins = True
-        Left = 281
-        Top = 86
-        Width = 119
+        Left = 582
+        Top = 148
+        Width = 116
         Height = 22
         Cursor = crHandPoint
         Margins.Left = 5
@@ -109,8 +122,8 @@ object PlacesMainView: TPlacesMainView
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
-      Width = 169
-      Height = 263
+      Width = 174
+      Height = 225
       Margins.Bottom = 2
       Align = alLeft
       Caption = ' Config basic '
@@ -140,8 +153,8 @@ object PlacesMainView: TPlacesMainView
         OnExit = edtAPIKeyMapExit
       end
       object cBoxService: TComboBox
-        Left = 9
-        Top = 38
+        Left = 11
+        Top = 37
         Width = 152
         Height = 23
         Style = csDropDownList
@@ -160,47 +173,11 @@ object PlacesMainView: TPlacesMainView
           'Leaflet')
       end
     end
-    object GroupBox2: TGroupBox
-      Left = 713
-      Top = 0
-      Width = 376
-      Height = 263
-      Align = alLeft
-      Caption = ' Logs '
-      TabOrder = 2
-      object Panel1: TPanel
-        Left = 2
-        Top = 17
-        Width = 372
-        Height = 31
-        Align = alTop
-        BevelOuter = bvNone
-        TabOrder = 0
-        object ckGetReverseGeocodingByClickingMap: TCheckBox
-          Left = 4
-          Top = 4
-          Width = 277
-          Height = 17
-          Caption = 'GetReverseGeocoding by clicking on the map'
-          Checked = True
-          State = cbChecked
-          TabOrder = 0
-        end
-      end
-      object mmLog: TMemo
-        Left = 2
-        Top = 48
-        Width = 372
-        Height = 213
-        Align = alClient
-        TabOrder = 1
-      end
-    end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 595
-    Width = 1323
+    Top = 606
+    Width = 1218
     Height = 19
     Panels = <
       item
@@ -212,27 +189,18 @@ object PlacesMainView: TPlacesMainView
       item
         Width = 250
       end>
-  end
-  object TMSFNCGeocoding1: TTMSFNCGeocoding
-    Left = 69
-    Top = 114
-    Width = 26
-    Height = 26
-    Visible = True
-    OnGetGeocoding = TMSFNCGeocoding1GetGeocoding
-    OnGetReverseGeocodingResult = TMSFNCGeocoding1GetReverseGeocodingResult
-    GeocodingRequests = <>
+    ExplicitTop = 595
+    ExplicitWidth = 1323
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 263
-    Width = 1323
-    Height = 332
+    Top = 225
+    Width = 1218
+    Height = 381
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 4
-    OnMapClick = TMSFNCMaps1MapClick
+    TabOrder = 1
     Polylines = <>
     Polygons = <>
     Circles = <>
@@ -244,5 +212,24 @@ object PlacesMainView: TPlacesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
+    ExplicitWidth = 1323
+    ExplicitHeight = 370
+  end
+  object TMSFNCGeocoding1: TTMSFNCGeocoding
+    Left = 360
+    Top = 131
+    Width = 26
+    Height = 26
+    Visible = True
+    GeocodingRequests = <>
+  end
+  object TMSFNCPlaces1: TTMSFNCPlaces
+    Left = 248
+    Top = 131
+    Width = 26
+    Height = 26
+    Visible = True
+    OnGetAutoComplete = TMSFNCPlaces1GetAutoComplete
+    PlacesRequests = <>
   end
 end

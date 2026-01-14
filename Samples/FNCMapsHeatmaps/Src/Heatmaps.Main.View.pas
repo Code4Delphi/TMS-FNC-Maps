@@ -76,8 +76,6 @@ type
     btnPointAToPointB: TButton;
     Label15: TLabel;
     edtNumberMarkings: TEdit;
-    Label16: TLabel;
-    edtWeight: TEdit;
     ckZoomInCreated: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure cBoxLanguageChange(Sender: TObject);
@@ -125,28 +123,6 @@ begin
   TMSFNCGoogleMaps1.EndUpdate;
 end;
 
-procedure THeatmapsMainView.btnAddCoordinateClick(Sender: TObject);
-begin
-  ClientDataSet1.Append;
-  ClientDataSet1Order.AsInteger := ClientDataSet1.RecordCount + 1;
-  ClientDataSet1Latitude.AsFloat := StrToFloatDef(edtCustomizedLatitude.Text, 0);
-  ClientDataSet1Longitude.AsFloat := StrToFloatDef(edtCustomizedLongitude.Text, 0);
-  ClientDataSet1.Post;
-end;
-
-procedure THeatmapsMainView.btnClearAllClick(Sender: TObject);
-begin
-  TMSFNCGoogleMaps1.ClearHeatMaps;
-end;
-
-procedure THeatmapsMainView.btnDeleteCoordinateClick(Sender: TObject);
-begin
-  if ClientDataSet1.IsEmpty then
-    raise Exception.Create('Select a record to be deleted');
-
-  ClientDataSet1.Delete;
-end;
-
 procedure THeatmapsMainView.btnAddPointClick(Sender: TObject);
 var
   LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
@@ -160,7 +136,6 @@ begin
 
   LCoordinateRecArray[1].Latitude := 37.782745;
   LCoordinateRecArray[1].Longitude := -122.444586;
-  LCoordinateRecArray[1].Weight := 1; //Optional setting
 
   TMSFNCGoogleMaps1.BeginUpdate;
   LHeatMap := TMSFNCGoogleMaps1.AddHeatMap(LCoordinateRecArray);
@@ -171,6 +146,11 @@ begin
   TMSFNCGoogleMaps1.EndUpdate;
 end;
 
+procedure THeatmapsMainView.btnClearAllClick(Sender: TObject);
+begin
+  TMSFNCGoogleMaps1.ClearHeatMaps;
+end;
+
 procedure THeatmapsMainView.TMSFNCGoogleMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   if ckAddCoordinatesClickingMap.Checked then
@@ -179,6 +159,23 @@ begin
     edtCustomizedLongitude.Text := AEventData.Coordinate.Longitude.ToString;
     btnAddCoordinate.Click;
   end;
+end;
+
+procedure THeatmapsMainView.btnAddCoordinateClick(Sender: TObject);
+begin
+  ClientDataSet1.Append;
+  ClientDataSet1Order.AsInteger := ClientDataSet1.RecordCount + 1;
+  ClientDataSet1Latitude.AsFloat := StrToFloatDef(edtCustomizedLatitude.Text, 0);
+  ClientDataSet1Longitude.AsFloat := StrToFloatDef(edtCustomizedLongitude.Text, 0);
+  ClientDataSet1.Post;
+end;
+
+procedure THeatmapsMainView.btnDeleteCoordinateClick(Sender: TObject);
+begin
+  if ClientDataSet1.IsEmpty then
+    raise Exception.Create('Select a record to be deleted');
+
+  ClientDataSet1.Delete;
 end;
 
 procedure THeatmapsMainView.btnAddHeatmapsClick(Sender: TObject);
@@ -194,12 +191,11 @@ begin
   ClientDataSet1.First;
   while not ClientDataSet1.Eof do
   begin
-    LCoordinateRecArray[Pred(ClientDataSet1.RecNo)] := CreateCoordinate(ClientDataSet1Latitude.AsFloat, ClientDataSet1Longitude.AsFloat);
+    var LIndex := Pred(ClientDataSet1.RecNo);
+    LCoordinateRecArray[LIndex] := CreateCoordinate(ClientDataSet1Latitude.AsFloat, ClientDataSet1Longitude.AsFloat);
 
-    LCoordinateRecArray[Pred(ClientDataSet1.RecNo)].Latitude := ClientDataSet1Latitude.AsFloat;
-    LCoordinateRecArray[Pred(ClientDataSet1.RecNo)].Longitude := ClientDataSet1Longitude.AsFloat;
-    LCoordinateRecArray[Pred(ClientDataSet1.RecNo)].Weight := 1; //Optional setting
-
+    LCoordinateRecArray[LIndex].Latitude := ClientDataSet1Latitude.AsFloat;
+    LCoordinateRecArray[LIndex].Longitude := ClientDataSet1Longitude.AsFloat;
     ClientDataSet1.Next;
   end;
 
@@ -217,11 +213,11 @@ end;
 
 procedure THeatmapsMainView.btnPointAToPointBClick(Sender: TObject);
 begin
-  var LNumberOfPoints := StrToIntDef(edtNumberMarkings.Text, 0);
   var LLatPointA := StrToFloatDef(edtLatitudePointA.Text, 0);
   var LLonPointA := StrToFloatDef(edtLongitudePointA.Text, 0);
   var LLatPointB := StrToFloatDef(edtLatitudePointB.Text, 0);
   var LLonPointB := StrToFloatDef(edtLongitudePointB.Text, 0);
+  var LNumberOfPoints := StrToIntDef(edtNumberMarkings.Text, 0);
 
   TMSFNCGoogleMaps1.BeginUpdate;
   try
@@ -237,7 +233,6 @@ begin
       var LWeightedCoordinate := LHeatMap.WeightedCoordinates.Add;
       LWeightedCoordinate.Coordinate.Latitude := LLatPointA + (LLatPointB - LLatPointA) * LInterpolationFactor;
       LWeightedCoordinate.Coordinate.Longitude := LLonPointA + (LLonPointB - LLonPointA) * LInterpolationFactor;
-      LWeightedCoordinate.Weight := 10;
     end;
   finally
     TMSFNCGoogleMaps1.EndUpdate;

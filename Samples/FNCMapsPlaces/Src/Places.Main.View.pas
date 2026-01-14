@@ -34,7 +34,7 @@ uses
   VCL.TMSFNCMaps,
   VCL.TMSFNCCustomComponent,
   VCL.TMSFNCCloudBase,
-  VCL.TMSFNCGeocoding;
+  VCL.TMSFNCGeocoding, VCL.TMSFNCPlaces;
 
 type
   TPlacesMainView = class(TForm)
@@ -46,33 +46,32 @@ type
     Label5: TLabel;
     edtAPIKeyMap: TEdit;
     Splitter1: TSplitter;
-    TMSFNCGeocoding1: TTMSFNCGeocoding;
     Label2: TLabel;
     cBoxService: TComboBox;
-    btnOnGetGeocodingEvent: TButton;
-    Button2: TButton;
+    btnAddMarker: TButton;
     Label3: TLabel;
-    edtAddress: TEdit;
-    GroupBox2: TGroupBox;
-    Panel1: TPanel;
-    mmLog: TMemo;
-    ckGetReverseGeocodingByClickingMap: TCheckBox;
-    ckZoomInCreated: TCheckBox;
+    edtSearch: TEdit;
     TMSFNCMaps1: TTMSFNCMaps;
+    ListBoxSearch: TListBox;
+    ckZoomInCreated: TCheckBox;
+    TMSFNCGeocoding1: TTMSFNCGeocoding;
+    TMSFNCPlaces1: TTMSFNCPlaces;
     procedure FormCreate(Sender: TObject);
     procedure cBoxLanguageChange(Sender: TObject);
     procedure btnClearAllMarkersClick(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
-    procedure btnOnGetGeocodingEventClick(Sender: TObject);
-    procedure TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
+    procedure btnAddMarkerClick(Sender: TObject);
+    procedure TMSFNCPlaces1GetAutoComplete(Sender: TObject; const ARequest: TTMSFNCPlacesRequest;
       const ARequestResult: TTMSFNCCloudBaseRequestResult);
-    procedure Button2Click(Sender: TObject);
-    procedure TMSFNCGeocoding1GetReverseGeocodingResult(Sender: TObject; const AResult: TTMSFNCGeocodingRequest);
-    procedure TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure edtSearchChange(Sender: TObject);
+    procedure edtSearchKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure ListBoxSearchKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure ListBoxSearchDblClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure ZoomInCoordinateRec(const ACoordinateRec: TTMSFNCMapsCoordinateRec);
+    procedure ProcessItemSelectListBox;
   public
   end;
 
@@ -88,6 +87,27 @@ begin
   FormatSettings.DecimalSeparator := '.';
   cBoxService.ItemIndex := Integer(TTMSFNCMapsService.msGoogleMaps);
   Self.ConfigBasicMaps;
+end;
+
+procedure TPlacesMainView.ListBoxSearchKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if Key = VK_RETURN then
+    Self.ProcessItemSelectListBox;
+end;
+
+procedure TPlacesMainView.ListBoxSearchDblClick(Sender: TObject);
+begin
+  Self.ProcessItemSelectListBox;
+end;
+
+procedure TPlacesMainView.ProcessItemSelectListBox;
+begin
+  var LText := ListBoxSearch.Items[ListBoxSearch.ItemIndex].Trim;
+  if LText.IsEmpty then
+    Exit;
+
+  edtSearch.Text := LText;
+  edtSearch.SetFocus;
 end;
 
 procedure TPlacesMainView.cBoxLanguageChange(Sender: TObject);
@@ -106,11 +126,26 @@ begin
   Self.ConfigBasicMaps;
 end;
 
+procedure TPlacesMainView.edtSearchChange(Sender: TObject);
+begin
+  TMSFNCPlaces1.GetAutoComplete(edtSearch.Text);
+end;
+
+procedure TPlacesMainView.edtSearchKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if Key = VK_DOWN then
+    ListBoxSearch.SetFocus;
+end;
+
 procedure TPlacesMainView.ConfigBasicMaps;
 begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.Service := TTMSFNCMapsService(cBoxService.ItemIndex);
   TMSFNCMaps1.APIKey := edtAPIKeyMap.Text;
+
+  TMSFNCPlaces1.APIKey := edtAPIKeyMap.Text;
+  TMSFNCPlaces1.Service := psGoogle;
+
   TMSFNCGeocoding1.APIKey := edtAPIKeyMap.Text;
   TMSFNCGeocoding1.Service := TTMSFNCGeocodingService(cBoxService.ItemIndex);
   TMSFNCMaps1.EndUpdate;
@@ -119,67 +154,6 @@ end;
 procedure TPlacesMainView.btnClearAllMarkersClick(Sender: TObject);
 begin
   TMSFNCMaps1.ClearMarkers;
-end;
-
-procedure TPlacesMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
-begin
-  if ckGetReverseGeocodingByClickingMap.Checked then
-    TMSFNCGeocoding1.GetReverseGeocoding(AEventData.Coordinate.ToRec);
-end;
-
-procedure TPlacesMainView.TMSFNCGeocoding1GetReverseGeocodingResult(Sender: TObject; const AResult: TTMSFNCGeocodingRequest);
-begin
-  if AResult.Items.Count > 0 then
-  begin
-    mmLog.Lines.Clear;
-    mmLog.Lines.Add('Address: ' + AResult.Items[0].Address);
-    mmLog.Lines.Add('District: ' + AResult.Items[0].District);
-    mmLog.Lines.Add('Province: ' + AResult.Items[0].Province);
-    mmLog.Lines.Add('ProvinceCode: ' + AResult.Items[0].ProvinceCode);
-    mmLog.Lines.Add('Street: ' + AResult.Items[0].Street);
-    mmLog.Lines.Add('StreetName: ' + AResult.Items[0].StreetName);
-    mmLog.Lines.Add('StreetNumber: ' + AResult.Items[0].StreetNumber);
-    mmLog.Lines.Add('City: ' + AResult.Items[0].City);
-    mmLog.Lines.Add('PostalCode: ' + AResult.Items[0].PostalCode);
-    mmLog.Lines.Add('Region: ' + AResult.Items[0].Region);
-    mmLog.Lines.Add('RegionCode: ' + AResult.Items[0].RegionCode);
-    mmLog.Lines.Add('Country: ' + AResult.Items[0].Country);
-    mmLog.Lines.Add('CountryCode: ' + AResult.Items[0].CountryCode);
-    mmLog.Lines.Add('Intersection: ' + AResult.Items[0].Intersection);
-  end;
-end;
-
-procedure TPlacesMainView.btnOnGetGeocodingEventClick(Sender: TObject);
-begin
-  TMSFNCGeocoding1.GetGeocoding(edtAddress.Text, nil, 'origin');
-  //TMSFNCGeocoding1.GetGeocoding('Philadelphia', nil, 'destination');
-end;
-
-procedure TPlacesMainView.TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
-  const ARequestResult: TTMSFNCCloudBaseRequestResult);
-var
- LGeocodingItem: TTMSFNCGeocodingItem;
- LStartAddress: TTMSFNCMapsCoordinateRec;
-begin
-  for var i := 0 to Pred(ARequest.Items.Count) do
-  begin
-    LGeocodingItem := ARequest.Items[I];
-
-    if ARequest.ID = 'origin' then
-    begin
-      LStartAddress := LGeocodingItem.Coordinate.ToRec;
-      TMSFNCMaps1.SetCenterCoordinate(LStartAddress);
-      TMSFNCMaps1.AddMarker(LStartAddress);
-
-      Self.ZoomInCoordinateRec(LStartAddress);
-    end;
-
-    if ARequest.ID = 'destination' then
-    begin
-      var LEndAddress := LGeocodingItem.Coordinate.ToRec;
-      TMSFNCMaps1.AddMarker(LEndAddress);
-    end;
-  end;
 end;
 
 procedure TPlacesMainView.ZoomInCoordinateRec(const ACoordinateRec: TTMSFNCMapsCoordinateRec);
@@ -191,19 +165,25 @@ begin
   TMSFNCMaps1.SetZoomLevel(18);
 end;
 
-procedure TPlacesMainView.Button2Click(Sender: TObject);
-var
- LStartAddress: TTMSFNCMapsCoordinateRec;
+procedure TPlacesMainView.btnAddMarkerClick(Sender: TObject);
 begin
-  TMSFNCGeocoding1.GetGeocoding(edtAddress.Text,
+  TMSFNCGeocoding1.GetGeocoding(edtSearch.Text,
     procedure(const ARequest: TTMSFNCGeocodingRequest; const ARequestResult: TTMSFNCCloudBaseRequestResult)
     begin
-      LStartAddress := ARequest.Items[0].Coordinate.ToRec;
-      TMSFNCMaps1.SetCenterCoordinate(LStartAddress);
-      TMSFNCMaps1.AddMarker(LStartAddress);
+      var LCoordinateRec := ARequest.Items[0].Coordinate.ToRec;
+      TMSFNCMaps1.SetCenterCoordinate(LCoordinateRec);
+      TMSFNCMaps1.AddMarker(LCoordinateRec);
 
-      Self.ZoomInCoordinateRec(LStartAddress);
+      Self.ZoomInCoordinateRec(LCoordinateRec);
     end);
+end;
+
+procedure TPlacesMainView.TMSFNCPlaces1GetAutoComplete(Sender: TObject; const ARequest: TTMSFNCPlacesRequest;
+  const ARequestResult: TTMSFNCCloudBaseRequestResult);
+begin
+  ListBoxSearch.Items.Clear;
+  for var i := 0 to Pred(ARequest.Items.Count) do
+    ListBoxSearch.Items.Add(ARequest.Items[I].Address);
 end;
 
 end.

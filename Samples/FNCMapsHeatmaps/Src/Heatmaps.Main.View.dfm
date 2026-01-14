@@ -23,9 +23,6 @@ object HeatmapsMainView: THeatmapsMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = -8
-    ExplicitTop = -6
-    ExplicitWidth = 1228
     object Splitter1: TSplitter
       Left = 849
       Top = 0
@@ -43,8 +40,6 @@ object HeatmapsMainView: THeatmapsMainView
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
-      ExplicitLeft = 165
-      ExplicitTop = -6
       object btnClearAll: TButton
         Left = 2
         Top = 42
@@ -81,8 +76,6 @@ object HeatmapsMainView: THeatmapsMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 1
-      ExplicitLeft = -4
-      ExplicitTop = -5
       object Label5: TLabel
         Left = 9
         Top = 26
@@ -119,9 +112,6 @@ object HeatmapsMainView: THeatmapsMainView
         BevelKind = bkTile
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 4
-        ExplicitTop = 11
-        ExplicitWidth = 596
         object Label8: TLabel
           Left = 10
           Top = -1
@@ -138,7 +128,7 @@ object HeatmapsMainView: THeatmapsMainView
         end
         object btnAddCoordinate: TButton
           Left = 168
-          Top = 12
+          Top = 13
           Width = 101
           Height = 25
           Cursor = crHandPoint
@@ -180,7 +170,6 @@ object HeatmapsMainView: THeatmapsMainView
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitWidth = 596
         object btnDeleteCoordinate: TButton
           Left = 0
           Top = 0
@@ -202,21 +191,19 @@ object HeatmapsMainView: THeatmapsMainView
           Caption = 'Add heatmaps'
           TabOrder = 1
           OnClick = btnAddHeatmapsClick
-          ExplicitLeft = 270
-          ExplicitTop = -4
         end
         object ckZoomInCreated: TCheckBox
           AlignWithMargins = True
-          Left = 257
+          Left = 263
           Top = 3
-          Width = 119
+          Width = 113
           Height = 22
           Cursor = crHandPoint
           Margins.Left = 5
           Align = alRight
           Caption = 'Zoom in created'
           TabOrder = 2
-          ExplicitLeft = 256
+          ExplicitLeft = 262
         end
       end
       object DBGrid1: TDBGrid
@@ -261,8 +248,6 @@ object HeatmapsMainView: THeatmapsMainView
       Align = alLeft
       Caption = ' Point A to point B '
       TabOrder = 3
-      ExplicitLeft = 1153
-      ExplicitTop = 45
       object Label1: TLabel
         Left = 7
         Top = 33
@@ -324,13 +309,6 @@ object HeatmapsMainView: THeatmapsMainView
         Height = 15
         Caption = 'Number of markings between points'
       end
-      object Label16: TLabel
-        Left = 6
-        Top = 183
-        Width = 38
-        Height = 15
-        Caption = 'Weight'
-      end
       object edtLatitudePointA: TEdit
         Left = 7
         Top = 49
@@ -381,15 +359,6 @@ object HeatmapsMainView: THeatmapsMainView
         TabOrder = 5
         Text = '15'
       end
-      object edtWeight: TEdit
-        Left = 6
-        Top = 200
-        Width = 195
-        Height = 23
-        NumbersOnly = True
-        TabOrder = 6
-        Text = '10'
-      end
     end
   end
   object StatusBar1: TStatusBar
@@ -407,7 +376,6 @@ object HeatmapsMainView: THeatmapsMainView
       item
         Width = 250
       end>
-    ExplicitWidth = 1228
   end
   object TMSFNCGoogleMaps1: TTMSFNCGoogleMaps
     Left = 0
@@ -439,7 +407,6 @@ object HeatmapsMainView: THeatmapsMainView
     Clusters = <>
     OverlayViews = <>
     HeatMaps = <>
-    ExplicitWidth = 1228
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
