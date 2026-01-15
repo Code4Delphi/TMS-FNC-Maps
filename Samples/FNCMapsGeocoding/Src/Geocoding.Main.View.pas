@@ -152,7 +152,7 @@ end;
 procedure TGeocodingMainView.btnOnGetGeocodingEventClick(Sender: TObject);
 begin
   TMSFNCGeocoding1.GetGeocoding(edtAddress.Text, nil, 'origin');
-  //TMSFNCGeocoding1.GetGeocoding('Philadelphia', nil, 'destination');
+  TMSFNCGeocoding1.GetGeocoding('Philadelphia', nil, 'destination');
 end;
 
 procedure TGeocodingMainView.TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;

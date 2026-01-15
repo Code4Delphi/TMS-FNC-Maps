@@ -2,8 +2,8 @@ object GeocodingMainView: TGeocodingMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - Geocoding'
-  ClientHeight = 614
-  ClientWidth = 1323
+  ClientHeight = 619
+  ClientWidth = 1291
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,11 +18,12 @@ object GeocodingMainView: TGeocodingMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1323
+    Width = 1291
     Height = 263
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1323
     object Splitter1: TSplitter
       Left = 793
       Top = 0
@@ -40,6 +41,8 @@ object GeocodingMainView: TGeocodingMainView
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
+      ExplicitLeft = 171
+      ExplicitTop = -6
       DesignSize = (
         624
         263)
@@ -52,7 +55,7 @@ object GeocodingMainView: TGeocodingMainView
       end
       object btnClearAllMarkers: TButton
         Left = 6
-        Top = 139
+        Top = 131
         Width = 267
         Height = 25
         Caption = 'Clear all Markers'
@@ -95,7 +98,7 @@ object GeocodingMainView: TGeocodingMainView
       object ckZoomInCreated: TCheckBox
         AlignWithMargins = True
         Left = 281
-        Top = 86
+        Top = 84
         Width = 119
         Height = 22
         Cursor = crHandPoint
@@ -163,19 +166,21 @@ object GeocodingMainView: TGeocodingMainView
     object GroupBox2: TGroupBox
       Left = 801
       Top = 0
-      Width = 522
+      Width = 490
       Height = 263
       Align = alClient
       Caption = ' Logs '
       TabOrder = 2
+      ExplicitWidth = 522
       object Panel1: TPanel
         Left = 2
         Top = 17
-        Width = 518
+        Width = 486
         Height = 31
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitWidth = 518
         object ckGetReverseGeocodingByClickingMap: TCheckBox
           Left = 4
           Top = 4
@@ -190,17 +195,18 @@ object GeocodingMainView: TGeocodingMainView
       object mmLog: TMemo
         Left = 2
         Top = 48
-        Width = 518
+        Width = 486
         Height = 213
         Align = alClient
         TabOrder = 1
+        ExplicitWidth = 518
       end
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 595
-    Width = 1323
+    Top = 600
+    Width = 1291
     Height = 19
     Panels = <
       item
@@ -209,6 +215,8 @@ object GeocodingMainView: TGeocodingMainView
           #227'o reversa de uma coordenada utilizando um servi'#231'o de API REST'
         Width = 1000
       end>
+    ExplicitTop = 595
+    ExplicitWidth = 1323
   end
   object TMSFNCGeocoding1: TTMSFNCGeocoding
     Left = 69
@@ -223,8 +231,8 @@ object GeocodingMainView: TGeocodingMainView
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
     Top = 263
-    Width = 1323
-    Height = 332
+    Width = 1291
+    Height = 337
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -241,5 +249,6 @@ object GeocodingMainView: TGeocodingMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
+    ExplicitTop = 267
   end
 end
