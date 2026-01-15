@@ -1,7 +1,7 @@
 object PlacesMainView: TPlacesMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - Places'
+  Caption = 'TMS FNC Maps - Places (lugares)'
   ClientHeight = 625
   ClientWidth = 1218
   Color = clBtnFace
@@ -66,7 +66,6 @@ object PlacesMainView: TPlacesMainView
         ParentFont = False
         TabOrder = 1
         OnClick = btnClearAllMarkersClick
-        ExplicitLeft = 819
       end
       object btnAddMarker: TButton
         Left = 938
@@ -77,7 +76,6 @@ object PlacesMainView: TPlacesMainView
         Caption = 'Add marker'
         TabOrder = 2
         OnClick = btnAddMarkerClick
-        ExplicitLeft = 858
       end
       object edtSearch: TEdit
         Left = 7
@@ -88,7 +86,6 @@ object PlacesMainView: TPlacesMainView
         TabOrder = 0
         OnChange = edtSearchChange
         OnKeyDown = edtSearchKeyDown
-        ExplicitWidth = 845
       end
       object ListBoxSearch: TListBox
         Left = 8
@@ -105,7 +102,6 @@ object PlacesMainView: TPlacesMainView
         TabOrder = 3
         OnDblClick = ListBoxSearchDblClick
         OnKeyDown = ListBoxSearchKeyDown
-        ExplicitWidth = 844
       end
       object ckZoomInCreated: TCheckBox
         AlignWithMargins = True
@@ -120,7 +116,6 @@ object PlacesMainView: TPlacesMainView
         Checked = True
         State = cbChecked
         TabOrder = 4
-        ExplicitLeft = 699
       end
     end
     object GroupBox1: TGroupBox
@@ -132,25 +127,24 @@ object PlacesMainView: TPlacesMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 1
-      ExplicitHeight = 225
       object Label5: TLabel
-        Left = 9
+        Left = 11
         Top = 66
         Width = 70
         Height = 15
         Caption = 'Map API Key:'
       end
       object Label2: TLabel
-        Left = 9
-        Top = 22
-        Width = 37
+        Left = 11
+        Top = 20
+        Width = 38
         Height = 15
         Caption = 'Service'
       end
       object edtAPIKeyMap: TEdit
-        Left = 9
+        Left = 11
         Top = 85
-        Width = 150
+        Width = 152
         Height = 23
         PasswordChar = '*'
         TabOrder = 0
@@ -212,8 +206,6 @@ object PlacesMainView: TPlacesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
-    ExplicitTop = 225
-    ExplicitHeight = 381
   end
   object TMSFNCGeocoding1: TTMSFNCGeocoding
     Left = 360

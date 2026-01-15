@@ -129,17 +129,6 @@ begin
   Self.ConfigBasicMaps;
 end;
 
-procedure TPlacesMainView.edtSearchChange(Sender: TObject);
-begin
-  TMSFNCPlaces1.GetAutoComplete(edtSearch.Text);
-end;
-
-procedure TPlacesMainView.edtSearchKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  if Key = VK_DOWN then
-    ListBoxSearch.SetFocus;
-end;
-
 procedure TPlacesMainView.ConfigBasicMaps;
 begin
   TMSFNCMaps1.BeginUpdate;
@@ -152,6 +141,25 @@ begin
   TMSFNCGeocoding1.APIKey := edtAPIKeyMap.Text;
   TMSFNCGeocoding1.Service := TTMSFNCGeocodingService(cBoxService.ItemIndex);
   TMSFNCMaps1.EndUpdate;
+end;
+
+procedure TPlacesMainView.edtSearchChange(Sender: TObject);
+begin
+  TMSFNCPlaces1.GetAutoComplete(edtSearch.Text);
+end;
+
+procedure TPlacesMainView.TMSFNCPlaces1GetAutoComplete(Sender: TObject; const ARequest: TTMSFNCPlacesRequest;
+  const ARequestResult: TTMSFNCCloudBaseRequestResult);
+begin
+  ListBoxSearch.Items.Clear;
+  for var i := 0 to Pred(ARequest.Items.Count) do
+    ListBoxSearch.Items.Add(ARequest.Items[I].Address);
+end;
+
+procedure TPlacesMainView.edtSearchKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if Key = VK_DOWN then
+    ListBoxSearch.SetFocus;
 end;
 
 procedure TPlacesMainView.btnClearAllMarkersClick(Sender: TObject);
@@ -179,14 +187,6 @@ begin
 
       Self.ZoomInCoordinateRec(LCoordinateRec);
     end);
-end;
-
-procedure TPlacesMainView.TMSFNCPlaces1GetAutoComplete(Sender: TObject; const ARequest: TTMSFNCPlacesRequest;
-  const ARequestResult: TTMSFNCCloudBaseRequestResult);
-begin
-  ListBoxSearch.Items.Clear;
-  for var i := 0 to Pred(ARequest.Items.Count) do
-    ListBoxSearch.Items.Add(ARequest.Items[I].Address);
 end;
 
 end.
