@@ -51,10 +51,6 @@ type
     cBoxServiceMap: TComboBox;
     Label3: TLabel;
     edtAddress: TEdit;
-    GroupBox2: TGroupBox;
-    Panel1: TPanel;
-    mmLog: TMemo;
-    ckGetReverseGeocodingByClickingMap: TCheckBox;
     TMSFNCMaps1: TTMSFNCMaps;
     TMSFNCRouteCalculator1: TTMSFNCRouteCalculator;
     Shape1: TShape;
@@ -76,6 +72,14 @@ type
     ckHistoryEnabled: TCheckBox;
     ckIncludeAlternativeRoutes: TCheckBox;
     ckAvoidTolls: TCheckBox;
+    btnGetGeocoding: TButton;
+    ckActiveRouteCalculator: TCheckBox;
+    GroupBox2: TGroupBox;
+    edtCalculateRouteBetweenAddress: TButton;
+    Label8: TLabel;
+    edtStartAddress: TEdit;
+    Label9: TLabel;
+    edtEndAddress: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure cBoxLanguageChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -93,6 +97,8 @@ type
     procedure btExportClick(Sender: TObject);
     procedure btImportClick(Sender: TObject);
     procedure ckHistoryEnabledClick(Sender: TObject);
+    procedure btnGetGeocodingClick(Sender: TObject);
+    procedure edtCalculateRouteBetweenAddressClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure FillcBoxServiceMap;
@@ -180,24 +186,28 @@ begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.Service := TTMSFNCMapsService(cBoxServiceMap.ItemIndex);
   TMSFNCMaps1.APIKey := edtAPIKeyMap.Text;
-  TMSFNCMaps1.EndUpdate;
 
   TMSFNCRouteCalculator1.APIKey := edtAPIKeyRoute.Text;
   TMSFNCRouteCalculator1.Service := TTMSFNCRouteCalculatorService(cBoxServiceRoute.ItemIndex);
 
-  TMSFNCRouteCalculator1.Active := True;
+  TMSFNCRouteCalculator1.Active := ckActiveRouteCalculator.Checked;
   TMSFNCRouteCalculator1.Options.AvoidTolls := ckAvoidTolls.Checked;
   TMSFNCRouteCalculator1.Options.HistoryEnabled := ckHistoryEnabled.Checked;
   TMSFNCRouteCalculator1.Options.IncludeAlternativeRoutes := ckIncludeAlternativeRoutes.Checked;
   TMSFNCRouteCalculator1.Options.TravelMode := TTMSFNCDirectionsTravelMode(cBoxTravelMode.ItemIndex);
   TMSFNCMaps1.RouteCalculator := TMSFNCRouteCalculator1;
+
+  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TRouteCalculatorMainView.TMSFNCRouteCalculator1GetGeocoding(Sender: TObject;
   const ARequest: TTMSFNCGeocodingRequest; const ARequestResult: TTMSFNCCloudBaseRequestResult);
 begin
   if ARequestResult.Success then
-    TMSFNCMaps1.SetCenterCoordinate(ARequest.Items[0].Coordinate.ToRec);
+  begin
+    if ARequest.Items.Count > 0 then
+      TMSFNCMaps1.SetCenterCoordinate(ARequest.Items[0].Coordinate.ToRec);
+  end;
 end;
 
 procedure TRouteCalculatorMainView.TMSFNCMaps1RouteCalculatorBeforeDeleteMarker(Sender: TObject;
@@ -249,21 +259,20 @@ end;
 
 procedure TRouteCalculatorMainView.btExportClick(Sender: TObject);
 var
-  md: TTMSFNCMapsGPXMetaData;
+  LGPXMetaData: TTMSFNCMapsGPXMetaData;
 begin
-  if TMSFNCRouteCalculator1.HasRoutes then
+  if not TMSFNCRouteCalculator1.HasRoutes then
   begin
-    TMSFNCRouteCalculator1.Routes[0].RouteName := 'TMSFNCRouteCalculator';
-    SaveDialog1.FileName := TMSFNCRouteCalculator1.Routes[0].RouteName + '.gpx';
-    if SaveDialog1.Execute then
-    begin
-      md.TrackName := TMSFNCRouteCalculator1.Routes[0].RouteName;
-      TMSFNCRouteCalculator1.SaveToGPXFile(TMSFNCRouteCalculator1.Routes[0], SaveDialog1.FileName, md)
-    end;
-  end
-  else
+    ShowMessage('There are no routes to be exported.');
+    Exit;
+  end;
+
+  TMSFNCRouteCalculator1.Routes[0].RouteName := 'TMSFNCRouteCalculator';
+  SaveDialog1.FileName := TMSFNCRouteCalculator1.Routes[0].RouteName + '.gpx';
+  if SaveDialog1.Execute then
   begin
-    ShowMessage('Nothing to export');
+    LGPXMetaData.TrackName := TMSFNCRouteCalculator1.Routes[0].RouteName;
+    TMSFNCRouteCalculator1.SaveToGPXFile(TMSFNCRouteCalculator1.Routes[0], SaveDialog1.FileName, LGPXMetaData)
   end;
 end;
 
@@ -276,6 +285,25 @@ begin
     if TMSFNCRouteCalculator1.HasRoutes then
       TMSFNCMaps1.ZoomToBounds(TMSFNCRouteCalculator1.Routes[0].Polyline);
   end;
+end;
+
+procedure TRouteCalculatorMainView.btnGetGeocodingClick(Sender: TObject);
+begin
+  TMSFNCRouteCalculator1.GetGeocoding(edtAddress.Text);
+end;
+
+procedure TRouteCalculatorMainView.edtCalculateRouteBetweenAddressClick(Sender: TObject);
+begin
+  TMSFNCRouteCalculator1.CalculateRoute(edtStartAddress.Text, edtEndAddress.Text,
+    procedure(const ARoute: TTMSFNCRouteCalculatorRoute)
+    begin
+      if Length(ARoute.Polyline) = 0 then
+        Exit;
+
+      var LIndex := Length(ARoute.Polyline) div 2;
+      var LCenter := ARoute.Polyline[LIndex];
+      TMSFNCMaps1.SetCenterCoordinate(LCenter);
+    end);
 end;
 
 end.
