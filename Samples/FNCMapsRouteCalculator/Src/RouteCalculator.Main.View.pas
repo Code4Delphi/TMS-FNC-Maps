@@ -80,6 +80,8 @@ type
     edtStartAddress: TEdit;
     Label9: TLabel;
     edtEndAddress: TEdit;
+    Splitter2: TSplitter;
+    Splitter3: TSplitter;
     procedure FormCreate(Sender: TObject);
     procedure cBoxLanguageChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);

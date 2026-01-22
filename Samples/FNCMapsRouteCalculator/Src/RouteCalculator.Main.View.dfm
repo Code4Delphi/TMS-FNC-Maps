@@ -23,23 +23,43 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitTop = -6
     object Splitter1: TSplitter
-      Left = 873
+      Left = 881
       Top = 0
       Width = 8
       Height = 263
       Beveled = True
-      ExplicitLeft = 826
-      ExplicitTop = 16
+      ExplicitLeft = 873
+      ExplicitTop = -6
+    end
+    object Splitter2: TSplitter
+      Left = 1241
+      Top = 0
+      Width = 8
+      Height = 263
+      Beveled = True
+      ExplicitLeft = 1273
+      ExplicitTop = 19
+    end
+    object Splitter3: TSplitter
+      Left = 241
+      Top = 0
+      Width = 8
+      Height = 263
+      Beveled = True
+      ExplicitLeft = 235
+      ExplicitTop = 19
     end
     object GroupBox3: TGroupBox
-      Left = 241
+      Left = 249
       Top = 0
       Width = 632
       Height = 263
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
+      ExplicitLeft = 241
       DesignSize = (
         632
         263)
@@ -65,7 +85,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
         Text = 'P'#227'o de a'#231'ucar Rio de Janeiro'
-        ExplicitWidth = 504
       end
       object btClear: TButton
         Left = 8
@@ -159,7 +178,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Caption = 'GetGeocoding'
         TabOrder = 10
         OnClick = btnGetGeocodingClick
-        ExplicitLeft = 516
       end
       object ckActiveRouteCalculator: TCheckBox
         Left = 6
@@ -180,8 +198,12 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
       Height = 263
       Margins.Bottom = 2
       Align = alLeft
+      Anchors = [akLeft, akTop, akRight]
       Caption = ' Config basic '
       TabOrder = 1
+      DesignSize = (
+        241
+        263)
       object Label5: TLabel
         Left = 9
         Top = 62
@@ -229,6 +251,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Top = 79
         Width = 219
         Height = 23
+        Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 0
         Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
@@ -236,10 +259,11 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
       end
       object cBoxServiceMap: TComboBox
         Left = 9
-        Top = 35
+        Top = 36
         Width = 219
         Height = 23
         Style = csDropDownList
+        Anchors = [akLeft, akTop, akRight]
         DropDownCount = 15
         TabOrder = 1
         OnChange = cBoxServiceMapChange
@@ -249,6 +273,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Top = 186
         Width = 219
         Height = 23
+        Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 2
         Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
@@ -260,6 +285,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Width = 219
         Height = 23
         Style = csDropDownList
+        Anchors = [akLeft, akTop, akRight]
         DropDownCount = 15
         TabOrder = 3
         OnChange = cBoxServiceMapChange
@@ -270,21 +296,21 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Width = 219
         Height = 23
         Style = csDropDownList
+        Anchors = [akLeft, akTop, akRight]
         DropDownCount = 15
         TabOrder = 4
         OnChange = cBoxServiceMapChange
       end
     end
     object GroupBox2: TGroupBox
-      Left = 881
+      Left = 889
       Top = 0
       Width = 352
       Height = 263
       Align = alLeft
-      Caption = 'GroupBox2'
+      Caption = ' Route between addresses '
       TabOrder = 2
       ExplicitLeft = 879
-      ExplicitTop = -6
       DesignSize = (
         352
         263)
@@ -304,7 +330,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
       end
       object edtCalculateRouteBetweenAddress: TButton
         Left = 6
-        Top = 113
+        Top = 118
         Width = 211
         Height = 25
         Caption = 'Calculate route between addresses'
@@ -314,7 +340,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
       object edtStartAddress: TEdit
         Left = 6
         Top = 37
-        Width = 200
+        Width = 331
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
@@ -323,7 +349,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
       object edtEndAddress: TEdit
         Left = 6
         Top = 84
-        Width = 200
+        Width = 331
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 2
@@ -344,7 +370,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
           'ocoding e directions'
         Width = 1000
       end>
-    ExplicitTop = 606
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
