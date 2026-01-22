@@ -1,7 +1,7 @@
-object RouteCalculatorMainView: TRouteCalculatorMainView
+object DirectionsMainView: TDirectionsMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - RouteCalculator'
+  Caption = 'TMS FNC Maps - Directions'
   ClientHeight = 619
   ClientWidth = 1291
   Color = clBtnFace
@@ -91,7 +91,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Height = 25
         Caption = 'Clear'
         TabOrder = 1
-        OnClick = btClearClick
       end
       object btDelete: TButton
         Left = 89
@@ -100,7 +99,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Height = 25
         Caption = 'Delete'
         TabOrder = 2
-        OnClick = btDeleteClick
       end
       object btUndo: TButton
         Left = 170
@@ -109,7 +107,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Height = 25
         Caption = 'Undo'
         TabOrder = 3
-        OnClick = btUndoClick
       end
       object btRedo: TButton
         Left = 251
@@ -118,16 +115,14 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Height = 25
         Caption = 'Redo'
         TabOrder = 4
-        OnClick = btRedoClick
       end
       object btExport: TButton
         Left = 332
-        Top = 147
+        Top = 139
         Width = 75
         Height = 25
         Caption = 'Export'
         TabOrder = 5
-        OnClick = btExportClick
       end
       object btImport: TButton
         Left = 413
@@ -136,36 +131,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Height = 25
         Caption = 'Import'
         TabOrder = 6
-        OnClick = btImportClick
-      end
-      object ckHistoryEnabled: TCheckBox
-        Left = 159
-        Top = 80
-        Width = 112
-        Height = 17
-        Caption = 'History Enabled'
-        Checked = True
-        State = cbChecked
-        TabOrder = 7
-        OnClick = ckHistoryEnabledClick
-      end
-      object ckIncludeAlternativeRoutes: TCheckBox
-        Left = 277
-        Top = 80
-        Width = 165
-        Height = 17
-        Caption = 'Include Alternative Routes'
-        TabOrder = 8
-        OnClick = ckHistoryEnabledClick
-      end
-      object ckAvoidTolls: TCheckBox
-        Left = 452
-        Top = 80
-        Width = 178
-        Height = 17
-        Caption = 'Avoid Tolls (evitar ped'#225'gios)'
-        TabOrder = 9
-        OnClick = ckHistoryEnabledClick
       end
       object btnGetGeocoding: TButton
         Left = 524
@@ -174,19 +139,8 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Height = 25
         Anchors = [akTop, akRight]
         Caption = 'GetGeocoding'
-        TabOrder = 10
+        TabOrder = 7
         OnClick = btnGetGeocodingClick
-      end
-      object ckActiveRouteCalculator: TCheckBox
-        Left = 6
-        Top = 80
-        Width = 144
-        Height = 17
-        Caption = 'Active RouteCalculator'
-        Checked = True
-        State = cbChecked
-        TabOrder = 11
-        OnClick = ckHistoryEnabledClick
       end
     end
     object GroupBox1: TGroupBox
@@ -226,20 +180,20 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
       object Label1: TLabel
         Left = 9
         Top = 170
-        Width = 131
+        Width = 96
         Height = 15
-        Caption = 'Route Calculator API Key'
+        Caption = 'Directions API Key'
       end
       object Label4: TLabel
         Left = 9
         Top = 123
-        Width = 128
+        Width = 93
         Height = 15
-        Caption = 'Route Calculator Service'
+        Caption = 'Directions Service'
       end
       object Label7: TLabel
-        Left = 9
-        Top = 216
+        Left = 73
+        Top = 218
         Width = 65
         Height = 15
         Caption = 'Travel Mode'
@@ -266,7 +220,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         TabOrder = 1
         OnChange = cBoxServiceMapChange
       end
-      object edtAPIKeyRoute: TEdit
+      object edtAPIKeyDirections: TEdit
         Left = 9
         Top = 186
         Width = 219
@@ -277,7 +231,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
         OnExit = edtAPIKeyMapExit
       end
-      object cBoxServiceRoute: TComboBox
+      object cBoxServiceDirections: TComboBox
         Left = 9
         Top = 140
         Width = 219
@@ -289,8 +243,8 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         OnChange = cBoxServiceMapChange
       end
       object cBoxTravelMode: TComboBox
-        Left = 9
-        Top = 232
+        Left = 73
+        Top = 234
         Width = 219
         Height = 23
         Style = csDropDownList
@@ -391,21 +345,12 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
   end
-  object TMSFNCRouteCalculator1: TTMSFNCRouteCalculator
-    Left = 468
+  object TMSFNCDirections1: TTMSFNCDirections
+    Left = 306
     Top = 205
     Width = 26
     Height = 26
     Visible = True
-    OnGetGeocoding = TMSFNCRouteCalculator1GetGeocoding
-    Routes = <>
-  end
-  object OpenDialog1: TOpenDialog
-    Left = 680
-    Top = 203
-  end
-  object SaveDialog1: TSaveDialog
-    Left = 592
-    Top = 203
+    DirectionsRequests = <>
   end
 end
