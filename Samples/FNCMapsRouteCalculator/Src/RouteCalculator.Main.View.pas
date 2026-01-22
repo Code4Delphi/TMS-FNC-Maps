@@ -75,7 +75,7 @@ type
     btnGetGeocoding: TButton;
     ckActiveRouteCalculator: TCheckBox;
     GroupBox2: TGroupBox;
-    edtCalculateRouteBetweenAddress: TButton;
+    btnCalculateRouteBetweenAddress: TButton;
     Label8: TLabel;
     edtStartAddress: TEdit;
     Label9: TLabel;
@@ -83,7 +83,6 @@ type
     Splitter2: TSplitter;
     Splitter3: TSplitter;
     procedure FormCreate(Sender: TObject);
-    procedure cBoxLanguageChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxServiceMapChange(Sender: TObject);
     procedure TMSFNCRouteCalculator1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
@@ -100,7 +99,7 @@ type
     procedure btImportClick(Sender: TObject);
     procedure ckHistoryEnabledClick(Sender: TObject);
     procedure btnGetGeocodingClick(Sender: TObject);
-    procedure edtCalculateRouteBetweenAddressClick(Sender: TObject);
+    procedure btnCalculateRouteBetweenAddressClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure FillcBoxServiceMap;
@@ -160,12 +159,6 @@ begin
 
   for LService := Low(TTMSFNCDirectionsTravelMode) to High(TTMSFNCDirectionsTravelMode) do
     cBoxTravelMode.Items.Add(GetEnumName(TypeInfo(TTMSFNCDirectionsTravelMode), Ord(LService)));
-end;
-
-procedure TRouteCalculatorMainView.cBoxLanguageChange(Sender: TObject);
-begin
-  TMSFNCMaps1.Options.Locale := 'pt-BR';
-  TMSFNCMaps1.ReInitialize;
 end;
 
 procedure TRouteCalculatorMainView.cBoxServiceMapChange(Sender: TObject);
@@ -294,7 +287,7 @@ begin
   TMSFNCRouteCalculator1.GetGeocoding(edtAddress.Text);
 end;
 
-procedure TRouteCalculatorMainView.edtCalculateRouteBetweenAddressClick(Sender: TObject);
+procedure TRouteCalculatorMainView.btnCalculateRouteBetweenAddressClick(Sender: TObject);
 begin
   TMSFNCRouteCalculator1.CalculateRoute(edtStartAddress.Text, edtEndAddress.Text,
     procedure(const ARoute: TTMSFNCRouteCalculatorRoute)

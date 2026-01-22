@@ -57,7 +57,6 @@ type
     TMSFNCGeocoding1: TTMSFNCGeocoding;
     TMSFNCPlaces1: TTMSFNCPlaces;
     procedure FormCreate(Sender: TObject);
-    procedure cBoxLanguageChange(Sender: TObject);
     procedure btnClearAllMarkersClick(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -111,12 +110,6 @@ begin
 
   edtSearch.Text := LText;
   edtSearch.SetFocus;
-end;
-
-procedure TPlacesMainView.cBoxLanguageChange(Sender: TObject);
-begin
-  TMSFNCMaps1.Options.Locale := 'pt-BR';
-  TMSFNCMaps1.ReInitialize;
 end;
 
 procedure TPlacesMainView.cBoxServiceChange(Sender: TObject);

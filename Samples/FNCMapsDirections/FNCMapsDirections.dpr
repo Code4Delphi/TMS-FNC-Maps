@@ -2,7 +2,8 @@ program FNCMapsDirections;
 
 uses
   Vcl.Forms,
-  Directions.Main.View in 'Src\Directions.Main.View.pas' {DirectionsMainView};
+  Directions.Main.View in 'Src\Directions.Main.View.pas' {DirectionsMainView},
+  StepByStepHTML in 'Src\StepByStepHTML.pas';
 
 {$R *.res}
 

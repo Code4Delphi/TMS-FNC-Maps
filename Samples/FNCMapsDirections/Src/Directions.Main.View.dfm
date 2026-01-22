@@ -1,7 +1,7 @@
 object DirectionsMainView: TDirectionsMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - Directions'
+  Caption = 'TMS FNC Maps - Directions - Step by Step'
   ClientHeight = 619
   ClientWidth = 1291
   Color = clBtnFace
@@ -19,143 +19,55 @@ object DirectionsMainView: TDirectionsMainView
     Left = 0
     Top = 0
     Width = 1291
-    Height = 263
+    Height = 313
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
     object Splitter1: TSplitter
-      Left = 881
-      Top = 0
-      Width = 8
-      Height = 263
-      Beveled = True
-      ExplicitLeft = 873
-      ExplicitTop = -6
-    end
-    object Splitter2: TSplitter
-      Left = 1241
-      Top = 0
-      Width = 8
-      Height = 263
-      Beveled = True
-      ExplicitLeft = 1273
-      ExplicitTop = 19
-    end
-    object Splitter3: TSplitter
       Left = 241
       Top = 0
       Width = 8
-      Height = 263
+      Height = 313
       Beveled = True
-      ExplicitLeft = 235
-      ExplicitTop = 19
+      ExplicitLeft = 873
+      ExplicitTop = -6
+      ExplicitHeight = 263
     end
-    object GroupBox3: TGroupBox
-      Left = 249
+    object Splitter2: TSplitter
+      Left = 599
       Top = 0
-      Width = 632
-      Height = 263
-      Align = alLeft
-      Caption = ' Config '
-      TabOrder = 0
-      DesignSize = (
-        632
-        263)
-      object Label3: TLabel
-        Left = 6
-        Top = 21
-        Width = 42
-        Height = 15
-        Caption = 'Address'
-      end
-      object Label6: TLabel
-        Left = 8
-        Top = 128
-        Width = 40
-        Height = 15
-        Caption = 'Actions'
-      end
-      object edtAddress: TEdit
-        Left = 6
-        Top = 37
-        Width = 512
-        Height = 23
-        Anchors = [akLeft, akTop, akRight]
-        TabOrder = 0
-        Text = 'P'#227'o de a'#231'ucar Rio de Janeiro'
-      end
-      object btClear: TButton
-        Left = 8
-        Top = 147
-        Width = 75
-        Height = 25
-        Caption = 'Clear'
-        TabOrder = 1
-      end
-      object btDelete: TButton
-        Left = 89
-        Top = 147
-        Width = 75
-        Height = 25
-        Caption = 'Delete'
-        TabOrder = 2
-      end
-      object btUndo: TButton
-        Left = 170
-        Top = 147
-        Width = 75
-        Height = 25
-        Caption = 'Undo'
-        TabOrder = 3
-      end
-      object btRedo: TButton
-        Left = 251
-        Top = 147
-        Width = 75
-        Height = 25
-        Caption = 'Redo'
-        TabOrder = 4
-      end
-      object btExport: TButton
-        Left = 332
-        Top = 139
-        Width = 75
-        Height = 25
-        Caption = 'Export'
-        TabOrder = 5
-      end
-      object btImport: TButton
-        Left = 413
-        Top = 147
-        Width = 75
-        Height = 25
-        Caption = 'Import'
-        TabOrder = 6
-      end
-      object btnGetGeocoding: TButton
-        Left = 524
-        Top = 36
-        Width = 97
-        Height = 25
-        Anchors = [akTop, akRight]
-        Caption = 'GetGeocoding'
-        TabOrder = 7
-        OnClick = btnGetGeocodingClick
-      end
+      Width = 8
+      Height = 313
+      Beveled = True
+      ExplicitLeft = 1273
+      ExplicitTop = 19
+      ExplicitHeight = 263
+    end
+    object Splitter4: TSplitter
+      Left = 1107
+      Top = 0
+      Width = 8
+      Height = 313
+      Beveled = True
+      ExplicitLeft = 1153
+      ExplicitHeight = 263
     end
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
       Width = 241
-      Height = 263
+      Height = 313
       Margins.Bottom = 2
       Align = alLeft
       Anchors = [akLeft, akTop, akRight]
       Caption = ' Config basic '
-      TabOrder = 1
+      TabOrder = 0
+      ExplicitLeft = 2
+      ExplicitTop = -4
+      ExplicitHeight = 401
       DesignSize = (
         241
-        263)
+        313)
       object Label5: TLabel
         Left = 9
         Top = 62
@@ -175,6 +87,7 @@ object DirectionsMainView: TDirectionsMainView
         Top = 114
         Width = 219
         Height = 1
+        Anchors = [akLeft, akTop, akRight]
         Pen.Color = clGray
       end
       object Label1: TLabel
@@ -191,9 +104,16 @@ object DirectionsMainView: TDirectionsMainView
         Height = 15
         Caption = 'Directions Service'
       end
+      object Label3: TLabel
+        Left = 9
+        Top = 259
+        Width = 53
+        Height = 15
+        Caption = 'Language'
+      end
       object Label7: TLabel
-        Left = 73
-        Top = 218
+        Left = 9
+        Top = 216
         Width = 65
         Height = 15
         Caption = 'Travel Mode'
@@ -242,54 +162,72 @@ object DirectionsMainView: TDirectionsMainView
         TabOrder = 3
         OnChange = cBoxServiceMapChange
       end
+      object cBoxLanguage: TComboBox
+        Left = 9
+        Top = 276
+        Width = 219
+        Height = 23
+        ItemIndex = 0
+        TabOrder = 4
+        Text = 'en-US (English '#8211' United States)'
+        OnChange = cBoxLanguageChange
+        Items.Strings = (
+          'en-US (English '#8211' United States)'
+          'en-GB (English '#8211' Great Britain)'
+          'fr-FR (French '#8211' France)'
+          'nl-NL (Dutch '#8211' Netherlands)'
+          'it-IT (Italian '#8211' Italy)'
+          'pt-BR (Portuguese '#8211' Brazil)')
+      end
       object cBoxTravelMode: TComboBox
-        Left = 73
-        Top = 234
+        Left = 9
+        Top = 232
         Width = 219
         Height = 23
         Style = csDropDownList
         Anchors = [akLeft, akTop, akRight]
         DropDownCount = 15
-        TabOrder = 4
+        TabOrder = 5
         OnChange = cBoxServiceMapChange
       end
     end
     object GroupBox2: TGroupBox
-      Left = 889
+      Left = 249
       Top = 0
-      Width = 352
-      Height = 263
+      Width = 350
+      Height = 313
       Align = alLeft
       Caption = ' Route between addresses '
-      TabOrder = 2
+      TabOrder = 1
+      ExplicitHeight = 263
       DesignSize = (
-        352
-        263)
+        350
+        313)
       object Label8: TLabel
-        Left = 6
+        Left = 8
         Top = 21
         Width = 69
         Height = 15
         Caption = 'Start Address'
       end
       object Label9: TLabel
-        Left = 6
+        Left = 8
         Top = 68
         Width = 65
         Height = 15
         Caption = 'End Address'
       end
-      object edtCalculateRouteBetweenAddress: TButton
-        Left = 3
-        Top = 113
-        Width = 211
+      object btnGetDirections: TButton
+        Left = 8
+        Top = 151
+        Width = 331
         Height = 25
-        Caption = 'Calculate route between addresses'
+        Caption = 'GetDirections'
         TabOrder = 0
-        OnClick = edtCalculateRouteBetweenAddressClick
+        OnClick = btnGetDirectionsClick
       end
       object edtStartAddress: TEdit
-        Left = 6
+        Left = 8
         Top = 37
         Width = 331
         Height = 23
@@ -298,13 +236,54 @@ object DirectionsMainView: TDirectionsMainView
         Text = 'P'#227'o de a'#231'ucar Rio de Janeiro'
       end
       object edtEndAddress: TEdit
-        Left = 6
+        Left = 8
         Top = 84
         Width = 331
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 2
         Text = 'Corcovado Rio de Janeiro'
+      end
+      object ckAlternatives: TCheckBox
+        Left = 8
+        Top = 119
+        Width = 97
+        Height = 17
+        Caption = 'Alternatives'
+        TabOrder = 3
+      end
+      object Button1: TButton
+        Left = 8
+        Top = 182
+        Width = 331
+        Height = 25
+        Caption = 'Clear'
+        TabOrder = 4
+        OnClick = Button1Click
+      end
+    end
+    object GroupBox3: TGroupBox
+      Left = 607
+      Top = 0
+      Width = 500
+      Height = 313
+      Align = alLeft
+      Caption = 'Step by Step'
+      TabOrder = 2
+      object mmStepByStep: TMemo
+        Left = 2
+        Top = 17
+        Width = 496
+        Height = 294
+        Align = alClient
+        Lines.Strings = (
+          '')
+        ScrollBars = ssVertical
+        TabOrder = 0
+        ExplicitLeft = 3
+        ExplicitTop = 14
+        ExplicitWidth = 444
+        ExplicitHeight = 366
       end
     end
   end
@@ -322,35 +301,69 @@ object DirectionsMainView: TDirectionsMainView
         Width = 1000
       end>
   end
-  object TMSFNCMaps1: TTMSFNCMaps
-    Left = 0
-    Top = 263
-    Width = 1291
-    Height = 337
-    Align = alClient
-    ParentDoubleBuffered = False
-    DoubleBuffered = True
-    TabOrder = 2
-    OnRouteCalculatorBeforeDeletePolyline = TMSFNCMaps1RouteCalculatorBeforeDeletePolyline
-    OnRouteCalculatorBeforeDeleteMarker = TMSFNCMaps1RouteCalculatorBeforeDeleteMarker
-    Polylines = <>
-    Polygons = <>
-    Circles = <>
-    Rectangles = <>
-    Markers = <>
-    ElementContainers = <>
-    Labels = <>
-    HeadLinks = <>
-    Options.DefaultLatitude = 40.689247000000000000
-    Options.DefaultLongitude = -74.044501999999990000
-    Options.DefaultZoomLevel = 12.000000000000000000
-  end
   object TMSFNCDirections1: TTMSFNCDirections
-    Left = 306
-    Top = 205
+    Left = 378
+    Top = 248
     Width = 26
     Height = 26
     Visible = True
+    OnGetDirections = TMSFNCDirections1GetDirections
     DirectionsRequests = <>
+  end
+  object pnBothMaps: TPanel
+    Left = 0
+    Top = 313
+    Width = 1291
+    Height = 287
+    Align = alClient
+    TabOrder = 4
+    ExplicitLeft = 73
+    ExplicitTop = 288
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object Splitter3: TSplitter
+      Left = 864
+      Top = 1
+      Width = 8
+      Height = 285
+      Align = alRight
+      Beveled = True
+      ExplicitLeft = 869
+      ExplicitHeight = 335
+    end
+    object TMSFNCMaps1: TTMSFNCMaps
+      Left = 1
+      Top = 1
+      Width = 863
+      Height = 285
+      Align = alClient
+      ParentDoubleBuffered = False
+      DoubleBuffered = True
+      TabOrder = 0
+      Polylines = <>
+      Polygons = <>
+      Circles = <>
+      Rectangles = <>
+      Markers = <>
+      ElementContainers = <>
+      Labels = <>
+      HeadLinks = <>
+      Options.DefaultLatitude = 40.689247000000000000
+      Options.DefaultLongitude = -74.044501999999990000
+      Options.DefaultZoomLevel = 12.000000000000000000
+      ExplicitWidth = 200
+      ExplicitHeight = 335
+    end
+    object TMSFNCWebBrowser1: TTMSFNCWebBrowser
+      Left = 872
+      Top = 1
+      Width = 418
+      Height = 285
+      Align = alRight
+      ParentDoubleBuffered = False
+      DoubleBuffered = True
+      TabOrder = 1
+      ExplicitHeight = 335
+    end
   end
 end

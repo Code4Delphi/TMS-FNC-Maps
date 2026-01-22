@@ -23,7 +23,6 @@ object GeocodingMainView: TGeocodingMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1323
     object Splitter1: TSplitter
       Left = 793
       Top = 0
@@ -41,8 +40,6 @@ object GeocodingMainView: TGeocodingMainView
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
-      ExplicitLeft = 171
-      ExplicitTop = -6
       DesignSize = (
         624
         263)
@@ -171,7 +168,6 @@ object GeocodingMainView: TGeocodingMainView
       Align = alClient
       Caption = ' Logs '
       TabOrder = 2
-      ExplicitWidth = 522
       object Panel1: TPanel
         Left = 2
         Top = 17
@@ -180,7 +176,6 @@ object GeocodingMainView: TGeocodingMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 518
         object ckGetReverseGeocodingByClickingMap: TCheckBox
           Left = 4
           Top = 4
@@ -199,7 +194,6 @@ object GeocodingMainView: TGeocodingMainView
         Height = 213
         Align = alClient
         TabOrder = 1
-        ExplicitWidth = 518
       end
     end
   end
@@ -215,8 +209,6 @@ object GeocodingMainView: TGeocodingMainView
           #227'o reversa de uma coordenada utilizando um servi'#231'o de API REST'
         Width = 1000
       end>
-    ExplicitTop = 595
-    ExplicitWidth = 1323
   end
   object TMSFNCGeocoding1: TTMSFNCGeocoding
     Left = 69
@@ -249,6 +241,5 @@ object GeocodingMainView: TGeocodingMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
-    ExplicitTop = 267
   end
 end

@@ -346,8 +346,6 @@ object LabelsMainView: TLabelsMainView
       Align = alLeft
       Caption = 'Labels'
       TabOrder = 3
-      ExplicitLeft = 617
-      ExplicitTop = -6
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -459,7 +457,6 @@ object LabelsMainView: TLabelsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitTop = 260
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -476,7 +473,6 @@ object LabelsMainView: TLabelsMainView
       item
         Width = 250
       end>
-    ExplicitTop = 604
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {

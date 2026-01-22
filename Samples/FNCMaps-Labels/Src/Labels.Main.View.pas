@@ -84,7 +84,6 @@ type
     procedure cBoxServiceChange(Sender: TObject);
     procedure btnAddSimpleLabelClick(Sender: TObject);
     procedure btnAddLabelBackgroundColorClick(Sender: TObject);
-    procedure cBoxLanguageChange(Sender: TObject);
     procedure TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure btnClearAllLabelsClick(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -113,12 +112,6 @@ begin
   FormatSettings.DecimalSeparator := '.';
   cBoxService.ItemIndex := 6;
   cBoxServiceChange(cBoxService);
-end;
-
-procedure TLabelsMainView.cBoxLanguageChange(Sender: TObject);
-begin
-  TMSFNCMaps1.Options.Locale := 'pt-BR';
-  TMSFNCMaps1.ReInitialize;
 end;
 
 procedure TLabelsMainView.TMSFNCMaps1MapMouseMove(Sender: TObject; AEventData: TTMSFNCMapsEventData);

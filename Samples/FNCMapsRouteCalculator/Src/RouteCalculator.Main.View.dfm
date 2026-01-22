@@ -325,14 +325,14 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Height = 15
         Caption = 'End Address'
       end
-      object edtCalculateRouteBetweenAddress: TButton
+      object btnCalculateRouteBetweenAddress: TButton
         Left = 3
         Top = 113
         Width = 211
         Height = 25
         Caption = 'Calculate route between addresses'
         TabOrder = 0
-        OnClick = edtCalculateRouteBetweenAddressClick
+        OnClick = btnCalculateRouteBetweenAddressClick
       end
       object edtStartAddress: TEdit
         Left = 6
