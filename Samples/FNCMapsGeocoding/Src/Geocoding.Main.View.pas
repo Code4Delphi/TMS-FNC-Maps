@@ -60,7 +60,6 @@ type
     ckZoomInCreated: TCheckBox;
     TMSFNCMaps1: TTMSFNCMaps;
     procedure FormCreate(Sender: TObject);
-    procedure cBoxLanguageChange(Sender: TObject);
     procedure btnClearAllMarkersClick(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
@@ -88,12 +87,6 @@ begin
   FormatSettings.DecimalSeparator := '.';
   cBoxService.ItemIndex := Integer(TTMSFNCMapsService.msGoogleMaps);
   Self.ConfigBasicMaps;
-end;
-
-procedure TGeocodingMainView.cBoxLanguageChange(Sender: TObject);
-begin
-  TMSFNCMaps1.Options.Locale := 'pt-BR';
-  TMSFNCMaps1.ReInitialize;
 end;
 
 procedure TGeocodingMainView.cBoxServiceChange(Sender: TObject);

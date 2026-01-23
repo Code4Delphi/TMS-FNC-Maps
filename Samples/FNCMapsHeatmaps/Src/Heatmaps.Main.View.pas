@@ -78,7 +78,6 @@ type
     edtNumberMarkings: TEdit;
     ckZoomInCreated: TCheckBox;
     procedure FormCreate(Sender: TObject);
-    procedure cBoxLanguageChange(Sender: TObject);
     procedure btnClearAllClick(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure btnAddPointClick(Sender: TObject);
@@ -103,12 +102,6 @@ procedure THeatmapsMainView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
   Self.ConfigBasicMaps;
-end;
-
-procedure THeatmapsMainView.cBoxLanguageChange(Sender: TObject);
-begin
-  TMSFNCGoogleMaps1.Options.Locale := 'pt-BR';
-  TMSFNCGoogleMaps1.ReInitialize;
 end;
 
 procedure THeatmapsMainView.edtAPIKeyMapExit(Sender: TObject);

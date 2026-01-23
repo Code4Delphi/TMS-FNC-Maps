@@ -137,7 +137,7 @@ object PlacesMainView: TPlacesMainView
       object Label2: TLabel
         Left = 11
         Top = 20
-        Width = 38
+        Width = 37
         Height = 15
         Caption = 'Service'
       end

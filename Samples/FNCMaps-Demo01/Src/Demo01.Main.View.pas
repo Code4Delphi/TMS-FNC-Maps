@@ -131,7 +131,7 @@ end;
 
 procedure TDemo01MainView.cBoxLanguageChange(Sender: TObject);
 begin
-  TMSFNCMaps1.Options.Locale := 'pt-BR';
+  TMSFNCMaps1.Options.Locale := copy(cBoxLanguage.Text, 1, 5);
   TMSFNCMaps1.ReInitialize;
 end;
 
