@@ -1,5 +1,9 @@
-# TMSFNCGeocoding
+# TMSFNCDirections
 
-TTMSFNCGeocoding é um componente usado para realizar a geocodificação de um endereço ou a geocodificação reversa de uma coordenada utilizando um serviço de API REST.
+ptBR: TTMSFNCDirections é componente para recuperar direções, informações de rota e instruções passo a passo para coordenadas de origem e destino
 
-[Documentação oficial / Official documentation](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncgeocoding)
+en: TTMSFNCDirections is a component for retrieving directions, route information, and turn-by-turn instructions for origin and destination coordinates.
+
+<br/>
+
+[Documentação oficial / Official documentation](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncdirections)
