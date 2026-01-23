@@ -62,9 +62,6 @@ object DirectionsMainView: TDirectionsMainView
       Anchors = [akLeft, akTop, akRight]
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitLeft = 2
-      ExplicitTop = -4
-      ExplicitHeight = 401
       DesignSize = (
         241
         313)
@@ -107,7 +104,7 @@ object DirectionsMainView: TDirectionsMainView
       object Label3: TLabel
         Left = 9
         Top = 259
-        Width = 53
+        Width = 52
         Height = 15
         Caption = 'Language'
       end
@@ -199,7 +196,6 @@ object DirectionsMainView: TDirectionsMainView
       Align = alLeft
       Caption = ' Route between addresses '
       TabOrder = 1
-      ExplicitHeight = 263
       DesignSize = (
         350
         313)
@@ -280,10 +276,6 @@ object DirectionsMainView: TDirectionsMainView
           '')
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 14
-        ExplicitWidth = 444
-        ExplicitHeight = 366
       end
     end
   end
@@ -295,11 +287,12 @@ object DirectionsMainView: TDirectionsMainView
     Panels = <
       item
         Text = 
-          'TTMSFNCRouteCalculator '#233' um componente para construir e editar r' +
-          'otas personalizadas utilizando um servi'#231'o existente de API de ge' +
-          'ocoding e directions'
+          'TTMSFNCDirections '#233' componente para recuperar dire'#231#245'es, informa'#231 +
+          #245'es de rota e instru'#231#245'es passo a passo para coordenadas de orige' +
+          'm e destino'
         Width = 1000
       end>
+    ExplicitTop = 605
   end
   object TMSFNCDirections1: TTMSFNCDirections
     Left = 378
@@ -317,10 +310,6 @@ object DirectionsMainView: TDirectionsMainView
     Height = 287
     Align = alClient
     TabOrder = 4
-    ExplicitLeft = 73
-    ExplicitTop = 288
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object Splitter3: TSplitter
       Left = 864
       Top = 1
@@ -351,8 +340,6 @@ object DirectionsMainView: TDirectionsMainView
       Options.DefaultLatitude = 40.689247000000000000
       Options.DefaultLongitude = -74.044501999999990000
       Options.DefaultZoomLevel = 12.000000000000000000
-      ExplicitWidth = 200
-      ExplicitHeight = 335
     end
     object TMSFNCWebBrowser1: TTMSFNCWebBrowser
       Left = 872
@@ -363,7 +350,6 @@ object DirectionsMainView: TDirectionsMainView
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 1
-      ExplicitHeight = 335
     end
   end
 end

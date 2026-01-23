@@ -4,6 +4,7 @@ interface
 
 uses
   System.SysUtils,
+  System.Classes,
   Math,
   VCL.TMSFNCWebBrowser,
   VCL.TMSFNCDirections,
