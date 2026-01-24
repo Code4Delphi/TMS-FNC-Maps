@@ -93,7 +93,7 @@ object HeatmapsMainView: THeatmapsMainView
         Height = 23
         PasswordChar = '*'
         TabOrder = 0
-        Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
+        Text = ''
         OnExit = edtAPIKeyMapExit
       end
     end
