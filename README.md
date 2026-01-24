@@ -21,6 +21,7 @@ O TMS FNC Maps é um conjunto de componentes para Delphi e C++Builder voltado a 
 - [Mapas com Delphi 10 - Geocoding - Geocodificação de um endereço](https://www.youtube.com/watch?v=V_k4rpx4K0I&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 11 - Preenchimento automático de endereços (TTMSFNCPlaces)](https://www.youtube.com/watch?v=2jkn37kGaVA&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 12 - Rotas personalizadas (TTMSFNCRouteCalculator)](https://www.youtube.com/watch?v=mydxUIO6ZpU&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
+- [Mapas com Delphi 13 - Direções e passo a passo para chegar a um local (TMSFNCDirections)](https://www.youtube.com/watch?v=H0vcpO9NQ1E&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 
 <br>
 
