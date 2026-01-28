@@ -308,7 +308,7 @@ object DirectionsMainView: TDirectionsMainView
     Align = alClient
     TabOrder = 4
     object Splitter3: TSplitter
-      Left = 864
+      Left = 862
       Top = 1
       Width = 8
       Height = 285
@@ -320,7 +320,7 @@ object DirectionsMainView: TDirectionsMainView
     object TMSFNCMaps1: TTMSFNCMaps
       Left = 1
       Top = 1
-      Width = 863
+      Width = 861
       Height = 285
       Align = alClient
       ParentDoubleBuffered = False
@@ -337,16 +337,18 @@ object DirectionsMainView: TDirectionsMainView
       Options.DefaultLatitude = 40.689247000000000000
       Options.DefaultLongitude = -74.044501999999990000
       Options.DefaultZoomLevel = 12.000000000000000000
+      ExplicitWidth = 863
     end
     object TMSFNCWebBrowser1: TTMSFNCWebBrowser
-      Left = 872
+      Left = 870
       Top = 1
-      Width = 418
+      Width = 420
       Height = 285
       Align = alRight
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 1
+      ExplicitLeft = 872
     end
   end
 end
