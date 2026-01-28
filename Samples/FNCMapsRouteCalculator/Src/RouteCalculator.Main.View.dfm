@@ -221,6 +221,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Top = 114
         Width = 219
         Height = 1
+        Anchors = [akLeft, akTop, akRight]
         Pen.Color = clGray
       end
       object Label1: TLabel
