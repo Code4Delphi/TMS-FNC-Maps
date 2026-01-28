@@ -1,9 +1,14 @@
-# TTMSFNCRouteCalculator
+# FNCMapsLocation
 
-ptBR: TTMSFNCRouteCalculator é um componente para construir e editar rotas personalizadas utilizando um serviço existente de API de geocoding e directions
+ptBR: FNCMapsLocation é um componente para recuperar a localização geográfica atual usando um serviço REST API existente
 
-en: TTMSFNCRouteCalculator is a component for building and editing custom routes using an existing geocoding and directions API service.
+en: FNCMapsLocation is a component for retrieving the current geographic location using an existing REST API service.
 
 <br/>
 
-[Documentação oficial / Official documentation](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncroutecalculator)
+- Generate Google API Key: [Here](https://www.tmssoftware.com/site/cloudkey.asp#ipstack)
+- Generate IPStack API Key (free version available): [Here](https://www.tmssoftware.com/site/cloudkey.asp#Google)
+
+<br/>
+
+[Documentação oficial / Official documentation](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfnclocation)
