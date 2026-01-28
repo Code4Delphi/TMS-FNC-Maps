@@ -122,9 +122,6 @@ begin
   Self.FillcBoxServiceMap;
   cBoxServiceMap.ItemIndex := Integer(TTMSFNCMapsService.msOpenLayers);
 
-//  Self.FillcBoxServiceTollCost;
-//  cBoxServiceTollCost.ItemIndex := Integer(TTMSFNCDirectionsService.dsGoogle);
-
   Self.ConfigBasicMaps;
 end;
 
@@ -151,7 +148,6 @@ begin
     TMSFNCTollCost1.Token := edPTVToken.Text;
     TMSFNCTollCost1.ServiceEndpoint := edEndPoint.Text;
   end;
-
 
   TMSFNCWebBrowser1.LoadHTML('');
   lbDistance.Caption := '';

@@ -446,7 +446,6 @@ object TollCostMainView: TTollCostMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 0
-        Text = 'q9okqRHlnUzfF0hQqxdvB1YSh3jdloNq8oddIPHOQNY'
         OnExit = edtAPIKeyTollCostExit
       end
       object cBoxServiceTollCost: TComboBox
