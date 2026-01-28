@@ -104,7 +104,7 @@ type
     procedure ConfigBasicMaps;
     procedure FillcBoxServiceMap;
   public
-    oc, dc: TTMSFNCMapsCoordinateRec;
+    
   end;
 
 var
@@ -217,84 +217,91 @@ begin
     ShowMessage('Please fill in the Origin and Destination fields first.');
 end;
 
-procedure TTollCostMainView.TMSFNCGeocoding1GetGeocoding(Sender: TObject;
-  const ARequest: TTMSFNCGeocodingRequest;
+procedure TTollCostMainView.TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
   const ARequestResult: TTMSFNCCloudBaseRequestResult);
 var
-  tm: TTMSFNCTollCostTravelMode;
-  wps: TTMSFNCMapsCoordinateRecArray;
-  tc: TTMSFNCTollCostCurrency;
-  reqcount: integer;
-  et: TTMSFNCTollCostEmissionType;
-  co2: TTMSFNCTollCostCO2Class;
-begin
-  reqcount := 2;
+  LTravelMode: TTMSFNCTollCostTravelMode;
+  LCoordinateRecArray: TTMSFNCMapsCoordinateRecArray;
+  LCurrency: TTMSFNCTollCostCurrency;
+  LEmissionType: TTMSFNCTollCostEmissionType;
+  LCO2Class: TTMSFNCTollCostCO2Class;
 
+  LCoordinateRecOrigin: TTMSFNCMapsCoordinateRec;
+  LCoordinateRecDestination: TTMSFNCMapsCoordinateRec;
+begin
   if ARequest.ErrorMessage <> '' then
   begin
     ShowMessage(ARequest.ErrorMessage);
-  end
-  else
+    Exit;
+  end;
+
+  if TMSFNCGeocoding1.GeocodingRequests.Count = 2 then
   begin
-    if TMSFNCGeocoding1.GeocodingRequests.Count = reqcount then
+    if TMSFNCGeocoding1.GeocodingRequests[0].Items.Count = 0 then
     begin
-      if (TMSFNCGeocoding1.GeocodingRequests[0].Items.Count = 0) or (TMSFNCGeocoding1.GeocodingRequests[0].Items.Count = 0) then
-      begin
-        ShowMessage('Unknown location');
-      end
-      else
-      begin
-        oc := TMSFNCGeocoding1.GeocodingRequests[0].Items[0].Coordinate.ToRec;
-        dc := TMSFNCGeocoding1.GeocodingRequests[1].Items[0].Coordinate.ToRec;
-
-        TMSFNCTollCost1.TollCostRequests.Clear;
-
-        TMSFNCMaps1.Clear;
-        TMSFNCMaps1.AddMarker(oc);
-        TMSFNCMaps1.AddMarker(dc);
-
-        case cBoxCurrency.ItemIndex of
-           0: tc := tcEUR;
-           1: tc := tcUSD;
-           2: tc := tcGBP;
-           3: tc := tcBRL;
-           4: tc := tcCAD;
-        end;
-
-        tm := ttCar;
-        if cBoxTravelMode.ItemIndex = 1 then
-        begin
-          tm := ttCustom;
-          TMSFNCTollCost1.Options.TravelInfo.VehicleAxles := 3;
-          TMSFNCTollCost1.Options.TravelInfo.VehicleWeight := 7501;
-          TMSFNCTollCost1.Options.TravelInfo.VehicleHeight := 299;
-        end;
-
-        case cBoxEmission.ItemIndex of
-          0: et := etUnknown;
-          1: et := etEuroEev;
-          2: et := etEuro6;
-          3: et := etEuro5;
-          4: et := etEuro4;
-          5: et := etEuro3;
-          6: et := etEuro2;
-          7: et := etEuro1;
-        end;
-        TMSFNCTollCost1.Options.TravelInfo.VehicleEmissionType := et;
-
-        case cBoxCO2.ItemIndex of
-          0: co2 := co2Unknown;
-          1: co2 := co2Class1;
-          2: co2 := co2Class2;
-          3: co2 := co2Class3;
-          4: co2 := co2Class4;
-          5: co2 := co2Class5;
-        end;
-        TMSFNCTollCost1.Options.TravelInfo.VehicleCO2Class := co2;
-
-        TMSFNCTollCost1.GetTollCost(oc, dc, nil, '', nil, tm, wps, tc, 'en');
-      end;
+      ShowMessage('Unknown location origin');
+      Exit;
     end;
+
+    if TMSFNCGeocoding1.GeocodingRequests[1].Items.Count = 0 then
+    begin
+      ShowMessage('Unknown location Destination');
+      Exit;
+    end;
+
+    LCoordinateRecOrigin := TMSFNCGeocoding1.GeocodingRequests[0].Items[0].Coordinate.ToRec;
+    LCoordinateRecDestination := TMSFNCGeocoding1.GeocodingRequests[1].Items[0].Coordinate.ToRec;
+
+    TMSFNCTollCost1.TollCostRequests.Clear;
+
+    TMSFNCMaps1.Clear;
+    TMSFNCMaps1.AddMarker(LCoordinateRecOrigin);
+    TMSFNCMaps1.AddMarker(LCoordinateRecDestination);
+
+    LCurrency := tcEUR;
+    case cBoxCurrency.ItemIndex of
+      1: LCurrency := tcUSD;
+      2: LCurrency := tcGBP;
+      3: LCurrency := tcBRL;
+      4: LCurrency := tcCAD;
+    end;
+
+    LTravelMode := ttCar;
+    if cBoxTravelMode.ItemIndex = 1 then
+    begin
+      LTravelMode := ttCustom;
+      TMSFNCTollCost1.Options.TravelInfo.VehicleAxles := 3;
+      TMSFNCTollCost1.Options.TravelInfo.VehicleWeight := 7501;
+      TMSFNCTollCost1.Options.TravelInfo.VehicleHeight := 299;
+    end;
+
+    LEmissionType := etUnknown;
+    case cBoxEmission.ItemIndex of
+      1: LEmissionType := etEuroEev;
+      2: LEmissionType := etEuro6;
+      3: LEmissionType := etEuro5;
+      4: LEmissionType := etEuro4;
+      5: LEmissionType := etEuro3;
+      6: LEmissionType := etEuro2;
+      7: LEmissionType := etEuro1;
+    end;
+    TMSFNCTollCost1.Options.TravelInfo.VehicleEmissionType := LEmissionType;
+
+    LCO2Class := co2Unknown;
+    case cBoxCO2.ItemIndex of
+      1: LCO2Class := co2Class1;
+      2: LCO2Class := co2Class2;
+      3: LCO2Class := co2Class3;
+      4: LCO2Class := co2Class4;
+      5: LCO2Class := co2Class5;
+    end;
+    TMSFNCTollCost1.Options.TravelInfo.VehicleCO2Class := LCO2Class;
+
+    var LId := '';
+    var LLocale := copy(cBoxLanguage.Text, 1, 5);
+
+    TMSFNCTollCost1.GetTollCost(LCoordinateRecOrigin, LCoordinateRecDestination, nil, LId, nil, LTravelMode,
+      LCoordinateRecArray, LCurrency, LLocale);
   end;
 end;
 

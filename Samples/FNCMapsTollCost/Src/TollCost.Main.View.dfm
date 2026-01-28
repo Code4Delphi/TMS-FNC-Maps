@@ -111,7 +111,7 @@ object TollCostMainView: TTollCostMainView
     ExplicitLeft = 1
     ExplicitTop = 2
     object Splitter1: TSplitter
-      Left = 654
+      Left = 694
       Top = 0
       Width = 8
       Height = 305
@@ -120,7 +120,7 @@ object TollCostMainView: TTollCostMainView
       ExplicitTop = 19
     end
     object Splitter2: TSplitter
-      Left = 961
+      Left = 969
       Top = 0
       Width = 8
       Height = 305
@@ -129,7 +129,7 @@ object TollCostMainView: TTollCostMainView
       ExplicitTop = 18
     end
     object Splitter4: TSplitter
-      Left = 177
+      Left = 217
       Top = 0
       Width = 11
       Height = 305
@@ -140,17 +140,15 @@ object TollCostMainView: TTollCostMainView
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
-      Width = 177
+      Width = 217
       Height = 305
       Margins.Bottom = 2
       Align = alLeft
       Anchors = [akLeft, akTop, akRight]
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitLeft = 5
-      ExplicitTop = 3
       DesignSize = (
-        177
+        217
         305)
       object Label17: TLabel
         Left = 9
@@ -176,30 +174,30 @@ object TollCostMainView: TTollCostMainView
       object edtAPIKeyMap: TEdit
         Left = 9
         Top = 79
-        Width = 161
+        Width = 201
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
-        TabOrder = 0
+        TabOrder = 1
         OnExit = edtAPIKeyMapExit
         ExplicitWidth = 315
       end
       object cBoxServiceMap: TComboBox
         Left = 9
         Top = 36
-        Width = 161
+        Width = 201
         Height = 21
         Style = csDropDownList
         Anchors = [akLeft, akTop, akRight]
         DropDownCount = 15
-        TabOrder = 1
+        TabOrder = 0
         OnChange = cBoxServiceMapChange
         ExplicitWidth = 315
       end
       object cBoxLanguage: TComboBox
         Left = 9
         Top = 128
-        Width = 161
+        Width = 201
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         ItemIndex = 0
@@ -217,15 +215,15 @@ object TollCostMainView: TTollCostMainView
       end
     end
     object GroupBox2: TGroupBox
-      Left = 662
+      Left = 702
       Top = 0
-      Width = 299
+      Width = 267
       Height = 305
       Align = alLeft
       Caption = ' TollCost '
-      TabOrder = 1
+      TabOrder = 2
       DesignSize = (
-        299
+        267
         305)
       object Label2: TLabel
         Left = 13
@@ -272,7 +270,7 @@ object TollCostMainView: TTollCostMainView
       object edtOrigin: TEdit
         Left = 82
         Top = 21
-        Width = 206
+        Width = 174
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
@@ -282,7 +280,7 @@ object TollCostMainView: TTollCostMainView
       object edtDestination: TEdit
         Left = 82
         Top = 48
-        Width = 206
+        Width = 174
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
@@ -292,7 +290,7 @@ object TollCostMainView: TTollCostMainView
       object cBoxTravelMode: TComboBox
         Left = 82
         Top = 102
-        Width = 206
+        Width = 174
         Height = 21
         Style = csDropDownList
         Anchors = [akLeft, akTop, akRight]
@@ -307,7 +305,7 @@ object TollCostMainView: TTollCostMainView
       object cboxCurrency: TComboBox
         Left = 82
         Top = 75
-        Width = 206
+        Width = 174
         Height = 21
         Style = csDropDownList
         Anchors = [akLeft, akTop, akRight]
@@ -325,7 +323,7 @@ object TollCostMainView: TTollCostMainView
       object btnShowTollCost: TButton
         Left = 82
         Top = 193
-        Width = 206
+        Width = 174
         Height = 25
         Anchors = [akLeft, akTop, akRight]
         Caption = 'Show Toll Cost'
@@ -336,7 +334,7 @@ object TollCostMainView: TTollCostMainView
       object btnClearTollCost: TButton
         Left = 82
         Top = 224
-        Width = 206
+        Width = 174
         Height = 25
         Anchors = [akLeft, akTop, akRight]
         Caption = 'Clear Toll Cost'
@@ -347,7 +345,7 @@ object TollCostMainView: TTollCostMainView
       object cBoxEmission: TComboBox
         Left = 82
         Top = 129
-        Width = 206
+        Width = 174
         Height = 21
         Style = csDropDownList
         Anchors = [akLeft, akTop, akRight]
@@ -368,7 +366,7 @@ object TollCostMainView: TTollCostMainView
       object cBoxCO2: TComboBox
         Left = 82
         Top = 156
-        Width = 206
+        Width = 174
         Height = 21
         Style = csDropDownList
         Anchors = [akLeft, akTop, akRight]
@@ -386,13 +384,13 @@ object TollCostMainView: TTollCostMainView
       end
     end
     object GroupBox3: TGroupBox
-      Left = 188
+      Left = 228
       Top = 0
       Width = 466
       Height = 305
       Align = alLeft
-      Caption = ' TollCost '
-      TabOrder = 2
+      Caption = ' Config TollCost '
+      TabOrder = 1
       ExplicitLeft = 190
       ExplicitTop = 2
       DesignSize = (
@@ -466,6 +464,7 @@ object TollCostMainView: TTollCostMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 0
+        Text = 'q9okqRHlnUzfF0hQqxdvB1YSh3jdloNq8oddIPHOQNY'
         OnExit = edtAPIKeyTollCostExit
         ExplicitWidth = 427
       end
@@ -518,7 +517,7 @@ object TollCostMainView: TTollCostMainView
       end
     end
     object gBoxRouteDetails: TGroupBox
-      Left = 969
+      Left = 977
       Top = 0
       Width = 321
       Height = 305
