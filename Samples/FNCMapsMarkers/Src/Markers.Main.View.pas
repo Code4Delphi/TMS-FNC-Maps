@@ -266,12 +266,16 @@ var
   LMarker: TTMSFNCMapsMarker;
 begin
   TMSFNCMaps1.BeginUpdate;
-
   LMarker := TMSFNCMaps1.AddMarker(StrToFloatDef(edtCustomizedLatitude.Text, 0), StrToFloatDef(edtCustomizedLongitude.Text, 0));
   LMarker.Title := edtCustomizedTitle.Text;
   LMarker.DefaultIcon.Enabled := True;
   LMarker.DefaultIcon.Fill := TTMSFNCGraphicsColor(StringToColor(cBoxCustomizedColor.Text));
   LMarker.DefaultIcon.Size := StrToIntDef(edtCustomizedSize.Text, 14);
+
+  if TMSFNCMaps1.Markers.Count > 1 then
+    TMSFNCMaps1.ZoomToBounds(TMSFNCMaps1.Markers.ToCoordinateArray)
+  else if TMSFNCMaps1.Markers.Count > 0 then
+    TMSFNCMaps1.SetCenterCoordinate(TMSFNCMaps1.Markers[0].Coordinate.ToRec);
 
   TMSFNCMaps1.EndUpdate;
 

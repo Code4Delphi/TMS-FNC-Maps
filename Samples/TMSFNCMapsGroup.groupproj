@@ -45,6 +45,9 @@
         <Projects Include="FNCMapsLocation\FNCMapsLocation.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMapsElevation\FNCMapsElevation.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -179,14 +182,23 @@
     <Target Name="FNCMapsLocation:Make">
         <MSBuild Projects="FNCMapsLocation\FNCMapsLocation.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsElevation">
+        <MSBuild Projects="FNCMapsElevation\FNCMapsElevation.dproj"/>
+    </Target>
+    <Target Name="FNCMapsElevation:Clean">
+        <MSBuild Projects="FNCMapsElevation\FNCMapsElevation.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsElevation:Make">
+        <MSBuild Projects="FNCMapsElevation\FNCMapsElevation.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels;FNCMapsHeatmaps;FNCMapsGeocoding;FNCMapsPlaces;FNCMapsRouteCalculator;FNCMapsDirections;FNCMapsLocation"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels;FNCMapsHeatmaps;FNCMapsGeocoding;FNCMapsPlaces;FNCMapsRouteCalculator;FNCMapsDirections;FNCMapsLocation;FNCMapsElevation"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean;FNCMapsHeatmaps:Clean;FNCMapsGeocoding:Clean;FNCMapsPlaces:Clean;FNCMapsRouteCalculator:Clean;FNCMapsDirections:Clean;FNCMapsLocation:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean;FNCMapsHeatmaps:Clean;FNCMapsGeocoding:Clean;FNCMapsPlaces:Clean;FNCMapsRouteCalculator:Clean;FNCMapsDirections:Clean;FNCMapsLocation:Clean;FNCMapsElevation:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make;FNCMapsHeatmaps:Make;FNCMapsGeocoding:Make;FNCMapsPlaces:Make;FNCMapsRouteCalculator:Make;FNCMapsDirections:Make;FNCMapsLocation:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make;FNCMapsHeatmaps:Make;FNCMapsGeocoding:Make;FNCMapsPlaces:Make;FNCMapsRouteCalculator:Make;FNCMapsDirections:Make;FNCMapsLocation:Make;FNCMapsElevation:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
