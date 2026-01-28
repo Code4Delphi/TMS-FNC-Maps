@@ -495,19 +495,23 @@ object TollCostMainView: TTollCostMainView
     object gBoxRouteDetails: TGroupBox
       Left = 977
       Top = 0
-      Width = 321
+      Width = 314
       Height = 305
-      Align = alLeft
+      Align = alClient
       Caption = ' Route Details '
       TabOrder = 3
+      ExplicitLeft = 975
+      ExplicitTop = 2
+      ExplicitWidth = 308
       object Panel2: TPanel
         Left = 2
         Top = 15
-        Width = 317
+        Width = 310
         Height = 54
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitWidth = 317
         object lbDistance: TLabel
           Left = 96
           Top = 1
@@ -540,11 +544,12 @@ object TollCostMainView: TTollCostMainView
       object ListBoxTollCost: TListBox
         Left = 2
         Top = 69
-        Width = 317
+        Width = 310
         Height = 234
         Align = alClient
         ItemHeight = 13
         TabOrder = 1
+        ExplicitWidth = 317
       end
     end
   end
