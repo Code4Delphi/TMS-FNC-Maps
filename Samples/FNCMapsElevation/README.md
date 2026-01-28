@@ -1,9 +1,9 @@
-# TTMSFNCRouteCalculator
+# TTMSFNCElevation
 
-ptBR: TTMSFNCRouteCalculator é um componente para construir e editar rotas personalizadas utilizando um serviço existente de API de geocoding e directions
+ptBR: TTMSFNCElevation é um componente para recuperar a elevação para uma localização geográfica especificada usando um serviço REST API existente
 
-en: TTMSFNCRouteCalculator is a component for building and editing custom routes using an existing geocoding and directions API service.
+en: TTMSFNCElevation is a component for retrieving the elevation for a specified geographic location using an existing REST API service.
 
 <br/>
 
-[Documentação oficial / Official documentation](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncroutecalculator)
+[Documentação oficial / Official documentation](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncelevation)
