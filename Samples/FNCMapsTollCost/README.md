@@ -6,7 +6,7 @@ en: TTMSFNCTollCost is a component for retrieving route toll cost information fo
 
 <br/>
 
-[Documentation for creating an API key for Here Maps / Documentation for creating an API key for Here Maps](https://www.tmssoftware.com/site/cloudkey.asp#Here)
+[Documentação para criar uma chave de API para o Here Maps / Documentation for creating an API key for Here Maps](https://www.tmssoftware.com/site/cloudkey.asp#Here)
 
 <br/>
 
