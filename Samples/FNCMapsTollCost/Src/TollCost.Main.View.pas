@@ -26,7 +26,7 @@ uses
   VCL.TMSFNCTollCost,
   VCL.TMSFNCCustomComponent,
   VCL.TMSFNCCloudBase,
-  VCL.TMSFNCGeocoding, StepByStepHTML;
+  VCL.TMSFNCGeocoding, StepByStepHTML, Vcl.ComCtrls;
 
 type
   TTollCostMainView = class(TForm)
@@ -86,6 +86,7 @@ type
     Splitter5: TSplitter;
     TMSFNCWebBrowser1: TTMSFNCWebBrowser;
     TMSFNCMaps1: TTMSFNCMaps;
+    StatusBar1: TStatusBar;
     procedure FormCreate(Sender: TObject);
     procedure btnShowTollCostClick(Sender: TObject);
     procedure btnClearTollCostClick(Sender: TObject);
@@ -270,11 +271,12 @@ begin
     if cBoxTravelMode.ItemIndex = 1 then
     begin
       LTravelMode := ttCustom;
-      TMSFNCTollCost1.Options.TravelInfo.VehicleAxles := 3;
-      TMSFNCTollCost1.Options.TravelInfo.VehicleWeight := 7501;
-      TMSFNCTollCost1.Options.TravelInfo.VehicleHeight := 299;
+      TMSFNCTollCost1.Options.TravelInfo.VehicleAxles := 3; //Eixos
+      TMSFNCTollCost1.Options.TravelInfo.VehicleWeight := 7501; //Peso
+      TMSFNCTollCost1.Options.TravelInfo.VehicleHeight := 299; //Altura
     end;
 
+    //Tipo de emissao
     LEmissionType := etUnknown;
     case cBoxEmission.ItemIndex of
       1: LEmissionType := etEuroEev;
@@ -287,6 +289,7 @@ begin
     end;
     TMSFNCTollCost1.Options.TravelInfo.VehicleEmissionType := LEmissionType;
 
+    //Classe de CO2 do veiculo
     LCO2Class := co2Unknown;
     case cBoxCO2.ItemIndex of
       1: LCO2Class := co2Class1;

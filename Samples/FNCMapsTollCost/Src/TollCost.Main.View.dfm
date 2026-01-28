@@ -2,7 +2,7 @@ object TollCostMainView: TTollCostMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps TTMSFNCTollCost Demo'
-  ClientHeight = 724
+  ClientHeight = 685
   ClientWidth = 1291
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -28,58 +28,54 @@ object TollCostMainView: TTollCostMainView
     Left = 0
     Top = 313
     Width = 1291
-    Height = 411
+    Height = 353
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1158
+    ExplicitHeight = 411
     object Splitter5: TSplitter
       Left = 870
       Top = 1
       Width = 10
-      Height = 409
+      Height = 351
       Align = alRight
       Beveled = True
       ExplicitLeft = 877
+      ExplicitHeight = 409
     end
     object gBoxInstructions: TGroupBox
       Left = 880
       Top = 1
       Width = 410
-      Height = 409
+      Height = 351
       Align = alRight
       Caption = ' Instructions '
       TabOrder = 0
-      ExplicitLeft = 885
-      ExplicitTop = -2
+      ExplicitHeight = 409
       object TMSFNCWebBrowser1: TTMSFNCWebBrowser
         Left = 2
-        Top = 2
+        Top = 15
         Width = 406
-        Height = 405
+        Height = 334
         Align = alClient
         ParentDoubleBuffered = False
         DoubleBuffered = True
         TabOrder = 0
-        ExplicitLeft = 4
-        ExplicitTop = 4
+        ExplicitHeight = 392
       end
     end
     object pnMap: TPanel
       Left = 1
       Top = 1
       Width = 869
-      Height = 409
+      Height = 351
       Align = alClient
       TabOrder = 1
-      ExplicitLeft = 552
-      ExplicitTop = 184
-      ExplicitWidth = 185
-      ExplicitHeight = 41
+      ExplicitHeight = 409
       object TMSFNCMaps1: TTMSFNCMaps
         Left = 1
         Top = 1
         Width = 867
-        Height = 407
+        Height = 349
         Align = alClient
         ParentDoubleBuffered = False
         DoubleBuffered = True
@@ -95,8 +91,7 @@ object TollCostMainView: TTollCostMainView
         Options.DefaultLatitude = 40.689247000000000000
         Options.DefaultLongitude = -74.044501999999990000
         Options.DefaultZoomLevel = 12.000000000000000000
-        ExplicitLeft = 2
-        ExplicitTop = 2
+        ExplicitHeight = 407
       end
     end
   end
@@ -108,8 +103,6 @@ object TollCostMainView: TTollCostMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 1
-    ExplicitTop = 2
     object Splitter1: TSplitter
       Left = 694
       Top = 0
@@ -180,7 +173,6 @@ object TollCostMainView: TTollCostMainView
         PasswordChar = '*'
         TabOrder = 1
         OnExit = edtAPIKeyMapExit
-        ExplicitWidth = 315
       end
       object cBoxServiceMap: TComboBox
         Left = 9
@@ -192,7 +184,6 @@ object TollCostMainView: TTollCostMainView
         DropDownCount = 15
         TabOrder = 0
         OnChange = cBoxServiceMapChange
-        ExplicitWidth = 315
       end
       object cBoxLanguage: TComboBox
         Left = 9
@@ -211,7 +202,6 @@ object TollCostMainView: TTollCostMainView
           'nl-NL (Dutch '#8211' Netherlands)'
           'it-IT (Italian '#8211' Italy)'
           'pt-BR (Portuguese '#8211' Brazil)')
-        ExplicitWidth = 225
       end
     end
     object GroupBox2: TGroupBox
@@ -275,7 +265,6 @@ object TollCostMainView: TTollCostMainView
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
         Text = 'New York'
-        ExplicitWidth = 150
       end
       object edtDestination: TEdit
         Left = 82
@@ -285,7 +274,6 @@ object TollCostMainView: TTollCostMainView
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
         Text = 'Washington DC'
-        ExplicitWidth = 150
       end
       object cBoxTravelMode: TComboBox
         Left = 82
@@ -300,7 +288,6 @@ object TollCostMainView: TTollCostMainView
         Items.Strings = (
           'Car'
           'Truck')
-        ExplicitWidth = 150
       end
       object cboxCurrency: TComboBox
         Left = 82
@@ -318,7 +305,6 @@ object TollCostMainView: TTollCostMainView
           'GBP'
           'BRL'
           'CAD')
-        ExplicitWidth = 150
       end
       object btnShowTollCost: TButton
         Left = 82
@@ -329,7 +315,6 @@ object TollCostMainView: TTollCostMainView
         Caption = 'Show Toll Cost'
         TabOrder = 4
         OnClick = btnShowTollCostClick
-        ExplicitWidth = 150
       end
       object btnClearTollCost: TButton
         Left = 82
@@ -340,7 +325,6 @@ object TollCostMainView: TTollCostMainView
         Caption = 'Clear Toll Cost'
         TabOrder = 5
         OnClick = btnClearTollCostClick
-        ExplicitWidth = 150
       end
       object cBoxEmission: TComboBox
         Left = 82
@@ -361,7 +345,6 @@ object TollCostMainView: TTollCostMainView
           'Euro 3'
           'Euro 2'
           'Euro 1')
-        ExplicitWidth = 150
       end
       object cBoxCO2: TComboBox
         Left = 82
@@ -380,7 +363,6 @@ object TollCostMainView: TTollCostMainView
           '3'
           '4'
           '5')
-        ExplicitWidth = 150
       end
     end
     object GroupBox3: TGroupBox
@@ -391,7 +373,7 @@ object TollCostMainView: TTollCostMainView
       Align = alLeft
       Caption = ' Config TollCost '
       TabOrder = 1
-      ExplicitLeft = 190
+      ExplicitLeft = 230
       ExplicitTop = 2
       DesignSize = (
         466
@@ -466,7 +448,6 @@ object TollCostMainView: TTollCostMainView
         TabOrder = 0
         Text = 'q9okqRHlnUzfF0hQqxdvB1YSh3jdloNq8oddIPHOQNY'
         OnExit = edtAPIKeyTollCostExit
-        ExplicitWidth = 427
       end
       object cBoxServiceTollCost: TComboBox
         Left = 8
@@ -483,7 +464,6 @@ object TollCostMainView: TTollCostMainView
         Items.Strings = (
           'Here'
           'PTV xServer')
-        ExplicitWidth = 427
       end
       object edPTVUserName: TEdit
         Left = 8
@@ -492,7 +472,6 @@ object TollCostMainView: TTollCostMainView
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 2
-        ExplicitWidth = 427
       end
       object edPTVToken: TEdit
         Left = 8
@@ -501,7 +480,6 @@ object TollCostMainView: TTollCostMainView
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 3
-        ExplicitWidth = 427
       end
       object edEndPoint: TEdit
         Left = 8
@@ -513,7 +491,6 @@ object TollCostMainView: TTollCostMainView
         Text = 
           'https://xserver2-europe-eu-test.cloud.ptvgroup.com/services/rs/X' +
           'Route/calculateRoute'
-        ExplicitWidth = 427
       end
     end
     object gBoxRouteDetails: TGroupBox
@@ -524,8 +501,6 @@ object TollCostMainView: TTollCostMainView
       Align = alLeft
       Caption = ' Route Details '
       TabOrder = 3
-      ExplicitLeft = 967
-      ExplicitTop = 2
       object Panel2: TPanel
         Left = 2
         Top = 15
@@ -571,8 +546,6 @@ object TollCostMainView: TTollCostMainView
         Align = alClient
         ItemHeight = 13
         TabOrder = 1
-        ExplicitLeft = 3
-        ExplicitTop = 67
       end
     end
   end
@@ -593,5 +566,20 @@ object TollCostMainView: TTollCostMainView
     Visible = True
     OnGetTollCost = TMSFNCTollCost1GetTollCost
     TollCostRequests = <>
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 666
+    Width = 1291
+    Height = 19
+    Panels = <
+      item
+        Text = 
+          'TTMSFNCTollCost '#233' um componente para recuperar informa'#231#245'es de cu' +
+          'sto de ped'#225'gio de rota para coordenadas de origem e destino usan' +
+          'do um servi'#231'o REST API existente'
+        Width = 1000
+      end>
+    ExplicitTop = 645
   end
 end
