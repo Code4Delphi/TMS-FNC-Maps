@@ -29,12 +29,13 @@ uses
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCMapsCommonTypes,
-  VCL.TMSFNCCustomControl,
-  VCL.TMSFNCWebBrowser,
-  VCL.TMSFNCMaps,
+  VCL.TMSFNCPlaces,
   VCL.TMSFNCCustomComponent,
   VCL.TMSFNCCloudBase,
-  VCL.TMSFNCGeocoding, VCL.TMSFNCPlaces;
+  VCL.TMSFNCGeocoding,
+  VCL.TMSFNCCustomControl,
+  VCL.TMSFNCWebBrowser,
+  VCL.TMSFNCMaps;
 
 type
   TPlacesMainView = class(TForm)

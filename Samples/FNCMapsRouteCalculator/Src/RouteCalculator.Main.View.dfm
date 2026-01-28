@@ -252,7 +252,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 0
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxServiceMap: TComboBox
@@ -274,7 +273,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 2
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxServiceRoute: TComboBox

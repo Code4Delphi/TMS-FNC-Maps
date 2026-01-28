@@ -24,14 +24,15 @@ uses
   Datasnap.DBClient,
   Vcl.Grids,
   Vcl.DBGrids,
+  VCL.TMSFNCMapsCommonTypes,
   VCL.TMSFNCTypes,
   VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCMapsCommonTypes,
   VCL.TMSFNCCustomControl,
   VCL.TMSFNCWebBrowser,
-  VCL.TMSFNCMaps, VCL.TMSFNCGoogleMaps;
+  VCL.TMSFNCMaps,
+  VCL.TMSFNCGoogleMaps;
 
 type
   THeatmapsMainView = class(TForm)

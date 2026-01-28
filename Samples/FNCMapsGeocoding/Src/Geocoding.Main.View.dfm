@@ -136,7 +136,6 @@ object GeocodingMainView: TGeocodingMainView
         Height = 23
         PasswordChar = '*'
         TabOrder = 0
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxService: TComboBox

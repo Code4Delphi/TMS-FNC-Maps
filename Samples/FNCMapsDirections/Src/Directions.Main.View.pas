@@ -24,19 +24,16 @@ uses
   Vcl.Menus,
   Data.DB,
   Datasnap.DBClient,
-  Vcl.Grids,
-  Vcl.DBGrids,
   VCL.TMSFNCTypes,
   VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCMapsCommonTypes,
-  VCL.TMSFNCCustomControl,
   VCL.TMSFNCWebBrowser,
+  VCL.TMSFNCCustomControl,
   VCL.TMSFNCMaps,
   VCL.TMSFNCCustomComponent,
   VCL.TMSFNCCloudBase,
-  VCL.TMSFNCGeocoding,
   VCL.TMSFNCDirections,
   StepByStepHTML;
 
@@ -252,3 +249,13 @@ begin
 end;
 
 end.
+
+
+
+
+
+
+
+
+
+

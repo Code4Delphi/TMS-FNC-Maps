@@ -123,7 +123,6 @@ object DirectionsMainView: TDirectionsMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 0
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxServiceMap: TComboBox
@@ -145,7 +144,6 @@ object DirectionsMainView: TDirectionsMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 2
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxServiceDirections: TComboBox
@@ -292,7 +290,6 @@ object DirectionsMainView: TDirectionsMainView
           'm e destino'
         Width = 1000
       end>
-    ExplicitTop = 605
   end
   object TMSFNCDirections1: TTMSFNCDirections
     Left = 378
