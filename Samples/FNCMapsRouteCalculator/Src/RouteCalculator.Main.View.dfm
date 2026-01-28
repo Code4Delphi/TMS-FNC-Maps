@@ -221,6 +221,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Top = 114
         Width = 219
         Height = 1
+        Anchors = [akLeft, akTop, akRight]
         Pen.Color = clGray
       end
       object Label1: TLabel
@@ -252,7 +253,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 0
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxServiceMap: TComboBox
@@ -274,7 +274,6 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 2
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
       object cBoxServiceRoute: TComboBox

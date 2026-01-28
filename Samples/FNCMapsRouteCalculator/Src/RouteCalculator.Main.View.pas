@@ -29,13 +29,13 @@ uses
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCMapsCommonTypes,
+  VCL.TMSFNCCustomComponent,
+  VCL.TMSFNCRouteCalculator,
   VCL.TMSFNCCustomControl,
   VCL.TMSFNCWebBrowser,
   VCL.TMSFNCMaps,
-  VCL.TMSFNCCustomComponent,
-  VCL.TMSFNCCloudBase,
   VCL.TMSFNCGeocoding,
-  VCL.TMSFNCRouteCalculator,
+  VCL.TMSFNCCloudBase,
   VCL.TMSFNCDirections;
 
 type

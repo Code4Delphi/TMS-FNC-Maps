@@ -23,7 +23,6 @@ object HeatmapsMainView: THeatmapsMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1323
     object Splitter1: TSplitter
       Left = 849
       Top = 0
@@ -66,8 +65,6 @@ object HeatmapsMainView: THeatmapsMainView
         Caption = 'Add point heatmaps'
         TabOrder = 1
         OnClick = btnAddPointClick
-        ExplicitLeft = 0
-        ExplicitTop = 11
       end
     end
     object GroupBox1: TGroupBox
@@ -93,7 +90,6 @@ object HeatmapsMainView: THeatmapsMainView
         Height = 23
         PasswordChar = '*'
         TabOrder = 0
-        Text = ''
         OnExit = edtAPIKeyMapExit
       end
     end
@@ -206,8 +202,6 @@ object HeatmapsMainView: THeatmapsMainView
           Align = alRight
           Caption = 'Zoom in created'
           TabOrder = 2
-          ExplicitLeft = 260
-          ExplicitTop = 2
         end
       end
       object DBGrid1: TDBGrid
@@ -380,7 +374,6 @@ object HeatmapsMainView: THeatmapsMainView
       item
         Width = 250
       end>
-    ExplicitWidth = 1323
   end
   object TMSFNCGoogleMaps1: TTMSFNCGoogleMaps
     Left = 0
@@ -412,7 +405,6 @@ object HeatmapsMainView: THeatmapsMainView
     Clusters = <>
     OverlayViews = <>
     HeatMaps = <>
-    ExplicitTop = 264
   end
   object ClientDataSet1: TClientDataSet
     PersistDataPacket.Data = {
