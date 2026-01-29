@@ -1,8 +1,8 @@
-# FNCMapsLocation
+# TTMSFNCLocation
 
-ptBR: FNCMapsLocation é um componente para recuperar a localização geográfica atual usando um serviço REST API existente
+ptBR: TTMSFNCLocation é um componente para recuperar a localização geográfica atual usando um serviço REST API existente
 
-en: FNCMapsLocation is a component for retrieving the current geographic location using an existing REST API service.
+en: TTMSFNCLocation is a component for retrieving the current geographic location using an existing REST API service.
 
 <br/>
 
