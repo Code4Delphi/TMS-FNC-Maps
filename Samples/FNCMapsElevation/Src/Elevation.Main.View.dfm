@@ -19,7 +19,7 @@ object ElevationMainView: TElevationMainView
     Left = 0
     Top = 0
     Width = 1291
-    Height = 273
+    Height = 225
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
@@ -27,16 +27,17 @@ object ElevationMainView: TElevationMainView
       Left = 1335
       Top = 0
       Width = 8
-      Height = 273
+      Height = 225
       Beveled = True
       ExplicitLeft = 1283
       ExplicitTop = -32
+      ExplicitHeight = 273
     end
     object Splitter3: TSplitter
       Left = 369
       Top = 0
       Width = 8
-      Height = 273
+      Height = 225
       Beveled = True
       ExplicitLeft = 235
       ExplicitTop = 19
@@ -46,21 +47,23 @@ object ElevationMainView: TElevationMainView
       Left = 631
       Top = 0
       Width = 8
-      Height = 273
+      Height = 225
       Beveled = True
       ExplicitLeft = 549
       ExplicitTop = -6
+      ExplicitHeight = 273
     end
     object GroupBox3: TGroupBox
       Left = 377
       Top = 0
       Width = 254
-      Height = 273
+      Height = 225
       Align = alLeft
       TabOrder = 0
+      ExplicitHeight = 273
       DesignSize = (
         254
-        273)
+        225)
       object btnGetElevation: TButton
         Left = 11
         Top = 15
@@ -70,7 +73,6 @@ object ElevationMainView: TElevationMainView
         Caption = 'Get Elevation Fixe'
         TabOrder = 0
         OnClick = btnGetElevationClick
-        ExplicitWidth = 350
       end
       object btnClearElevationData: TButton
         Left = 11
@@ -81,7 +83,6 @@ object ElevationMainView: TElevationMainView
         Caption = 'Clear ElevationData'
         TabOrder = 1
         OnClick = btnClearElevationDataClick
-        ExplicitWidth = 154
       end
       object btnListElevationData: TButton
         Left = 11
@@ -92,7 +93,6 @@ object ElevationMainView: TElevationMainView
         Caption = 'List ElevationData'
         TabOrder = 2
         OnClick = btnListElevationDataClick
-        ExplicitWidth = 154
       end
       object ckGeElevationOnClickMap: TCheckBox
         Left = 12
@@ -109,15 +109,16 @@ object ElevationMainView: TElevationMainView
       Left = 0
       Top = 0
       Width = 369
-      Height = 273
+      Height = 225
       Margins.Bottom = 2
       Align = alLeft
       Anchors = [akLeft, akTop, akRight]
       Caption = ' Config basic '
       TabOrder = 1
+      ExplicitHeight = 273
       DesignSize = (
         369
-        273)
+        225)
       object Label5: TLabel
         Left = 9
         Top = 62
@@ -164,7 +165,6 @@ object ElevationMainView: TElevationMainView
         PasswordChar = '*'
         TabOrder = 0
         OnExit = edtAPIKeyMapExit
-        ExplicitWidth = 483
       end
       object cBoxServiceMap: TComboBox
         Left = 9
@@ -176,7 +176,6 @@ object ElevationMainView: TElevationMainView
         DropDownCount = 15
         TabOrder = 1
         OnChange = cBoxServiceMapChange
-        ExplicitWidth = 483
       end
       object edtAPIKeyElevation: TEdit
         Left = 9
@@ -187,7 +186,6 @@ object ElevationMainView: TElevationMainView
         PasswordChar = '*'
         TabOrder = 2
         OnExit = edtAPIKeyMapExit
-        ExplicitWidth = 483
       end
       object cBoxServiceElevation: TComboBox
         Left = 9
@@ -199,27 +197,26 @@ object ElevationMainView: TElevationMainView
         DropDownCount = 15
         TabOrder = 3
         OnChange = cBoxServiceMapChange
-        ExplicitWidth = 483
       end
     end
     object GroupBox2: TGroupBox
       Left = 639
       Top = 0
       Width = 696
-      Height = 273
+      Height = 225
       Align = alLeft
       Caption = ' Log '
       TabOrder = 2
-      ExplicitLeft = 561
+      ExplicitHeight = 273
       object Memo1: TMemo
         Left = 2
         Top = 17
         Width = 692
-        Height = 254
+        Height = 206
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 372
+        ExplicitHeight = 254
       end
     end
   end
@@ -236,13 +233,12 @@ object ElevationMainView: TElevationMainView
           'PI existente'
         Width = 1000
       end>
-    ExplicitTop = 600
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 273
+    Top = 225
     Width = 1291
-    Height = 372
+    Height = 420
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -259,11 +255,12 @@ object ElevationMainView: TElevationMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitTop = 277
+    ExplicitTop = 273
+    ExplicitHeight = 372
   end
   object TMSFNCElevation1: TTMSFNCElevation
-    Left = 664
-    Top = 186
+    Left = 704
+    Top = 121
     Width = 26
     Height = 26
     Visible = True

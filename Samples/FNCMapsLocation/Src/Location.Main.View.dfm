@@ -23,7 +23,6 @@ object LocationMainView: TLocationMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = -6
     object Splitter1: TSplitter
       Left = 881
       Top = 0
@@ -51,15 +50,14 @@ object LocationMainView: TLocationMainView
       Height = 273
       Align = alLeft
       TabOrder = 0
-      ExplicitLeft = 503
+      ExplicitLeft = 511
       ExplicitTop = -6
-      ExplicitHeight = 233
       DesignSize = (
         368
         273)
       object btnGetGeocoding: TButton
         Left = 7
-        Top = 15
+        Top = 39
         Width = 350
         Height = 25
         Anchors = [akTop, akRight]
@@ -69,13 +67,24 @@ object LocationMainView: TLocationMainView
       end
       object btnClearMarkers: TButton
         Left = 6
-        Top = 46
+        Top = 70
         Width = 350
         Height = 25
         Anchors = [akTop, akRight]
         Caption = 'Clear Markers'
         TabOrder = 1
         OnClick = btnClearMarkersClick
+      end
+      object ckZoomInCreatedMarker: TCheckBox
+        AlignWithMargins = True
+        Left = 8
+        Top = 9
+        Width = 162
+        Height = 22
+        Cursor = crHandPoint
+        Margins.Left = 5
+        Caption = 'Zoom in created Marker'
+        TabOrder = 2
       end
     end
     object GroupBox1: TGroupBox
@@ -144,7 +153,6 @@ object LocationMainView: TLocationMainView
         PasswordChar = '*'
         TabOrder = 0
         OnExit = edtAPIKeyMapExit
-        ExplicitWidth = 219
       end
       object cBoxServiceMap: TComboBox
         Left = 9
@@ -156,7 +164,6 @@ object LocationMainView: TLocationMainView
         DropDownCount = 15
         TabOrder = 1
         OnChange = cBoxServiceMapChange
-        ExplicitWidth = 219
       end
       object edtAPIKeyLocation: TEdit
         Left = 9
@@ -167,7 +174,6 @@ object LocationMainView: TLocationMainView
         PasswordChar = '*'
         TabOrder = 2
         OnExit = edtAPIKeyMapExit
-        ExplicitWidth = 219
       end
       object cBoxServiceLocation: TComboBox
         Left = 9
@@ -179,7 +185,6 @@ object LocationMainView: TLocationMainView
         DropDownCount = 15
         TabOrder = 3
         OnChange = cBoxServiceMapChange
-        ExplicitWidth = 219
       end
       object cBoxLocationConnection: TComboBox
         Left = 9
@@ -192,7 +197,6 @@ object LocationMainView: TLocationMainView
         TabOrder = 4
         OnChange = cBoxServiceMapChange
         OnExit = edtAPIKeyMapExit
-        ExplicitWidth = 475
       end
     end
   end
@@ -229,13 +233,10 @@ object LocationMainView: TLocationMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitLeft = 8
-    ExplicitTop = 261
-    ExplicitHeight = 337
   end
   object TMSFNCLocation1: TTMSFNCLocation
-    Left = 680
-    Top = 114
+    Left = 688
+    Top = 170
     Width = 26
     Height = 26
     Visible = True
