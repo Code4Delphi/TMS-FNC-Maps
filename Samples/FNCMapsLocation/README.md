@@ -6,8 +6,8 @@ en: FNCMapsLocation is a component for retrieving the current geographic locatio
 
 <br/>
 
-- Generate Google API Key: [Here](https://www.tmssoftware.com/site/cloudkey.asp#ipstack)
-- Generate IPStack API Key (free version available): [Here](https://www.tmssoftware.com/site/cloudkey.asp#Google)
+- Generate Google API Key: [Link](https://www.tmssoftware.com/site/cloudkey.asp#Google)
+- Generate IPStack API Key (free version available): [Link](https://www.tmssoftware.com/site/cloudkey.asp#ipstack)
 
 <br/>
 
