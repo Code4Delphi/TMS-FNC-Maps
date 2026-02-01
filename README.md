@@ -24,6 +24,7 @@ O TMS FNC Maps é um conjunto de componentes para Delphi e C++Builder voltado a 
 - [Mapas com Delphi 13 - Direções e passo a passo para chegar a um local (TMSFNCDirections)](https://www.youtube.com/watch?v=H0vcpO9NQ1E&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 14 - Obtendo localização atual (TTMSFNCLocation)](https://www.youtube.com/watch?v=VRyYilvgENU&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 15 - Recuperando a elevação de uma localização (TTMSFNCElevation)](https://www.youtube.com/watch?v=nANLmDnjr0k&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
+- [Mapas com Delphi 16 - Custo de Pedágios - Gerando API Key e usando Here Maps (TTMSFNCTollCost)](https://www.youtube.com/watch?v=tZ-g1WIUfbM&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 
 <br>
 
