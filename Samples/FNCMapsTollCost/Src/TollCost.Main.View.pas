@@ -90,11 +90,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnShowTollCostClick(Sender: TObject);
     procedure btnClearTollCostClick(Sender: TObject);
-    procedure TMSFNCGeocoding1GetGeocoding(Sender: TObject;
-      const ARequest: TTMSFNCGeocodingRequest;
+    procedure TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
       const ARequestResult: TTMSFNCCloudBaseRequestResult);
-    procedure TMSFNCTollCost1GetTollCost(Sender: TObject;
-      const ARequest: TTMSFNCTollCostRequest;
+    procedure TMSFNCTollCost1GetTollCost(Sender: TObject; const ARequest: TTMSFNCTollCostRequest;
       const ARequestResult: TTMSFNCCloudBaseRequestResult);
     procedure cBoxServiceMapChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -134,7 +132,7 @@ begin
   TMSFNCMaps1.EndUpdate;
 
   TMSFNCGeocoding1.APIKey := edtAPIKeyMap.Text;
-  TMSFNCGeocoding1.Service := TTMSFNCGeocodingService(cBoxServiceMap.ItemIndex); //gsHere
+  TMSFNCGeocoding1.Service := TTMSFNCGeocodingService(cBoxServiceMap.ItemIndex);
 
   if cBoxServiceTollCost.ItemIndex = 0 then
   begin
@@ -203,15 +201,24 @@ end;
 
 procedure TTollCostMainView.btnShowTollCostClick(Sender: TObject);
 begin
-  if (edtOrigin.Text <> '') and (edtDestination.Text <> '') then
+  if edtOrigin.Text = '' then
   begin
-    btnShowTollCost.Enabled := False;
-    TMSFNCGeocoding1.GeocodingRequests.Clear;
-    TMSFNCGeocoding1.GetGeocoding(edtOrigin.Text);
-    TMSFNCGeocoding1.GetGeocoding(edtDestination.Text);
-  end
-  else
-    ShowMessage('Please fill in the Origin and Destination fields first.');
+    ShowMessage('Please fill in the Origin fields');
+    edtOrigin.SetFocus;
+    Exit;
+  end;
+
+  if edtDestination.Text = '' then
+  begin
+    ShowMessage('Please fill in the Destination fields');
+    edtDestination.SetFocus;
+    Exit;
+  end;
+
+  btnShowTollCost.Enabled := False;
+  TMSFNCGeocoding1.GeocodingRequests.Clear;
+  TMSFNCGeocoding1.GetGeocoding(edtOrigin.Text);
+  TMSFNCGeocoding1.GetGeocoding(edtDestination.Text);
 end;
 
 procedure TTollCostMainView.TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
@@ -222,7 +229,6 @@ var
   LCurrency: TTMSFNCTollCostCurrency;
   LEmissionType: TTMSFNCTollCostEmissionType;
   LCO2Class: TTMSFNCTollCostCO2Class;
-
   LCoordinateRecOrigin: TTMSFNCMapsCoordinateRec;
   LCoordinateRecDestination: TTMSFNCMapsCoordinateRec;
 begin
@@ -232,80 +238,79 @@ begin
     Exit;
   end;
 
-  if TMSFNCGeocoding1.GeocodingRequests.Count = 2 then
+  if TMSFNCGeocoding1.GeocodingRequests.Count <> 2 then
+    Exit;
+
+  if TMSFNCGeocoding1.GeocodingRequests[0].Items.Count = 0 then
   begin
-    if TMSFNCGeocoding1.GeocodingRequests[0].Items.Count = 0 then
-    begin
-      ShowMessage('Unknown location origin');
-      Exit;
-    end;
-
-    if TMSFNCGeocoding1.GeocodingRequests[1].Items.Count = 0 then
-    begin
-      ShowMessage('Unknown location Destination');
-      Exit;
-    end;
-
-    LCoordinateRecOrigin := TMSFNCGeocoding1.GeocodingRequests[0].Items[0].Coordinate.ToRec;
-    LCoordinateRecDestination := TMSFNCGeocoding1.GeocodingRequests[1].Items[0].Coordinate.ToRec;
-
-    TMSFNCTollCost1.TollCostRequests.Clear;
-
-    TMSFNCMaps1.Clear;
-    TMSFNCMaps1.AddMarker(LCoordinateRecOrigin);
-    TMSFNCMaps1.AddMarker(LCoordinateRecDestination);
-
-    LCurrency := tcEUR;
-    case cBoxCurrency.ItemIndex of
-      1: LCurrency := tcUSD;
-      2: LCurrency := tcGBP;
-      3: LCurrency := tcBRL;
-      4: LCurrency := tcCAD;
-    end;
-
-    LTravelMode := ttCar;
-    if cBoxTravelMode.ItemIndex = 1 then
-    begin
-      LTravelMode := ttCustom;
-      TMSFNCTollCost1.Options.TravelInfo.VehicleAxles := 3; //Eixos
-      TMSFNCTollCost1.Options.TravelInfo.VehicleWeight := 7501; //Peso
-      TMSFNCTollCost1.Options.TravelInfo.VehicleHeight := 299; //Altura
-    end;
-
-    //Tipo de emissao
-    LEmissionType := etUnknown;
-    case cBoxEmission.ItemIndex of
-      1: LEmissionType := etEuroEev;
-      2: LEmissionType := etEuro6;
-      3: LEmissionType := etEuro5;
-      4: LEmissionType := etEuro4;
-      5: LEmissionType := etEuro3;
-      6: LEmissionType := etEuro2;
-      7: LEmissionType := etEuro1;
-    end;
-    TMSFNCTollCost1.Options.TravelInfo.VehicleEmissionType := LEmissionType;
-
-    //Classe de CO2 do veiculo
-    LCO2Class := co2Unknown;
-    case cBoxCO2.ItemIndex of
-      1: LCO2Class := co2Class1;
-      2: LCO2Class := co2Class2;
-      3: LCO2Class := co2Class3;
-      4: LCO2Class := co2Class4;
-      5: LCO2Class := co2Class5;
-    end;
-    TMSFNCTollCost1.Options.TravelInfo.VehicleCO2Class := LCO2Class;
-
-    var LId := '';
-    var LLocale := copy(cBoxLanguage.Text, 1, 5);
-
-    TMSFNCTollCost1.GetTollCost(LCoordinateRecOrigin, LCoordinateRecDestination, nil, LId, nil, LTravelMode,
-      LCoordinateRecArray, LCurrency, LLocale);
+    ShowMessage('Unknown location origin');
+    Exit;
   end;
+
+  if TMSFNCGeocoding1.GeocodingRequests[1].Items.Count = 0 then
+  begin
+    ShowMessage('Unknown location Destination');
+    Exit;
+  end;
+
+  LCoordinateRecOrigin := TMSFNCGeocoding1.GeocodingRequests[0].Items[0].Coordinate.ToRec;
+  LCoordinateRecDestination := TMSFNCGeocoding1.GeocodingRequests[1].Items[0].Coordinate.ToRec;
+
+  TMSFNCMaps1.Clear;
+  TMSFNCMaps1.AddMarker(LCoordinateRecOrigin);
+  TMSFNCMaps1.AddMarker(LCoordinateRecDestination);
+
+  TMSFNCTollCost1.TollCostRequests.Clear;
+
+  LCurrency := tcEUR;
+  case cBoxCurrency.ItemIndex of
+    1: LCurrency := tcUSD;
+    2: LCurrency := tcGBP;
+    3: LCurrency := tcBRL;
+    4: LCurrency := tcCAD;
+  end;
+
+  LTravelMode := ttCar;
+  if cBoxTravelMode.ItemIndex = 1 then
+  begin
+    LTravelMode := ttCustom;
+    TMSFNCTollCost1.Options.TravelInfo.VehicleAxles := 3; //Eixos
+    TMSFNCTollCost1.Options.TravelInfo.VehicleWeight := 7501; //Peso
+    TMSFNCTollCost1.Options.TravelInfo.VehicleHeight := 299; //Altura
+  end;
+
+  //Tipo de emissao
+  LEmissionType := etUnknown;
+  case cBoxEmission.ItemIndex of
+    1: LEmissionType := etEuroEev;
+    2: LEmissionType := etEuro6;
+    3: LEmissionType := etEuro5;
+    4: LEmissionType := etEuro4;
+    5: LEmissionType := etEuro3;
+    6: LEmissionType := etEuro2;
+    7: LEmissionType := etEuro1;
+  end;
+  TMSFNCTollCost1.Options.TravelInfo.VehicleEmissionType := LEmissionType;
+
+  //Classe de CO2 do veiculo
+  LCO2Class := co2Unknown;
+  case cBoxCO2.ItemIndex of
+    1: LCO2Class := co2Class1;
+    2: LCO2Class := co2Class2;
+    3: LCO2Class := co2Class3;
+    4: LCO2Class := co2Class4;
+    5: LCO2Class := co2Class5;
+  end;
+  TMSFNCTollCost1.Options.TravelInfo.VehicleCO2Class := LCO2Class;
+
+  var LId := '';
+  var LLocale := copy(cBoxLanguage.Text, 1, 5);
+
+  TMSFNCTollCost1.GetTollCost(LCoordinateRecOrigin, LCoordinateRecDestination, nil, LId, nil, LTravelMode,
+    LCoordinateRecArray, LCurrency, LLocale);
 end;
 
-procedure TTollCostMainView.TMSFNCTollCost1GetTollCost(Sender: TObject;
-  const ARequest: TTMSFNCTollCostRequest;
+procedure TTollCostMainView.TMSFNCTollCost1GetTollCost(Sender: TObject; const ARequest: TTMSFNCTollCostRequest;
   const ARequestResult: TTMSFNCCloudBaseRequestResult);
 var
   LTollCostItem: TTMSFNCTollCostItem;
@@ -322,14 +327,18 @@ begin
     if TMSFNCTollCost1.TollCostRequests[0].Items.Count > 0 then
     begin
       LTollCostItem := TMSFNCTollCost1.TollCostRequests[0].Items[0];
+
+      //TOTALIZERS
       lbTotalCost.Caption := LTollCostItem.Currency + ' ' + FloatToStr(LTollCostItem.TotalCost);
       lbDistance.Caption := FloatToStr(Round(LTollCostItem.Distance / 1000)) + ' km';
       lbDuration.Caption := FloatToStr(Round(LTollCostItem.Duration / 60)) + ' min';
 
+      //STEP BY STEP
       TStepByStepHTML.Add(TMSFNCWebBrowser1, LTollCostItem);
 
+      //SUMMARY OF TOLLS
       ListBoxTollCost.Items.Clear;
-      for var I := 0 to LTollCostItem.TollSystems.Count - 1 do
+      for var I := 0 to Pred(LTollCostItem.TollSystems.Count) do
         ListBoxTollCost.Items.Add(LTollCostItem.TollSystems.Items[I].Summary + ' | ' + LTollCostItem.Currency + ' ' + FormatFloat('0.00', LTollCostItem.TollSystems.Items[I].Cost));
 
       TMSFNCMaps1.ZoomToBounds(LTollCostItem.Coordinates.ToArray);

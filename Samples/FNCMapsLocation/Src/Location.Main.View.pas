@@ -60,6 +60,7 @@ type
     btnClearMarkers: TButton;
     Label3: TLabel;
     cBoxLocationConnection: TComboBox;
+    ckZoomInCreatedMarker: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxServiceMapChange(Sender: TObject);
@@ -167,6 +168,9 @@ procedure TLocationMainView.TMSFNCLocation1GetLocation(Sender: TObject; const AR
 begin
   TMSFNCMaps1.SetCenterCoordinate(ARequest.Coordinate.ToRec);
   TMSFNCMaps1.AddMarker(ARequest.Coordinate.ToRec);
+
+  if ckZoomInCreatedMarker.Checked then
+    TMSFNCMaps1.ZoomToBounds(TMSFNCMaps1.Markers.ToCoordinateArray)
 end;
 
 procedure TLocationMainView.btnClearMarkersClick(Sender: TObject);

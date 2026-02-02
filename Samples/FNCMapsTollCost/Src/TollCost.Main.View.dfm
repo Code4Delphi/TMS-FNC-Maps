@@ -1,7 +1,7 @@
 object TollCostMainView: TTollCostMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps TTMSFNCTollCost Demo'
+  Caption = 'TMS FNC Maps TTMSFNCTollCost (Custo do ped'#225'gio)'
   ClientHeight = 685
   ClientWidth = 1291
   Color = clBtnFace
@@ -31,7 +31,6 @@ object TollCostMainView: TTollCostMainView
     Height = 353
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 411
     object Splitter5: TSplitter
       Left = 870
       Top = 1
@@ -50,7 +49,6 @@ object TollCostMainView: TTollCostMainView
       Align = alRight
       Caption = ' Instructions '
       TabOrder = 0
-      ExplicitHeight = 409
       object TMSFNCWebBrowser1: TTMSFNCWebBrowser
         Left = 2
         Top = 15
@@ -60,7 +58,8 @@ object TollCostMainView: TTollCostMainView
         ParentDoubleBuffered = False
         DoubleBuffered = True
         TabOrder = 0
-        ExplicitHeight = 392
+        ExplicitLeft = 6
+        ExplicitTop = 14
       end
     end
     object pnMap: TPanel
@@ -70,7 +69,6 @@ object TollCostMainView: TTollCostMainView
       Height = 351
       Align = alClient
       TabOrder = 1
-      ExplicitHeight = 409
       object TMSFNCMaps1: TTMSFNCMaps
         Left = 1
         Top = 1
@@ -91,7 +89,6 @@ object TollCostMainView: TTollCostMainView
         Options.DefaultLatitude = 40.689247000000000000
         Options.DefaultLongitude = -74.044501999999990000
         Options.DefaultZoomLevel = 12.000000000000000000
-        ExplicitHeight = 407
       end
     end
   end
@@ -140,6 +137,8 @@ object TollCostMainView: TTollCostMainView
       Anchors = [akLeft, akTop, akRight]
       Caption = ' Config basic '
       TabOrder = 0
+      ExplicitLeft = 5
+      ExplicitTop = 3
       DesignSize = (
         217
         305)
@@ -373,8 +372,6 @@ object TollCostMainView: TTollCostMainView
       Align = alLeft
       Caption = ' Config TollCost '
       TabOrder = 1
-      ExplicitLeft = 230
-      ExplicitTop = 2
       DesignSize = (
         466
         305)
@@ -500,9 +497,6 @@ object TollCostMainView: TTollCostMainView
       Align = alClient
       Caption = ' Route Details '
       TabOrder = 3
-      ExplicitLeft = 975
-      ExplicitTop = 2
-      ExplicitWidth = 308
       object Panel2: TPanel
         Left = 2
         Top = 15
@@ -511,7 +505,6 @@ object TollCostMainView: TTollCostMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 317
         object lbDistance: TLabel
           Left = 96
           Top = 1
@@ -549,7 +542,6 @@ object TollCostMainView: TTollCostMainView
         Align = alClient
         ItemHeight = 13
         TabOrder = 1
-        ExplicitWidth = 317
       end
     end
   end
@@ -584,6 +576,5 @@ object TollCostMainView: TTollCostMainView
           'do um servi'#231'o REST API existente'
         Width = 1000
       end>
-    ExplicitTop = 645
   end
 end
