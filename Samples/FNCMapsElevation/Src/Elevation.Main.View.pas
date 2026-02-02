@@ -176,7 +176,7 @@ begin
 
   if not TMSFNCElevation1.FindElevation(FCoordinateRec) then
   begin
-    Memo1.Lines.Add(LMsg + 'Altitude not found. ' + ARequest.Status);
+    Memo1.Lines.Add(LMsg + 'Altitude not found. ' + ARequest.Status + ' ' + ARequest.ErrorMessage);
     Exit;
   end;
 
@@ -185,9 +185,7 @@ end;
 
 procedure TElevationMainView.btnListElevationDataClick(Sender: TObject);
 var
-  i: Integer;
   LItem: TTMSFNCMapsCoordinateRec;
-  LMsg: string;
 begin
   if Length(TMSFNCElevation1.ElevationData) <= 0 then
   begin
@@ -197,11 +195,11 @@ begin
 
   Memo1.Lines.Clear;
 
-  for i := 0 to Length(TMSFNCElevation1.ElevationData) - 1 do
+  for var i := 0 to Length(TMSFNCElevation1.ElevationData) - 1 do
   begin
     LItem := TMSFNCElevation1.ElevationData[i];
 
-    LMsg := Format('Latitude: %.6f e Longitude: %.6f - Elevation: %.3f ', [LItem.Latitude, LItem.Longitude, LItem.Elevation]);
+    var LMsg := Format('Latitude: %.6f e Longitude: %.6f - Elevation: %.3f ', [LItem.Latitude, LItem.Longitude, LItem.Elevation]);
     Memo1.Lines.Add(LMsg);
   end;
 end;

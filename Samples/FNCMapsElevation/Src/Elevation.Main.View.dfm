@@ -60,13 +60,12 @@ object ElevationMainView: TElevationMainView
       Height = 225
       Align = alLeft
       TabOrder = 0
-      ExplicitHeight = 273
       DesignSize = (
         254
         225)
       object btnGetElevation: TButton
-        Left = 11
-        Top = 15
+        Left = 12
+        Top = 16
         Width = 232
         Height = 25
         Anchors = [akLeft, akTop, akRight]
@@ -75,8 +74,8 @@ object ElevationMainView: TElevationMainView
         OnClick = btnGetElevationClick
       end
       object btnClearElevationData: TButton
-        Left = 11
-        Top = 77
+        Left = 12
+        Top = 78
         Width = 232
         Height = 25
         Anchors = [akLeft, akTop, akRight]
@@ -85,8 +84,8 @@ object ElevationMainView: TElevationMainView
         OnClick = btnClearElevationDataClick
       end
       object btnListElevationData: TButton
-        Left = 11
-        Top = 46
+        Left = 12
+        Top = 47
         Width = 232
         Height = 25
         Anchors = [akLeft, akTop, akRight]
@@ -95,8 +94,8 @@ object ElevationMainView: TElevationMainView
         OnClick = btnListElevationDataClick
       end
       object ckGeElevationOnClickMap: TCheckBox
-        Left = 12
-        Top = 121
+        Left = 13
+        Top = 122
         Width = 234
         Height = 17
         Caption = 'Get elevation when clicking on the map'
@@ -115,7 +114,6 @@ object ElevationMainView: TElevationMainView
       Anchors = [akLeft, akTop, akRight]
       Caption = ' Config basic '
       TabOrder = 1
-      ExplicitHeight = 273
       DesignSize = (
         369
         225)
@@ -207,7 +205,6 @@ object ElevationMainView: TElevationMainView
       Align = alLeft
       Caption = ' Log '
       TabOrder = 2
-      ExplicitHeight = 273
       object Memo1: TMemo
         Left = 2
         Top = 17
@@ -216,7 +213,6 @@ object ElevationMainView: TElevationMainView
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitHeight = 254
       end
     end
   end
@@ -255,12 +251,10 @@ object ElevationMainView: TElevationMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 2.000000000000000000
-    ExplicitTop = 273
-    ExplicitHeight = 372
   end
   object TMSFNCElevation1: TTMSFNCElevation
     Left = 704
-    Top = 121
+    Top = 122
     Width = 26
     Height = 26
     Visible = True
