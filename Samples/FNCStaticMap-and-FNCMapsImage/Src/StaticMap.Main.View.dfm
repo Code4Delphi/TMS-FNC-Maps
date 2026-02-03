@@ -24,34 +24,21 @@ object StaticMapMainView: TStaticMapMainView
     BevelOuter = bvNone
     TabOrder = 0
     object Splitter1: TSplitter
-      Left = 1634
-      Top = 0
-      Width = 8
-      Height = 225
-      Beveled = True
-      ExplicitLeft = 1283
-      ExplicitTop = -32
-      ExplicitHeight = 273
-    end
-    object Splitter3: TSplitter
       Left = 369
       Top = 0
       Width = 8
       Height = 225
       Beveled = True
-      ExplicitLeft = 235
-      ExplicitTop = 19
-      ExplicitHeight = 263
+      ExplicitLeft = 368
+      ExplicitTop = -6
     end
     object Splitter2: TSplitter
-      Left = 1626
+      Left = 889
       Top = 0
       Width = 8
       Height = 225
       Beveled = True
-      ExplicitLeft = 549
-      ExplicitTop = -6
-      ExplicitHeight = 273
+      ExplicitLeft = 953
     end
     object GroupBox3: TGroupBox
       Left = 377
@@ -59,7 +46,10 @@ object StaticMapMainView: TStaticMapMainView
       Width = 512
       Height = 225
       Align = alLeft
+      Caption = ' Static '
       TabOrder = 0
+      ExplicitLeft = 375
+      ExplicitTop = -6
       DesignSize = (
         512
         225)
@@ -93,7 +83,6 @@ object StaticMapMainView: TStaticMapMainView
         Caption = 'Display map image'
         TabOrder = 0
         OnClick = btnDisplayMapImageClick
-        ExplicitWidth = 612
       end
       object ckAddMarker: TCheckBox
         Left = 13
@@ -109,11 +98,10 @@ object StaticMapMainView: TStaticMapMainView
         Left = 12
         Top = 35
         Width = 484
-        Height = 21
+        Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 2
         Text = 'S'#227'o Paulo'
-        ExplicitWidth = 532
       end
       object spinZoomLevel: TSpinEdit
         Left = 13
@@ -128,20 +116,21 @@ object StaticMapMainView: TStaticMapMainView
       object cBoxStaticMapType: TComboBox
         Left = 133
         Top = 78
-        Width = 73
+        Width = 363
         Height = 23
         Anchors = [akLeft, akTop, akRight]
-        ItemIndex = 0
         TabOrder = 4
         Text = 'en-US (English '#8211' United States)'
-        Items.Strings = (
-          'en-US (English '#8211' United States)'
-          'en-GB (English '#8211' Great Britain)'
-          'fr-FR (French '#8211' France)'
-          'nl-NL (Dutch '#8211' Netherlands)'
-          'it-IT (Italian '#8211' Italy)'
-          'pt-BR (Portuguese '#8211' Brazil)')
-        ExplicitWidth = 201
+      end
+      object btnSaveMapImageToFile: TButton
+        Left = 6
+        Top = 194
+        Width = 484
+        Height = 25
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Save map image to file.'
+        TabOrder = 5
+        OnClick = btnSaveMapImageToFileClick
       end
     end
     object GroupBox1: TGroupBox
@@ -151,9 +140,10 @@ object StaticMapMainView: TStaticMapMainView
       Height = 225
       Margins.Bottom = 2
       Align = alLeft
-      Anchors = [akLeft, akTop, akRight]
       Caption = ' Config basic '
       TabOrder = 1
+      ExplicitLeft = 6
+      ExplicitTop = -5
       DesignSize = (
         369
         225)
@@ -238,23 +228,24 @@ object StaticMapMainView: TStaticMapMainView
       end
     end
     object GroupBox2: TGroupBox
-      Left = 889
+      Left = 897
       Top = 0
-      Width = 737
+      Width = 394
       Height = 225
-      Align = alLeft
+      Align = alClient
       Caption = ' Log '
       TabOrder = 2
-      ExplicitLeft = 904
+      ExplicitLeft = 889
+      ExplicitWidth = 200
       object mmLog: TMemo
         Left = 2
         Top = 17
-        Width = 733
+        Width = 390
         Height = 206
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 692
+        ExplicitWidth = 733
       end
     end
   end
@@ -271,8 +262,6 @@ object StaticMapMainView: TStaticMapMainView
           'ica'
         Width = 1000
       end>
-    ExplicitLeft = 8
-    ExplicitTop = 602
   end
   object StatusBar2: TStatusBar
     Left = 0
@@ -301,7 +290,7 @@ object StaticMapMainView: TStaticMapMainView
     Bitmaps = <>
     Fill.Kind = gfkNone
     Stroke.Kind = gskNone
-    ExplicitTop = 229
+    ExplicitTop = 219
   end
   object TMSFNCStaticMap1: TTMSFNCStaticMap
     Left = 390
@@ -318,5 +307,15 @@ object StaticMapMainView: TStaticMapMainView
     Visible = True
     OnGetGeocoding = TMSFNCGeocoding1GetGeocoding
     GeocodingRequests = <>
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = 'png'
+    Filter = 
+      'Imagens (*.bmp;*.png;*.gif;*.ico;*.jpg;*.jpeg)|*.bmp;*.png;*.gif' +
+      ';*.ico;*.jpg;*.jpeg|Bitmap (*.bmp)|*.bmp|PNG (*.png)|*.png|GIF (' +
+      '*.gif)|*.gif|'#205'cone (*.ico)|*.ico|JPEG (*.jpg;*.jpeg)|*.jpg;*.jpe' +
+      'g'
+    Left = 624
+    Top = 315
   end
 end

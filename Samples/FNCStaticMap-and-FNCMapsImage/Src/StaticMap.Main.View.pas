@@ -35,7 +35,6 @@ type
     GroupBox1: TGroupBox;
     Label5: TLabel;
     edtAPIKeyStaticMap: TEdit;
-    Splitter1: TSplitter;
     Label2: TLabel;
     cBoxServiceStaticMap: TComboBox;
     Shape1: TShape;
@@ -43,11 +42,9 @@ type
     Label4: TLabel;
     edtAPIKeyGeocoding: TEdit;
     cBoxServiceGeocoding: TComboBox;
-    Splitter3: TSplitter;
     btnDisplayMapImage: TButton;
     GroupBox2: TGroupBox;
     mmLog: TMemo;
-    Splitter2: TSplitter;
     ckAddMarker: TCheckBox;
     StatusBar2: TStatusBar;
     TMSFNCMapsImage1: TTMSFNCMapsImage;
@@ -59,6 +56,10 @@ type
     spinZoomLevel: TSpinEdit;
     Label21: TLabel;
     cBoxStaticMapType: TComboBox;
+    Splitter1: TSplitter;
+    Splitter2: TSplitter;
+    btnSaveMapImageToFile: TButton;
+    SaveDialog1: TSaveDialog;
     procedure FormCreate(Sender: TObject);
     procedure edtAPIKeyStaticMapExit(Sender: TObject);
     procedure cBoxServiceStaticMapChange(Sender: TObject);
@@ -66,6 +67,7 @@ type
     procedure TMSFNCGeocoding1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
       const ARequestResult: TTMSFNCCloudBaseRequestResult);
     procedure btnDisplayMapImageClick(Sender: TObject);
+    procedure btnSaveMapImageToFileClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure FillcBoxServiceStaticMap;
@@ -160,11 +162,13 @@ begin
     Exit;
   end;
 
-//  TMSFNCGeocoding1.GeocodingRequests.Clear;
-//  TMSFNCGeocoding1.GetGeocoding(edtAddress.Text);
+  TMSFNCMapsImage1.Clear;
 
-  TMSFNCMapsImage1.URL := TMSFNCStaticMap1.GetStaticMap(edtAddress.Text, TMSFNCMapsImage1.Width,
-    TMSFNCMapsImage1.Height, spinZoomLevel.Value, ckAddMarker.Checked, TTMSFNCStaticMapType(cBoxStaticMapType.ItemIndex));
+  TMSFNCGeocoding1.GeocodingRequests.Clear;
+  TMSFNCGeocoding1.GetGeocoding(edtAddress.Text);
+
+//  TMSFNCMapsImage1.URL := TMSFNCStaticMap1.GetStaticMap(edtAddress.Text, TMSFNCMapsImage1.Width,
+//    TMSFNCMapsImage1.Height, spinZoomLevel.Value, ckAddMarker.Checked, TTMSFNCStaticMapType(cBoxStaticMapType.ItemIndex));
 
   mmLog.Lines.Add(TMSFNCMapsImage1.URL);
 end;
@@ -176,6 +180,14 @@ begin
     TMSFNCMapsImage1.Height, spinZoomLevel.Value, ckAddMarker.Checked, TTMSFNCStaticMapType(cBoxStaticMapType.ItemIndex));
 
   mmLog.Lines.Add(TMSFNCMapsImage1.URL);
+end;
+
+procedure TStaticMapMainView.btnSaveMapImageToFileClick(Sender: TObject);
+begin
+  if not SaveDialog1.Execute then
+    Exit;
+
+  TMSFNCMapsImage1.GetBitmap.SaveToFile(SaveDialog1.FileName);
 end;
 
 end.
