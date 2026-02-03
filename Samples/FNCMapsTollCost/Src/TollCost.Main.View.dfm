@@ -58,8 +58,6 @@ object TollCostMainView: TTollCostMainView
         ParentDoubleBuffered = False
         DoubleBuffered = True
         TabOrder = 0
-        ExplicitLeft = 6
-        ExplicitTop = 14
       end
     end
     object pnMap: TPanel
@@ -186,7 +184,7 @@ object TollCostMainView: TTollCostMainView
       end
       object cBoxLanguage: TComboBox
         Left = 9
-        Top = 128
+        Top = 125
         Width = 201
         Height = 21
         Anchors = [akLeft, akTop, akRight]
