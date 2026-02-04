@@ -1,7 +1,7 @@
 object TimeZoneMainView: TTimeZoneMainView
   Left = 0
   Top = 0
-  Caption = 'TMSFNCMaps TTMSFNCTimeZone Demo'
+  Caption = 'TMS FNC Maps - TimeZone (Fuso hor'#225'rio)'
   ClientHeight = 558
   ClientWidth = 1118
   Color = clBtnFace

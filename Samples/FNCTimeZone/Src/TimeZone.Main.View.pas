@@ -157,6 +157,13 @@ begin
     Exit;
   end;
 
+  if edtAPIKeyTimeZone.Text = '' then
+  begin
+    ShowMessage('Please Fill in the time zone API key field');
+    edtAPIKeyTimeZone.SetFocus;
+    Exit;
+  end;
+
   TMSFNCGeocoding1.GeocodingRequests.Clear;
   TMSFNCGeocoding1.GetGeocoding(edtAddress.Text);
   TMSFNCMaps1.Clear;
@@ -195,12 +202,25 @@ begin
 
   LTimeZoneItem := ARequest.Items[0];
   mmLog.Lines.Clear;
+  mmLog.Lines.Add('Latitude: ' + LTimeZoneItem.Coordinate.Latitude.ToString);
+  mmLog.Lines.Add('Longitude: ' + LTimeZoneItem.Coordinate.Longitude.ToString);
+  mmLog.Lines.Add('');
+
   mmLog.Lines.Add('TimeZone: ' + LTimeZoneItem.TimeZone);
   mmLog.Lines.Add(LTimeZoneItem.Description);
   mmLog.Lines.Add('Offset: ' + LTimeZoneItem.Offset);
   mmLog.Lines.Add('DSTOffset: ' + LTimeZoneItem.DSTOffset);
-  mmLog.Lines.Add('Latitude: ' + LTimeZoneItem.Coordinate.Latitude.ToString);
-  mmLog.Lines.Add('Longitude: ' + LTimeZoneItem.Coordinate.Longitude.ToString);
+
+  var LUTC := LTimeZoneItem.Offset;
+  if cBoxServiceTimeZone.ItemIndex = Integer(TTMSFNCTimeZoneService.tzsGoogle) then
+  begin
+    var LOffsetSec := StrToIntDef(LTimeZoneItem.Offset, 0);
+    var LDSTSec := StrToIntDef(LTimeZoneItem.DSTOffset, 0);
+    //TOTAL OFFSET IN HOURS
+    var LUTCHours := (LOffsetSec + LDSTSec) div 3600;
+    LUTC := LUTCHours.ToString
+  end;
+  mmLog.Lines.Add('UTC: ' + LUTC);
 end;
 
 end.

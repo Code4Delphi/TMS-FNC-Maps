@@ -1,7 +1,7 @@
 object StaticMapMainView: TStaticMapMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - FNCStaticMap and FNCMapsImage'
+  Caption = 'TMS FNC Maps - StaticMap and MapsImage'
   ClientHeight = 664
   ClientWidth = 1291
   Color = clBtnFace
