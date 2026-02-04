@@ -48,8 +48,6 @@ object StaticMapMainView: TStaticMapMainView
       Align = alLeft
       Caption = ' Static '
       TabOrder = 0
-      ExplicitLeft = 375
-      ExplicitTop = -6
       DesignSize = (
         512
         225)
@@ -142,8 +140,6 @@ object StaticMapMainView: TStaticMapMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 1
-      ExplicitLeft = 6
-      ExplicitTop = -5
       DesignSize = (
         369
         225)
@@ -235,8 +231,6 @@ object StaticMapMainView: TStaticMapMainView
       Align = alClient
       Caption = ' Log '
       TabOrder = 2
-      ExplicitLeft = 889
-      ExplicitWidth = 200
       object mmLog: TMemo
         Left = 2
         Top = 17
@@ -245,7 +239,6 @@ object StaticMapMainView: TStaticMapMainView
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 733
       end
     end
   end
@@ -290,7 +283,6 @@ object StaticMapMainView: TStaticMapMainView
     Bitmaps = <>
     Fill.Kind = gfkNone
     Stroke.Kind = gskNone
-    ExplicitTop = 219
   end
   object TMSFNCStaticMap1: TTMSFNCStaticMap
     Left = 390

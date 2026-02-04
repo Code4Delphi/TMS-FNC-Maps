@@ -23,9 +23,18 @@ uses
   Data.DB,
   Datasnap.DBClient,
   Vcl.Grids,
-  Vcl.DBGrids, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCGeocoding,
-  VCL.TMSFNCCustomComponent, VCL.TMSFNCCloudBase, VCL.TMSFNCStaticMap, VCL.TMSFNCCustomControl, VCL.TMSFNCMapsImage,
-  Vcl.Samples.Spin;
+  Vcl.DBGrids,
+  Vcl.Samples.Spin,
+  VCL.TMSFNCTypes,
+  VCL.TMSFNCUtils,
+  VCL.TMSFNCGraphics,
+  VCL.TMSFNCGraphicsTypes,
+  VCL.TMSFNCGeocoding,
+  VCL.TMSFNCCustomComponent,
+  VCL.TMSFNCCloudBase,
+  VCL.TMSFNCStaticMap,
+  VCL.TMSFNCCustomControl,
+  VCL.TMSFNCMapsImage;
 
 type
   TStaticMapMainView = class(TForm)

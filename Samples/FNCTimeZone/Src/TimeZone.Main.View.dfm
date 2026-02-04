@@ -35,10 +35,6 @@ object TimeZoneMainView: TTimeZoneMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitLeft = 225
-    ExplicitTop = 57
-    ExplicitWidth = 582
-    ExplicitHeight = 432
   end
   object pnTop: TPanel
     Left = 0
@@ -48,8 +44,6 @@ object TimeZoneMainView: TTimeZoneMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = -173
-    ExplicitWidth = 1291
     object Splitter1: TSplitter
       Left = 369
       Top = 0
@@ -103,7 +97,6 @@ object TimeZoneMainView: TTimeZoneMainView
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
         Text = 'S'#227'o Paulo'
-        ExplicitWidth = 484
       end
     end
     object GroupBox1: TGroupBox
@@ -206,8 +199,6 @@ object TimeZoneMainView: TTimeZoneMainView
       Align = alClient
       Caption = ' TimeZone Information '
       TabOrder = 2
-      ExplicitLeft = 897
-      ExplicitWidth = 394
       object mmLog: TMemo
         Left = 2
         Top = 15
@@ -216,7 +207,6 @@ object TimeZoneMainView: TTimeZoneMainView
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 390
       end
     end
   end
@@ -251,6 +241,5 @@ object TimeZoneMainView: TTimeZoneMainView
           'm servi'#231'o de API existente'
         Width = 1000
       end>
-    ExplicitTop = 545
   end
 end

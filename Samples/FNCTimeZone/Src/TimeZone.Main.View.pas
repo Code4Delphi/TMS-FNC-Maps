@@ -13,21 +13,22 @@ uses
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
+  Vcl.Samples.Spin,
+  Vcl.ComCtrls,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
   VCL.TMSFNCTypes,
   VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCMapsCommonTypes,
-  Vcl.StdCtrls,
   VCL.TMSFNCCustomControl,
   VCL.TMSFNCWebBrowser,
   VCL.TMSFNCMaps,
-  Vcl.ExtCtrls,
   VCL.TMSFNCCustomComponent,
   VCL.TMSFNCCloudBase,
   VCL.TMSFNCGeocoding,
-  VCL.TMSFNCTimeZone,
-  Vcl.Samples.Spin, Vcl.ComCtrls;
+  VCL.TMSFNCTimeZone;
 
 type
   TTimeZoneMainView = class(TForm)
@@ -125,8 +126,6 @@ begin
 
   TMSFNCTimeZone1.APIKey := edtAPIKeyTimeZone.Text;
   TMSFNCTimeZone1.Service := TTMSFNCTimeZoneService(cBoxServiceTimeZone.ItemIndex);
-
-  //TMSFNCMaps1.SetZoomLevel(1);
 end;
 
 procedure TTimeZoneMainView.FillcBoxServiceMap;
@@ -199,7 +198,9 @@ begin
   mmLog.Lines.Add('TimeZone: ' + LTimeZoneItem.TimeZone);
   mmLog.Lines.Add(LTimeZoneItem.Description);
   mmLog.Lines.Add('Offset: ' + LTimeZoneItem.Offset);
-  mmLog.Lines.Add('DST: ' + LTimeZoneItem.DSTOffset);
+  mmLog.Lines.Add('DSTOffset: ' + LTimeZoneItem.DSTOffset);
+  mmLog.Lines.Add('Latitude: ' + LTimeZoneItem.Coordinate.Latitude.ToString);
+  mmLog.Lines.Add('Longitude: ' + LTimeZoneItem.Coordinate.Longitude.ToString);
 end;
 
 end.
