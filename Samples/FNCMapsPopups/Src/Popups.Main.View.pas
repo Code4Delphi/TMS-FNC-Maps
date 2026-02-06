@@ -58,6 +58,12 @@ type
     GroupBox5: TGroupBox;
     btnCloseAllPopups: TButton;
     btnAddPopup: TButton;
+    gBoxRouteDetails: TGroupBox;
+    Panel2: TPanel;
+    ListBoxLogs: TListBox;
+    Button1: TButton;
+    Label2: TLabel;
+    edtTextForPopup: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -75,6 +81,7 @@ type
     procedure btnAddPopupClick(Sender: TObject);
     procedure TMSFNCMaps1MarkerClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure Button1Click(Sender: TObject);
   private
     procedure ConfigBasicMaps;
   public
@@ -131,7 +138,8 @@ begin
   LPolygon.FillOpacity := 0.5;
   LPolygon.StrokeColor := gcGreen;
   LPolygon.StrokeWidth := 4;
-  LPolygon.DataInteger := 2;
+  LPolygon.DataInteger := 1;
+  LPolygon.DataString := edtTextForPopup.Text;
   TMSFNCMaps1.EndUpdate;
 end;
 
@@ -183,7 +191,8 @@ begin
   LPolyline := TMSFNCMaps1.AddPolyline(LCoordinateRecArray);
   LPolyline.StrokeColor := gcBlack;
   LPolyline.StrokeWidth := 4;
-  LPolyline.DataInteger := 1;
+  LPolyline.DataInteger := 2;
+  LPolyline.DataString := 'Text for Polyline popup';
   TMSFNCMaps1.EndUpdate;
 end;
 
@@ -203,6 +212,7 @@ begin
   LCircle.StrokeColor := gcBlack;
   LCircle.StrokeWidth := 4;
   LCircle.DataInteger := 3;
+  LCircle.DataString := 'Text for Circle popup';
   TMSFNCMaps1.EndUpdate;
 end;
 
@@ -255,37 +265,41 @@ begin
 
   LHTML := LHTML + '<br>Longitude: <i>'+ AEventData.Marker.Longitude.ToString +'</i><br>Latitude: <i>'+ AEventData.Marker.Latitude.ToString +'</i>';
 
-  TMSFNCMaps1.ShowPopup(AEventData.Marker.Coordinate.ToRec, LHTML);
+  var LIdPopup := TMSFNCMaps1.ShowPopup(AEventData.Marker.Coordinate.ToRec, LHTML);
+  ListBoxLogs.Items.Add(LIdPopup);
 end;
 
 procedure TPopupsMainView.TMSFNCMaps1PolyElementClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+const
+  TEMPLATE = '<div style="width: 500px; padding: 12px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"> ' +
+    '  <font color="#F0F" width="600"><b> DataInteger: %d </b></font> <br>' +
+    '  <i> %s </i> '+
+    '</div>';
 var
-  s: string;
+  LHTML: string;
+  LIdPopup: string;
 begin
-//  if prevPopUp <> '' then
-//    TMSFNCMaps1.ClosePopup(prevPopUp);
+  LHTML := Format(TEMPLATE, [AEventData.PolyElement.DataInteger, AEventData.PolyElement.DataString]);
 
-  case AEventData.PolyElement.DataInteger of
-    1: s := '<font color="#FF00FF"><b>Largest claimed city proper</b></font><br>'
-      + '<a target="_blank" href="https://en.wikipedia.org/wiki/List_of_largest_cities"><i>More information...</i></a>';
-    2: s := '<font color="#DC143C"><b>Largest eruption in human history</b></font><br>'
-      + 'at <a target="_blank" href="https://en.wikipedia.org/wiki/1815_eruption_of_Mount_Tambora">Mount Tambora</a> (1815)<br>'
-      + 'The red circle indicates where the volcanic ash was more than 100cm deep';
-    3: s := '<font color="#FD6A02"><b>Largest eruption in human history</b></font><br>'
-      + 'at <a target="_blank" href="https://en.wikipedia.org/wiki/1815_eruption_of_Mount_Tambora">Mount Tambora</a> (1815)<br>'
-      + 'The orange circle indicates 5cm of ash fall';
-    4: s := '<font color="#FD6A02"><b>Largest eruption in human history</b></font><br>'
-      + 'at <a target="_blank" href="https://en.wikipedia.org/wiki/1815_eruption_of_Mount_Tambora">Mount Tambora</a> (1815)<br>'
-      + 'The yellow circle shows where ash fell from the sky';
-    5: s :='<font color="blue"><b>Central Park</b></font><br>'
-      + '<iframe width="200" height="200" src="https://www.youtube.com/embed/Q3aHgtu2UOI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>';
-    6: s := '<font color="green"><b>Longest straight road</b></font><br>'
-      + 'at <a target="_blank" href="https://tribune.com.pk/story/1659009/3-saudi-arabias-highway-10-home-worlds-longest-straight-road">Highway 10</a> (256km)<br>'
-      + 'Between Haradh and Al Batha';
+  if AEventData.PolyElement.DataInteger = 1 then
+    LHTML := LHTML + '<a href="https://www.youtube.com/@code4delphi"> Link here </a>';
+
+  LIdPopup := TMSFNCMaps1.ShowPopup(AEventData.Coordinate.ToRec, LHTML);
+  ListBoxLogs.Items.Add(LIdPopup);
+end;
+
+procedure TPopupsMainView.Button1Click(Sender: TObject);
+begin
+  if ListBoxLogs.ItemIndex < 0 then
+  begin
+    ShowMessage('No items selected');
+    Exit;
   end;
 
-  var LID := TMSFNCMaps1.ShowPopup(AEventData.Coordinate.ToRec, s);
-  ShowMessage(LID);
+  var LId := ListBoxLogs.Items[ListBoxLogs.ItemIndex];
+  TMSFNCMaps1.ClosePopup(LId);
+
+  ListBoxLogs.Items.Delete(ListBoxLogs.ItemIndex);
 end;
 
 end.

@@ -3,7 +3,7 @@ object PopupsMainView: TPopupsMainView
   Top = 0
   Caption = 'TMS FNC Maps - Popups'
   ClientHeight = 663
-  ClientWidth = 1162
+  ClientWidth = 1332
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,33 +17,34 @@ object PopupsMainView: TPopupsMainView
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 241
-    Width = 1162
+    Top = 289
+    Width = 1332
     Height = 10
     Cursor = crVSplit
     Align = alTop
     Beveled = True
     ExplicitLeft = -407
+    ExplicitTop = 241
     ExplicitWidth = 1569
   end
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1162
-    Height = 241
+    Width = 1332
+    Height = 289
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 4
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
       Width = 198
-      Height = 241
+      Height = 289
       Margins.Bottom = 2
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
+      ExplicitHeight = 241
       object Label1: TLabel
         Left = 5
         Top = 22
@@ -89,19 +90,20 @@ object PopupsMainView: TPopupsMainView
       end
     end
     object gBoxPolylines: TGroupBox
-      Left = 198
+      Left = 433
       Top = 0
-      Width = 136
-      Height = 241
+      Width = 115
+      Height = 289
       Align = alLeft
       Caption = ' Polylines '
       TabOrder = 1
-      ExplicitLeft = 410
+      ExplicitLeft = 198
+      ExplicitHeight = 153
       object btnPolylinesAdd: TButton
         AlignWithMargins = True
         Left = 5
         Top = 17
-        Width = 126
+        Width = 105
         Height = 25
         Cursor = crHandPoint
         Margins.Top = 0
@@ -110,14 +112,13 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Add Polyline'
         TabOrder = 0
         OnClick = btnPolylinesAddClick
-        ExplicitLeft = 6
-        ExplicitTop = 20
+        ExplicitWidth = 126
       end
       object btnPolylinesClear: TButton
         AlignWithMargins = True
         Left = 5
         Top = 44
-        Width = 126
+        Width = 105
         Height = 25
         Cursor = crHandPoint
         Margins.Top = 0
@@ -126,26 +127,33 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Clear Polylines'
         TabOrder = 1
         OnClick = btnPolylinesClearClick
-        ExplicitLeft = 2
-        ExplicitTop = 42
-        ExplicitWidth = 132
+        ExplicitWidth = 126
       end
     end
     object GroupBox2: TGroupBox
-      Left = 334
+      Left = 198
       Top = 0
-      Width = 195
-      Height = 241
+      Width = 235
+      Height = 289
       Align = alLeft
       Caption = ' Polygon '
       TabOrder = 2
-      ExplicitLeft = 333
-      ExplicitTop = 4
-      object btnAddPolygon: TButton
+      object Label2: TLabel
         AlignWithMargins = True
         Left = 5
         Top = 17
-        Width = 185
+        Width = 225
+        Height = 15
+        Margins.Top = 0
+        Align = alTop
+        Caption = ' Text for popup'
+        ExplicitWidth = 80
+      end
+      object btnAddPolygon: TButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 64
+        Width = 225
         Height = 25
         Cursor = crHandPoint
         Margins.Top = 0
@@ -154,15 +162,14 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Add Polygon (Bermuda triangle)'
         TabOrder = 0
         OnClick = btnAddPolygonClick
-        ExplicitLeft = -13
-        ExplicitTop = 9
-        ExplicitWidth = 198
+        ExplicitTop = 17
+        ExplicitWidth = 185
       end
       object btnClearAllPolygons: TButton
         AlignWithMargins = True
         Left = 5
-        Top = 44
-        Width = 185
+        Top = 91
+        Width = 225
         Height = 25
         Cursor = crHandPoint
         Margins.Top = 0
@@ -171,21 +178,35 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Clear All Polygons'
         TabOrder = 1
         OnClick = btnClearAllPolygonsClick
-        ExplicitLeft = -19
-        ExplicitTop = 37
-        ExplicitWidth = 198
+        ExplicitTop = 44
+        ExplicitWidth = 185
+      end
+      object edtTextForPopup: TEdit
+        AlignWithMargins = True
+        Left = 5
+        Top = 35
+        Width = 225
+        Height = 23
+        Margins.Top = 0
+        Margins.Bottom = 6
+        Align = alTop
+        TabOrder = 2
+        Text = 'Subscribe to the Code4Delphi channel'
+        ExplicitLeft = 4
+        ExplicitTop = 41
+        ExplicitWidth = 185
       end
     end
     object GroupBox3: TGroupBox
-      Left = 529
+      Left = 548
       Top = 0
       Width = 142
-      Height = 241
+      Height = 289
       Align = alLeft
       Caption = ' Markers '
       TabOrder = 3
-      ExplicitLeft = 530
-      ExplicitTop = 4
+      ExplicitLeft = 529
+      ExplicitHeight = 241
       object Button2: TButton
         AlignWithMargins = True
         Left = 5
@@ -199,8 +220,6 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Clear Markers'
         TabOrder = 0
         OnClick = Button2Click
-        ExplicitLeft = -27
-        ExplicitTop = 211
       end
       object Button4: TButton
         AlignWithMargins = True
@@ -215,7 +234,6 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Add Marker Ok'
         TabOrder = 1
         OnClick = Button4Click
-        ExplicitTop = 71
       end
       object Button5: TButton
         AlignWithMargins = True
@@ -230,8 +248,6 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Add Marker No'
         TabOrder = 2
         OnClick = Button5Click
-        ExplicitLeft = 6
-        ExplicitTop = 98
       end
       object btnAddMarkerCustomizedIcon: TButton
         AlignWithMargins = True
@@ -246,37 +262,34 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Add Marker Icon C4D'
         TabOrder = 3
         OnClick = btnAddMarkerCustomizedIconClick
-        ExplicitLeft = 6
-        ExplicitTop = 101
-        ExplicitWidth = 138
       end
     end
     object GroupBox4: TGroupBox
-      Left = 671
+      Left = 690
       Top = 0
-      Width = 142
-      Height = 241
+      Width = 109
+      Height = 289
       Align = alLeft
       Caption = ' Cicle '
       TabOrder = 4
+      ExplicitLeft = 671
+      ExplicitHeight = 153
       object btnAddCircle: TButton
         Left = 2
         Top = 17
-        Width = 138
+        Width = 105
         Height = 25
         Cursor = crHandPoint
         Align = alTop
         Caption = 'Add clircle'
         TabOrder = 0
         OnClick = btnAddCircleClick
-        ExplicitLeft = 5
-        ExplicitTop = 8
-        ExplicitWidth = 105
+        ExplicitWidth = 138
       end
       object btnClearAllCircles: TButton
         Left = 2
         Top = 42
-        Width = 138
+        Width = 105
         Height = 25
         Cursor = crHandPoint
         Align = alTop
@@ -289,25 +302,23 @@ object PopupsMainView: TPopupsMainView
         ParentFont = False
         TabOrder = 1
         OnClick = btnClearAllCirclesClick
-        ExplicitLeft = 4
-        ExplicitTop = 28
-        ExplicitWidth = 105
+        ExplicitWidth = 138
       end
     end
     object GroupBox5: TGroupBox
-      Left = 813
+      Left = 799
       Top = 0
-      Width = 172
-      Height = 241
+      Width = 139
+      Height = 289
       Align = alLeft
       Caption = ' Popups'
       TabOrder = 5
-      ExplicitLeft = 817
-      ExplicitTop = 4
+      ExplicitLeft = 780
+      ExplicitHeight = 153
       object btnCloseAllPopups: TButton
         Left = 2
         Top = 42
-        Width = 168
+        Width = 135
         Height = 25
         Cursor = crHandPoint
         Align = alTop
@@ -320,13 +331,12 @@ object PopupsMainView: TPopupsMainView
         ParentFont = False
         TabOrder = 0
         OnClick = btnCloseAllPopupsClick
-        ExplicitLeft = 4
-        ExplicitTop = 11
+        ExplicitWidth = 168
       end
       object btnAddPopup: TButton
         Left = 2
         Top = 17
-        Width = 168
+        Width = 135
         Height = 25
         Cursor = crHandPoint
         Align = alTop
@@ -339,16 +349,60 @@ object PopupsMainView: TPopupsMainView
         ParentFont = False
         TabOrder = 1
         OnClick = btnAddPopupClick
+        ExplicitWidth = 168
+      end
+    end
+    object gBoxRouteDetails: TGroupBox
+      Left = 938
+      Top = 0
+      Width = 394
+      Height = 289
+      Align = alClient
+      Caption = ' Ids de popups'
+      TabOrder = 6
+      ExplicitLeft = 902
+      ExplicitTop = 4
+      ExplicitWidth = 434
+      object Panel2: TPanel
+        Left = 2
+        Top = 17
+        Width = 390
+        Height = 44
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 0
         ExplicitLeft = 4
-        ExplicitTop = 25
+        ExplicitTop = 11
+        ExplicitWidth = 430
+        object Button1: TButton
+          Left = 40
+          Top = 13
+          Width = 75
+          Height = 25
+          Caption = 'Close'
+          TabOrder = 0
+          OnClick = Button1Click
+        end
+      end
+      object ListBoxLogs: TListBox
+        Left = 2
+        Top = 61
+        Width = 390
+        Height = 226
+        Align = alClient
+        ItemHeight = 15
+        TabOrder = 1
+        ExplicitTop = 71
+        ExplicitWidth = 430
+        ExplicitHeight = 80
       end
     end
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 251
-    Width = 1162
-    Height = 393
+    Top = 299
+    Width = 1332
+    Height = 345
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -366,11 +420,14 @@ object PopupsMainView: TPopupsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
+    ExplicitTop = 251
+    ExplicitWidth = 1162
+    ExplicitHeight = 393
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 644
-    Width = 1162
+    Width = 1332
     Height = 19
     Panels = <
       item
@@ -382,5 +439,6 @@ object PopupsMainView: TPopupsMainView
       item
         Width = 250
       end>
+    ExplicitWidth = 1162
   end
 end
