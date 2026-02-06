@@ -61,9 +61,9 @@ type
     gBoxRouteDetails: TGroupBox;
     Panel2: TPanel;
     ListBoxLogs: TListBox;
-    Button1: TButton;
+    btnClosePopupByID: TButton;
     Label2: TLabel;
-    edtTextForPopup: TEdit;
+    mmTextForPopup: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -81,7 +81,7 @@ type
     procedure btnAddPopupClick(Sender: TObject);
     procedure TMSFNCMaps1MarkerClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1PolyElementClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
-    procedure Button1Click(Sender: TObject);
+    procedure btnClosePopupByIDClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
   public
@@ -139,7 +139,7 @@ begin
   LPolygon.StrokeColor := gcGreen;
   LPolygon.StrokeWidth := 4;
   LPolygon.DataInteger := 1;
-  LPolygon.DataString := edtTextForPopup.Text;
+  LPolygon.DataString := mmTextForPopup.Text;
   TMSFNCMaps1.EndUpdate;
 end;
 
@@ -288,7 +288,7 @@ begin
   ListBoxLogs.Items.Add(LIdPopup);
 end;
 
-procedure TPopupsMainView.Button1Click(Sender: TObject);
+procedure TPopupsMainView.btnClosePopupByIDClick(Sender: TObject);
 begin
   if ListBoxLogs.ItemIndex < 0 then
   begin
