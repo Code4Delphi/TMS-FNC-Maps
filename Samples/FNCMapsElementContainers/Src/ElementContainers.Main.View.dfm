@@ -81,7 +81,6 @@ object ElementContainersMainView: TElementContainersMainView
           'OpenLayers'
           'MapKit'
           'Leaflet')
-        ExplicitWidth = 179
       end
       object edtAPIKeyMap: TEdit
         Left = 5
@@ -92,7 +91,6 @@ object ElementContainersMainView: TElementContainersMainView
         PasswordChar = '*'
         TabOrder = 1
         OnExit = edtAPIKeyMapExit
-        ExplicitWidth = 179
       end
     end
     object GroupBox3: TGroupBox
@@ -103,8 +101,6 @@ object ElementContainersMainView: TElementContainersMainView
       Align = alLeft
       Caption = ' Markers '
       TabOrder = 1
-      ExplicitLeft = 556
-      ExplicitHeight = 289
       object Button2: TButton
         AlignWithMargins = True
         Left = 5
@@ -118,8 +114,19 @@ object ElementContainersMainView: TElementContainersMainView
         Caption = 'Clear Markers'
         TabOrder = 0
         OnClick = Button2Click
-        ExplicitTop = 98
       end
+    end
+    object ckElementContainerVisibility: TCheckBox
+      Left = 701
+      Top = 21
+      Width = 188
+      Height = 17
+      Cursor = crHandPoint
+      Caption = 'ElementContainer Visibility'
+      Checked = True
+      State = cbChecked
+      TabOrder = 2
+      OnClick = ckElementContainerVisibilityClick
     end
   end
   object TMSFNCMaps1: TTMSFNCMaps
@@ -141,12 +148,19 @@ object ElementContainersMainView: TElementContainersMainView
     ElementContainers = <
       item
         HTML.Strings = (
-          '<button id="btnMyButton1">My button 1</button> <br>'
-          '<button id="btnMyButton2">My button 2</button><br>'
-          'Zoom Level <span id="customZoom1">12</span><br>'
+          
+            '<button id="btnMyButton1"class="btn btn-primary">My button 1</bu' +
+            'tton> <br>'
+          
+            '<button id="btnMyButton2" class="btn btn-info">My button 2</butt' +
+            'on><br>'
+          ''
+          
+            'Zoom Level <span id="customZoom1" class="text-primary">12</span>' +
+            '<br>  '
           
             '<input type="range" min="0" value="12" max="18" id="customRange1' +
-            '">')
+            '" class="form-control-range">')
         Actions = <
           item
             EventReturnValue = rvInnerHTML
@@ -172,18 +186,28 @@ object ElementContainersMainView: TElementContainersMainView
         Coordinate.Latitude = 40.689247000000000000
         Position = poTopRight
         HTMLElementID = 'ElementContainer0'
+        HTMLElementClassName = 'card'
+        UseDefaultStyle = False
         Margins.Left = 10.000000000000000000
         Margins.Top = 10.000000000000000000
         Margins.Right = 10.000000000000000000
         Margins.Bottom = 10.000000000000000000
       end>
     Labels = <>
-    HeadLinks = <>
+    HeadLinks = <
+      item
+        URL = 
+          'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.mi' +
+          'n.css'
+        Rel = 'stylesheet'
+        Defer = False
+        Async = False
+        Kind = mlkLink
+      end>
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
     Service = msOpenLayers
-    ExplicitTop = 127
   end
   object StatusBar1: TStatusBar
     Left = 0

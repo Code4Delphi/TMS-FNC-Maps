@@ -43,6 +43,7 @@ type
     Splitter1: TSplitter;
     GroupBox3: TGroupBox;
     Button2: TButton;
+    ckElementContainerVisibility: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
@@ -52,6 +53,7 @@ type
     procedure TMSFNCMaps1ElementContainers0Actions2Execute(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1ZoomChanged(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
+    procedure ckElementContainerVisibilityClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
   public
@@ -108,6 +110,11 @@ procedure TElementContainersMainView.TMSFNCMaps1ElementContainers0Actions1Execut
   AEventData: TTMSFNCMapsEventData);
 begin
   ShowMessage(AEventData.CustomData);
+end;
+
+procedure TElementContainersMainView.ckElementContainerVisibilityClick(Sender: TObject);
+begin
+   TMSFNCMaps1.ElementContainers.Items[0].Visible := ckElementContainerVisibility.Checked;
 end;
 
 procedure TElementContainersMainView.TMSFNCMaps1ElementContainers0Actions2Execute(Sender: TObject;
