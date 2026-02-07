@@ -43,7 +43,6 @@ object PopupsMainView: TPopupsMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
-      ExplicitHeight = 289
       DesignSize = (
         192
         209)
@@ -101,8 +100,6 @@ object PopupsMainView: TPopupsMainView
       Align = alLeft
       Caption = ' Polylines '
       TabOrder = 1
-      ExplicitLeft = 441
-      ExplicitHeight = 289
       object btnPolylinesAdd: TButton
         AlignWithMargins = True
         Left = 5
@@ -149,8 +146,7 @@ object PopupsMainView: TPopupsMainView
         Margins.Top = 0
         Align = alTop
         Caption = ' Text for popup'
-        ExplicitLeft = 4
-        ExplicitWidth = 375
+        ExplicitWidth = 80
       end
       object btnAddPolygon: TButton
         AlignWithMargins = True
@@ -165,7 +161,6 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Add Polygon (Bermuda triangle)'
         TabOrder = 0
         OnClick = btnAddPolygonClick
-        ExplicitLeft = 6
       end
       object btnClearAllPolygons: TButton
         AlignWithMargins = True
@@ -180,8 +175,6 @@ object PopupsMainView: TPopupsMainView
         Caption = 'Clear All Polygons'
         TabOrder = 1
         OnClick = btnClearAllPolygonsClick
-        ExplicitTop = 215
-        ExplicitWidth = 239
       end
       object mmTextForPopup: TMemo
         AlignWithMargins = True
@@ -195,8 +188,6 @@ object PopupsMainView: TPopupsMainView
         Lines.Strings = (
           'Subscribe to the <b>Code4Delphi</b> channel')
         TabOrder = 2
-        ExplicitLeft = 4
-        ExplicitWidth = 375
       end
     end
     object GroupBox3: TGroupBox
@@ -207,8 +198,6 @@ object PopupsMainView: TPopupsMainView
       Align = alLeft
       Caption = ' Markers '
       TabOrder = 3
-      ExplicitLeft = 556
-      ExplicitHeight = 289
       object Button2: TButton
         AlignWithMargins = True
         Left = 5
@@ -274,8 +263,6 @@ object PopupsMainView: TPopupsMainView
       Align = alLeft
       Caption = ' Cicle '
       TabOrder = 4
-      ExplicitLeft = 698
-      ExplicitHeight = 289
       object btnAddCircle: TButton
         Left = 2
         Top = 17
@@ -313,8 +300,6 @@ object PopupsMainView: TPopupsMainView
       Align = alLeft
       Caption = ' Popups'
       TabOrder = 5
-      ExplicitLeft = 805
-      ExplicitHeight = 289
       object btnCloseAllPopups: TButton
         Left = 2
         Top = 42
@@ -358,9 +343,6 @@ object PopupsMainView: TPopupsMainView
       Align = alClient
       Caption = ' Ids de popups'
       TabOrder = 6
-      ExplicitLeft = 948
-      ExplicitTop = 4
-      ExplicitWidth = 356
       object Panel2: TPanel
         Left = 2
         Top = 17
@@ -369,7 +351,6 @@ object PopupsMainView: TPopupsMainView
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 352
         object btnClosePopupByID: TButton
           AlignWithMargins = True
           Left = 3
@@ -380,9 +361,6 @@ object PopupsMainView: TPopupsMainView
           Caption = 'Close popup by ID'
           TabOrder = 0
           OnClick = btnClosePopupByIDClick
-          ExplicitLeft = 4
-          ExplicitTop = 13
-          ExplicitHeight = 25
         end
       end
       object ListBoxLogs: TListBox
@@ -393,9 +371,6 @@ object PopupsMainView: TPopupsMainView
         Align = alClient
         ItemHeight = 15
         TabOrder = 1
-        ExplicitLeft = 1
-        ExplicitTop = 49
-        ExplicitWidth = 352
       end
     end
   end
@@ -421,9 +396,6 @@ object PopupsMainView: TPopupsMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
-    ExplicitTop = 299
-    ExplicitWidth = 1332
-    ExplicitHeight = 345
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -432,15 +404,12 @@ object PopupsMainView: TPopupsMainView
     Height = 19
     Panels = <
       item
-        Width = 250
-      end
-      item
-        Width = 250
-      end
-      item
-        Width = 250
+        Text = 
+          'Popups s'#227'o mensagens informativas que podem ser mostradas em qua' +
+          'lquer lugar do mapa'
+        Width = 1000
       end>
-    ExplicitTop = 644
-    ExplicitWidth = 1324
+    ExplicitTop = 539
+    ExplicitWidth = 1118
   end
 end

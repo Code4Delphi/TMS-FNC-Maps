@@ -39,7 +39,6 @@ type
     Label5: TLabel;
     cBoxService: TComboBox;
     edtAPIKeyMap: TEdit;
-    StatusBar1: TStatusBar;
     gBoxPolylines: TGroupBox;
     btnPolylinesAdd: TButton;
     btnPolylinesClear: TButton;
@@ -64,6 +63,7 @@ type
     btnClosePopupByID: TButton;
     Label2: TLabel;
     mmTextForPopup: TMemo;
+    StatusBar1: TStatusBar;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
