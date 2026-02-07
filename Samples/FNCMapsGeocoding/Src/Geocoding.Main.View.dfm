@@ -40,6 +40,8 @@ object GeocodingMainView: TGeocodingMainView
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
+      ExplicitLeft = 171
+      ExplicitTop = -6
       DesignSize = (
         624
         263)
