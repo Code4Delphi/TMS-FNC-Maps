@@ -219,34 +219,27 @@ end;
 procedure TPopupsMainView.btnCloseAllPopupsClick(Sender: TObject);
 begin
   TMSFNCMaps1.CloseAllPopups;
+  ListBoxLogs.Clear;
 end;
 
 procedure TPopupsMainView.Button2Click(Sender: TObject);
 begin
-  TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.ClearMarkers;
-  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TPopupsMainView.Button4Click(Sender: TObject);
 begin
-  TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.AddMarker(44.487517, -57.792144, '', 'https://code4delphi.com.br/img/ok.png').DataInteger := 1;
-  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TPopupsMainView.Button5Click(Sender: TObject);
 begin
-  TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.AddMarker(38.297293, 11.289882, '', 'https://code4delphi.com.br/img/no.png').DataInteger := 2;
-  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TPopupsMainView.btnAddMarkerCustomizedIconClick(Sender: TObject);
 begin
-  TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.AddMarker(-25.454649, -52.870269, '', 'https://code4delphi.com.br/img/c4d-24x24.png').DataInteger := 3;
-  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TPopupsMainView.TMSFNCMaps1MarkerClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
