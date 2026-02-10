@@ -176,7 +176,6 @@ object ElementContainersMainView: TElementContainersMainView
           end
           item
             Event = heCustom
-            CustomEvent = 'input'
             EventReturnValue = rvValue
             HTMLElementID = 'customRange1'
             Name = 'Action2'

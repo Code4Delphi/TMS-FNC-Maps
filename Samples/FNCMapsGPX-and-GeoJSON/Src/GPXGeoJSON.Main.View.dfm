@@ -53,14 +53,15 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
     object GroupBox3: TGroupBox
       Left = 617
       Top = 0
-      Width = 165
+      Width = 312
       Height = 263
       Align = alLeft
       Caption = 'GPX'
       TabOrder = 0
       ExplicitLeft = 615
+      ExplicitTop = -6
       object btExport: TButton
-        Left = 83
+        Left = 229
         Top = 35
         Width = 75
         Height = 25
@@ -79,12 +80,24 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
       end
       object btnClearMap: TButton
         Left = 6
-        Top = 77
-        Width = 152
+        Top = 78
+        Width = 298
         Height = 25
         Caption = 'Clear map'
         TabOrder = 2
         OnClick = btnClearMapClick
+      end
+      object btnImportWithWaypoint: TButton
+        Left = 85
+        Top = 35
+        Width = 140
+        Height = 25
+        Hint = 'Importar com pontos de refer'#234'ncia'
+        Caption = 'Import with Waypoint '
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 3
+        OnClick = btnImportWithWaypointClick
       end
     end
     object GroupBox1: TGroupBox
@@ -205,8 +218,6 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
       Align = alLeft
       Caption = ' Route between addresses '
       TabOrder = 2
-      ExplicitLeft = 259
-      ExplicitTop = -6
       DesignSize = (
         352
         263)
@@ -252,35 +263,6 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
         Text = 'Corcovado Rio de Janeiro'
       end
     end
-    object GroupBox4: TGroupBox
-      Left = 782
-      Top = 0
-      Width = 403
-      Height = 263
-      Align = alLeft
-      Caption = ' GeoJSON '
-      TabOrder = 3
-      ExplicitLeft = 781
-      ExplicitTop = -6
-      object btnImportGeoJSON: TButton
-        Left = 24
-        Top = 42
-        Width = 75
-        Height = 25
-        Caption = 'Import'
-        TabOrder = 0
-        OnClick = btnImportGeoJSONClick
-      end
-      object btnExportGeoJSON: TButton
-        Left = 105
-        Top = 42
-        Width = 75
-        Height = 25
-        Caption = 'Export'
-        TabOrder = 1
-        OnClick = btnExportGeoJSONClick
-      end
-    end
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -318,8 +300,8 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
     Options.DefaultZoomLevel = 12.000000000000000000
   end
   object TMSFNCRouteCalculator1: TTMSFNCRouteCalculator
-    Left = 468
-    Top = 205
+    Left = 396
+    Top = 170
     Width = 26
     Height = 26
     Visible = True
@@ -327,11 +309,11 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
     Routes = <>
   end
   object OpenDialog1: TOpenDialog
-    Left = 680
-    Top = 203
+    Left = 648
+    Top = 219
   end
   object SaveDialog1: TSaveDialog
-    Left = 592
-    Top = 203
+    Left = 752
+    Top = 219
   end
 end

@@ -71,9 +71,7 @@ type
     Splitter2: TSplitter;
     Splitter3: TSplitter;
     btnClearMap: TButton;
-    GroupBox4: TGroupBox;
-    btnImportGeoJSON: TButton;
-    btnExportGeoJSON: TButton;
+    btnImportWithWaypoint: TButton;
     procedure FormCreate(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxServiceMapChange(Sender: TObject);
@@ -83,8 +81,7 @@ type
     procedure btImportClick(Sender: TObject);
     procedure btnCalculateRouteBetweenAddressClick(Sender: TObject);
     procedure btnClearMapClick(Sender: TObject);
-    procedure btnExportGeoJSONClick(Sender: TObject);
-    procedure btnImportGeoJSONClick(Sender: TObject);
+    procedure btnImportWithWaypointClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure FillcBoxServiceMap;
@@ -182,6 +179,20 @@ begin
   end;
 end;
 
+procedure TGPXGeoJSONMainView.btnCalculateRouteBetweenAddressClick(Sender: TObject);
+begin
+  TMSFNCRouteCalculator1.CalculateRoute(edtStartAddress.Text, edtEndAddress.Text,
+    procedure(const ARoute: TTMSFNCRouteCalculatorRoute)
+    begin
+      if Length(ARoute.Polyline) = 0 then
+        Exit;
+
+      var LIndex := Length(ARoute.Polyline) div 2;
+      var LCenter := ARoute.Polyline[LIndex];
+      TMSFNCMaps1.SetCenterCoordinate(LCenter);
+    end);
+end;
+
 procedure TGPXGeoJSONMainView.btImportClick(Sender: TObject);
 begin
   OpenDialog1.Filter := 'GPX (*.gpx)|*.gpx';
@@ -192,6 +203,39 @@ begin
     if TMSFNCRouteCalculator1.HasRoutes then
       TMSFNCMaps1.ZoomToBounds(TMSFNCRouteCalculator1.Routes[0].Polyline);
   end;
+end;
+
+procedure TGPXGeoJSONMainView.btnImportWithWaypointClick(Sender: TObject);
+var
+  i: Integer;
+  LMarker: TTMSFNCMapsMarker;
+  LLabel: TTMSFNCMapsLabel;
+  LPolyline: TTMSFNCMapsPolyline;
+  LGPXRec: TTMSFNCMapsGPXRec;
+begin
+  if not OpenDialog1.Execute then
+    Exit;
+
+  LGPXRec := TMSFNCMaps1.LoadGPXFromFile(OpenDialog1.FileName, False);
+
+  TMSFNCMaps1.BeginUpdate;
+  if (Length(LGPXRec.Tracks) > 0) and (Length(LGPXRec.Tracks[0].Segments) > 0) then
+  begin
+    LPolyline := TMSFNCMaps1.AddPolyline(LGPXRec.Tracks[0].Segments[0]);
+    LPolyline.StrokeColor := gcRed;
+    LPolyline.StrokeWidth := 3;
+  end;
+
+  for i := 0 to Length(LGPXRec.Waypoints) - 1 do
+  begin
+    LMarker := TMSFNCmaps1.AddMarker(LGPXRec.WayPoints[i].WayPoint);
+    LMarker.DefaultIcon.Enabled := True;
+    LMarker.DefaultIcon.Fill := gcBlue;
+
+    LLabel := TMSFNCMaps1.AddLabel(LGPXRec.WayPoints[i].WayPoint, LGPXRec.WayPoints[i].Name, gcBlack, gcWhite);
+  end;
+  TMSFNCMaps1.ZoomToBounds(LGPXRec.Tracks[0].Segments[0]);
+  TMSFNCMaps1.EndUpdate;
 end;
 
 procedure TGPXGeoJSONMainView.btExportClick(Sender: TObject);
@@ -214,54 +258,10 @@ begin
   end;
 end;
 
-procedure TGPXGeoJSONMainView.btnCalculateRouteBetweenAddressClick(Sender: TObject);
-begin
-  TMSFNCRouteCalculator1.CalculateRoute(edtStartAddress.Text, edtEndAddress.Text,
-    procedure(const ARoute: TTMSFNCRouteCalculatorRoute)
-    begin
-      if Length(ARoute.Polyline) = 0 then
-        Exit;
-
-      var LIndex := Length(ARoute.Polyline) div 2;
-      var LCenter := ARoute.Polyline[LIndex];
-      TMSFNCMaps1.SetCenterCoordinate(LCenter);
-    end);
-end;
-
 procedure TGPXGeoJSONMainView.btnClearMapClick(Sender: TObject);
 begin
   TMSFNCMaps1.Clear;
 end;
 
-procedure TGPXGeoJSONMainView.btnImportGeoJSONClick(Sender: TObject);
-var
-  pl: TTMSFNCMapsPolyline;
-  I: Integer;
-begin
-  //OpenDialog1.Filter := 'GeoJSON (*.geojson)|*.geojson';
-  OpenDialog1.Filter := 'GPX (*.gpx)|*.gpx';
-  if OpenDialog1.Execute then
-  begin
-    TMSFNCMaps1.BeginUpdate;
-    TMSFNCMaps1.LoadGeoJSONFromFile(OpenDialog1.FileName);
-//    for I := 0 to TMSFNCMaps1.Polylines.Count - 1 do
-//    begin
-//      pl := TMSFNCMaps1.Polylines[I];
-//      pl.StrokeColor := gcBlue;
-//      pl.StrokeOpacity := 0.5;
-//    end;
-    TMSFNCMaps1.EndUpdate;
-  end;
-end;
-
-procedure TGPXGeoJSONMainView.btnExportGeoJSONClick(Sender: TObject);
-begin
-  SaveDialog1.Filter := 'GeoJSON (*.geojson)|*.geojson';
-  SaveDialog1.FileName := 'Rota.geojson';
-  if SaveDialog1.Execute then
-  begin
-    TMSFNCRouteCalculator1.SaveToJSONFile(SaveDialog1.FileName);
-  end;
-end;
 
 end.
