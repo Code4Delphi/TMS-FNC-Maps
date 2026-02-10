@@ -65,6 +65,7 @@ type
     procedure cBoxMapStyleChange(Sender: TObject);
     procedure edtTiltExit(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure btnClearAllMarkersClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure FillcBoxMapStyle;
@@ -145,6 +146,11 @@ begin
   Self.ConfigBasicMaps;
 end;
 
+procedure TMaps3DMainView.btnClearAllMarkersClick(Sender: TObject);
+begin
+  TMSFNCMapBox1.ClearMarkers;
+end;
+
 procedure TMaps3DMainView.Button2Click(Sender: TObject);
 var
  LStartAddress: TTMSFNCMapsCoordinateRec;
@@ -156,7 +162,7 @@ begin
       TMSFNCMapBox1.SetCenterCoordinate(LStartAddress);
       TMSFNCMapBox1.AddMarker(LStartAddress);
 
-      Self.ZoomInCoordinateRec(LStartAddress);
+      TMSFNCMapBox1.SetZoomLevel(15);
     end);
 end;
 
