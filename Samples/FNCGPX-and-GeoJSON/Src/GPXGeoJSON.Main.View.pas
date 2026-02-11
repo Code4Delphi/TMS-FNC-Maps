@@ -207,11 +207,10 @@ end;
 
 procedure TGPXGeoJSONMainView.btnImportWithWaypointClick(Sender: TObject);
 var
-  i: Integer;
+  LGPXRec: TTMSFNCMapsGPXRec;
+  LPolyline: TTMSFNCMapsPolyline;
   LMarker: TTMSFNCMapsMarker;
   LLabel: TTMSFNCMapsLabel;
-  LPolyline: TTMSFNCMapsPolyline;
-  LGPXRec: TTMSFNCMapsGPXRec;
 begin
   if not OpenDialog1.Execute then
     Exit;
@@ -226,13 +225,14 @@ begin
     LPolyline.StrokeWidth := 3;
   end;
 
-  for i := 0 to Length(LGPXRec.Waypoints) - 1 do
+  for var i := 0 to Length(LGPXRec.Waypoints) - 1 do
   begin
     LMarker := TMSFNCmaps1.AddMarker(LGPXRec.WayPoints[i].WayPoint);
     LMarker.DefaultIcon.Enabled := True;
     LMarker.DefaultIcon.Fill := gcBlue;
 
     LLabel := TMSFNCMaps1.AddLabel(LGPXRec.WayPoints[i].WayPoint, LGPXRec.WayPoints[i].Name, gcBlack, gcWhite);
+    LLabel.Font.Color := clFuchsia;
   end;
   TMSFNCMaps1.ZoomToBounds(LGPXRec.Tracks[0].Segments[0]);
   TMSFNCMaps1.EndUpdate;

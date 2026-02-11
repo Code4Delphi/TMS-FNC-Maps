@@ -3,7 +3,7 @@ object Maps3DMainView: TMaps3DMainView
   Top = 0
   Caption = 'TMS FNC Maps - Maps 3D'
   ClientHeight = 663
-  ClientWidth = 1332
+  ClientWidth = 1325
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,8 @@ object Maps3DMainView: TMaps3DMainView
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 217
-    Width = 1332
+    Top = 161
+    Width = 1325
     Height = 10
     Cursor = crVSplit
     Align = alTop
@@ -30,23 +30,26 @@ object Maps3DMainView: TMaps3DMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1332
-    Height = 217
+    Width = 1325
+    Height = 161
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1332
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
       Width = 321
-      Height = 217
+      Height = 161
       Margins.Bottom = 2
       Align = alLeft
-      Caption = ' Config basic '
+      Caption = ' Config basic MapBox '
       TabOrder = 0
+      ExplicitLeft = -1
+      ExplicitTop = -5
       DesignSize = (
         321
-        217)
+        161)
       object Label5: TLabel
         Left = 5
         Top = 18
@@ -69,13 +72,14 @@ object Maps3DMainView: TMaps3DMainView
       Left = 321
       Top = 0
       Width = 336
-      Height = 217
+      Height = 161
       Align = alLeft
-      Caption = ' Config maps'
+      Caption = ' Config maps '
       TabOrder = 1
+      ExplicitTop = 4
       DesignSize = (
         336
-        217)
+        161)
       object Label1: TLabel
         Left = 5
         Top = 18
@@ -101,11 +105,11 @@ object Maps3DMainView: TMaps3DMainView
         ShowHint = True
       end
       object Label4: TLabel
-        Left = 5
-        Top = 153
+        Left = 128
+        Top = 106
         Width = 45
         Height = 15
-        Hint = 'Inclina'#231#227'o'
+        Hint = 'Cabe'#231'alho'
         Caption = 'Heading'
         ParentShowHint = False
         ShowHint = True
@@ -141,8 +145,8 @@ object Maps3DMainView: TMaps3DMainView
         OnExit = edtTiltExit
       end
       object edtHeading: TEdit
-        Left = 5
-        Top = 170
+        Left = 128
+        Top = 123
         Width = 121
         Height = 23
         NumbersOnly = True
@@ -155,13 +159,14 @@ object Maps3DMainView: TMaps3DMainView
       Left = 657
       Top = 0
       Width = 624
-      Height = 217
+      Height = 161
       Align = alLeft
       Caption = ' Config '
       TabOrder = 2
+      ExplicitHeight = 217
       DesignSize = (
         624
-        217)
+        161)
       object Label6: TLabel
         Left = 6
         Top = 21
@@ -184,14 +189,14 @@ object Maps3DMainView: TMaps3DMainView
         TabOrder = 0
         OnClick = btnClearAllMarkersClick
       end
-      object Button2: TButton
+      object btnGetGeocoding: TButton
         Left = 6
         Top = 67
         Width = 267
         Height = 25
         Caption = 'GetGeocoding with callback'
         TabOrder = 1
-        OnClick = Button2Click
+        OnClick = btnGetGeocodingClick
       end
       object edtAddress: TEdit
         Left = 6
@@ -202,25 +207,12 @@ object Maps3DMainView: TMaps3DMainView
         TabOrder = 2
         Text = 'Avenida Paulista S'#227'o Paulo'
       end
-      object ckZoomInCreated: TCheckBox
-        AlignWithMargins = True
-        Left = 281
-        Top = 84
-        Width = 119
-        Height = 22
-        Cursor = crHandPoint
-        Margins.Left = 5
-        Caption = 'Zoom in created'
-        Checked = True
-        State = cbChecked
-        TabOrder = 3
-      end
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 644
-    Width = 1332
+    Width = 1325
     Height = 19
     Panels = <
       item
@@ -232,12 +224,13 @@ object Maps3DMainView: TMaps3DMainView
       item
         Width = 250
       end>
+    ExplicitWidth = 1332
   end
   object TMSFNCMapBox1: TTMSFNCMapBox
     Left = 0
-    Top = 227
-    Width = 1332
-    Height = 417
+    Top = 171
+    Width = 1325
+    Height = 473
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -254,10 +247,13 @@ object Maps3DMainView: TMaps3DMainView
     Options.Tilt = 70
     ElementContainers = <>
     HeadLinks = <>
+    ExplicitTop = 227
+    ExplicitWidth = 1332
+    ExplicitHeight = 417
   end
   object TMSFNCGeocoding1: TTMSFNCGeocoding
-    Left = 957
-    Top = 153
+    Left = 989
+    Top = 79
     Width = 26
     Height = 26
     Visible = True

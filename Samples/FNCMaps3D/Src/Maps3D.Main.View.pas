@@ -56,21 +56,19 @@ type
     GroupBox2: TGroupBox;
     Label6: TLabel;
     btnClearAllMarkers: TButton;
-    Button2: TButton;
+    btnGetGeocoding: TButton;
     edtAddress: TEdit;
-    ckZoomInCreated: TCheckBox;
     TMSFNCGeocoding1: TTMSFNCGeocoding;
     procedure FormCreate(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxMapStyleChange(Sender: TObject);
     procedure edtTiltExit(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btnGetGeocodingClick(Sender: TObject);
     procedure btnClearAllMarkersClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure FillcBoxMapStyle;
     procedure FillcBoxTimeOfDay;
-    procedure ZoomInCoordinateRec(const ACoordinateRec: TTMSFNCMapsCoordinateRec);
   public
 
   end;
@@ -146,12 +144,7 @@ begin
   Self.ConfigBasicMaps;
 end;
 
-procedure TMaps3DMainView.btnClearAllMarkersClick(Sender: TObject);
-begin
-  TMSFNCMapBox1.ClearMarkers;
-end;
-
-procedure TMaps3DMainView.Button2Click(Sender: TObject);
+procedure TMaps3DMainView.btnGetGeocodingClick(Sender: TObject);
 var
  LStartAddress: TTMSFNCMapsCoordinateRec;
 begin
@@ -166,14 +159,9 @@ begin
     end);
 end;
 
-procedure TMaps3DMainView.ZoomInCoordinateRec(const ACoordinateRec: TTMSFNCMapsCoordinateRec);
+procedure TMaps3DMainView.btnClearAllMarkersClick(Sender: TObject);
 begin
-  if not ckZoomInCreated.Checked then
-    Exit;
-
-  TMSFNCMapBox1.ZoomToBounds(ACoordinateRec, ACoordinateRec);
-  TMSFNCMapBox1.SetZoomLevel(18);
+  TMSFNCMapBox1.ClearMarkers;
 end;
-
 
 end.
