@@ -1,7 +1,7 @@
 object ElementContainersMainView: TElementContainersMainView
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Maps - ElementContainers'
+  Caption = 'TMS FNC Maps - ElementContainers and Headlinks'
   ClientHeight = 669
   ClientWidth = 1281
   Color = clBtnFace
@@ -34,8 +34,6 @@ object ElementContainersMainView: TElementContainersMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 4
-    ExplicitWidth = 1288
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -146,7 +144,7 @@ object ElementContainersMainView: TElementContainersMainView
     Left = 0
     Top = 131
     Width = 1281
-    Height = 519
+    Height = 500
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -239,13 +237,10 @@ object ElementContainersMainView: TElementContainersMainView
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
     Service = msOpenLayers
-    ExplicitTop = 127
-    ExplicitWidth = 1288
-    ExplicitHeight = 482
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 650
+    Top = 631
     Width = 1281
     Height = 19
     Panels = <
@@ -256,7 +251,18 @@ object ElementContainersMainView: TElementContainersMainView
           #231#227'o e independentes do provedor de mapas'
         Width = 250
       end>
-    ExplicitTop = 613
-    ExplicitWidth = 1288
+  end
+  object StatusBar2: TStatusBar
+    Left = 0
+    Top = 650
+    Width = 1281
+    Height = 19
+    Panels = <
+      item
+        Text = 
+          'Headlinks: pode ser usada para adicionar dinamicamente bibliotec' +
+          'as CSS e JavaScript personalizadas ao componente de mapas'
+        Width = 250
+      end>
   end
 end

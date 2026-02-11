@@ -45,6 +45,7 @@ type
     ClearMarkers: TButton;
     ckButtonsVisibility: TCheckBox;
     ckZoomVisibility: TCheckBox;
+    StatusBar2: TStatusBar;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);

@@ -60,13 +60,13 @@
         <Projects Include="FNCMapsPopups\FNCMapsPopups.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="FNCMapsElementContainers\FNCMapsElementContainers.dproj">
+        <Projects Include="FNCElementContainers-and-Headlinks\FNCElementContainers_and_Headlinks.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="FNCMaps3D\FNCMaps3D.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="FNCMapsGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj">
+        <Projects Include="FNCGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -248,14 +248,14 @@
     <Target Name="FNCMapsPopups:Make">
         <MSBuild Projects="FNCMapsPopups\FNCMapsPopups.dproj" Targets="Make"/>
     </Target>
-    <Target Name="FNCMapsElementContainers">
-        <MSBuild Projects="FNCMapsElementContainers\FNCMapsElementContainers.dproj"/>
+    <Target Name="FNCElementContainers_and_Headlinks">
+        <MSBuild Projects="FNCElementContainers-and-Headlinks\FNCElementContainers_and_Headlinks.dproj"/>
     </Target>
-    <Target Name="FNCMapsElementContainers:Clean">
-        <MSBuild Projects="FNCMapsElementContainers\FNCMapsElementContainers.dproj" Targets="Clean"/>
+    <Target Name="FNCElementContainers_and_Headlinks:Clean">
+        <MSBuild Projects="FNCElementContainers-and-Headlinks\FNCElementContainers_and_Headlinks.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="FNCMapsElementContainers:Make">
-        <MSBuild Projects="FNCMapsElementContainers\FNCMapsElementContainers.dproj" Targets="Make"/>
+    <Target Name="FNCElementContainers_and_Headlinks:Make">
+        <MSBuild Projects="FNCElementContainers-and-Headlinks\FNCElementContainers_and_Headlinks.dproj" Targets="Make"/>
     </Target>
     <Target Name="FNCMaps3D">
         <MSBuild Projects="FNCMaps3D\FNCMaps3D.dproj"/>
@@ -267,22 +267,22 @@
         <MSBuild Projects="FNCMaps3D\FNCMaps3D.dproj" Targets="Make"/>
     </Target>
     <Target Name="FNCMapsGPX_and_GeoJSON">
-        <MSBuild Projects="FNCMapsGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj"/>
+        <MSBuild Projects="FNCGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj"/>
     </Target>
     <Target Name="FNCMapsGPX_and_GeoJSON:Clean">
-        <MSBuild Projects="FNCMapsGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj" Targets="Clean"/>
+        <MSBuild Projects="FNCGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj" Targets="Clean"/>
     </Target>
     <Target Name="FNCMapsGPX_and_GeoJSON:Make">
-        <MSBuild Projects="FNCMapsGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj" Targets="Make"/>
+        <MSBuild Projects="FNCGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels;FNCMapsHeatmaps;FNCMapsGeocoding;FNCMapsPlaces;FNCMapsRouteCalculator;FNCMapsDirections;FNCMapsLocation;FNCMapsElevation;FNCMapsTollCost;FNCStaticMap_and_FNCMapsImage;FNCTimeZone;FNCMapsPopups;FNCMapsElementContainers;FNCMaps3D;FNCMapsGPX_and_GeoJSON"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels;FNCMapsHeatmaps;FNCMapsGeocoding;FNCMapsPlaces;FNCMapsRouteCalculator;FNCMapsDirections;FNCMapsLocation;FNCMapsElevation;FNCMapsTollCost;FNCStaticMap_and_FNCMapsImage;FNCTimeZone;FNCMapsPopups;FNCElementContainers_and_Headlinks;FNCMaps3D;FNCMapsGPX_and_GeoJSON"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean;FNCMapsHeatmaps:Clean;FNCMapsGeocoding:Clean;FNCMapsPlaces:Clean;FNCMapsRouteCalculator:Clean;FNCMapsDirections:Clean;FNCMapsLocation:Clean;FNCMapsElevation:Clean;FNCMapsTollCost:Clean;FNCStaticMap_and_FNCMapsImage:Clean;FNCTimeZone:Clean;FNCMapsPopups:Clean;FNCMapsElementContainers:Clean;FNCMaps3D:Clean;FNCMapsGPX_and_GeoJSON:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean;FNCMapsHeatmaps:Clean;FNCMapsGeocoding:Clean;FNCMapsPlaces:Clean;FNCMapsRouteCalculator:Clean;FNCMapsDirections:Clean;FNCMapsLocation:Clean;FNCMapsElevation:Clean;FNCMapsTollCost:Clean;FNCStaticMap_and_FNCMapsImage:Clean;FNCTimeZone:Clean;FNCMapsPopups:Clean;FNCElementContainers_and_Headlinks:Clean;FNCMaps3D:Clean;FNCMapsGPX_and_GeoJSON:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make;FNCMapsHeatmaps:Make;FNCMapsGeocoding:Make;FNCMapsPlaces:Make;FNCMapsRouteCalculator:Make;FNCMapsDirections:Make;FNCMapsLocation:Make;FNCMapsElevation:Make;FNCMapsTollCost:Make;FNCStaticMap_and_FNCMapsImage:Make;FNCTimeZone:Make;FNCMapsPopups:Make;FNCMapsElementContainers:Make;FNCMaps3D:Make;FNCMapsGPX_and_GeoJSON:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make;FNCMapsHeatmaps:Make;FNCMapsGeocoding:Make;FNCMapsPlaces:Make;FNCMapsRouteCalculator:Make;FNCMapsDirections:Make;FNCMapsLocation:Make;FNCMapsElevation:Make;FNCMapsTollCost:Make;FNCStaticMap_and_FNCMapsImage:Make;FNCTimeZone:Make;FNCMapsPopups:Make;FNCElementContainers_and_Headlinks:Make;FNCMaps3D:Make;FNCMapsGPX_and_GeoJSON:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
