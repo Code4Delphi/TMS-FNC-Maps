@@ -1,4 +1,4 @@
-# ElementContainers
+# ElementContainers and Headlinks
 
 ### ptBR: <br/>
 **ElementContainers** permitem adicionar elementos HTML/CSS personalizados sobre o mapa e criar controles interativos usando Ações. Seu conteúdo pode ser atualizado dinamicamente via JavaScript em tempo de execução. Além disso, são independentes do serviço de mapas, mantendo o mesmo visual e funcionamento em qualquer provedor.
