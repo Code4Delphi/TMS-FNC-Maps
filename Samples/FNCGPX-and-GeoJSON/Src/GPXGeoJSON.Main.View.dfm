@@ -42,7 +42,7 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
       ExplicitTop = 19
     end
     object Splitter3: TSplitter
-      Left = 1123
+      Left = 1257
       Top = 0
       Width = 8
       Height = 263
@@ -53,43 +53,74 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
     object GroupBox3: TGroupBox
       Left = 754
       Top = 0
-      Width = 369
+      Width = 503
       Height = 263
       Align = alLeft
       Caption = ' GPX '
       TabOrder = 0
       ExplicitLeft = 752
+      ExplicitTop = -6
+      DesignSize = (
+        503
+        263)
+      object Shape2: TShape
+        Left = 8
+        Top = 49
+        Width = 481
+        Height = 1
+        Anchors = [akLeft, akTop, akRight]
+        Pen.Color = clGray
+        ExplicitWidth = 347
+      end
+      object Shape3: TShape
+        Left = 8
+        Top = 131
+        Width = 481
+        Height = 1
+        Anchors = [akLeft, akTop, akRight]
+        Pen.Color = clGray
+        ExplicitWidth = 347
+      end
+      object Shape4: TShape
+        Left = 8
+        Top = 174
+        Width = 481
+        Height = 1
+        Anchors = [akLeft, akTop, akRight]
+        Pen.Color = clGray
+        ExplicitWidth = 347
+      end
       object btExport: TButton
-        Left = 273
-        Top = 35
-        Width = 90
+        Left = 8
+        Top = 18
+        Width = 480
         Height = 25
         Caption = 'Export'
         TabOrder = 0
         OnClick = btExportClick
       end
       object btImport: TButton
-        Left = 6
-        Top = 35
-        Width = 90
+        Left = 8
+        Top = 96
+        Width = 480
         Height = 25
         Caption = 'Import'
         TabOrder = 1
         OnClick = btImportClick
       end
       object btnClearMap: TButton
-        Left = 6
-        Top = 64
-        Width = 357
-        Height = 25
+        Left = 8
+        Top = 182
+        Width = 480
+        Height = 26
         Caption = 'Clear map'
         TabOrder = 2
         OnClick = btnClearMapClick
       end
       object btnImportWithWaypoint: TButton
-        Left = 99
-        Top = 35
-        Width = 171
+        Left = 8
+        Top = 143
+        Width = 480
         Height = 25
         Hint = 'Importar com pontos de refer'#234'ncia'
         Caption = 'Import with Waypoint '
@@ -97,6 +128,46 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
         ShowHint = True
         TabOrder = 3
         OnClick = btnImportWithWaypointClick
+      end
+      object ckAutoDisplay: TCheckBox
+        Left = 7
+        Top = 67
+        Width = 92
+        Height = 17
+        Caption = 'Auto Display'
+        Checked = True
+        State = cbChecked
+        TabOrder = 4
+      end
+      object ckDisplayTimeStamps: TCheckBox
+        Left = 343
+        Top = 67
+        Width = 138
+        Height = 17
+        Caption = 'Display TimeStamps'
+        Checked = True
+        State = cbChecked
+        TabOrder = 5
+      end
+      object ckZoomToBounds: TCheckBox
+        Left = 102
+        Top = 67
+        Width = 117
+        Height = 17
+        Caption = 'Zoom To Bounds'
+        Checked = True
+        State = cbChecked
+        TabOrder = 6
+      end
+      object ckDisplayElevation: TCheckBox
+        Left = 224
+        Top = 67
+        Width = 119
+        Height = 17
+        Caption = 'Display Elevation'
+        Checked = True
+        State = cbChecked
+        TabOrder = 7
       end
     end
     object GroupBox1: TGroupBox
@@ -265,6 +336,15 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
         Text = 'Corcovado Rio de Janeiro'
         ExplicitWidth = 394
       end
+      object btnImportToRouteCalculator: TButton
+        Left = 3
+        Top = 144
+        Width = 209
+        Height = 25
+        Caption = 'Import to TMSFNCRouteCalculator'
+        TabOrder = 3
+        OnClick = btnImportToRouteCalculatorClick
+      end
     end
   end
   object StatusBar1: TStatusBar
@@ -301,7 +381,7 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
-    ExplicitHeight = 337
+    ExplicitTop = 268
   end
   object TMSFNCRouteCalculator1: TTMSFNCRouteCalculator
     Left = 524
@@ -313,11 +393,15 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
     Routes = <>
   end
   object OpenDialog1: TOpenDialog
-    Left = 808
-    Top = 147
+    DefaultExt = '.gpx'
+    Filter = 'GPX (*.gpx)|*.gpx'
+    Left = 800
+    Top = 259
   end
   object SaveDialog1: TSaveDialog
-    Left = 1048
-    Top = 155
+    DefaultExt = '.gpx'
+    Filter = 'GPX (*.gpx)|*.gpx'
+    Left = 1016
+    Top = 267
   end
 end

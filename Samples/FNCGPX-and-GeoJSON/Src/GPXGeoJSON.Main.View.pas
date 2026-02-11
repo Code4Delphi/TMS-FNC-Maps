@@ -72,6 +72,14 @@ type
     Splitter3: TSplitter;
     btnClearMap: TButton;
     btnImportWithWaypoint: TButton;
+    btnImportToRouteCalculator: TButton;
+    Shape2: TShape;
+    Shape3: TShape;
+    Shape4: TShape;
+    ckAutoDisplay: TCheckBox;
+    ckDisplayTimeStamps: TCheckBox;
+    ckZoomToBounds: TCheckBox;
+    ckDisplayElevation: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxServiceMapChange(Sender: TObject);
@@ -82,6 +90,7 @@ type
     procedure btnCalculateRouteBetweenAddressClick(Sender: TObject);
     procedure btnClearMapClick(Sender: TObject);
     procedure btnImportWithWaypointClick(Sender: TObject);
+    procedure btnImportToRouteCalculatorClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure FillcBoxServiceMap;
@@ -195,14 +204,11 @@ end;
 
 procedure TGPXGeoJSONMainView.btImportClick(Sender: TObject);
 begin
-  OpenDialog1.Filter := 'GPX (*.gpx)|*.gpx';
-  if OpenDialog1.Execute then
-  begin
-    TMSFNCRouteCalculator1.LoadGPXFromFile(OpenDialog1.FileName);
-    TMSFNCMaps1.RouteCalculatorPlotRoutes;
-    if TMSFNCRouteCalculator1.HasRoutes then
-      TMSFNCMaps1.ZoomToBounds(TMSFNCRouteCalculator1.Routes[0].Polyline);
-  end;
+  if not OpenDialog1.Execute then
+    Exit;
+
+  TMSFNCMaps1.LoadGPXFromFile(OpenDialog1.FileName, ckAutoDisplay.Checked, ckZoomToBounds.Checked, 3,
+    gcRed, ckDisplayElevation.Checked, True);
 end;
 
 procedure TGPXGeoJSONMainView.btnImportWithWaypointClick(Sender: TObject);
@@ -238,6 +244,18 @@ begin
   TMSFNCMaps1.EndUpdate;
 end;
 
+procedure TGPXGeoJSONMainView.btnImportToRouteCalculatorClick(Sender: TObject);
+begin
+  if OpenDialog1.Execute then
+  begin
+    TMSFNCMaps1.LoadGPXFromFile(OpenDialog1.FileName);
+    TMSFNCRouteCalculator1.LoadGPXFromFile(OpenDialog1.FileName);
+    TMSFNCMaps1.RouteCalculatorPlotRoutes;
+    if TMSFNCRouteCalculator1.HasRoutes then
+      TMSFNCMaps1.ZoomToBounds(TMSFNCRouteCalculator1.Routes[0].Polyline);
+  end;
+end;
+
 procedure TGPXGeoJSONMainView.btExportClick(Sender: TObject);
 var
   LGPXMetaData: TTMSFNCMapsGPXMetaData;
@@ -249,7 +267,6 @@ begin
   end;
 
   TMSFNCRouteCalculator1.Routes[0].RouteName := 'TMSFNCRouteCalculator';
-  SaveDialog1.Filter := 'GPX (*.gpx)|*.gpx';
   SaveDialog1.FileName := TMSFNCRouteCalculator1.Routes[0].RouteName + '.gpx';
   if SaveDialog1.Execute then
   begin
