@@ -2,8 +2,8 @@ object ElementContainersMainView: TElementContainersMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - ElementContainers'
-  ClientHeight = 632
-  ClientWidth = 1288
+  ClientHeight = 669
+  ClientWidth = 1281
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,13 +12,12 @@ object ElementContainersMainView: TElementContainersMainView
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
-  WindowState = wsMaximized
   OnCreate = FormCreate
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
     Top = 121
-    Width = 1288
+    Width = 1281
     Height = 10
     Cursor = crVSplit
     Align = alTop
@@ -30,12 +29,13 @@ object ElementContainersMainView: TElementContainersMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1288
+    Width = 1281
     Height = 121
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1332
+    ExplicitTop = 4
+    ExplicitWidth = 1288
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -102,7 +102,7 @@ object ElementContainersMainView: TElementContainersMainView
       Align = alLeft
       Caption = ' Markers '
       TabOrder = 1
-      object Button2: TButton
+      object ClearMarkers: TButton
         AlignWithMargins = True
         Left = 5
         Top = 17
@@ -114,27 +114,39 @@ object ElementContainersMainView: TElementContainersMainView
         Align = alTop
         Caption = 'Clear Markers'
         TabOrder = 0
-        OnClick = Button2Click
+        OnClick = ClearMarkersClick
       end
     end
-    object ckElementContainerVisibility: TCheckBox
+    object ckButtonsVisibility: TCheckBox
       Left = 701
       Top = 21
-      Width = 188
+      Width = 220
       Height = 17
       Cursor = crHandPoint
-      Caption = 'ElementContainer Visibility'
+      Caption = 'ElementContainer Visibility - Buttons'
       Checked = True
       State = cbChecked
       TabOrder = 2
-      OnClick = ckElementContainerVisibilityClick
+      OnClick = ckButtonsVisibilityClick
+    end
+    object ckZoomVisibility: TCheckBox
+      Left = 701
+      Top = 44
+      Width = 220
+      Height = 17
+      Cursor = crHandPoint
+      Caption = 'ElementContainer Visibility - Zoom'
+      Checked = True
+      State = cbChecked
+      TabOrder = 3
+      OnClick = ckZoomVisibilityClick
     end
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
     Top = 131
-    Width = 1288
-    Height = 482
+    Width = 1281
+    Height = 519
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -154,12 +166,7 @@ object ElementContainersMainView: TElementContainersMainView
             'tton> '
           
             '<button id="btnMyButton2" class="btn btn-info">My button 2</butt' +
-            'on'
-          ''
-          '<span id="customZoom1" class="text-primary">12</span>'
-          
-            '<input type="range" min="0" value="12" max="18" id="customRange1' +
-            '" class="form-control-range">')
+            'on>')
         Actions = <
           item
             EventReturnValue = rvInnerHTML
@@ -172,19 +179,44 @@ object ElementContainersMainView: TElementContainersMainView
             HTMLElementID = 'btnMyButton2'
             Name = 'Action1'
             OnExecute = TMSFNCMaps1ElementContainers0Actions1Execute
-          end
-          item
-            Event = heCustom
-            CustomEvent = 'input'
-            EventReturnValue = rvValue
-            HTMLElementID = 'customRange1'
-            Name = 'Action2'
-            OnExecute = TMSFNCMaps1ElementContainers0Actions2Execute
           end>
         Coordinate.Longitude = -74.044501999999990000
         Coordinate.Latitude = 40.689247000000000000
         Position = poTopRight
         HTMLElementID = 'ElementContainer0'
+        HTMLElementClassName = 'card'
+        UseDefaultStyle = False
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+      end
+      item
+        HTML.Strings = (
+          
+            '<div for="customRange1" class="card-header bg-primary text-white' +
+            '">'
+          'Zoom Level'
+          '<span class="card-label" id="customZoom1">12</span>'
+          '</div>'
+          '<idv class="card-body bg-light">'
+          
+            '<input type="range" class="form-range" min="0" value="12" max="1' +
+            '8" id="customRange1">'
+          '</div>')
+        Actions = <
+          item
+            Event = heCustom
+            CustomEvent = 'input'
+            EventReturnValue = rvValue
+            HTMLElementID = 'customRange1'
+            Name = 'Action0'
+            OnExecute = TMSFNCMaps1ElementContainers1Actions0Execute
+          end>
+        Coordinate.Longitude = -74.044501999999990000
+        Coordinate.Latitude = 40.689247000000000000
+        Position = poBottomRight
+        HTMLElementID = 'ElementContainer1'
         HTMLElementClassName = 'card'
         UseDefaultStyle = False
         Margins.Left = 10.000000000000000000
@@ -208,13 +240,13 @@ object ElementContainersMainView: TElementContainersMainView
     Options.DefaultZoomLevel = 1.000000000000000000
     Service = msOpenLayers
     ExplicitTop = 127
-    ExplicitWidth = 1332
-    ExplicitHeight = 513
+    ExplicitWidth = 1288
+    ExplicitHeight = 482
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 613
-    Width = 1288
+    Top = 650
+    Width = 1281
     Height = 19
     Panels = <
       item
@@ -224,7 +256,7 @@ object ElementContainersMainView: TElementContainersMainView
           #231#227'o e independentes do provedor de mapas'
         Width = 250
       end>
-    ExplicitTop = 644
-    ExplicitWidth = 1332
+    ExplicitTop = 613
+    ExplicitWidth = 1288
   end
 end

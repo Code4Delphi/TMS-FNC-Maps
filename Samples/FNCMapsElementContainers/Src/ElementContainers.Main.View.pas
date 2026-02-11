@@ -42,18 +42,20 @@ type
     StatusBar1: TStatusBar;
     Splitter1: TSplitter;
     GroupBox3: TGroupBox;
-    Button2: TButton;
-    ckElementContainerVisibility: TCheckBox;
+    ClearMarkers: TButton;
+    ckButtonsVisibility: TCheckBox;
+    ckZoomVisibility: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure cBoxServiceChange(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure ClearMarkersClick(Sender: TObject);
     procedure TMSFNCMaps1ElementContainers0Actions0Execute(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1ElementContainers0Actions1Execute(Sender: TObject; AEventData: TTMSFNCMapsEventData);
-    procedure TMSFNCMaps1ElementContainers0Actions2Execute(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1ZoomChanged(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1GetZoomLevel(Sender: TObject; AZoomLevel: Double);
-    procedure ckElementContainerVisibilityClick(Sender: TObject);
+    procedure ckButtonsVisibilityClick(Sender: TObject);
+    procedure TMSFNCMaps1ElementContainers1Actions0Execute(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure ckZoomVisibilityClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
   public
@@ -94,9 +96,24 @@ begin
   Self.ConfigBasicMaps;
 end;
 
-procedure TElementContainersMainView.Button2Click(Sender: TObject);
+procedure TElementContainersMainView.ClearMarkersClick(Sender: TObject);
 begin
   TMSFNCMaps1.ClearMarkers;
+end;
+
+procedure TElementContainersMainView.ckButtonsVisibilityClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ElementContainers.Items[0].Visible := ckButtonsVisibility.Checked;
+end;
+
+procedure TElementContainersMainView.ckZoomVisibilityClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ElementContainers.Items[1].Visible := ckZoomVisibility.Checked;
+end;
+
+procedure TElementContainersMainView.TMSFNCMaps1ElementContainers0Actions1Execute(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+begin
+  ShowMessage(AEventData.CustomData);
 end;
 
 procedure TElementContainersMainView.TMSFNCMaps1ElementContainers0Actions0Execute(Sender: TObject;
@@ -106,18 +123,7 @@ begin
   ShowMessage(AEventData.CustomData);
 end;
 
-procedure TElementContainersMainView.TMSFNCMaps1ElementContainers0Actions1Execute(Sender: TObject;
-  AEventData: TTMSFNCMapsEventData);
-begin
-  ShowMessage(AEventData.CustomData);
-end;
-
-procedure TElementContainersMainView.ckElementContainerVisibilityClick(Sender: TObject);
-begin
-   TMSFNCMaps1.ElementContainers.Items[0].Visible := ckElementContainerVisibility.Checked;
-end;
-
-procedure TElementContainersMainView.TMSFNCMaps1ElementContainers0Actions2Execute(Sender: TObject;
+procedure TElementContainersMainView.TMSFNCMaps1ElementContainers1Actions0Execute(Sender: TObject;
   AEventData: TTMSFNCMapsEventData);
 var
   LReturn: string;
