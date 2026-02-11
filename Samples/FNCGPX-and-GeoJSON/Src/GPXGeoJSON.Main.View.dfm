@@ -100,8 +100,8 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
         OnClick = btExportClick
       end
       object btImport: TButton
-        Left = 8
-        Top = 96
+        Left = 6
+        Top = 100
         Width = 480
         Height = 25
         Caption = 'Import'
@@ -385,7 +385,7 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
   end
   object TMSFNCRouteCalculator1: TTMSFNCRouteCalculator
     Left = 524
-    Top = 183
+    Top = 175
     Width = 26
     Height = 26
     Visible = True

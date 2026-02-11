@@ -202,13 +202,32 @@ begin
     end);
 end;
 
+procedure TGPXGeoJSONMainView.btExportClick(Sender: TObject);
+var
+  LGPXMetaData: TTMSFNCMapsGPXMetaData;
+begin
+  if not TMSFNCRouteCalculator1.HasRoutes then
+  begin
+    ShowMessage('There are no routes to be exported.');
+    Exit;
+  end;
+
+  TMSFNCRouteCalculator1.Routes[0].RouteName := 'TMSFNCRouteCalculator';
+  SaveDialog1.FileName := TMSFNCRouteCalculator1.Routes[0].RouteName + '.gpx';
+  if SaveDialog1.Execute then
+  begin
+    LGPXMetaData.TrackName := TMSFNCRouteCalculator1.Routes[0].RouteName;
+    TMSFNCRouteCalculator1.SaveToGPXFile(TMSFNCRouteCalculator1.Routes[0], SaveDialog1.FileName, LGPXMetaData);
+  end;
+end;
+
 procedure TGPXGeoJSONMainView.btImportClick(Sender: TObject);
 begin
   if not OpenDialog1.Execute then
     Exit;
 
   TMSFNCMaps1.LoadGPXFromFile(OpenDialog1.FileName, ckAutoDisplay.Checked, ckZoomToBounds.Checked, 3,
-    gcRed, ckDisplayElevation.Checked, True);
+    gcRed, ckDisplayElevation.Checked, ckDisplayTimeStamps.Checked);
 end;
 
 procedure TGPXGeoJSONMainView.btnImportWithWaypointClick(Sender: TObject);
@@ -251,27 +270,9 @@ begin
     TMSFNCMaps1.LoadGPXFromFile(OpenDialog1.FileName);
     TMSFNCRouteCalculator1.LoadGPXFromFile(OpenDialog1.FileName);
     TMSFNCMaps1.RouteCalculatorPlotRoutes;
+
     if TMSFNCRouteCalculator1.HasRoutes then
       TMSFNCMaps1.ZoomToBounds(TMSFNCRouteCalculator1.Routes[0].Polyline);
-  end;
-end;
-
-procedure TGPXGeoJSONMainView.btExportClick(Sender: TObject);
-var
-  LGPXMetaData: TTMSFNCMapsGPXMetaData;
-begin
-  if not TMSFNCRouteCalculator1.HasRoutes then
-  begin
-    ShowMessage('There are no routes to be exported.');
-    Exit;
-  end;
-
-  TMSFNCRouteCalculator1.Routes[0].RouteName := 'TMSFNCRouteCalculator';
-  SaveDialog1.FileName := TMSFNCRouteCalculator1.Routes[0].RouteName + '.gpx';
-  if SaveDialog1.Execute then
-  begin
-    LGPXMetaData.TrackName := TMSFNCRouteCalculator1.Routes[0].RouteName;
-    TMSFNCRouteCalculator1.SaveToGPXFile(TMSFNCRouteCalculator1.Routes[0], SaveDialog1.FileName, LGPXMetaData);
   end;
 end;
 
