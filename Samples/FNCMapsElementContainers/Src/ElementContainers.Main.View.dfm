@@ -2,8 +2,8 @@ object ElementContainersMainView: TElementContainersMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - ElementContainers'
-  ClientHeight = 663
-  ClientWidth = 1332
+  ClientHeight = 632
+  ClientWidth = 1288
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object ElementContainersMainView: TElementContainersMainView
   object Splitter1: TSplitter
     Left = 0
     Top = 121
-    Width = 1332
+    Width = 1288
     Height = 10
     Cursor = crVSplit
     Align = alTop
@@ -30,11 +30,12 @@ object ElementContainersMainView: TElementContainersMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1332
+    Width = 1288
     Height = 121
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1332
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -132,8 +133,8 @@ object ElementContainersMainView: TElementContainersMainView
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
     Top = 131
-    Width = 1332
-    Height = 513
+    Width = 1288
+    Height = 482
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -150,14 +151,12 @@ object ElementContainersMainView: TElementContainersMainView
         HTML.Strings = (
           
             '<button id="btnMyButton1"class="btn btn-primary">My button 1</bu' +
-            'tton> <br>'
+            'tton> '
           
             '<button id="btnMyButton2" class="btn btn-info">My button 2</butt' +
-            'on><br>'
+            'on'
           ''
-          
-            'Zoom Level <span id="customZoom1" class="text-primary">12</span>' +
-            '<br>  '
+          '<span id="customZoom1" class="text-primary">12</span>'
           
             '<input type="range" min="0" value="12" max="18" id="customRange1' +
             '" class="form-control-range">')
@@ -176,6 +175,7 @@ object ElementContainersMainView: TElementContainersMainView
           end
           item
             Event = heCustom
+            CustomEvent = 'input'
             EventReturnValue = rvValue
             HTMLElementID = 'customRange1'
             Name = 'Action2'
@@ -207,21 +207,24 @@ object ElementContainersMainView: TElementContainersMainView
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 1.000000000000000000
     Service = msOpenLayers
+    ExplicitTop = 127
+    ExplicitWidth = 1332
+    ExplicitHeight = 513
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 644
-    Width = 1332
+    Top = 613
+    Width = 1288
     Height = 19
     Panels = <
       item
-        Width = 250
-      end
-      item
-        Width = 250
-      end
-      item
+        Text = 
+          ' ElementContainers: Permitem adicionar controles HTML/CSS intera' +
+          'tivos sobre o mapa, atualizados por JavaScript em tempo de execu' +
+          #231#227'o e independentes do provedor de mapas'
         Width = 250
       end>
+    ExplicitTop = 644
+    ExplicitWidth = 1332
   end
 end
