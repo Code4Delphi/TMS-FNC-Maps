@@ -63,7 +63,6 @@ object Maps3DMainView: TMaps3DMainView
         PasswordChar = '*'
         TabOrder = 0
         OnExit = edtAPIKeyMapExit
-        ExplicitWidth = 540
       end
     end
     object GroupBox3: TGroupBox
@@ -74,8 +73,6 @@ object Maps3DMainView: TMaps3DMainView
       Align = alLeft
       Caption = ' Config maps'
       TabOrder = 1
-      ExplicitLeft = 391
-      ExplicitTop = 4
       DesignSize = (
         336
         217)
@@ -162,8 +159,6 @@ object Maps3DMainView: TMaps3DMainView
       Align = alLeft
       Caption = ' Config '
       TabOrder = 2
-      ExplicitLeft = 1249
-      ExplicitTop = -24
       DesignSize = (
         624
         217)
@@ -187,6 +182,7 @@ object Maps3DMainView: TMaps3DMainView
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
+        OnClick = btnClearAllMarkersClick
       end
       object Button2: TButton
         Left = 6
@@ -204,7 +200,7 @@ object Maps3DMainView: TMaps3DMainView
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 2
-        Text = 'P'#227'o de a'#231'ucar Rio de Janeiro'
+        Text = 'Avenida Paulista S'#227'o Paulo'
       end
       object ckZoomInCreated: TCheckBox
         AlignWithMargins = True
@@ -255,9 +251,9 @@ object Maps3DMainView: TMaps3DMainView
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 15.000000000000000000
     Options.Version = '3.5.1'
+    Options.Tilt = 70
     ElementContainers = <>
     HeadLinks = <>
-    ExplicitTop = 223
   end
   object TMSFNCGeocoding1: TTMSFNCGeocoding
     Left = 957
