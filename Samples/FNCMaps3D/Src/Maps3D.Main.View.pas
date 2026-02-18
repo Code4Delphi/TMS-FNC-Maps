@@ -146,14 +146,14 @@ end;
 
 procedure TMaps3DMainView.btnGetGeocodingClick(Sender: TObject);
 var
- LStartAddress: TTMSFNCMapsCoordinateRec;
+ LCoordinateRec: TTMSFNCMapsCoordinateRec;
 begin
   TMSFNCGeocoding1.GetGeocoding(edtAddress.Text,
     procedure(const ARequest: TTMSFNCGeocodingRequest; const ARequestResult: TTMSFNCCloudBaseRequestResult)
     begin
-      LStartAddress := ARequest.Items[0].Coordinate.ToRec;
-      TMSFNCMapBox1.SetCenterCoordinate(LStartAddress);
-      TMSFNCMapBox1.AddMarker(LStartAddress);
+      LCoordinateRec := ARequest.Items[0].Coordinate.ToRec;
+      TMSFNCMapBox1.SetCenterCoordinate(LCoordinateRec);
+      TMSFNCMapBox1.AddMarker(LCoordinateRec);
 
       TMSFNCMapBox1.SetZoomLevel(15);
     end);

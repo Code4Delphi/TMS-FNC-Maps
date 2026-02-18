@@ -58,8 +58,6 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
       Align = alLeft
       Caption = ' GPX '
       TabOrder = 0
-      ExplicitLeft = 752
-      ExplicitTop = -6
       DesignSize = (
         503
         263)
@@ -179,8 +177,6 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 1
-      ExplicitLeft = 6
-      ExplicitTop = -6
       DesignSize = (
         369
         263)
@@ -289,7 +285,6 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
       Align = alLeft
       Caption = ' Route between addresses '
       TabOrder = 2
-      ExplicitLeft = 379
       DesignSize = (
         369
         263)
@@ -324,7 +319,6 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
         Text = 'P'#227'o de a'#231'ucar Rio de Janeiro'
-        ExplicitWidth = 394
       end
       object edtEndAddress: TEdit
         Left = 6
@@ -334,7 +328,6 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 2
         Text = 'Corcovado Rio de Janeiro'
-        ExplicitWidth = 394
       end
       object btnImportToRouteCalculator: TButton
         Left = 3
@@ -359,7 +352,6 @@ object GPXGeoJSONMainView: TGPXGeoJSONMainView
           'a trocar dados de GPS entre sistemas e dispositivos'
         Width = 1000
       end>
-    ExplicitTop = 600
   end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0

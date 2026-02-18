@@ -35,7 +35,6 @@ object Maps3DMainView: TMaps3DMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1332
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -45,8 +44,6 @@ object Maps3DMainView: TMaps3DMainView
       Align = alLeft
       Caption = ' Config basic MapBox '
       TabOrder = 0
-      ExplicitLeft = -1
-      ExplicitTop = -5
       DesignSize = (
         321
         161)
@@ -76,7 +73,6 @@ object Maps3DMainView: TMaps3DMainView
       Align = alLeft
       Caption = ' Config maps '
       TabOrder = 1
-      ExplicitTop = 4
       DesignSize = (
         336
         161)
@@ -161,9 +157,10 @@ object Maps3DMainView: TMaps3DMainView
       Width = 624
       Height = 161
       Align = alLeft
-      Caption = ' Config '
+      Caption = ' Geocoding '
       TabOrder = 2
-      ExplicitHeight = 217
+      ExplicitLeft = 655
+      ExplicitTop = 4
       DesignSize = (
         624
         161)
@@ -224,7 +221,6 @@ object Maps3DMainView: TMaps3DMainView
       item
         Width = 250
       end>
-    ExplicitWidth = 1332
   end
   object TMSFNCMapBox1: TTMSFNCMapBox
     Left = 0
@@ -247,9 +243,6 @@ object Maps3DMainView: TMaps3DMainView
     Options.Tilt = 70
     ElementContainers = <>
     HeadLinks = <>
-    ExplicitTop = 227
-    ExplicitWidth = 1332
-    ExplicitHeight = 417
   end
   object TMSFNCGeocoding1: TTMSFNCGeocoding
     Left = 989

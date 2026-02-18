@@ -69,6 +69,9 @@
         <Projects Include="FNCGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMapsOffline\FNCMapsOffline.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -275,14 +278,23 @@
     <Target Name="FNCMapsGPX_and_GeoJSON:Make">
         <MSBuild Projects="FNCGPX-and-GeoJSON\FNCMapsGPX_and_GeoJSON.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsOffline">
+        <MSBuild Projects="FNCMapsOffline\FNCMapsOffline.dproj"/>
+    </Target>
+    <Target Name="FNCMapsOffline:Clean">
+        <MSBuild Projects="FNCMapsOffline\FNCMapsOffline.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsOffline:Make">
+        <MSBuild Projects="FNCMapsOffline\FNCMapsOffline.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels;FNCMapsHeatmaps;FNCMapsGeocoding;FNCMapsPlaces;FNCMapsRouteCalculator;FNCMapsDirections;FNCMapsLocation;FNCMapsElevation;FNCMapsTollCost;FNCStaticMap_and_FNCMapsImage;FNCTimeZone;FNCMapsPopups;FNCElementContainers_and_Headlinks;FNCMaps3D;FNCMapsGPX_and_GeoJSON"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels;FNCMapsHeatmaps;FNCMapsGeocoding;FNCMapsPlaces;FNCMapsRouteCalculator;FNCMapsDirections;FNCMapsLocation;FNCMapsElevation;FNCMapsTollCost;FNCStaticMap_and_FNCMapsImage;FNCTimeZone;FNCMapsPopups;FNCElementContainers_and_Headlinks;FNCMaps3D;FNCMapsGPX_and_GeoJSON;FNCMapsOffline"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean;FNCMapsHeatmaps:Clean;FNCMapsGeocoding:Clean;FNCMapsPlaces:Clean;FNCMapsRouteCalculator:Clean;FNCMapsDirections:Clean;FNCMapsLocation:Clean;FNCMapsElevation:Clean;FNCMapsTollCost:Clean;FNCStaticMap_and_FNCMapsImage:Clean;FNCTimeZone:Clean;FNCMapsPopups:Clean;FNCElementContainers_and_Headlinks:Clean;FNCMaps3D:Clean;FNCMapsGPX_and_GeoJSON:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean;FNCMapsHeatmaps:Clean;FNCMapsGeocoding:Clean;FNCMapsPlaces:Clean;FNCMapsRouteCalculator:Clean;FNCMapsDirections:Clean;FNCMapsLocation:Clean;FNCMapsElevation:Clean;FNCMapsTollCost:Clean;FNCStaticMap_and_FNCMapsImage:Clean;FNCTimeZone:Clean;FNCMapsPopups:Clean;FNCElementContainers_and_Headlinks:Clean;FNCMaps3D:Clean;FNCMapsGPX_and_GeoJSON:Clean;FNCMapsOffline:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make;FNCMapsHeatmaps:Make;FNCMapsGeocoding:Make;FNCMapsPlaces:Make;FNCMapsRouteCalculator:Make;FNCMapsDirections:Make;FNCMapsLocation:Make;FNCMapsElevation:Make;FNCMapsTollCost:Make;FNCStaticMap_and_FNCMapsImage:Make;FNCTimeZone:Make;FNCMapsPopups:Make;FNCElementContainers_and_Headlinks:Make;FNCMaps3D:Make;FNCMapsGPX_and_GeoJSON:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make;FNCMapsHeatmaps:Make;FNCMapsGeocoding:Make;FNCMapsPlaces:Make;FNCMapsRouteCalculator:Make;FNCMapsDirections:Make;FNCMapsLocation:Make;FNCMapsElevation:Make;FNCMapsTollCost:Make;FNCStaticMap_and_FNCMapsImage:Make;FNCTimeZone:Make;FNCMapsPopups:Make;FNCElementContainers_and_Headlinks:Make;FNCMaps3D:Make;FNCMapsGPX_and_GeoJSON:Make;FNCMapsOffline:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
