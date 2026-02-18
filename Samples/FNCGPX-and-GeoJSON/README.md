@@ -1,4 +1,4 @@
-# GPX/GeoJSON
+# GPX
 
 ### ptBR: <br/>
 **GPX** (GPS Exchange Format) é um formato de arquivo padrão baseado em XML, utilizado para armazenar e trocar dados geográficos entre sistemas e dispositivos, como rotas, trajetos (tracks) e pontos de interesse (waypoints) entre dispositivos GPS e softwares. Sendo um formato aberto, permite carregar trilhas, visualizar percursos em mapas e compartilhar atividades (como caminhadas ou ciclismo) facilmente.
