@@ -18,56 +18,73 @@ object MainView: TMainView
     Left = 0
     Top = 0
     Width = 1307
-    Height = 145
+    Height = 113
     Align = alTop
     TabOrder = 0
-    object Label1: TLabel
-      Left = 16
-      Top = 32
-      Width = 51
-      Height = 15
-      Caption = 'TileServer'
-    end
-    object btnSetConfigurations: TButton
-      Left = 16
-      Top = 77
-      Width = 129
-      Height = 25
-      Caption = 'Set configurations'
+    object GroupBox1: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 760
+      Height = 111
+      Align = alLeft
+      Caption = ' Config '
       TabOrder = 0
-      OnClick = btnSetConfigurationsClick
-    end
-    object edtTileServer: TEdit
-      Left = 16
-      Top = 48
-      Width = 465
-      Height = 23
-      TabOrder = 1
-      Text = 'http://localhost:3650/api/maps/basic-maptiler/{z}/{x}/{y}.png'
-    end
-    object Memo1: TMemo
-      Left = 800
-      Top = 13
-      Width = 497
-      Height = 116
-      Lines.Strings = (
-        'Memo1')
-      TabOrder = 2
-    end
-    object Button2: TButton
-      Left = 151
-      Top = 77
-      Width = 75
-      Height = 25
-      Caption = 'Button2'
-      TabOrder = 3
+      ExplicitLeft = 0
+      ExplicitTop = -4
+      DesignSize = (
+        760
+        111)
+      object Label1: TLabel
+        Left = 163
+        Top = 24
+        Width = 51
+        Height = 15
+        Caption = 'TileServer'
+      end
+      object Label2: TLabel
+        Left = 16
+        Top = 24
+        Width = 82
+        Height = 15
+        Caption = 'LibraryLocation'
+      end
+      object btnSetConfigurations: TButton
+        Left = 16
+        Top = 69
+        Width = 129
+        Height = 25
+        Caption = 'Set configurations'
+        TabOrder = 0
+        OnClick = btnSetConfigurationsClick
+      end
+      object edtTileServer: TEdit
+        Left = 163
+        Top = 40
+        Width = 725
+        Height = 23
+        Anchors = [akLeft, akTop, akRight]
+        TabOrder = 1
+        Text = 'http://localhost:3650/api/maps/basic-maptiler/{z}/{x}/{y}.png'
+      end
+      object cBoxLibraryLocation: TComboBox
+        Left = 16
+        Top = 40
+        Width = 145
+        Height = 23
+        ItemIndex = 0
+        TabOrder = 2
+        Text = 'Offline'
+        Items.Strings = (
+          'Offline'
+          'Online')
+      end
     end
   end
   object TMSFNCOpenLayers1: TTMSFNCOpenLayers
     Left = 0
-    Top = 145
+    Top = 113
     Width = 1307
-    Height = 537
+    Height = 569
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -89,6 +106,6 @@ object MainView: TMainView
     HeadLinks = <>
     Clusters = <>
     HeatMaps = <>
-    ExplicitLeft = -8
+    ExplicitTop = 118
   end
 end
