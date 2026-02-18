@@ -72,6 +72,14 @@ type
     Splitter3: TSplitter;
     btnClearMap: TButton;
     btnImportWithWaypoint: TButton;
+    btnImportToRouteCalculator: TButton;
+    Shape2: TShape;
+    Shape3: TShape;
+    Shape4: TShape;
+    ckAutoDisplay: TCheckBox;
+    ckDisplayTimeStamps: TCheckBox;
+    ckZoomToBounds: TCheckBox;
+    ckDisplayElevation: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure edtAPIKeyMapExit(Sender: TObject);
     procedure cBoxServiceMapChange(Sender: TObject);
@@ -82,6 +90,7 @@ type
     procedure btnCalculateRouteBetweenAddressClick(Sender: TObject);
     procedure btnClearMapClick(Sender: TObject);
     procedure btnImportWithWaypointClick(Sender: TObject);
+    procedure btnImportToRouteCalculatorClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
     procedure FillcBoxServiceMap;
@@ -193,25 +202,40 @@ begin
     end);
 end;
 
+procedure TGPXGeoJSONMainView.btExportClick(Sender: TObject);
+var
+  LGPXMetaData: TTMSFNCMapsGPXMetaData;
+begin
+  if not TMSFNCRouteCalculator1.HasRoutes then
+  begin
+    ShowMessage('There are no routes to be exported.');
+    Exit;
+  end;
+
+  TMSFNCRouteCalculator1.Routes[0].RouteName := 'TMSFNCRouteCalculator';
+  SaveDialog1.FileName := TMSFNCRouteCalculator1.Routes[0].RouteName + '.gpx';
+  if SaveDialog1.Execute then
+  begin
+    LGPXMetaData.TrackName := TMSFNCRouteCalculator1.Routes[0].RouteName;
+    TMSFNCRouteCalculator1.SaveToGPXFile(TMSFNCRouteCalculator1.Routes[0], SaveDialog1.FileName, LGPXMetaData);
+  end;
+end;
+
 procedure TGPXGeoJSONMainView.btImportClick(Sender: TObject);
 begin
-  OpenDialog1.Filter := 'GPX (*.gpx)|*.gpx';
-  if OpenDialog1.Execute then
-  begin
-    TMSFNCRouteCalculator1.LoadGPXFromFile(OpenDialog1.FileName);
-    TMSFNCMaps1.RouteCalculatorPlotRoutes;
-    if TMSFNCRouteCalculator1.HasRoutes then
-      TMSFNCMaps1.ZoomToBounds(TMSFNCRouteCalculator1.Routes[0].Polyline);
-  end;
+  if not OpenDialog1.Execute then
+    Exit;
+
+  TMSFNCMaps1.LoadGPXFromFile(OpenDialog1.FileName, ckAutoDisplay.Checked, ckZoomToBounds.Checked, 3,
+    gcRed, ckDisplayElevation.Checked, ckDisplayTimeStamps.Checked);
 end;
 
 procedure TGPXGeoJSONMainView.btnImportWithWaypointClick(Sender: TObject);
 var
-  i: Integer;
+  LGPXRec: TTMSFNCMapsGPXRec;
+  LPolyline: TTMSFNCMapsPolyline;
   LMarker: TTMSFNCMapsMarker;
   LLabel: TTMSFNCMapsLabel;
-  LPolyline: TTMSFNCMapsPolyline;
-  LGPXRec: TTMSFNCMapsGPXRec;
 begin
   if not OpenDialog1.Execute then
     Exit;
@@ -226,35 +250,29 @@ begin
     LPolyline.StrokeWidth := 3;
   end;
 
-  for i := 0 to Length(LGPXRec.Waypoints) - 1 do
+  for var i := 0 to Length(LGPXRec.Waypoints) - 1 do
   begin
     LMarker := TMSFNCmaps1.AddMarker(LGPXRec.WayPoints[i].WayPoint);
     LMarker.DefaultIcon.Enabled := True;
     LMarker.DefaultIcon.Fill := gcBlue;
 
     LLabel := TMSFNCMaps1.AddLabel(LGPXRec.WayPoints[i].WayPoint, LGPXRec.WayPoints[i].Name, gcBlack, gcWhite);
+    LLabel.Font.Color := clFuchsia;
   end;
   TMSFNCMaps1.ZoomToBounds(LGPXRec.Tracks[0].Segments[0]);
   TMSFNCMaps1.EndUpdate;
 end;
 
-procedure TGPXGeoJSONMainView.btExportClick(Sender: TObject);
-var
-  LGPXMetaData: TTMSFNCMapsGPXMetaData;
+procedure TGPXGeoJSONMainView.btnImportToRouteCalculatorClick(Sender: TObject);
 begin
-  if not TMSFNCRouteCalculator1.HasRoutes then
+  if OpenDialog1.Execute then
   begin
-    ShowMessage('There are no routes to be exported.');
-    Exit;
-  end;
+    TMSFNCMaps1.LoadGPXFromFile(OpenDialog1.FileName);
+    TMSFNCRouteCalculator1.LoadGPXFromFile(OpenDialog1.FileName);
+    TMSFNCMaps1.RouteCalculatorPlotRoutes;
 
-  TMSFNCRouteCalculator1.Routes[0].RouteName := 'TMSFNCRouteCalculator';
-  SaveDialog1.Filter := 'GPX (*.gpx)|*.gpx';
-  SaveDialog1.FileName := TMSFNCRouteCalculator1.Routes[0].RouteName + '.gpx';
-  if SaveDialog1.Execute then
-  begin
-    LGPXMetaData.TrackName := TMSFNCRouteCalculator1.Routes[0].RouteName;
-    TMSFNCRouteCalculator1.SaveToGPXFile(TMSFNCRouteCalculator1.Routes[0], SaveDialog1.FileName, LGPXMetaData);
+    if TMSFNCRouteCalculator1.HasRoutes then
+      TMSFNCMaps1.ZoomToBounds(TMSFNCRouteCalculator1.Routes[0].Polyline);
   end;
 end;
 
