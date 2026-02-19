@@ -10,4 +10,4 @@ This feature is available now for TTMSFNCOpenLayers in TMS FNC Maps.
 
 <br/>
 
-[Postagem sobre Mapas Offline no blog da TMS/ Post about Offline Maps on the TMS blog](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncopenlayers
+[Postagem sobre Mapas Offline no blog da TMS/ Post about Offline Maps on the TMS blog](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncopenlayers)
