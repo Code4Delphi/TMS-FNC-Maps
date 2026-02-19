@@ -2,7 +2,7 @@ object MainView: TMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - Offline'
-  ClientHeight = 682
+  ClientHeight = 658
   ClientWidth = 1307
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,15 +24,13 @@ object MainView: TMainView
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
-      Width = 760
+      Width = 776
       Height = 111
       Align = alLeft
       Caption = ' Config '
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = -4
       DesignSize = (
-        760
+        776
         111)
       object Label1: TLabel
         Left = 163
@@ -51,7 +49,7 @@ object MainView: TMainView
       object btnSetConfigurations: TButton
         Left = 16
         Top = 69
-        Width = 129
+        Width = 145
         Height = 25
         Caption = 'Set configurations'
         TabOrder = 0
@@ -60,7 +58,7 @@ object MainView: TMainView
       object edtTileServer: TEdit
         Left = 163
         Top = 40
-        Width = 725
+        Width = 594
         Height = 23
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
@@ -84,7 +82,7 @@ object MainView: TMainView
     Left = 0
     Top = 113
     Width = 1307
-    Height = 569
+    Height = 545
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -106,6 +104,6 @@ object MainView: TMainView
     HeadLinks = <>
     Clusters = <>
     HeatMaps = <>
-    ExplicitTop = 118
+    ExplicitHeight = 569
   end
 end
