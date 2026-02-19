@@ -10,6 +10,6 @@ This feature is available now for TMSFNCOpenLayers in TMS FNC Maps.
 
 <br/>
 
-[Documentação oficial / Official documentation TMSFNCOpenLayers](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#loading-gpxgeojson)
+[Documentação oficial / Official documentation TMSFNCOpenLayers](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncopenlayers)
 
 [Postagem sobre Mapas Offline no blog da TMS/ Post about Offline Maps on the TMS blog](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncopenlayers)
