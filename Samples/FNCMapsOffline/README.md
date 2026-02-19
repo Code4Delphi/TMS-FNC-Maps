@@ -4,7 +4,7 @@
 Nos casos em que não houver conexão com a internet, ainda pode ser útil ter um aplicativo de mapas à mão.
 Este recurso já está disponível no componente TMSFNCOpenLayers do TMS FNC Maps.
 
-**Tiles e Servidores locaas de tiles**
+**Tiles e Servidores locais de tiles**
 
 Um servidor local de tiles é um serviço que armazena e fornece localmente os tiles (pequenas imagens do mapa, geralmente PNG/JPEG) usados por componentes de mapas, em vez de buscá-los diretamente na internet a cada visualização.
 
