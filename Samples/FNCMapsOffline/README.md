@@ -8,7 +8,7 @@ Este recurso já está disponível no componente TMSFNCOpenLayers do TMS FNC Map
 In cases where an internet connection is not available it can be useful to still have a mapping application at hand.
 This feature is available now for TMSFNCOpenLayers in TMS FNC Maps.
 
-<br/>
+--- 
 
 [Documentação oficial / Official documentation TMSFNCOpenLayers](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/#ttmsfncopenlayers)
 
