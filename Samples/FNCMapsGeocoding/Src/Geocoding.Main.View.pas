@@ -185,16 +185,16 @@ end;
 
 procedure TGeocodingMainView.Button2Click(Sender: TObject);
 var
- LStartAddress: TTMSFNCMapsCoordinateRec;
+  LCoordinateRec: TTMSFNCMapsCoordinateRec;
 begin
   TMSFNCGeocoding1.GetGeocoding(edtAddress.Text,
     procedure(const ARequest: TTMSFNCGeocodingRequest; const ARequestResult: TTMSFNCCloudBaseRequestResult)
     begin
-      LStartAddress := ARequest.Items[0].Coordinate.ToRec;
-      TMSFNCMaps1.SetCenterCoordinate(LStartAddress);
-      TMSFNCMaps1.AddMarker(LStartAddress);
+      LCoordinateRec := ARequest.Items[0].Coordinate.ToRec;
+      TMSFNCMaps1.SetCenterCoordinate(LCoordinateRec);
+      TMSFNCMaps1.AddMarker(LCoordinateRec);
 
-      Self.ZoomInCoordinateRec(LStartAddress);
+      Self.ZoomInCoordinateRec(LCoordinateRec);
     end);
 end;
 

@@ -58,13 +58,13 @@ type
     ckAddMarkerOnClick: TCheckBox;
     Label2: TLabel;
     edtAddress: TEdit;
-    Button1: TButton;
+    edtRouteCalculator: TButton;
     TMSFNCRouteCalculator1: TTMSFNCRouteCalculator;
     procedure FormCreate(Sender: TObject);
     procedure btnConfirmClick(Sender: TObject);
     procedure TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1MapDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
-    procedure Button1Click(Sender: TObject);
+    procedure edtRouteCalculatorClick(Sender: TObject);
     procedure TMSFNCRouteCalculator1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
       const ARequestResult: TTMSFNCCloudBaseRequestResult);
   private
@@ -134,7 +134,7 @@ begin
   TMSFNCMaps1.AddMarker(AEventData.Coordinate.ToRec);
 end;
 
-procedure TMainView.Button1Click(Sender: TObject);
+procedure TMainView.edtRouteCalculatorClick(Sender: TObject);
 begin
   TMSFNCRouteCalculator1.GetGeocoding(edtAddress.Text);
 end;
@@ -142,10 +142,10 @@ end;
 procedure TMainView.TMSFNCRouteCalculator1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
   const ARequestResult: TTMSFNCCloudBaseRequestResult);
 begin
-  if ARequestResult.Success then
+  if ARequestResult.Success and (ARequest.Items.Count > 0) then
   begin
-    if ARequest.Items.Count > 0 then
-      TMSFNCMaps1.SetCenterCoordinate(ARequest.Items[0].Coordinate.ToRec);
+    TMSFNCMaps1.ZoomToBounds(ARequest.Items[0].Coordinate.ToRec, ARequest.Items[0].Coordinate.ToRec);
+    TMSFNCMaps1.SetZoomLevel(20);
   end;
 end;
 
