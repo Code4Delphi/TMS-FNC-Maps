@@ -77,7 +77,7 @@ object RouteCalculatorMainView: TRouteCalculatorMainView
       end
       object edtAddress: TEdit
         Left = 6
-        Top = 37
+        Top = 42
         Width = 512
         Height = 23
         Anchors = [akLeft, akTop, akRight]

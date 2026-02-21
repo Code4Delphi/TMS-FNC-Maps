@@ -244,9 +244,9 @@ object Demo01MainView: TDemo01MainView
       object Label2: TLabel
         Left = 16
         Top = 62
-        Width = 52
+        Width = 39
         Height = 15
-        Caption = 'Language'
+        Caption = 'API key'
       end
       object cBoxService: TComboBox
         Left = 16
