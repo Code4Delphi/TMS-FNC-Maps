@@ -1,6 +1,7 @@
 object MainView: TMainView
   Left = 0
   Top = 0
+  ActiveControl = tabConfig
   Caption = 'TMS FNC Maps - FMX'
   ClientHeight = 640
   ClientWidth = 360
@@ -336,8 +337,7 @@ object MainView: TMainView
           Service = msOpenLayers
         end
         object Expander1: TExpander
-          Align = Bottom
-          Position.Y = 416.000000000000000000
+          Align = Top
           ShowCheck = False
           Size.Width = 360.000000000000000000
           Size.Height = 124.000000000000000000
