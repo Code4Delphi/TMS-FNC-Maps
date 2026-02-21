@@ -18,6 +18,16 @@
             <Overwrite>True</Overwrite>
             <Required>True</Required>
         </DeployFile>
+        <DeployFile Include="Win32\Debug\FNCMapsFMX.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FNCMapsFMX\</RemoteDir>
+            <RemoteName>FNCMapsFMX.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Android64'">
         <DeployFile Include="Bin\Android64\Debug\libFNCMapsFMX.so" Condition="'$(Config)'=='Debug'">

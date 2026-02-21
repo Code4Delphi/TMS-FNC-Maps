@@ -150,7 +150,7 @@ object MainView: TMainView
     Size.Height = 589.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 5
     TabPosition = PlatformDefault
     Sizes = (
@@ -163,7 +163,7 @@ object MainView: TMainView
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 180.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
@@ -257,6 +257,7 @@ object MainView: TMainView
         end
         object cBoxService: TComboBox
           Align = Top
+          DropDownCount = 10
           Position.X = 15.000000000000000000
           Position.Y = 37.000000000000000000
           Size.Width = 330.000000000000000000
@@ -288,7 +289,7 @@ object MainView: TMainView
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 180.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
@@ -316,7 +317,7 @@ object MainView: TMainView
         object TMSFNCMaps1: TTMSFNCMaps
           Align = Client
           Size.Width = 360.000000000000000000
-          Size.Height = 440.000000000000000000
+          Size.Height = 416.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           OnMapClick = TMSFNCMaps1MapClick
@@ -336,18 +337,18 @@ object MainView: TMainView
         end
         object Expander1: TExpander
           Align = Bottom
-          Position.Y = 440.000000000000000000
+          Position.Y = 416.000000000000000000
           ShowCheck = False
           Size.Width = 360.000000000000000000
-          Size.Height = 100.000000000000000000
+          Size.Height = 124.000000000000000000
           Size.PlatformDefault = False
           Text = 'Options'
           TabOrder = 1
-          ContentSize = '75'
+          ContentSize = '99'
           object ckAddMarkerOnClick: TCheckBox
             StyledSettings = [Family, Style, FontColor]
             Position.X = 15.000000000000000000
-            Size.Width = 138.000000000000000000
+            Size.Width = 210.000000000000000000
             Size.Height = 19.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
@@ -356,8 +357,8 @@ object MainView: TMainView
           object Label2: TLabel
             StyledSettings = [Family, Style, FontColor]
             Position.X = 18.000000000000000000
-            Position.Y = 20.000000000000000000
-            Size.Width = 47.000000000000000000
+            Position.Y = 33.000000000000000000
+            Size.Width = 62.000000000000000000
             Size.Height = 23.000000000000000000
             Size.PlatformDefault = False
             Text = 'Address'
@@ -365,13 +366,37 @@ object MainView: TMainView
           end
           object edtAddress: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Scale
+            Anchors = [akLeft, akTop, akBottom]
             TabOrder = 2
             Text = 'P'#227'o de a'#231'ucar Rio de Janeiro'
             Position.X = 18.000000000000000000
-            Position.Y = 40.000000000000000000
-            Size.Width = 327.000000000000000000
+            Position.Y = 57.000000000000000000
+            Size.Width = 290.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
+            StyledSettings = [Family, Style, FontColor]
+          end
+          object Button1: TButton
+            Anchors = [akTop, akRight]
+            Position.X = 312.000000000000000000
+            Position.Y = 61.000000000000000000
+            Size.Width = 32.000000000000000000
+            Size.Height = 29.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            Text = 'Go'
+            TextSettings.Trimming = None
+            OnClick = Button1Click
+          end
+          object TMSFNCRouteCalculator1: TTMSFNCRouteCalculator
+            Size.Width = 26.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            Position.X = 271.000000000000000000
+            Position.Y = -17.000000000000000000
+            OnGetGeocoding = TMSFNCRouteCalculator1GetGeocoding
+            Routes = <>
           end
         end
       end

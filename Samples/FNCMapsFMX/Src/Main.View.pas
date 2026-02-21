@@ -19,6 +19,7 @@ uses
   FMX.Controls.Presentation,
   FMX.Edit,
   FMX.TabControl,
+  FMX.ListBox,
   FMX.TMSFNCTypes,
   FMX.TMSFNCUtils,
   FMX.TMSFNCGraphics,
@@ -28,7 +29,10 @@ uses
   FMX.TMSFNCWebBrowser,
   FMX.TMSFNCMaps,
   FMX.TMSFNCGoogleMaps,
-  FMX.ListBox;
+  FMX.TMSFNCCustomComponent,
+  FMX.TMSFNCRouteCalculator,
+  FMX.TMSFNCGeocoding,
+  FMX.TMSFNCCloudBase;
 
 type
   TMainView = class(TForm)
@@ -54,16 +58,20 @@ type
     ckAddMarkerOnClick: TCheckBox;
     Label2: TLabel;
     edtAddress: TEdit;
+    Button1: TButton;
+    TMSFNCRouteCalculator1: TTMSFNCRouteCalculator;
     procedure FormCreate(Sender: TObject);
     procedure btnConfirmClick(Sender: TObject);
     procedure TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
     procedure TMSFNCMaps1MapDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure Button1Click(Sender: TObject);
+    procedure TMSFNCRouteCalculator1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
+      const ARequestResult: TTMSFNCCloudBaseRequestResult);
   private
     procedure FillcBoxService;
     procedure ConfigBasicMaps;
-    { Private declarations }
   public
-    { Public declarations }
+
   end;
 
 var
@@ -100,6 +108,9 @@ begin
   TMSFNCMaps1.APIKey := edtAPIKey.Text;
   TMSFNCMaps1.Options.Locale := copy(cBoxLanguage.Text, 1, 5);
   TMSFNCMaps1.EndUpdate;
+
+  TMSFNCRouteCalculator1.Service := TTMSFNCRouteCalculatorService.csGoogle; //TTMSFNCRouteCalculatorService(cBoxService.ItemIndex);
+  TMSFNCRouteCalculator1.APIKey := edtAPIKey.Text;
 end;
 
 procedure TMainView.btnConfirmClick(Sender: TObject);
@@ -121,6 +132,21 @@ end;
 procedure TMainView.TMSFNCMaps1MapDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   TMSFNCMaps1.AddMarker(AEventData.Coordinate.ToRec);
+end;
+
+procedure TMainView.Button1Click(Sender: TObject);
+begin
+  TMSFNCRouteCalculator1.GetGeocoding(edtAddress.Text);
+end;
+
+procedure TMainView.TMSFNCRouteCalculator1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
+  const ARequestResult: TTMSFNCCloudBaseRequestResult);
+begin
+  if ARequestResult.Success then
+  begin
+    if ARequest.Items.Count > 0 then
+      TMSFNCMaps1.SetCenterCoordinate(ARequest.Items[0].Coordinate.ToRec);
+  end;
 end;
 
 end.
