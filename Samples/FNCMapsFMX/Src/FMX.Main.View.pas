@@ -1,4 +1,4 @@
-unit Main.View;
+unit FMX.Main.View;
 
 interface
 
@@ -35,13 +35,13 @@ uses
   FMX.TMSFNCCloudBase;
 
 type
-  TMainView = class(TForm)
+  TFMXMainView = class(TForm)
     pnHeader: TPanel;
     ImageLogo: TImage;
     Label1: TLabel;
     TabControl1: TTabControl;
     tabConfig: TTabItem;
-    gBoxConfigs: TGroupBox;
+    S: TGroupBox;
     lbService: TLabel;
     lbAPIKey: TLabel;
     edtAPIKey: TEdit;
@@ -75,13 +75,13 @@ type
   end;
 
 var
-  MainView: TMainView;
+  FMXMainView: TFMXMainView;
 
 implementation
 
 {$R *.fmx}
 
-procedure TMainView.FormCreate(Sender: TObject);
+procedure TFMXMainView.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator := '.';
 
@@ -91,7 +91,7 @@ begin
   Self.ConfigBasicMaps;
 end;
 
-procedure TMainView.FillcBoxService;
+procedure TFMXMainView.FillcBoxService;
 var
   LService: TTMSFNCMapsService;
 begin
@@ -101,7 +101,7 @@ begin
     cBoxService.Items.Add(GetEnumName(TypeInfo(TTMSFNCMapsService), Ord(LService)));
 end;
 
-procedure TMainView.ConfigBasicMaps;
+procedure TFMXMainView.ConfigBasicMaps;
 begin
   TMSFNCMaps1.BeginUpdate;
   TMSFNCMaps1.Service := TTMSFNCMapsService(cBoxService.ItemIndex);
@@ -113,13 +113,13 @@ begin
   TMSFNCRouteCalculator1.APIKey := edtAPIKey.Text;
 end;
 
-procedure TMainView.btnConfirmClick(Sender: TObject);
+procedure TFMXMainView.btnConfirmClick(Sender: TObject);
 begin
   Self.ConfigBasicMaps;
   TabControl1.ActiveTab := tabMap;
 end;
 
-procedure TMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+procedure TFMXMainView.TMSFNCMaps1MapClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   if ckAddMarkerOnClick.IsChecked then
   begin
@@ -129,17 +129,17 @@ begin
   end;
 end;
 
-procedure TMainView.TMSFNCMaps1MapDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+procedure TFMXMainView.TMSFNCMaps1MapDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   TMSFNCMaps1.AddMarker(AEventData.Coordinate.ToRec);
 end;
 
-procedure TMainView.edtRouteCalculatorClick(Sender: TObject);
+procedure TFMXMainView.edtRouteCalculatorClick(Sender: TObject);
 begin
   TMSFNCRouteCalculator1.GetGeocoding(edtAddress.Text);
 end;
 
-procedure TMainView.TMSFNCRouteCalculator1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
+procedure TFMXMainView.TMSFNCRouteCalculator1GetGeocoding(Sender: TObject; const ARequest: TTMSFNCGeocodingRequest;
   const ARequestResult: TTMSFNCCloudBaseRequestResult);
 begin
   if ARequestResult.Success and (ARequest.Items.Count > 0) then

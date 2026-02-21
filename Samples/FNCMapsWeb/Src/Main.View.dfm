@@ -1,6 +1,7 @@
 object MainView: TMainView
+  Left = 20
   Width = 1136
-  Height = 866
+  Height = 676
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -16,7 +17,6 @@ object MainView: TMainView
     Height = 123
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -6
     object SetCircle: TWebButton
       Left = 740
       Top = 75
@@ -171,8 +171,6 @@ object MainView: TMainView
       BorderColor = clSilver
       Caption = ' Route Calculator '
       ChildOrder = 6
-      ExplicitLeft = 446
-      ExplicitTop = -6
       object WebLabel3: TWebLabel
         Left = 11
         Top = 16
@@ -209,7 +207,7 @@ object MainView: TMainView
     Left = 0
     Top = 123
     Width = 1136
-    Height = 743
+    Height = 553
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -228,8 +226,7 @@ object MainView: TMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 3.000000000000000000
-    ExplicitTop = 448
-    ExplicitHeight = 418
+    ExplicitTop = 129
   end
   object TMSFNCRouteCalculator1: TTMSFNCRouteCalculator
     Left = 480

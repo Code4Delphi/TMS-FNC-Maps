@@ -1,4 +1,4 @@
-object MainView: TMainView
+object FMXMainView: TFMXMainView
   Left = 0
   Top = 0
   ActiveControl = tabConfig
@@ -173,7 +173,7 @@ object MainView: TMainView
       Text = 'Config'
       ExplicitSize.cx = 180.000000000000000000
       ExplicitSize.cy = 49.000000000000000000
-      object gBoxConfigs: TGroupBox
+      object S: TGroupBox
         Align = Client
         StyledSettings = [Family, Style, FontColor, Other]
         Padding.Left = 15.000000000000000000

@@ -3,12 +3,12 @@ program FNCMapsFMX;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  Main.View in 'Src\Main.View.pas' {MainView};
+  FMX.Main.View in 'Src\FMX.Main.View.pas' {FMXMainView};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TMainView, MainView);
+  Application.CreateForm(TFMXMainView, FMXMainView);
   Application.Run;
 end.

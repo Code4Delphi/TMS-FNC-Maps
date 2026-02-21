@@ -227,8 +227,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\Main.View.pas">
-            <Form>MainView</Form>
+        <DCCReference Include="Src\FMX.Main.View.pas">
+            <Form>FMXMainView</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <JavaReference Include="C:\Users\Cesar\AppData\Local\TMS Setup\Products\tms.fnc.core\Android Support\JavascriptHelper\JavaScriptHelper.jar">
