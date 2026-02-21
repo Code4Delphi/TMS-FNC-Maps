@@ -105,7 +105,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\Main.View.pas">
+        <DCCReference Include="Src\Web.Main.View.pas">
             <Form>MainView</Form>
             <FormType>dfm</FormType>
             <DesignClass>TWebForm</DesignClass>

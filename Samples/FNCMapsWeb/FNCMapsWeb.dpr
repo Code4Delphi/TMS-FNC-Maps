@@ -3,7 +3,7 @@ program FNCMapsWeb;
 uses
   Vcl.Forms,
   WEBLib.Forms,
-  Main.View in 'Src\Main.View.pas' {MainView: TWebForm} {*.html};
+  Web.Main.View in 'Src\Web.Main.View.pas' {MainView: TWebForm} {*.html};
 
 {$R *.res}
 

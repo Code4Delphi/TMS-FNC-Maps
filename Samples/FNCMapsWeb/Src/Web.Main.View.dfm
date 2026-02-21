@@ -226,7 +226,6 @@ object MainView: TMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 3.000000000000000000
-    ExplicitTop = 129
   end
   object TMSFNCRouteCalculator1: TTMSFNCRouteCalculator
     Left = 480
