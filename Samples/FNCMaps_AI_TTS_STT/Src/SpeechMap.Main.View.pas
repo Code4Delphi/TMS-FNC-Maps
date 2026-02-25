@@ -70,6 +70,14 @@ type
     Panel1: TPanel;
     btnExecute: TBitBtn;
     ProgressBar1: TProgressBar;
+    pnConfig: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    edtAPIKeyAI: TEdit;
+    Label3: TLabel;
+    edtOpenRouteAPIKey: TEdit;
+    Label4: TLabel;
+    cBoxIAService: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure btnAddExampleTextClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -80,11 +88,15 @@ type
     procedure TMSMCPCloudAI1Executed(Sender: TObject; AResponse: TTMSMCPCloudAIResponse; AHttpStatusCode: Integer; AHttpResult: string);
     procedure btnStopTalkingClick(Sender: TObject);
     procedure btnExecuteClick(Sender: TObject);
+    procedure cBoxIAServiceChange(Sender: TObject);
+    procedure edtAPIKeyAIChange(Sender: TObject);
+    procedure edtOpenRouteAPIKeyChange(Sender: TObject);
   private
     procedure ScreenRecordingOff;
     procedure ScreenRecordingOn;
     function GetLanguage: string;
     procedure AIExecute;
+    procedure ConfigBasic;
   public
     FAudioRecorder: TAudioRecorder;
     procedure InitTools;
@@ -99,33 +111,52 @@ implementation
 
 {$R *.dfm}
 
-const
-  //GENERATE THE API KEY: https://account.heigit.org/manage/key
-  //DOCS https://openrouteservice.org/dev/#/api-docs
-  KEY_OPENROUTE = '';
-
 procedure TSpeechMapMainView.FormCreate(Sender: TObject);
 begin
   ReportMemoryLeaksOnShutdown := True;
 
-  TMSMCPCloudAI1.APIKeys.OpenAI := '';
-  TMSMCPCloudAI1.Service := aiOpenAI;
-
-  TMSFNCDirections1.Service := dsOpenRouteService;
-  TMSFNCDirections1.APIKey := KEY_OPENROUTE;
-
   TMSFNCMaps1.Service := msOpenLayers;
+  TMSFNCDirections1.Service := dsOpenRouteService;
 
   Self.InitTools;
 
   FAudioRecorder := TAudioRecorder.Create;
   Self.ScreenRecordingOff;
+
+  //CARREGAR IAS DISPONIVEIS
+  cBoxIAService.Items.Assign(TMSMCPCloudAI1.GetServices(True));
+  cBoxIAService.ItemIndex := 6;
+
+  Self.ConfigBasic;
 end;
 
 procedure TSpeechMapMainView.FormDestroy(Sender: TObject);
 begin
   if Assigned(FAudioRecorder) then
     FAudioRecorder.Free;
+end;
+
+procedure TSpeechMapMainView.ConfigBasic;
+begin
+  TMSFNCDirections1.APIKey := edtOpenRouteAPIKey.Text;
+
+  TMSMCPCloudAI1.APIKeys.OpenAI := edtAPIKeyAI.Text;
+  TMSMCPCloudAI1.Service := TTMSMCPCloudAIService(cBoxIAService.Items.Objects[cBoxIAService.ItemIndex]);
+end;
+
+procedure TSpeechMapMainView.edtAPIKeyAIChange(Sender: TObject);
+begin
+  Self.ConfigBasic;
+end;
+
+procedure TSpeechMapMainView.edtOpenRouteAPIKeyChange(Sender: TObject);
+begin
+  Self.ConfigBasic;
+end;
+
+procedure TSpeechMapMainView.cBoxIAServiceChange(Sender: TObject);
+begin
+  Self.ConfigBasic;
 end;
 
 procedure TSpeechMapMainView.ScreenRecordingOn;

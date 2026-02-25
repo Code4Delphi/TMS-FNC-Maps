@@ -17,11 +17,18 @@ object SpeechMapMainView: TSpeechMapMainView
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   TextHeight = 13
+  object Label1: TLabel
+    Left = 520
+    Top = 40
+    Width = 31
+    Height = 13
+    Caption = 'Label1'
+  end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 245
+    Top = 417
     Width = 1072
-    Height = 481
+    Height = 309
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -37,22 +44,25 @@ object SpeechMapMainView: TSpeechMapMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
+    ExplicitTop = 245
+    ExplicitHeight = 481
   end
   object pnTop: TPanel
     Left = 0
     Top = 0
     Width = 1072
-    Height = 245
+    Height = 417
     Align = alTop
     BevelInner = bvLowered
     TabOrder = 3
     object pnButtonsTop: TPanel
       Left = 2
-      Top = 2
+      Top = 116
       Width = 1068
       Height = 39
       Align = alTop
       TabOrder = 0
+      ExplicitTop = 115
       DesignSize = (
         1068
         39)
@@ -145,30 +155,33 @@ object SpeechMapMainView: TSpeechMapMainView
     end
     object gBoxTanscription: TGroupBox
       Left = 2
-      Top = 41
+      Top = 155
       Width = 1068
-      Height = 79
+      Height = 137
       Align = alClient
       Caption = ' Audio transcription  '
       Padding.Left = 1
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 1
+      ExplicitTop = 41
+      ExplicitHeight = 79
       object mmTanscription: TMemo
         Left = 3
         Top = 15
         Width = 1062
-        Height = 61
+        Height = 119
         Align = alClient
         BorderStyle = bsNone
         Lines.Strings = (
           '')
         TabOrder = 0
+        ExplicitHeight = 61
       end
     end
     object gBoxResponse: TGroupBox
       Left = 2
-      Top = 155
+      Top = 327
       Width = 1068
       Height = 88
       Align = alBottom
@@ -177,6 +190,7 @@ object SpeechMapMainView: TSpeechMapMainView
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 2
+      ExplicitTop = 155
       object mmResponse: TMemo
         Left = 3
         Top = 15
@@ -192,11 +206,12 @@ object SpeechMapMainView: TSpeechMapMainView
     end
     object Panel1: TPanel
       Left = 2
-      Top = 120
+      Top = 292
       Width = 1068
       Height = 35
       Align = alBottom
       TabOrder = 3
+      ExplicitTop = 120
       object btnExecute: TBitBtn
         AlignWithMargins = True
         Left = 4
@@ -224,6 +239,62 @@ object SpeechMapMainView: TSpeechMapMainView
         SmoothReverse = True
         State = pbsPaused
         TabOrder = 1
+      end
+    end
+    object pnConfig: TPanel
+      Left = 2
+      Top = 2
+      Width = 1068
+      Height = 114
+      Align = alTop
+      TabOrder = 4
+      ExplicitLeft = 4
+      ExplicitTop = 0
+      object Label2: TLabel
+        Left = 210
+        Top = 63
+        Width = 52
+        Height = 13
+        Caption = 'AI API Key'
+      end
+      object Label3: TLabel
+        Left = 7
+        Top = 11
+        Width = 99
+        Height = 13
+        Caption = 'Open Route API Key'
+      end
+      object Label4: TLabel
+        Left = 8
+        Top = 63
+        Width = 48
+        Height = 13
+        Caption = 'AI service'
+      end
+      object edtAPIKeyAI: TEdit
+        Left = 210
+        Top = 80
+        Width = 839
+        Height = 21
+        TabOrder = 0
+        OnChange = edtAPIKeyAIChange
+      end
+      object edtOpenRouteAPIKey: TEdit
+        Left = 7
+        Top = 27
+        Width = 1042
+        Height = 21
+        TabOrder = 1
+        OnChange = edtOpenRouteAPIKeyChange
+      end
+      object cBoxIAService: TComboBox
+        Left = 7
+        Top = 80
+        Width = 201
+        Height = 21
+        Style = csDropDownList
+        TabOrder = 2
+        OnChange = cBoxIAServiceChange
       end
     end
   end
@@ -254,7 +325,7 @@ object SpeechMapMainView: TSpeechMapMainView
     OnExecuted = TMSMCPCloudAI1Executed
     OnSpeechAudio = TMSMCPCloudAI1SpeechAudio
     OnTranscribeAudio = TMSMCPCloudAI1TranscribeAudio
-    Left = 496
-    Top = 56
+    Left = 488
+    Top = 184
   end
 end
