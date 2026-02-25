@@ -145,7 +145,7 @@ begin
   if ARequestResult.Success and (ARequest.Items.Count > 0) then
   begin
     TMSFNCMaps1.ZoomToBounds(ARequest.Items[0].Coordinate.ToRec, ARequest.Items[0].Coordinate.ToRec);
-    TMSFNCMaps1.SetZoomLevel(20);
+    TMSFNCMaps1.SetZoomLevel(19);
   end;
 end;
 

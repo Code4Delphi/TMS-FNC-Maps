@@ -151,7 +151,7 @@ object FMXMainView: TFMXMainView
     Size.Height = 589.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 5
     TabPosition = PlatformDefault
     Sizes = (
@@ -164,7 +164,7 @@ object FMXMainView: TFMXMainView
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 180.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
@@ -216,6 +216,7 @@ object FMXMainView: TFMXMainView
           Align = Top
           TabOrder = 40
           Password = True
+          Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
           Position.X = 15.000000000000000000
           Position.Y = 81.000000000000000000
           Size.Width = 330.000000000000000000
@@ -290,7 +291,7 @@ object FMXMainView: TFMXMainView
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 180.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
@@ -369,7 +370,7 @@ object FMXMainView: TFMXMainView
             Align = Scale
             Anchors = [akLeft, akTop, akBottom]
             TabOrder = 2
-            Text = 'P'#227'o de a'#231'ucar Rio de Janeiro'
+            Text = 'Cristo Redentor'
             Position.X = 18.000000000000000000
             Position.Y = 57.000000000000000000
             Size.Width = 290.000000000000000000
@@ -379,8 +380,8 @@ object FMXMainView: TFMXMainView
           end
           object edtRouteCalculator: TButton
             Anchors = [akTop, akRight]
-            Position.X = 312.000000000000000000
-            Position.Y = 61.000000000000000000
+            Position.X = 316.000000000000000000
+            Position.Y = 62.000000000000000000
             Size.Width = 32.000000000000000000
             Size.Height = 29.000000000000000000
             Size.PlatformDefault = False

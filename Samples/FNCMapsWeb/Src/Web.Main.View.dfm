@@ -103,8 +103,8 @@ object MainView: TMainView
         OnChange = cBoxServiceMapChange
       end
       object cBoxServiceMap: TWebComboBox
-        Left = 11
-        Top = 34
+        Left = 19
+        Top = 35
         Width = 200
         Height = 21
         HeightPercent = 100.000000000000000000
@@ -148,6 +148,7 @@ object MainView: TMainView
         ChildOrder = 10
         HeightPercent = 100.000000000000000000
         PasswordChar = '*'
+        Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
         WidthPercent = 100.000000000000000000
         OnChange = cBoxServiceMapChange
       end
@@ -226,6 +227,7 @@ object MainView: TMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 3.000000000000000000
+    ExplicitTop = 129
   end
   object TMSFNCRouteCalculator1: TTMSFNCRouteCalculator
     Left = 480
