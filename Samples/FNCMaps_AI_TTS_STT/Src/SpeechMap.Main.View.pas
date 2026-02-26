@@ -71,7 +71,6 @@ type
     btnExecute: TBitBtn;
     ProgressBar1: TProgressBar;
     pnConfig: TPanel;
-    Label1: TLabel;
     Label2: TLabel;
     edtAPIKeyAI: TEdit;
     Label3: TLabel;

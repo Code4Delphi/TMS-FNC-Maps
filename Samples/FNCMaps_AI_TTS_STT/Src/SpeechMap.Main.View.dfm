@@ -17,13 +17,6 @@ object SpeechMapMainView: TSpeechMapMainView
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   TextHeight = 13
-  object Label1: TLabel
-    Left = 520
-    Top = 40
-    Width = 31
-    Height = 13
-    Caption = 'Label1'
-  end
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
     Top = 417
@@ -44,8 +37,6 @@ object SpeechMapMainView: TSpeechMapMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
-    ExplicitTop = 245
-    ExplicitHeight = 481
   end
   object pnTop: TPanel
     Left = 0
@@ -62,7 +53,6 @@ object SpeechMapMainView: TSpeechMapMainView
       Height = 39
       Align = alTop
       TabOrder = 0
-      ExplicitTop = 115
       DesignSize = (
         1068
         39)
@@ -164,8 +154,6 @@ object SpeechMapMainView: TSpeechMapMainView
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 1
-      ExplicitTop = 41
-      ExplicitHeight = 79
       object mmTanscription: TMemo
         Left = 3
         Top = 15
@@ -176,7 +164,6 @@ object SpeechMapMainView: TSpeechMapMainView
         Lines.Strings = (
           '')
         TabOrder = 0
-        ExplicitHeight = 61
       end
     end
     object gBoxResponse: TGroupBox
@@ -190,7 +177,6 @@ object SpeechMapMainView: TSpeechMapMainView
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 2
-      ExplicitTop = 155
       object mmResponse: TMemo
         Left = 3
         Top = 15
@@ -200,8 +186,6 @@ object SpeechMapMainView: TSpeechMapMainView
         BorderStyle = bsNone
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitLeft = 2
-        ExplicitTop = 14
       end
     end
     object Panel1: TPanel
@@ -211,7 +195,6 @@ object SpeechMapMainView: TSpeechMapMainView
       Height = 35
       Align = alBottom
       TabOrder = 3
-      ExplicitTop = 120
       object btnExecute: TBitBtn
         AlignWithMargins = True
         Left = 4
@@ -299,8 +282,8 @@ object SpeechMapMainView: TSpeechMapMainView
     end
   end
   object TMSFNCDirections1: TTMSFNCDirections
-    Left = 411
-    Top = 368
+    Left = 491
+    Top = 248
     Width = 26
     Height = 26
     Visible = True
