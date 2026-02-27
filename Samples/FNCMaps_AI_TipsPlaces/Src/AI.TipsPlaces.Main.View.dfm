@@ -50,9 +50,9 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
     TabOrder = 1
     object gBoxTanscription: TGroupBox
       Left = 2
-      Top = 140
+      Top = 105
       Width = 1068
-      Height = 61
+      Height = 63
       Align = alClient
       Caption = ' Audio transcription  '
       Padding.Left = 1
@@ -65,20 +65,21 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
         Left = 3
         Top = 15
         Width = 1062
-        Height = 43
+        Height = 45
         Align = alClient
         BorderStyle = bsNone
         Lines.Strings = (
           '')
         ScrollBars = ssVertical
         TabOrder = 0
+        ExplicitHeight = 43
       end
     end
     object gBoxResponse: TGroupBox
       Left = 2
-      Top = 201
+      Top = 168
       Width = 1068
-      Height = 62
+      Height = 95
       Align = alBottom
       Caption = ' Response '
       Padding.Left = 1
@@ -89,50 +90,12 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
         Left = 3
         Top = 15
         Width = 1062
-        Height = 44
+        Height = 77
         Align = alClient
         BorderStyle = bsNone
         ScrollBars = ssVertical
         TabOrder = 0
         ExplicitHeight = 70
-      end
-    end
-    object Panel1: TPanel
-      Left = 2
-      Top = 105
-      Width = 1068
-      Height = 35
-      Align = alTop
-      TabOrder = 2
-      ExplicitLeft = -17
-      ExplicitTop = 243
-      object btnExecute: TBitBtn
-        AlignWithMargins = True
-        Left = 4
-        Top = 4
-        Width = 102
-        Height = 27
-        Align = alLeft
-        Caption = 'Execute'
-        TabOrder = 0
-        OnClick = btnExecuteClick
-      end
-      object ProgressBar1: TProgressBar
-        AlignWithMargins = True
-        Left = 113
-        Top = 9
-        Width = 200
-        Height = 17
-        Margins.Left = 4
-        Margins.Top = 8
-        Margins.Right = 4
-        Margins.Bottom = 8
-        Align = alLeft
-        Smooth = True
-        Style = pbstMarquee
-        SmoothReverse = True
-        State = pbsPaused
-        TabOrder = 1
       end
     end
     object GroupBox1: TGroupBox
@@ -142,7 +105,7 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
       Height = 103
       Align = alTop
       Caption = ' Configs AI '
-      TabOrder = 3
+      TabOrder = 2
       DesignSize = (
         1068
         103)
@@ -168,10 +131,6 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 0
-        Text = 
-          'sk-proj-hFSIgcNgEVdv-luOBTIJz13qDigwFefFw0vIgyuExdO-nLoNQHpNfpvM' +
-          'H75uKh4vc-h4rgKC7BT3BlbkFJCI87u1sLjzJg1-ewn2vp0vx2Sflqp3NpPmDAnG' +
-          'ZM_YEvEf22CFuQ06-vOklE4qt6vKLTeMtCQA'
         OnChange = edtAPIKeyAIChange
       end
       object cBoxIAService: TComboBox
@@ -193,7 +152,7 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
         Padding.Left = 3
         TabOrder = 2
         ExplicitLeft = 1
-        ExplicitTop = 59
+        ExplicitTop = 61
         DesignSize = (
           1064
           39)
@@ -282,14 +241,25 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
           ExplicitTop = 4
           ExplicitHeight = 31
         end
-        object Button1: TButton
-          Left = 662
-          Top = 10
-          Width = 75
-          Height = 25
-          Caption = 'Button1'
+        object ProgressBar1: TProgressBar
+          AlignWithMargins = True
+          Left = 508
+          Top = 8
+          Width = 200
+          Height = 23
+          Margins.Left = 4
+          Margins.Top = 8
+          Margins.Right = 4
+          Margins.Bottom = 8
+          Align = alLeft
+          Smooth = True
+          Style = pbstMarquee
+          SmoothReverse = True
+          State = pbsPaused
           TabOrder = 6
-          OnClick = Button1Click
+          ExplicitLeft = 529
+          ExplicitTop = 13
+          ExplicitHeight = 17
         end
       end
     end
@@ -302,7 +272,7 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
     Align = alTop
     Caption = ' Maps configs '
     TabOrder = 2
-    ExplicitTop = 354
+    ExplicitTop = 266
     DesignSize = (
       1072
       72)
@@ -323,12 +293,11 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
     object edtAPIKeyMap: TEdit
       Left = 217
       Top = 36
-      Width = 834
+      Width = 752
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       PasswordChar = '*'
       TabOrder = 0
-      Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
       OnChange = edtAPIKeyMapChange
     end
     object cBoxLanguageMap: TComboBox
@@ -348,24 +317,33 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
         'it-IT (Italian '#8211' Italy)'
         'pt-BR (Portuguese '#8211' Brazil)')
     end
+    object btnClearMarkers: TButton
+      Left = 976
+      Top = 32
+      Width = 75
+      Height = 25
+      Anchors = [akTop, akRight]
+      Caption = 'Clear Markers'
+      TabOrder = 2
+      OnClick = btnClearMarkersClick
+    end
   end
   object TMSFNCGooglePlaces1: TTMSFNCGooglePlaces
-    Left = 655
-    Top = 287
+    Left = 682
+    Top = 284
     Width = 26
     Height = 26
     Visible = True
     OnSearchByText = TMSFNCGooglePlaces1SearchByText
     PlacesRequests = <>
   end
-  object Memo1: TMemo
-    Left = 456
-    Top = 344
-    Width = 185
-    Height = 89
-    Lines.Strings = (
-      'Memo1')
-    TabOrder = 5
+  object TMSFNCGeocoding1: TTMSFNCGeocoding
+    Left = 541
+    Top = 284
+    Width = 26
+    Height = 26
+    Visible = True
+    GeocodingRequests = <>
   end
   object TMSMCPCloudAI1: TTMSMCPCloudAI
     Service = aiOpenAI

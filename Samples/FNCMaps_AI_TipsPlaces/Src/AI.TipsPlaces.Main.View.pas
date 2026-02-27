@@ -33,7 +33,7 @@ uses
   TMS.MCP.CustomComponent,
   TMS.MCP.CloudBase,  
   AudioRecorder, Vcl.Buttons, VCL.TMSFNCPlaces, VCL.TMSFNCGooglePlaces,
-  System.TypInfo;
+  System.TypInfo, VCL.TMSFNCGeocoding;
 
 type
   TAITipsPlacesMainView = class(TForm)
@@ -44,9 +44,6 @@ type
     mmTanscription: TMemo;
     gBoxResponse: TGroupBox;
     mmResponse: TMemo;
-    Panel1: TPanel;
-    btnExecute: TBitBtn;
-    ProgressBar1: TProgressBar;
     GroupBox1: TGroupBox;
     Label2: TLabel;
     Label4: TLabel;
@@ -59,14 +56,15 @@ type
     ckSpeakAudioRecording: TCheckBox;
     ckSpeakResponse: TCheckBox;
     btnStopTalking: TButton;
-    Button1: TButton;
     GroupBox2: TGroupBox;
     Label17: TLabel;
     Label21: TLabel;
     edtAPIKeyMap: TEdit;
     cBoxLanguageMap: TComboBox;
     TMSFNCGooglePlaces1: TTMSFNCGooglePlaces;
-    Memo1: TMemo;
+    TMSFNCGeocoding1: TTMSFNCGeocoding;
+    ProgressBar1: TProgressBar;
+    btnClearMarkers: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TMSMCPCloudAI1TranscribeAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult, Text: string);
@@ -75,14 +73,13 @@ type
     procedure btnStopRecordingClick(Sender: TObject);
     procedure TMSMCPCloudAI1Executed(Sender: TObject; AResponse: TTMSMCPCloudAIResponse; AHttpStatusCode: Integer; AHttpResult: string);
     procedure btnStopTalkingClick(Sender: TObject);
-    procedure btnExecuteClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure TMSFNCGooglePlaces1SearchByText(Sender: TObject; const ARequest: TTMSFNCPlacesRequest;
       const ARequestResult: TTMSFNCCloudBaseRequestResult);
     procedure cBoxLanguageMapChange(Sender: TObject);
     procedure edtAPIKeyMapChange(Sender: TObject);
     procedure cBoxIAServiceChange(Sender: TObject);
     procedure edtAPIKeyAIChange(Sender: TObject);
+    procedure btnClearMarkersClick(Sender: TObject);
   private
     procedure ScreenRecordingOff;
     procedure ScreenRecordingOn;
@@ -90,7 +87,7 @@ type
     procedure AIExecute;
     procedure ConfigBasicMaps;
     procedure ConfigBasicAI;
-    procedure SearchTextMap(const ALocation, AKeyword: string; const ALat, ALon: Double);
+    procedure SearchTextMap(const AKeyword: string; const ACoordinateRecn: TTMSFNCMapsCoordinateRec);
     procedure OnExecuteKeyword(Sender: TObject; Args: TJSONObject; var Result: string);
   public
     FAudioRecorder: TAudioRecorder;
@@ -151,6 +148,9 @@ begin
   TMSFNCMaps1.APIKey := edtAPIKeyMap.Text;
   TMSFNCMaps1.Options.Locale := copy(cBoxLanguageMap.Text, 1, 5);
   TMSFNCMaps1.EndUpdate;
+
+  TMSFNCGeocoding1.Service := TTMSFNCGeocodingService.gsGoogle;
+  TMSFNCGeocoding1.APIKey := edtAPIKeyMap.Text;
 
   TMSFNCGooglePlaces1.APIKey := edtAPIKeyMap.Text;
   //TMSFNCGooglePlaces1.UseGooglePlacesNew := True; // opcional
@@ -224,6 +224,11 @@ begin
   btnStopTalking.Enabled := False;
 end;
 
+procedure TAITipsPlacesMainView.btnClearMarkersClick(Sender: TObject);
+begin
+  TMSFNCMaps1.ClearMarkers;
+end;
+
 procedure TAITipsPlacesMainView.TMSMCPCloudAI1SpeechAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult: string;
   SoundBuffer: TMemoryStream);
 begin
@@ -263,11 +268,6 @@ begin
 
   if ckSpeakResponse.Checked then
     TMSMCPCloudAI1.Speak(AResponse.Content.Text);
-end;
-
-procedure TAITipsPlacesMainView.btnExecuteClick(Sender: TObject);
-begin
-  Self.AIExecute;
 end;
 
 procedure TAITipsPlacesMainView.AIExecute;
@@ -311,26 +311,24 @@ begin
   var LLocation := Args.GetValue<string>('Location');
   var LKeyword := Args.GetValue<string>('Keyword');
 
-  Self.SearchTextMap(LLocation, LKeyword, -24.24116284695499, -51.66980512224488);
+  TMSFNCGeocoding1.GetGeocoding(LLocation,
+    procedure(const ARequest: TTMSFNCGeocodingRequest; const ARequestResult: TTMSFNCCloudBaseRequestResult)
+    begin
+      var LCoordinateRec := ARequest.Items[0].Coordinate.ToRec;
+      TMSFNCMaps1.SetCenterCoordinate(LCoordinateRec);
+      TMSFNCMaps1.AddMarker(LCoordinateRec);
+
+      Self.SearchTextMap(LKeyword, LCoordinateRec);
+    end);
 end;
 
-procedure TAITipsPlacesMainView.Button1Click(Sender: TObject);
+procedure TAITipsPlacesMainView.SearchTextMap(const AKeyword: string; const ACoordinateRecn: TTMSFNCMapsCoordinateRec);
 begin
-  Self.SearchTextMap('Ivaipora', 'padarias', -24.24116284695499, -51.66980512224488);
-end;
-
-procedure TAITipsPlacesMainView.SearchTextMap(const ALocation, AKeyword: string; const ALat, ALon: Double);
-var
-  LCoord: TTMSFNCMapsCoordinateRec;
-begin
-  Memo1.Lines.Add(ALocation + ' -> ' + AKeyword);
-
   TMSFNCMaps1.ClearMarkers;
 
-  LCoord := CreateCoordinate(ALat, ALon);
-  TMSFNCGooglePlaces1.SearchByText(AKeyword, LCoord);
+  TMSFNCGooglePlaces1.SearchByText(AKeyword, ACoordinateRecn);
 
-  TMSFNCMaps1.ZoomToBounds(LCoord, LCoord);
+  TMSFNCMaps1.ZoomToBounds(ACoordinateRecn, ACoordinateRecn);
   TMSFNCMaps1.SetZoomLevel(16);
 end;
 

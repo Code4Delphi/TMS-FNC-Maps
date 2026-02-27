@@ -231,8 +231,6 @@ object SpeechMapMainView: TSpeechMapMainView
       Height = 114
       Align = alTop
       TabOrder = 4
-      ExplicitLeft = 4
-      ExplicitTop = 0
       object Label2: TLabel
         Left = 210
         Top = 63
