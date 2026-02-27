@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{B538792D-CA79-418B-B444-E32BA9A14420}</ProjectGuid>
+        <ProjectGuid>{C97CAB79-3338-4C9F-AA49-F02B70B4A166}</ProjectGuid>
         <ProjectVersion>20.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <MainSource>FNCMaps_AI_TipsPlaces.dpr</MainSource>

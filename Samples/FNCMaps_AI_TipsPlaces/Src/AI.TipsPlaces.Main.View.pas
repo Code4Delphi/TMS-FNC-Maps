@@ -32,38 +32,41 @@ uses
   TMS.MCP.CloudAI,
   TMS.MCP.CustomComponent,
   TMS.MCP.CloudBase,  
-  AudioRecorder, Vcl.Buttons;
+  AudioRecorder, Vcl.Buttons, VCL.TMSFNCPlaces, VCL.TMSFNCGooglePlaces,
+  System.TypInfo;
 
 type
   TAITipsPlacesMainView = class(TForm)
     TMSFNCMaps1: TTMSFNCMaps;
-    TMSFNCDirections1: TTMSFNCDirections;
     TMSMCPCloudAI1: TTMSMCPCloudAI;
     pnTop: TPanel;
-    pnButtonsTop: TPanel;
-    btnStartRecording: TButton;
-    btnStopRecording: TButton;
-    cBoxLanguage: TComboBox;
-    ckSpeakAudioRecording: TCheckBox;
-    ckSpeakResponse: TCheckBox;
-    btnAddExampleText: TButton;
     gBoxTanscription: TGroupBox;
     mmTanscription: TMemo;
     gBoxResponse: TGroupBox;
     mmResponse: TMemo;
-    btnStopTalking: TButton;
     Panel1: TPanel;
     btnExecute: TBitBtn;
     ProgressBar1: TProgressBar;
-    pnConfig: TPanel;
+    GroupBox1: TGroupBox;
     Label2: TLabel;
-    edtAPIKeyAI: TEdit;
-    Label3: TLabel;
-    edtOpenRouteAPIKey: TEdit;
     Label4: TLabel;
+    edtAPIKeyAI: TEdit;
     cBoxIAService: TComboBox;
+    pnButtonsTop: TPanel;
+    btnStartRecording: TButton;
+    btnStopRecording: TButton;
+    cBoxLanguageAI: TComboBox;
+    ckSpeakAudioRecording: TCheckBox;
+    ckSpeakResponse: TCheckBox;
+    btnStopTalking: TButton;
+    Button1: TButton;
+    GroupBox2: TGroupBox;
+    Label17: TLabel;
+    Label21: TLabel;
+    edtAPIKeyMap: TEdit;
+    cBoxLanguageMap: TComboBox;
+    TMSFNCGooglePlaces1: TTMSFNCGooglePlaces;
     procedure FormCreate(Sender: TObject);
-    procedure btnAddExampleTextClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TMSMCPCloudAI1TranscribeAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult, Text: string);
     procedure TMSMCPCloudAI1SpeechAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult: string; SoundBuffer: TMemoryStream);
@@ -72,20 +75,22 @@ type
     procedure TMSMCPCloudAI1Executed(Sender: TObject; AResponse: TTMSMCPCloudAIResponse; AHttpStatusCode: Integer; AHttpResult: string);
     procedure btnStopTalkingClick(Sender: TObject);
     procedure btnExecuteClick(Sender: TObject);
-    procedure cBoxIAServiceChange(Sender: TObject);
-    procedure edtAPIKeyAIChange(Sender: TObject);
-    procedure edtOpenRouteAPIKeyChange(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure TMSFNCGooglePlaces1SearchByText(Sender: TObject; const ARequest: TTMSFNCPlacesRequest;
+      const ARequestResult: TTMSFNCCloudBaseRequestResult);
+    procedure cBoxLanguageMapChange(Sender: TObject);
+    procedure edtAPIKeyMapChange(Sender: TObject);
   private
     procedure ScreenRecordingOff;
     procedure ScreenRecordingOn;
-    function GetLanguage: string;
+    function GetLanguageAI: string;
     procedure AIExecute;
-    procedure ConfigBasic;
+    procedure ConfigBasicMaps;
+    procedure ConfigBasicAI;
+    procedure SearchText(const ALat, ALon: Double);
   public
     FAudioRecorder: TAudioRecorder;
     procedure InitTools;
-    procedure ShowRoute(Sender: TObject; Args: TJSONObject; var Result: string);
-    procedure ShowDirections(FromPlace, ToPlace: string; FromCoord, ToCoord: TTMSFNCMapsCoordinateRec);
   end;
 
 var
@@ -97,10 +102,8 @@ implementation
 
 procedure TAITipsPlacesMainView.FormCreate(Sender: TObject);
 begin
+  FormatSettings.DecimalSeparator := '.';
   ReportMemoryLeaksOnShutdown := True;
-
-  TMSFNCMaps1.Service := msOpenLayers;
-  TMSFNCDirections1.Service := dsOpenRouteService;
 
   Self.InitTools;
 
@@ -111,7 +114,7 @@ begin
   cBoxIAService.Items.Assign(TMSMCPCloudAI1.GetServices(True));
   cBoxIAService.ItemIndex := 6;
 
-  Self.ConfigBasic;
+  Self.ConfigBasicMaps;
 end;
 
 procedure TAITipsPlacesMainView.FormDestroy(Sender: TObject);
@@ -120,27 +123,33 @@ begin
     FAudioRecorder.Free;
 end;
 
-procedure TAITipsPlacesMainView.ConfigBasic;
+procedure TAITipsPlacesMainView.edtAPIKeyMapChange(Sender: TObject);
 begin
-  TMSFNCDirections1.APIKey := edtOpenRouteAPIKey.Text;
+  Self.ConfigBasicMaps;
+end;
 
+procedure TAITipsPlacesMainView.ConfigBasicMaps;
+begin
+  TMSFNCMaps1.BeginUpdate;
+  TMSFNCMaps1.Service := TTMSFNCMapsService.msGoogleMaps;
+  TMSFNCMaps1.APIKey := edtAPIKeyMap.Text;
+  TMSFNCMaps1.Options.Locale := copy(cBoxLanguageMap.Text, 1, 5);
+  TMSFNCMaps1.EndUpdate;
+
+  TMSFNCGooglePlaces1.APIKey := edtAPIKeyMap.Text;
+  TMSFNCGooglePlaces1.UseGooglePlacesNew := True; // opcional
+end;
+
+procedure TAITipsPlacesMainView.ConfigBasicAI;
+begin
   TMSMCPCloudAI1.APIKeys.OpenAI := edtAPIKeyAI.Text;
   TMSMCPCloudAI1.Service := TTMSMCPCloudAIService(cBoxIAService.Items.Objects[cBoxIAService.ItemIndex]);
 end;
 
-procedure TAITipsPlacesMainView.edtAPIKeyAIChange(Sender: TObject);
+procedure TAITipsPlacesMainView.cBoxLanguageMapChange(Sender: TObject);
 begin
-  Self.ConfigBasic;
-end;
-
-procedure TAITipsPlacesMainView.edtOpenRouteAPIKeyChange(Sender: TObject);
-begin
-  Self.ConfigBasic;
-end;
-
-procedure TAITipsPlacesMainView.cBoxIAServiceChange(Sender: TObject);
-begin
-  Self.ConfigBasic;
+  Self.ConfigBasicMaps;
+  TMSFNCMaps1.ReInitialize;
 end;
 
 procedure TAITipsPlacesMainView.ScreenRecordingOn;
@@ -149,7 +158,6 @@ begin
   btnStartRecording.Enabled := False;
   btnStopRecording.Enabled := True;
   btnStopTalking.Enabled := False;
-  btnAddExampleText.Enabled := False;
   mmTanscription.Lines.Clear;
   mmResponse.Lines.Clear;
 end;
@@ -159,17 +167,16 @@ begin
   btnStartRecording.Enabled := True;
   btnStopRecording.Enabled := False;
   btnStopTalking.Enabled := False;
-  btnAddExampleText.Enabled := True;
   ProgressBar1.State := pbsPaused;
 end;
 
-function TAITipsPlacesMainView.GetLanguage: string;
+function TAITipsPlacesMainView.GetLanguageAI: string;
 begin
   Result := '';
-  if cBoxLanguage.ItemIndex <= 0 then
+  if cBoxLanguageAI.ItemIndex <= 0 then
     Exit;
 
-  Result := Copy(cBoxLanguage.Text, Length(cBoxLanguage.Text) - 1, 2);
+  Result := Copy(cBoxLanguageAI.Text, Length(cBoxLanguageAI.Text) - 1, 2);
 end;
 
 procedure TAITipsPlacesMainView.btnStartRecordingClick(Sender: TObject);
@@ -189,7 +196,7 @@ begin
   LAudioStream := FAudioRecorder.GetMP3Stream(20500);
   try
     LAudioStream.Position := 0;
-    TMSMCPCloudAI1.Transcribe(LAudioStream, Self.GetLanguage); //'en'
+    TMSMCPCloudAI1.Transcribe(LAudioStream, Self.GetLanguageAI); //'en'
 
     if ckSpeakAudioRecording.Checked then
     begin
@@ -199,11 +206,6 @@ begin
   finally
     LAudioStream.Free;
   end;
-end;
-
-procedure TAITipsPlacesMainView.btnAddExampleTextClick(Sender: TObject);
-begin
-  mmTanscription.Lines.Text := 'Mostrar trajeto entre São Paulo e Rio de Janeiro';
 end;
 
 procedure TAITipsPlacesMainView.btnStopTalkingClick(Sender: TObject);
@@ -218,48 +220,6 @@ var
   LParam: TTMSMCPCloudAIParameter;
 begin
   inherited;
-
-  LTool := TMSMCPCloudAI1.Tools.Add;
-  LTool.Name := 'ShowRoute';
-  LTool.Description := 'Show the route between two places, based on geocoordinate points on the map';
-
-  LParam := LTool.Parameters.Add;
-  LParam.Name := 'startplace';
-  LParam.&Type := ptString;
-  LParam.Required := true;
-  LParam.Description := 'the name of the first place';
-
-  LParam := LTool.Parameters.Add;
-  LParam.Name := 'startlon';
-  LParam.&Type := ptString;
-  LParam.Required := true;
-  LParam.Description := 'the longitude of the start coordinate';
-
-  LParam := LTool.Parameters.Add;
-  LParam.Name := 'startlat';
-  LParam.&Type := ptString;
-  LParam.Required := true;
-  LParam.Description := 'the latitude of the start coordinate';
-
-  LParam := LTool.Parameters.Add;
-  LParam.Name := 'endplace';
-  LParam.&Type := ptString;
-  LParam.Required := true;
-  LParam.Description := 'the name of the second place';
-
-  LParam := LTool.Parameters.Add;
-  LParam.Name := 'endlon';
-  LParam.&Type := ptString;
-  LParam.Required := true;
-  LParam.Description := 'the longitude of the end coordinate';
-
-  LParam := LTool.Parameters.Add;
-  LParam.Name := 'endlat';
-  LParam.&Type := ptString;
-  LParam.Required := true;
-  LParam.Description := 'the latitude of the end coordinate';
-
-  LTool.OnExecute := ShowRoute;
 end;
 
 function InflateBounds(Bounds: TTMSFNCMapsBoundsRec; Percent: double): TTMSFNCMapsBoundsRec;
@@ -284,67 +244,6 @@ begin
   Result.SouthWest.Longitude := Bounds.SouthWest.Longitude - LExpandLon;
 end;
 
-procedure TAITipsPlacesMainView.ShowDirections(FromPlace, ToPlace: string; FromCoord, ToCoord: TTMSFNCMapsCoordinateRec);
-begin
-  TMSFNCDirections1.GetDirections(FromCoord, ToCoord,
-    procedure(const ARequest: TTMSFNCDirectionsRequest; const ARequestResult: TTMSFNCCloudBaseRequestResult)
-    var
-      it: TTMSFNCDirectionsItem;
-      p: TTMSFNCMapsPolyline;
-      Bounds: TTMSFNCMapsBoundsRec;
-    begin
-      TMSFNCMaps1.ClearPolylines;
-      TMSFNCMaps1.ClearMarkers;
-
-      if ARequestResult.Success then
-      begin
-        if ARequest.Items.Count > 0 then
-        begin
-          TMSFNCMaps1.BeginUpdate;
-          it := ARequest.Items[0];
-
-          TMSFNCMaps1.AddMarker(it.Legs[0].StartLocation.ToRec, FromPlace, DEFAULTWAYPOINTMARKER);
-          TMSFNCMaps1.AddMarker(it.Legs[0].EndLocation.ToRec, ToPlace, DEFAULTENDMARKER);
-
-          p := TTMSFNCMapsPolyline(TMSFNCMaps1.AddPolyline(it.Coordinates.ToArray));
-          p.StrokeColor := gcBlue;
-          p.StrokeOpacity := 0.5;
-          p.StrokeWidth := 5;
-
-          // grow the boundary 15%
-          Bounds := InflateBounds(it.Coordinates.Bounds.ToRec, 15);
-
-          TMSFNCMaps1.ZoomToBounds(Bounds);
-          TMSFNCMaps1.EndUpdate;
-        end;
-      end;
-    end);
-end;
-
-procedure TAITipsPlacesMainView.ShowRoute(Sender: TObject; Args: TJSONObject; var Result: string);
-var
-  LcStart: TTMSFNCMapsCoordinateRec;
-  LcEnd: TTMSFNCMapsCoordinateRec;
-  LnStart: string;
-  LnEnd: string;
-begin
-  if Args.Count > 0 then
-  begin   
-    LnStart := Args.GetValue<string>('startplace');
-    LcStart.Longitude := Args.GetValue<double>('startlon');
-    LcStart.Latitude := Args.GetValue<double>('startlat');
-
-    LnEnd := Args.GetValue<string>('endplace');
-    LcEnd.Longitude := Args.GetValue<double>('endlon');
-    LcEnd.Latitude := Args.GetValue<double>('endlat');
-
-    //if not ckSpeakResponse.Checked then
-    //  TMSMCPCloudAI1.Speak(Format('Estou calculando a rota de %s para %s', [LnStart, LnEnd]));
-
-    ShowDirections(LnStart, LnEnd, LcStart, LcEnd);
-  end;
-end;
-
 procedure TAITipsPlacesMainView.TMSMCPCloudAI1SpeechAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult: string;
   SoundBuffer: TMemoryStream);
 begin
@@ -352,8 +251,7 @@ begin
   FAudioRecorder.PlayMP3FromStream(SoundBuffer);
 end;
 
-procedure TAITipsPlacesMainView.TMSMCPCloudAI1TranscribeAudio(Sender: TObject;
-  HttpStatusCode: Integer; HttpResult, Text: string);
+procedure TAITipsPlacesMainView.TMSMCPCloudAI1TranscribeAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult, Text: string);
 begin
   if HttpStatusCode div 100 <> 2 then
   begin
@@ -389,15 +287,50 @@ end;
 
 procedure TAITipsPlacesMainView.AIExecute;
 begin
-  if TMSFNCDirections1.APIKey.Trim.Equals('INSERT_API_KEY') then
-  begin
-    ShowMessage('Para marcações no mapa a APIKey deve ser informada no componente TMSFNCDirections1' + sLineBreak +
-      'GENERATE THE API KEY: https://account.heigit.org/manage/key');
-  end;
-
   TMSMCPCloudAI1.Context.Text := mmTanscription.Lines.Text;
   TMSMCPCloudAI1.Execute;
   ProgressBar1.State := pbsNormal;
 end;
+
+procedure TAITipsPlacesMainView.Button1Click(Sender: TObject);
+begin
+  TMSFNCMaps1.ClearMarkers;
+
+  Self.SearchText(-24.24116284695499, -51.66980512224488);
+end;
+
+procedure TAITipsPlacesMainView.SearchText(const ALat, ALon: Double);
+var
+  LCoord: TTMSFNCMapsCoordinateRec;
+begin
+  LCoord := CreateCoordinate(ALat, ALon);
+  TMSFNCGooglePlaces1.SearchByText('padarias', LCoord);
+
+  TMSFNCMaps1.ZoomToBounds(LCoord, LCoord);
+  TMSFNCMaps1.SetZoomLevel(16);
+end;
+
+procedure TAITipsPlacesMainView.TMSFNCGooglePlaces1SearchByText(Sender: TObject; const ARequest: TTMSFNCPlacesRequest;
+  const ARequestResult: TTMSFNCCloudBaseRequestResult);
+begin
+   if ARequest.Items.Count = 0 then
+    Exit;
+
+  TMSFNCMaps1.BeginUpdate;
+  try
+    TMSFNCMaps1.ClearMarkers;
+
+    for var I := 0 to Pred(ARequest.Items.Count) do
+    begin
+      mmResponse.Lines.Add(ARequest.Items[I].Address);
+
+      var LMarker := TMSFNCMaps1.AddMarker(ARequest.Items[I].Coordinate.ToRec);
+      LMarker.Title := ARequest.Items[I].Description + ' - ' + ARequest.Items[I].Address;
+    end;
+  finally
+    TMSFNCMaps1.EndUpdate;
+  end;
+end;
+
 
 end.

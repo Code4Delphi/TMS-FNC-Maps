@@ -43,6 +43,8 @@ object PopupsMainView: TPopupsMainView
       Align = alLeft
       Caption = ' Config basic '
       TabOrder = 0
+      ExplicitLeft = -1
+      ExplicitTop = 5
       DesignSize = (
         192
         209)
@@ -409,7 +411,5 @@ object PopupsMainView: TPopupsMainView
           'lquer lugar do mapa'
         Width = 1000
       end>
-    ExplicitTop = 539
-    ExplicitWidth = 1118
   end
 end
