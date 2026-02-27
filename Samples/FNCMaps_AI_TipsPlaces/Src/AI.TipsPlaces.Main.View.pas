@@ -81,6 +81,8 @@ type
       const ARequestResult: TTMSFNCCloudBaseRequestResult);
     procedure cBoxLanguageMapChange(Sender: TObject);
     procedure edtAPIKeyMapChange(Sender: TObject);
+    procedure cBoxIAServiceChange(Sender: TObject);
+    procedure edtAPIKeyAIChange(Sender: TObject);
   private
     procedure ScreenRecordingOff;
     procedure ScreenRecordingOn;
@@ -88,7 +90,7 @@ type
     procedure AIExecute;
     procedure ConfigBasicMaps;
     procedure ConfigBasicAI;
-    procedure SearchTextMap(const AKeyword: string; const ALat, ALon: Double);
+    procedure SearchTextMap(const ALocation, AKeyword: string; const ALat, ALon: Double);
     procedure OnExecuteKeyword(Sender: TObject; Args: TJSONObject; var Result: string);
   public
     FAudioRecorder: TAudioRecorder;
@@ -116,6 +118,7 @@ begin
   cBoxIAService.Items.Assign(TMSMCPCloudAI1.GetServices(True));
   cBoxIAService.ItemIndex := 6;
 
+  Self.ConfigBasicAI;
   Self.ConfigBasicMaps;
 end;
 
@@ -125,9 +128,20 @@ begin
     FAudioRecorder.Free;
 end;
 
-procedure TAITipsPlacesMainView.edtAPIKeyMapChange(Sender: TObject);
+procedure TAITipsPlacesMainView.cBoxIAServiceChange(Sender: TObject);
 begin
-  Self.ConfigBasicMaps;
+  Self.ConfigBasicAI;
+end;
+
+procedure TAITipsPlacesMainView.edtAPIKeyAIChange(Sender: TObject);
+begin
+  Self.ConfigBasicAI;
+end;
+
+procedure TAITipsPlacesMainView.ConfigBasicAI;
+begin
+  TMSMCPCloudAI1.Service := TTMSMCPCloudAIService(cBoxIAService.Items.Objects[cBoxIAService.ItemIndex]);
+  TMSMCPCloudAI1.APIKeys.OpenAI := edtAPIKeyAI.Text;
 end;
 
 procedure TAITipsPlacesMainView.ConfigBasicMaps;
@@ -140,12 +154,6 @@ begin
 
   TMSFNCGooglePlaces1.APIKey := edtAPIKeyMap.Text;
   //TMSFNCGooglePlaces1.UseGooglePlacesNew := True; // opcional
-end;
-
-procedure TAITipsPlacesMainView.ConfigBasicAI;
-begin
-  TMSMCPCloudAI1.APIKeys.OpenAI := edtAPIKeyAI.Text;
-  TMSMCPCloudAI1.Service := TTMSMCPCloudAIService(cBoxIAService.Items.Objects[cBoxIAService.ItemIndex]);
 end;
 
 procedure TAITipsPlacesMainView.cBoxLanguageMapChange(Sender: TObject);
@@ -223,6 +231,11 @@ begin
   FAudioRecorder.PlayMP3FromStream(SoundBuffer);
 end;
 
+procedure TAITipsPlacesMainView.edtAPIKeyMapChange(Sender: TObject);
+begin
+  Self.ConfigBasicMaps;
+end;
+
 procedure TAITipsPlacesMainView.TMSMCPCloudAI1TranscribeAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult, Text: string);
 begin
   if HttpStatusCode div 100 <> 2 then
@@ -276,36 +289,41 @@ begin
   LTool.Description := 'Retrieve the keyword for the type of establishment to be listed on the map.';
 
   LParam := LTool.Parameters.Add;
+  LParam.Name := 'Location';
+  LParam.&Type := ptString;
+  LParam.Required := True;
+  LParam.Description := 'Location to be used to display places on the map.';
+
+  LParam := LTool.Parameters.Add;
   LParam.Name := 'Keyword';
   LParam.&Type := ptString;
-  LParam.Required := true;
+  LParam.Required := True;
   LParam.Description := 'Keyword for the type of establishment to be listed on the map';
 
   LTool.OnExecute := OnExecuteKeyword;
 end;
 
 procedure TAITipsPlacesMainView.OnExecuteKeyword(Sender: TObject; Args: TJSONObject; var Result: string);
-var
-  LKeyword: string;
 begin
   if Args.Count <= 0 then
     Exit;
 
-  LKeyword := Args.GetValue<string>('Keyword');
+  var LLocation := Args.GetValue<string>('Location');
+  var LKeyword := Args.GetValue<string>('Keyword');
 
-  Self.SearchTextMap(LKeyword, -24.24116284695499, -51.66980512224488);
+  Self.SearchTextMap(LLocation, LKeyword, -24.24116284695499, -51.66980512224488);
 end;
 
 procedure TAITipsPlacesMainView.Button1Click(Sender: TObject);
 begin
-  Self.SearchTextMap('padarias', -24.24116284695499, -51.66980512224488);
+  Self.SearchTextMap('Ivaipora', 'padarias', -24.24116284695499, -51.66980512224488);
 end;
 
-procedure TAITipsPlacesMainView.SearchTextMap(const AKeyword: string; const ALat, ALon: Double);
+procedure TAITipsPlacesMainView.SearchTextMap(const ALocation, AKeyword: string; const ALat, ALon: Double);
 var
   LCoord: TTMSFNCMapsCoordinateRec;
 begin
-  Memo1.Lines.Add(AKeyword);
+  Memo1.Lines.Add(ALocation + ' -> ' + AKeyword);
 
   TMSFNCMaps1.ClearMarkers;
 

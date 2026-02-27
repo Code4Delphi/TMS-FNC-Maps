@@ -70,10 +70,8 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
         BorderStyle = bsNone
         Lines.Strings = (
           '')
+        ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitLeft = 4
-        ExplicitTop = 14
-        ExplicitHeight = 81
       end
     end
     object gBoxResponse: TGroupBox
@@ -164,20 +162,26 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
       end
       object edtAPIKeyAI: TEdit
         Left = 210
-        Top = 32
+        Top = 33
         Width = 839
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         PasswordChar = '*'
         TabOrder = 0
+        Text = 
+          'sk-proj-hFSIgcNgEVdv-luOBTIJz13qDigwFefFw0vIgyuExdO-nLoNQHpNfpvM' +
+          'H75uKh4vc-h4rgKC7BT3BlbkFJCI87u1sLjzJg1-ewn2vp0vx2Sflqp3NpPmDAnG' +
+          'ZM_YEvEf22CFuQ06-vOklE4qt6vKLTeMtCQA'
+        OnChange = edtAPIKeyAIChange
       end
       object cBoxIAService: TComboBox
-        Left = 7
-        Top = 32
-        Width = 201
+        Left = 8
+        Top = 33
+        Width = 198
         Height = 21
         Style = csDropDownList
         TabOrder = 1
+        OnChange = cBoxIAServiceChange
       end
       object pnButtonsTop: TPanel
         Left = 2
@@ -217,9 +221,7 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
           Caption = 'Stop recording'
           TabOrder = 1
           OnClick = btnStopRecordingClick
-          ExplicitLeft = 282
-          ExplicitTop = 4
-          ExplicitHeight = 31
+          ExplicitTop = 2
         end
         object cBoxLanguageAI: TComboBox
           AlignWithMargins = True
@@ -326,6 +328,7 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
       Anchors = [akLeft, akTop, akRight]
       PasswordChar = '*'
       TabOrder = 0
+      Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
       OnChange = edtAPIKeyMapChange
     end
     object cBoxLanguageMap: TComboBox
