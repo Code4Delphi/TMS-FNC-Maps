@@ -66,6 +66,7 @@ type
     edtAPIKeyMap: TEdit;
     cBoxLanguageMap: TComboBox;
     TMSFNCGooglePlaces1: TTMSFNCGooglePlaces;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TMSMCPCloudAI1TranscribeAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult, Text: string);
@@ -87,7 +88,8 @@ type
     procedure AIExecute;
     procedure ConfigBasicMaps;
     procedure ConfigBasicAI;
-    procedure SearchText(const ALat, ALon: Double);
+    procedure SearchTextMap(const AKeyword: string; const ALat, ALon: Double);
+    procedure OnExecuteKeyword(Sender: TObject; Args: TJSONObject; var Result: string);
   public
     FAudioRecorder: TAudioRecorder;
     procedure InitTools;
@@ -137,7 +139,7 @@ begin
   TMSFNCMaps1.EndUpdate;
 
   TMSFNCGooglePlaces1.APIKey := edtAPIKeyMap.Text;
-  TMSFNCGooglePlaces1.UseGooglePlacesNew := True; // opcional
+  //TMSFNCGooglePlaces1.UseGooglePlacesNew := True; // opcional
 end;
 
 procedure TAITipsPlacesMainView.ConfigBasicAI;
@@ -214,36 +216,6 @@ begin
   btnStopTalking.Enabled := False;
 end;
 
-procedure TAITipsPlacesMainView.InitTools;
-var
-  LTool: TTMSMCPCloudAITool;
-  LParam: TTMSMCPCloudAIParameter;
-begin
-  inherited;
-end;
-
-function InflateBounds(Bounds: TTMSFNCMapsBoundsRec; Percent: double): TTMSFNCMapsBoundsRec;
-var
-  LLatDiff: Double;
-  LLonDiff: Double;
-  LExpandLat: Double;
-  LExpandLon: Double;
-begin
-  LLatDiff := Bounds.NorthEast.Latitude - Bounds.SouthWest.Latitude;
-  LLonDiff := Bounds.NorthEast.Longitude - Bounds.SouthWest.Longitude;
-
-  // Expansion in each direction (Percent / 100 * half-span)
-  LExpandLat := (LLatDiff * (Percent / 100)) / 2;
-  LExpandLon := (LLonDiff * (Percent / 100)) / 2;
-
-  // Apply expansion
-  Result.NorthEast.Latitude  := Bounds.NorthEast.Latitude  + LExpandLat;
-  Result.NorthEast.Longitude := Bounds.NorthEast.Longitude + LExpandLon;
-
-  Result.SouthWest.Latitude  := Bounds.SouthWest.Latitude  - LExpandLat;
-  Result.SouthWest.Longitude := Bounds.SouthWest.Longitude - LExpandLon;
-end;
-
 procedure TAITipsPlacesMainView.TMSMCPCloudAI1SpeechAudio(Sender: TObject; HttpStatusCode: Integer; HttpResult: string;
   SoundBuffer: TMemoryStream);
 begin
@@ -292,19 +264,53 @@ begin
   ProgressBar1.State := pbsNormal;
 end;
 
-procedure TAITipsPlacesMainView.Button1Click(Sender: TObject);
+procedure TAITipsPlacesMainView.InitTools;
+var
+  LTool: TTMSMCPCloudAITool;
+  LParam: TTMSMCPCloudAIParameter;
 begin
-  TMSFNCMaps1.ClearMarkers;
+  inherited;
 
-  Self.SearchText(-24.24116284695499, -51.66980512224488);
+  LTool := TMSMCPCloudAI1.Tools.Add;
+  LTool.Name := 'GetKeyword';
+  LTool.Description := 'Retrieve the keyword for the type of establishment to be listed on the map.';
+
+  LParam := LTool.Parameters.Add;
+  LParam.Name := 'Keyword';
+  LParam.&Type := ptString;
+  LParam.Required := true;
+  LParam.Description := 'Keyword for the type of establishment to be listed on the map';
+
+  LTool.OnExecute := OnExecuteKeyword;
 end;
 
-procedure TAITipsPlacesMainView.SearchText(const ALat, ALon: Double);
+procedure TAITipsPlacesMainView.OnExecuteKeyword(Sender: TObject; Args: TJSONObject; var Result: string);
+var
+  LKeyword: string;
+begin
+  if Args.Count <= 0 then
+    Exit;
+
+  LKeyword := Args.GetValue<string>('Keyword');
+
+  Self.SearchTextMap(LKeyword, -24.24116284695499, -51.66980512224488);
+end;
+
+procedure TAITipsPlacesMainView.Button1Click(Sender: TObject);
+begin
+  Self.SearchTextMap('padarias', -24.24116284695499, -51.66980512224488);
+end;
+
+procedure TAITipsPlacesMainView.SearchTextMap(const AKeyword: string; const ALat, ALon: Double);
 var
   LCoord: TTMSFNCMapsCoordinateRec;
 begin
+  Memo1.Lines.Add(AKeyword);
+
+  TMSFNCMaps1.ClearMarkers;
+
   LCoord := CreateCoordinate(ALat, ALon);
-  TMSFNCGooglePlaces1.SearchByText('padarias', LCoord);
+  TMSFNCGooglePlaces1.SearchByText(AKeyword, LCoord);
 
   TMSFNCMaps1.ZoomToBounds(LCoord, LCoord);
   TMSFNCMaps1.SetZoomLevel(16);

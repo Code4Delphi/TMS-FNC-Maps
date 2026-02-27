@@ -353,8 +353,16 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
     Height = 26
     Visible = True
     OnSearchByText = TMSFNCGooglePlaces1SearchByText
-    APIKey = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
     PlacesRequests = <>
+  end
+  object Memo1: TMemo
+    Left = 456
+    Top = 344
+    Width = 185
+    Height = 89
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 5
   end
   object TMSMCPCloudAI1: TTMSMCPCloudAI
     Service = aiOpenAI
