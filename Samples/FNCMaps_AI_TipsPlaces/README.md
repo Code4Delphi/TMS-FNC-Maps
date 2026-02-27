@@ -51,3 +51,6 @@ Ou siga as instruções abaixo:
 
 ![Mapa-TTS-STT](https://github.com/user-attachments/assets/65ba964d-db9b-4212-abde-03e8acab725f)
 
+<br/>
+
+[Documentação oficial / Official documentation TMS FNC Maps](https://download.tmssoftware.com/doc/tmsfncmaps/components/ttmsfncmaps/)
