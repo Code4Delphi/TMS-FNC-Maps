@@ -19,9 +19,9 @@ object SpeechMapMainView: TSpeechMapMainView
   TextHeight = 13
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 417
+    Top = 372
     Width = 1072
-    Height = 309
+    Height = 354
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -37,28 +37,32 @@ object SpeechMapMainView: TSpeechMapMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
+    ExplicitTop = 401
+    ExplicitHeight = 309
   end
   object pnTop: TPanel
     Left = 0
     Top = 0
     Width = 1072
-    Height = 417
+    Height = 372
     Align = alTop
     BevelInner = bvLowered
     TabOrder = 3
     object pnButtonsTop: TPanel
       Left = 2
-      Top = 116
+      Top = 130
       Width = 1068
       Height = 39
       Align = alTop
+      Padding.Left = 4
       TabOrder = 0
+      ExplicitTop = 134
       DesignSize = (
         1068
         39)
       object btnStartRecording: TButton
         AlignWithMargins = True
-        Left = 155
+        Left = 159
         Top = 4
         Width = 121
         Height = 31
@@ -69,7 +73,7 @@ object SpeechMapMainView: TSpeechMapMainView
       end
       object btnStopRecording: TButton
         AlignWithMargins = True
-        Left = 282
+        Left = 286
         Top = 4
         Width = 121
         Height = 31
@@ -80,7 +84,7 @@ object SpeechMapMainView: TSpeechMapMainView
       end
       object cBoxLanguage: TComboBox
         AlignWithMargins = True
-        Left = 4
+        Left = 8
         Top = 9
         Width = 145
         Height = 21
@@ -100,7 +104,7 @@ object SpeechMapMainView: TSpeechMapMainView
           #193'rabe - AR')
       end
       object ckSpeakAudioRecording: TCheckBox
-        Left = 917
+        Left = 913
         Top = 1
         Width = 150
         Height = 17
@@ -109,7 +113,7 @@ object SpeechMapMainView: TSpeechMapMainView
         TabOrder = 3
       end
       object ckSpeakResponse: TCheckBox
-        Left = 917
+        Left = 913
         Top = 18
         Width = 150
         Height = 17
@@ -121,7 +125,7 @@ object SpeechMapMainView: TSpeechMapMainView
       end
       object btnAddExampleText: TButton
         AlignWithMargins = True
-        Left = 505
+        Left = 509
         Top = 4
         Width = 121
         Height = 31
@@ -132,7 +136,7 @@ object SpeechMapMainView: TSpeechMapMainView
       end
       object btnStopTalking: TButton
         AlignWithMargins = True
-        Left = 409
+        Left = 413
         Top = 4
         Width = 90
         Height = 31
@@ -145,30 +149,35 @@ object SpeechMapMainView: TSpeechMapMainView
     end
     object gBoxTanscription: TGroupBox
       Left = 2
-      Top = 155
+      Top = 169
       Width = 1068
-      Height = 137
+      Height = 78
       Align = alClient
       Caption = ' Audio transcription  '
       Padding.Left = 1
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 1
+      ExplicitTop = 173
+      ExplicitHeight = 119
       object mmTanscription: TMemo
         Left = 3
         Top = 15
         Width = 1062
-        Height = 119
+        Height = 60
         Align = alClient
         BorderStyle = bsNone
         Lines.Strings = (
           '')
         TabOrder = 0
+        ExplicitLeft = 4
+        ExplicitTop = 16
+        ExplicitHeight = 101
       end
     end
     object gBoxResponse: TGroupBox
       Left = 2
-      Top = 327
+      Top = 282
       Width = 1068
       Height = 88
       Align = alBottom
@@ -177,6 +186,7 @@ object SpeechMapMainView: TSpeechMapMainView
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 2
+      ExplicitTop = 327
       object mmResponse: TMemo
         Left = 3
         Top = 15
@@ -190,11 +200,12 @@ object SpeechMapMainView: TSpeechMapMainView
     end
     object Panel1: TPanel
       Left = 2
-      Top = 292
+      Top = 247
       Width = 1068
       Height = 35
       Align = alBottom
       TabOrder = 3
+      ExplicitTop = 292
       object btnExecute: TBitBtn
         AlignWithMargins = True
         Left = 4
@@ -226,62 +237,73 @@ object SpeechMapMainView: TSpeechMapMainView
     end
     object pnConfig: TPanel
       Left = 2
-      Top = 2
+      Top = 70
       Width = 1068
-      Height = 114
+      Height = 60
       Align = alTop
       TabOrder = 4
       object Label2: TLabel
         Left = 210
-        Top = 63
+        Top = 10
         Width = 52
         Height = 13
         Caption = 'AI API Key'
       end
-      object Label3: TLabel
-        Left = 7
-        Top = 11
-        Width = 99
-        Height = 13
-        Caption = 'Open Route API Key'
-      end
       object Label4: TLabel
         Left = 8
-        Top = 63
+        Top = 10
         Width = 48
         Height = 13
         Caption = 'AI service'
       end
       object edtAPIKeyAI: TEdit
         Left = 210
-        Top = 80
+        Top = 27
         Width = 839
         Height = 21
+        PasswordChar = '*'
         TabOrder = 0
         OnChange = edtAPIKeyAIChange
       end
-      object edtOpenRouteAPIKey: TEdit
-        Left = 7
-        Top = 27
-        Width = 1042
-        Height = 21
-        TabOrder = 1
-        OnChange = edtOpenRouteAPIKeyChange
-      end
       object cBoxIAService: TComboBox
         Left = 7
-        Top = 80
+        Top = 27
         Width = 201
         Height = 21
         Style = csDropDownList
-        TabOrder = 2
+        TabOrder = 1
         OnChange = cBoxIAServiceChange
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 2
+      Top = 2
+      Width = 1068
+      Height = 68
+      Align = alTop
+      Caption = ' Maps configs '
+      TabOrder = 5
+      object Label3: TLabel
+        Left = 7
+        Top = 16
+        Width = 99
+        Height = 13
+        Caption = 'Open Route API Key'
+      end
+      object edtOpenRouteAPIKey: TEdit
+        Left = 7
+        Top = 33
+        Width = 1042
+        Height = 21
+        PasswordChar = '*'
+        TabOrder = 0
+        OnChange = edtOpenRouteAPIKeyChange
       end
     end
   end
   object TMSFNCDirections1: TTMSFNCDirections
-    Left = 491
-    Top = 248
+    Left = 627
+    Top = 224
     Width = 26
     Height = 26
     Visible = True

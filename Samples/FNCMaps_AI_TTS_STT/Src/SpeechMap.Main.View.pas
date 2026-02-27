@@ -73,10 +73,11 @@ type
     pnConfig: TPanel;
     Label2: TLabel;
     edtAPIKeyAI: TEdit;
-    Label3: TLabel;
-    edtOpenRouteAPIKey: TEdit;
     Label4: TLabel;
     cBoxIAService: TComboBox;
+    GroupBox2: TGroupBox;
+    Label3: TLabel;
+    edtOpenRouteAPIKey: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure btnAddExampleTextClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -115,7 +116,6 @@ begin
   ReportMemoryLeaksOnShutdown := True;
 
   TMSFNCMaps1.Service := msOpenLayers;
-  TMSFNCDirections1.Service := dsOpenRouteService;
 
   Self.InitTools;
 
@@ -137,10 +137,11 @@ end;
 
 procedure TSpeechMapMainView.ConfigBasic;
 begin
+  TMSFNCDirections1.Service := dsOpenRouteService;
   TMSFNCDirections1.APIKey := edtOpenRouteAPIKey.Text;
 
-  TMSMCPCloudAI1.APIKeys.OpenAI := edtAPIKeyAI.Text;
   TMSMCPCloudAI1.Service := TTMSMCPCloudAIService(cBoxIAService.Items.Objects[cBoxIAService.ItemIndex]);
+  TMSMCPCloudAI1.APIKeys.OpenAI := edtAPIKeyAI.Text;
 end;
 
 procedure TSpeechMapMainView.edtAPIKeyAIChange(Sender: TObject);

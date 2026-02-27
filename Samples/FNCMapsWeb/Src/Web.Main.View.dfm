@@ -148,7 +148,7 @@ object MainView: TMainView
         ChildOrder = 10
         HeightPercent = 100.000000000000000000
         PasswordChar = '*'
-        Text = 'AIzaSyB4M57N8jb8e_UL02psdP9_szUXCxmp1_w'
+        Text = ''
         WidthPercent = 100.000000000000000000
         OnChange = cBoxServiceMapChange
       end
