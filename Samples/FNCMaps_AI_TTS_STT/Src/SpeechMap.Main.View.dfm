@@ -4,7 +4,7 @@ object SpeechMapMainView: TSpeechMapMainView
   Caption = 
     'AI TTS and STT demo integrated with LLM function calling and dir' +
     'ections'
-  ClientHeight = 726
+  ClientHeight = 918
   ClientWidth = 1072
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,9 +19,9 @@ object SpeechMapMainView: TSpeechMapMainView
   TextHeight = 13
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 372
+    Top = 329
     Width = 1072
-    Height = 354
+    Height = 589
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -37,14 +37,14 @@ object SpeechMapMainView: TSpeechMapMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
-    ExplicitTop = 401
-    ExplicitHeight = 309
+    ExplicitTop = 372
+    ExplicitHeight = 354
   end
   object pnTop: TPanel
     Left = 0
     Top = 0
     Width = 1072
-    Height = 372
+    Height = 329
     Align = alTop
     BevelInner = bvLowered
     TabOrder = 3
@@ -56,7 +56,6 @@ object SpeechMapMainView: TSpeechMapMainView
       Align = alTop
       Padding.Left = 4
       TabOrder = 0
-      ExplicitTop = 134
       DesignSize = (
         1068
         39)
@@ -151,61 +150,59 @@ object SpeechMapMainView: TSpeechMapMainView
       Left = 2
       Top = 169
       Width = 1068
-      Height = 78
+      Height = 60
       Align = alClient
       Caption = ' Audio transcription  '
       Padding.Left = 1
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 1
-      ExplicitTop = 173
-      ExplicitHeight = 119
+      ExplicitHeight = 78
       object mmTanscription: TMemo
         Left = 3
         Top = 15
         Width = 1062
-        Height = 60
+        Height = 42
         Align = alClient
         BorderStyle = bsNone
         Lines.Strings = (
           '')
         TabOrder = 0
-        ExplicitLeft = 4
-        ExplicitTop = 16
-        ExplicitHeight = 101
+        ExplicitHeight = 60
       end
     end
     object gBoxResponse: TGroupBox
       Left = 2
-      Top = 282
+      Top = 264
       Width = 1068
-      Height = 88
+      Height = 63
       Align = alBottom
       Caption = ' Response '
       Padding.Left = 1
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 2
-      ExplicitTop = 327
+      ExplicitTop = 282
       object mmResponse: TMemo
         Left = 3
         Top = 15
         Width = 1062
-        Height = 70
+        Height = 45
         Align = alClient
         BorderStyle = bsNone
         ScrollBars = ssVertical
         TabOrder = 0
+        ExplicitHeight = 70
       end
     end
     object Panel1: TPanel
       Left = 2
-      Top = 247
+      Top = 229
       Width = 1068
       Height = 35
       Align = alBottom
       TabOrder = 3
-      ExplicitTop = 292
+      ExplicitTop = 247
       object btnExecute: TBitBtn
         AlignWithMargins = True
         Left = 4
