@@ -31,7 +31,8 @@ O TMS FNC Maps é um conjunto de componentes para Delphi e C++Builder voltado a 
 - [Mapas com Delphi 20 - Mapas 3D | Serviço Mapbox](https://www.youtube.com/watch?v=KRRcKDTkaRc&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 21 - Exportando e importando arquivos GPX | Strava | Komoot](https://www.youtube.com/watch?v=Q6zwKFfPEsY&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 - [Mapas com Delphi 22 - Mapas Offline](https://www.youtube.com/watch?v=dGuJ5nY7tN0&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
-- [Mapas com Delphi 23 - Mapas com FMX e WEB | Mapas multiplataforma com Delphi](https://www.youtube.com/watch?v=QaXCT1bWnng&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB) 
+- [Mapas com Delphi 23 - Mapas com FMX e WEB | Mapas multiplataforma com Delphi](https://www.youtube.com/watch?v=QaXCT1bWnng&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
+- [Mapas com Delphi 24 - Mapas com IA | Sugestões de locais | Criação de rotas | Map por comando de voz](https://www.youtube.com/watch?v=_WlCcFjUjhA&list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
 
 <br>
 
