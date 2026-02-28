@@ -254,6 +254,13 @@ begin
   Self.AIExecute;
 end;
 
+procedure TAITipsPlacesMainView.AIExecute;
+begin
+  TMSMCPCloudAI1.Context.Text := mmTanscription.Lines.Text;
+  TMSMCPCloudAI1.Execute;
+  ProgressBar1.State := pbsNormal;
+end;
+
 procedure TAITipsPlacesMainView.TMSMCPCloudAI1Executed(Sender: TObject; AResponse: TTMSMCPCloudAIResponse;
   AHttpStatusCode: Integer; AHttpResult: string);
 begin
@@ -270,12 +277,6 @@ begin
     TMSMCPCloudAI1.Speak(AResponse.Content.Text);
 end;
 
-procedure TAITipsPlacesMainView.AIExecute;
-begin
-  TMSMCPCloudAI1.Context.Text := mmTanscription.Lines.Text;
-  TMSMCPCloudAI1.Execute;
-  ProgressBar1.State := pbsNormal;
-end;
 
 procedure TAITipsPlacesMainView.InitTools;
 var
@@ -316,7 +317,7 @@ begin
     begin
       var LCoordinateRec := ARequest.Items[0].Coordinate.ToRec;
       TMSFNCMaps1.SetCenterCoordinate(LCoordinateRec);
-      TMSFNCMaps1.AddMarker(LCoordinateRec);
+      //TMSFNCMaps1.AddMarker(LCoordinateRec);
 
       Self.SearchTextMap(LKeyword, LCoordinateRec);
     end);

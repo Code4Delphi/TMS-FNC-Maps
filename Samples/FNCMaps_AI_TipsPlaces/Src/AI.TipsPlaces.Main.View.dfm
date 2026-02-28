@@ -4,7 +4,7 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
   Caption = 
     'AI TTS and STT demo integrated with LLM function calling and dir' +
     'ections'
-  ClientHeight = 742
+  ClientHeight = 887
   ClientWidth = 1072
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,9 +19,9 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
   TextHeight = 13
   object TMSFNCMaps1: TTMSFNCMaps
     Left = 0
-    Top = 337
+    Top = 297
     Width = 1072
-    Height = 405
+    Height = 590
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -37,14 +37,14 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
     Options.DefaultLatitude = 40.689247000000000000
     Options.DefaultLongitude = -74.044501999999990000
     Options.DefaultZoomLevel = 12.000000000000000000
-    ExplicitTop = 377
-    ExplicitHeight = 365
+    ExplicitTop = 337
+    ExplicitHeight = 405
   end
   object pnTop: TPanel
     Left = 0
     Top = 0
     Width = 1072
-    Height = 265
+    Height = 225
     Align = alTop
     BevelInner = bvLowered
     TabOrder = 1
@@ -52,50 +52,51 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
       Left = 2
       Top = 105
       Width = 1068
-      Height = 63
+      Height = 53
       Align = alClient
       Caption = ' Audio transcription  '
       Padding.Left = 1
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 0
-      ExplicitTop = 137
-      ExplicitHeight = 144
+      ExplicitHeight = 63
       object mmTanscription: TMemo
         Left = 3
         Top = 15
         Width = 1062
-        Height = 45
+        Height = 35
         Align = alClient
         BorderStyle = bsNone
         Lines.Strings = (
           '')
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitHeight = 43
+        ExplicitHeight = 45
       end
     end
     object gBoxResponse: TGroupBox
       Left = 2
-      Top = 168
+      Top = 158
       Width = 1068
-      Height = 95
+      Height = 65
       Align = alBottom
       Caption = ' Response '
       Padding.Left = 1
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 1
+      ExplicitTop = 168
       object mmResponse: TMemo
         Left = 3
         Top = 15
         Width = 1062
-        Height = 77
+        Height = 47
         Align = alClient
         BorderStyle = bsNone
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitHeight = 70
+        ExplicitLeft = 4
+        ExplicitTop = 14
       end
     end
     object GroupBox1: TGroupBox
@@ -151,8 +152,6 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
         BevelOuter = bvNone
         Padding.Left = 3
         TabOrder = 2
-        ExplicitLeft = 1
-        ExplicitTop = 61
         DesignSize = (
           1064
           39)
@@ -166,9 +165,7 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
           Caption = 'Start recording'
           TabOrder = 0
           OnClick = btnStartRecordingClick
-          ExplicitLeft = 155
-          ExplicitTop = 4
-          ExplicitHeight = 31
+          ExplicitTop = 2
         end
         object btnStopRecording: TButton
           AlignWithMargins = True
@@ -180,7 +177,6 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
           Caption = 'Stop recording'
           TabOrder = 1
           OnClick = btnStopRecordingClick
-          ExplicitTop = 2
         end
         object cBoxLanguageAI: TComboBox
           AlignWithMargins = True
@@ -202,7 +198,6 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
             'Italiano - IT'
             'Japon'#234's - JA'
             #193'rabe - AR')
-          ExplicitLeft = 4
         end
         object ckSpeakAudioRecording: TCheckBox
           Left = 914
@@ -212,7 +207,6 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
           Anchors = [akTop, akRight]
           Caption = 'Speak audio recording'
           TabOrder = 3
-          ExplicitLeft = 917
         end
         object ckSpeakResponse: TCheckBox
           Left = 914
@@ -224,7 +218,6 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
           Checked = True
           State = cbChecked
           TabOrder = 4
-          ExplicitLeft = 917
         end
         object btnStopTalking: TButton
           AlignWithMargins = True
@@ -237,9 +230,6 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
           Caption = 'Stop talking'
           TabOrder = 5
           OnClick = btnStopTalkingClick
-          ExplicitLeft = 409
-          ExplicitTop = 4
-          ExplicitHeight = 31
         end
         object ProgressBar1: TProgressBar
           AlignWithMargins = True
@@ -257,22 +247,19 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
           SmoothReverse = True
           State = pbsPaused
           TabOrder = 6
-          ExplicitLeft = 529
-          ExplicitTop = 13
-          ExplicitHeight = 17
         end
       end
     end
   end
   object GroupBox2: TGroupBox
     Left = 0
-    Top = 265
+    Top = 225
     Width = 1072
     Height = 72
     Align = alTop
     Caption = ' Maps configs '
     TabOrder = 2
-    ExplicitTop = 266
+    ExplicitTop = 265
     DesignSize = (
       1072
       72)
@@ -329,8 +316,8 @@ object AITipsPlacesMainView: TAITipsPlacesMainView
     end
   end
   object TMSFNCGooglePlaces1: TTMSFNCGooglePlaces
-    Left = 682
-    Top = 284
+    Left = 686
+    Top = 288
     Width = 26
     Height = 26
     Visible = True
