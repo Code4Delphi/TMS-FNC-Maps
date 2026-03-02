@@ -84,6 +84,9 @@
         <Projects Include="FNCMaps_AI_TipsPlaces\FNCMaps_AI_TipsPlaces.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FNCMapsGeoTIFF\FNCMapsGeoTIFF.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -335,14 +338,23 @@
     <Target Name="FNCMaps_AI_TipsPlaces:Make">
         <MSBuild Projects="FNCMaps_AI_TipsPlaces\FNCMaps_AI_TipsPlaces.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FNCMapsGeoTIFF">
+        <MSBuild Projects="FNCMapsGeoTIFF\FNCMapsGeoTIFF.dproj"/>
+    </Target>
+    <Target Name="FNCMapsGeoTIFF:Clean">
+        <MSBuild Projects="FNCMapsGeoTIFF\FNCMapsGeoTIFF.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FNCMapsGeoTIFF:Make">
+        <MSBuild Projects="FNCMapsGeoTIFF\FNCMapsGeoTIFF.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels;FNCMapsHeatmaps;FNCMapsGeocoding;FNCMapsPlaces;FNCMapsRouteCalculator;FNCMapsDirections;FNCMapsLocation;FNCMapsElevation;FNCMapsTollCost;FNCStaticMap_and_FNCMapsImage;FNCTimeZone;FNCMapsPopups;FNCElementContainers_and_Headlinks;FNCMaps3D;FNCMapsGPX_and_GeoJSON;FNCMapsOffline;FNCMapsFMX;FNCMapsWeb;FNCMaps_AI_TTS_STT;FNCMaps_AI_TipsPlaces"/>
+        <CallTarget Targets="FNCMapsDemo01;FNCMapsMarkers;FNCMapsZoom;FNCMapsPolygons;FNCMapsPolygonsGoogle;FNCMapsRectangles;FNCMapsCircles;FNCMapsLabels;FNCMapsHeatmaps;FNCMapsGeocoding;FNCMapsPlaces;FNCMapsRouteCalculator;FNCMapsDirections;FNCMapsLocation;FNCMapsElevation;FNCMapsTollCost;FNCStaticMap_and_FNCMapsImage;FNCTimeZone;FNCMapsPopups;FNCElementContainers_and_Headlinks;FNCMaps3D;FNCMapsGPX_and_GeoJSON;FNCMapsOffline;FNCMapsFMX;FNCMapsWeb;FNCMaps_AI_TTS_STT;FNCMaps_AI_TipsPlaces;FNCMapsGeoTIFF"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean;FNCMapsHeatmaps:Clean;FNCMapsGeocoding:Clean;FNCMapsPlaces:Clean;FNCMapsRouteCalculator:Clean;FNCMapsDirections:Clean;FNCMapsLocation:Clean;FNCMapsElevation:Clean;FNCMapsTollCost:Clean;FNCStaticMap_and_FNCMapsImage:Clean;FNCTimeZone:Clean;FNCMapsPopups:Clean;FNCElementContainers_and_Headlinks:Clean;FNCMaps3D:Clean;FNCMapsGPX_and_GeoJSON:Clean;FNCMapsOffline:Clean;FNCMapsFMX:Clean;FNCMapsWeb:Clean;FNCMaps_AI_TTS_STT:Clean;FNCMaps_AI_TipsPlaces:Clean"/>
+        <CallTarget Targets="FNCMapsDemo01:Clean;FNCMapsMarkers:Clean;FNCMapsZoom:Clean;FNCMapsPolygons:Clean;FNCMapsPolygonsGoogle:Clean;FNCMapsRectangles:Clean;FNCMapsCircles:Clean;FNCMapsLabels:Clean;FNCMapsHeatmaps:Clean;FNCMapsGeocoding:Clean;FNCMapsPlaces:Clean;FNCMapsRouteCalculator:Clean;FNCMapsDirections:Clean;FNCMapsLocation:Clean;FNCMapsElevation:Clean;FNCMapsTollCost:Clean;FNCStaticMap_and_FNCMapsImage:Clean;FNCTimeZone:Clean;FNCMapsPopups:Clean;FNCElementContainers_and_Headlinks:Clean;FNCMaps3D:Clean;FNCMapsGPX_and_GeoJSON:Clean;FNCMapsOffline:Clean;FNCMapsFMX:Clean;FNCMapsWeb:Clean;FNCMaps_AI_TTS_STT:Clean;FNCMaps_AI_TipsPlaces:Clean;FNCMapsGeoTIFF:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make;FNCMapsHeatmaps:Make;FNCMapsGeocoding:Make;FNCMapsPlaces:Make;FNCMapsRouteCalculator:Make;FNCMapsDirections:Make;FNCMapsLocation:Make;FNCMapsElevation:Make;FNCMapsTollCost:Make;FNCStaticMap_and_FNCMapsImage:Make;FNCTimeZone:Make;FNCMapsPopups:Make;FNCElementContainers_and_Headlinks:Make;FNCMaps3D:Make;FNCMapsGPX_and_GeoJSON:Make;FNCMapsOffline:Make;FNCMapsFMX:Make;FNCMapsWeb:Make;FNCMaps_AI_TTS_STT:Make;FNCMaps_AI_TipsPlaces:Make"/>
+        <CallTarget Targets="FNCMapsDemo01:Make;FNCMapsMarkers:Make;FNCMapsZoom:Make;FNCMapsPolygons:Make;FNCMapsPolygonsGoogle:Make;FNCMapsRectangles:Make;FNCMapsCircles:Make;FNCMapsLabels:Make;FNCMapsHeatmaps:Make;FNCMapsGeocoding:Make;FNCMapsPlaces:Make;FNCMapsRouteCalculator:Make;FNCMapsDirections:Make;FNCMapsLocation:Make;FNCMapsElevation:Make;FNCMapsTollCost:Make;FNCStaticMap_and_FNCMapsImage:Make;FNCTimeZone:Make;FNCMapsPopups:Make;FNCElementContainers_and_Headlinks:Make;FNCMaps3D:Make;FNCMapsGPX_and_GeoJSON:Make;FNCMapsOffline:Make;FNCMapsFMX:Make;FNCMapsWeb:Make;FNCMaps_AI_TTS_STT:Make;FNCMaps_AI_TipsPlaces:Make;FNCMapsGeoTIFF:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

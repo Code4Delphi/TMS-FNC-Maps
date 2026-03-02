@@ -129,7 +129,7 @@ object LabelsMainView: TLabelsMainView
           'Leaflet')
       end
       object edtAPIKeyMap: TEdit
-        Left = 13
+        Left = 9
         Top = 87
         Width = 150
         Height = 23
