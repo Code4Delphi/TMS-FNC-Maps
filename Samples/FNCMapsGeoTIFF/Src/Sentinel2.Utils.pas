@@ -21,25 +21,25 @@ type
 
   TSentinel2Utils = class
   private
-    class var FResults: TStrings;
+    class var FSentinel2Params: TSentinel2Params;
 
-    class function CalcBBox(const ALat, ALon, ARadiusKm: Double): string;
+    class function CalcBBox: string;
     class function ListarLinksTCI_NoMemo(const AJSON: string): string;
   public
-    class procedure GetLinks(const ALat, ALon, ARadiusKm: Double; AResults: TStrings);
+    class procedure GetLinks(const ASentinel2Params: TSentinel2Params);
   end;
 
 implementation
 
-class procedure TSentinel2Utils.GetLinks(const ALat, ALon, ARadiusKm: Double; AResults: TStrings);
+class procedure TSentinel2Utils.GetLinks(const ASentinel2Params: TSentinel2Params);
 var
   JsonBody: string;
   LBbox: string;
 begin
-  FResults := AResults;
-  FResults.Clear;
+  FSentinel2Params := ASentinel2Params;
+  FSentinel2Params.Results.Clear;
 
-  LBbox := Self.CalcBBox(ALat, ALon, ARadiusKm);
+  LBbox := Self.CalcBBox;
 
   HTTPClearHeaders;
   HTTPAddHeader('Content-Type', 'application/json');
@@ -69,28 +69,28 @@ begin
       if AReq.Success then
         Self.ListarLinksTCI_NoMemo(AReq.ResultString)
       else
-        FResults.Add('Erro: ' + AReq.ResultString);
+        FSentinel2Params.Results.Add('Erro: ' + AReq.ResultString);
     end
   );
 end;
 
-class function TSentinel2Utils.CalcBBox(const ALat, ALon, ARadiusKm: Double): string;
+class function TSentinel2Utils.CalcBBox: string;
 var
   DegLat, DegLon: Double;
   LatRad: Double;
   MinLat, MaxLat, MinLon, MaxLon: Double;
 begin
   // km → graus latitude
-  DegLat := ARadiusKm / 110.574;
+  DegLat := FSentinel2Params.RadiusKM / 110.574;
 
   // km → graus longitude (depende da latitude)
-  LatRad := DegToRad(ALat);
-  DegLon := ARadiusKm / (111.320 * Cos(LatRad));
+  LatRad := DegToRad(FSentinel2Params.Latitude);
+  DegLon := FSentinel2Params.RadiusKM / (111.320 * Cos(LatRad));
 
-  MinLat := ALat - DegLat;
-  MaxLat := ALat + DegLat;
-  MinLon := ALon - DegLon;
-  MaxLon := ALon + DegLon;
+  MinLat := FSentinel2Params.Latitude - DegLat;
+  MaxLat := FSentinel2Params.Latitude + DegLat;
+  MinLon := FSentinel2Params.Longitude - DegLon;
+  MaxLon := FSentinel2Params.Longitude + DegLon;
 
   // Formato padrão bbox: [minLon, minLat, maxLon, maxLat]
   Result := Format('[%.6f, %.6f, %.6f, %.6f]',
@@ -107,9 +107,9 @@ var
   Href: string;
   I: Integer;
 begin
-  FResults.BeginUpdate;
+  FSentinel2Params.Results.BeginUpdate;
   try
-    FResults.Clear;
+    FSentinel2Params.Results.Clear;
 
     Root := TJSONObject.ParseJSONValue(AJSON) as TJSONObject;
     try
@@ -137,7 +137,7 @@ begin
           begin
             Href := (Pair.JsonValue as TJSONObject).GetValue<string>('href', '');
             if (Href <> '') and Href.EndsWith('TCI.tif', True) then
-              FResults.Add(Href);
+              FSentinel2Params.Results.Add(Href);
           end;
         end;
       end;
@@ -147,7 +147,7 @@ begin
     end;
 
   finally
-    FResults.EndUpdate;
+    FSentinel2Params.Results.EndUpdate;
   end;
 end;
 

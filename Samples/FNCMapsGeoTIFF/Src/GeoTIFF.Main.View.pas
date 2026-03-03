@@ -142,7 +142,14 @@ procedure TGeoTIFFMainView.TMSFNCOpenLayers1MapDblClick(Sender: TObject; AEventD
 begin
   if ckGetLinksClickMap.Checked then
   begin
-    TSentinel2Utils.GetLinks(AEventData.Coordinate.Latitude, AEventData.Coordinate.Longitude, 1, mmLog.Lines);
+    var LParams: TSentinel2Params;
+    LParams.Latitude := AEventData.Coordinate.Latitude;
+    LParams.Longitude := AEventData.Coordinate.Longitude;
+    LParams.RadiusKM := 1;
+    LParams.Limit := 2;
+    LParams.CloudCover := 10;
+    LParams.Results := mmLog.Lines;
+    TSentinel2Utils.GetLinks(LParams);
   end;
 end;
 
