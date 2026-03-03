@@ -3,7 +3,7 @@ object GeoTIFFMainView: TGeoTIFFMainView
   Top = 0
   Caption = 'TMS FNC Maps - GeoTIFF'
   ClientHeight = 657
-  ClientWidth = 1300
+  ClientWidth = 1313
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object GeoTIFFMainView: TGeoTIFFMainView
   object Splitter1: TSplitter
     Left = 0
     Top = 217
-    Width = 1300
+    Width = 1313
     Height = 10
     Cursor = crVSplit
     Align = alTop
@@ -29,144 +29,171 @@ object GeoTIFFMainView: TGeoTIFFMainView
   object pnTop: TPanel
     Left = 0
     Top = 0
-    Width = 1300
+    Width = 1313
     Height = 217
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    object GroupBox1: TGroupBox
-      Left = 0
+    ExplicitTop = 4
+    ExplicitWidth = 1300
+    object GroupBox2: TGroupBox
+      Left = 225
       Top = 0
-      Width = 505
+      Width = 368
       Height = 217
-      Margins.Bottom = 2
       Align = alLeft
-      Caption = ' Config basic '
+      Caption = ' GeoTIFF '
       TabOrder = 0
       DesignSize = (
-        505
+        368
         217)
-      object Label5: TLabel
-        Left = 5
-        Top = 26
-        Width = 108
+      object Label2: TLabel
+        Left = 10
+        Top = 118
+        Width = 60
         Height = 15
-        Caption = 'OpenLayers API Key:'
+        Caption = 'URL Geotiff'
       end
-      object edtAPIKeyMap: TEdit
-        Left = 5
-        Top = 43
-        Width = 492
-        Height = 23
-        Anchors = [akLeft, akTop, akRight]
-        PasswordChar = '*'
-        TabOrder = 0
-      end
-    end
-    object GroupBox2: TGroupBox
-      Left = 505
-      Top = 0
-      Width = 320
-      Height = 217
-      Align = alLeft
-      Caption = ' Comands '
-      TabOrder = 1
-      object Button1: TButton
-        Left = 24
-        Top = 42
-        Width = 75
+      object btnGeoTiff01: TButton
+        Left = 10
+        Top = 51
+        Width = 179
         Height = 25
-        Caption = 'Button1'
+        Caption = 'Add GeoTiff 01'
         TabOrder = 0
-        OnClick = Button1Click
+        OnClick = btnGeoTiff01Click
       end
       object Button2: TButton
-        Left = 208
-        Top = 25
-        Width = 75
+        Left = 10
+        Top = 22
+        Width = 179
         Height = 25
         Caption = 'Clear'
         TabOrder = 1
         OnClick = Button2Click
       end
-      object Button3: TButton
-        Left = 113
-        Top = 42
+      object btnAddUrl: TButton
+        Left = 10
+        Top = 166
         Width = 75
         Height = 25
-        Caption = 'Button3'
+        Caption = 'Add'
         TabOrder = 2
-        OnClick = Button3Click
+        OnClick = btnAddUrlClick
       end
-      object Button4: TButton
-        Left = 113
-        Top = 73
-        Width = 75
+      object btnGeoTiff02: TButton
+        Left = 10
+        Top = 82
+        Width = 179
         Height = 25
-        Caption = 'Button4'
+        Caption = 'Add GeoTiff 02'
         TabOrder = 3
-        OnClick = Button4Click
+        OnClick = btnGeoTiff02Click
       end
-      object btnTif01: TButton
-        Left = 232
-        Top = 56
-        Width = 75
-        Height = 25
-        Caption = 'btnTif01'
+      object edtUrl: TEdit
+        Left = 10
+        Top = 139
+        Width = 347
+        Height = 23
+        Anchors = [akLeft, akTop, akRight]
         TabOrder = 4
-        OnClick = btnTif01Click
+        Text = 
+          'https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a' +
+          '-cogs/23/K/LP/2026/1/S2B_23KLP_20260110_0_L2A/TCI.tif'
+        ExplicitWidth = 803
       end
-      object btnTif02: TButton
-        Left = 224
-        Top = 87
-        Width = 75
-        Height = 25
-        Caption = 'btnTif02'
-        TabOrder = 5
-        OnClick = btnTif02Click
+    end
+    object GroupBox1: TGroupBox
+      Left = 0
+      Top = 0
+      Width = 225
+      Height = 217
+      Align = alLeft
+      Caption = ' Configs '
+      TabOrder = 1
+      object Label1: TLabel
+        Left = 16
+        Top = 61
+        Width = 41
+        Height = 15
+        Caption = 'Opacity'
       end
-      object btnTif03: TButton
-        Left = 224
-        Top = 118
-        Width = 75
-        Height = 25
-        Caption = 'btnTif03'
-        TabOrder = 6
-        OnClick = btnTif03Click
+      object ckShowBaseLayer: TCheckBox
+        Left = 16
+        Top = 30
+        Width = 185
+        Height = 17
+        Caption = 'ShowBaseLayer (default layer)'
+        Checked = True
+        State = cbChecked
+        TabOrder = 0
+        OnClick = ckShowBaseLayerClick
       end
-      object edtLoadTifs: TButton
-        Left = 80
-        Top = 144
-        Width = 75
-        Height = 25
-        Caption = 'LoadTifs'
-        TabOrder = 7
-        OnClick = edtLoadTifsClick
+      object TrackBar1: TTrackBar
+        Left = 16
+        Top = 78
+        Width = 201
+        Height = 45
+        PageSize = 1
+        Position = 9
+        TabOrder = 1
+        OnTracking = TrackBar1Tracking
       end
     end
     object GroupBox3: TGroupBox
-      Left = 825
+      Left = 593
       Top = 0
-      Width = 440
+      Width = 680
       Height = 217
       Align = alLeft
-      Caption = ' Logs '
+      Caption = ' Get image links (sentinel-2) '
       TabOrder = 2
-      object mmLogs: TMemo
+      ExplicitLeft = 599
+      ExplicitTop = 4
+      object mmLog: TMemo
+        Left = 2
+        Top = 76
+        Width = 676
+        Height = 139
+        Align = alClient
+        TabOrder = 0
+        ExplicitLeft = 3
+        ExplicitTop = 13
+        ExplicitHeight = 198
+      end
+      object Panel1: TPanel
         Left = 2
         Top = 17
-        Width = 436
-        Height = 198
-        Align = alClient
-        ScrollBars = ssVertical
-        TabOrder = 0
+        Width = 676
+        Height = 59
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 1
+        ExplicitLeft = 3
+        ExplicitTop = 11
+        object Button1: TButton
+          Left = 289
+          Top = 28
+          Width = 75
+          Height = 25
+          Caption = 'Button1'
+          TabOrder = 0
+        end
+        object ckGetLinksClickMap: TCheckBox
+          Left = 16
+          Top = 13
+          Width = 209
+          Height = 17
+          Caption = 'Get links by clicking on the map'
+          TabOrder = 1
+        end
       end
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 638
-    Width = 1300
+    Width = 1313
     Height = 19
     Panels = <
       item
@@ -176,11 +203,12 @@ object GeoTIFFMainView: TGeoTIFFMainView
           'lamente usado em GIS'
         Width = 1000
       end>
+    ExplicitWidth = 1300
   end
   object TMSFNCOpenLayers1: TTMSFNCOpenLayers
     Left = 0
     Top = 227
-    Width = 1300
+    Width = 1313
     Height = 411
     Align = alClient
     ParentDoubleBuffered = False
@@ -202,5 +230,6 @@ object GeoTIFFMainView: TGeoTIFFMainView
     HeadLinks = <>
     Clusters = <>
     HeatMaps = <>
+    ExplicitTop = 223
   end
 end
