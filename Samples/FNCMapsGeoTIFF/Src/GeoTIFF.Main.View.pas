@@ -36,32 +36,42 @@ type
     Splitter1: TSplitter;
     StatusBar1: TStatusBar;
     TMSFNCOpenLayers1: TTMSFNCOpenLayers;
-    GroupBox2: TGroupBox;
-    btnGeoTiff01: TButton;
-    Button2: TButton;
-    btnAddUrl: TButton;
     GroupBox1: TGroupBox;
     ckShowBaseLayer: TCheckBox;
     TrackBar1: TTrackBar;
     Label1: TLabel;
-    btnGeoTiff02: TButton;
+    Panel2: TPanel;
+    GroupBox2: TGroupBox;
     Label2: TLabel;
+    btnGeoTiff01: TButton;
+    btnClearTileLayers: TButton;
+    btnAddUrl: TButton;
+    btnGeoTiff02: TButton;
     edtUrl: TEdit;
     GroupBox3: TGroupBox;
     mmLog: TMemo;
     Panel1: TPanel;
-    Button1: TButton;
     ckGetLinksClickMap: TCheckBox;
+    Label3: TLabel;
+    edtLimit: TEdit;
+    Label4: TLabel;
+    edtCloudCover: TEdit;
+    Label5: TLabel;
+    edtRadiusKM: TEdit;
+    Panel3: TPanel;
+    addFisrtItemToMap: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnGeoTiff01Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btnClearTileLayersClick(Sender: TObject);
     procedure ckShowBaseLayerClick(Sender: TObject);
     procedure TrackBar1Tracking(Sender: TObject);
     procedure btnGeoTiff02Click(Sender: TObject);
     procedure btnAddUrlClick(Sender: TObject);
     procedure TMSFNCOpenLayers1MapDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
+    procedure addFisrtItemToMapClick(Sender: TObject);
   private
     procedure ConfigBasicMaps;
+    procedure AddUrlLayer(const AURL: string);
   public
 
   end;
@@ -96,9 +106,7 @@ begin
   TMSFNCOpenLayers1.Options.ShowBaseLayer := ckShowBaseLayer.Checked;
 
   for LLayer in TMSFNCOpenLayers1.TileLayers do
-  begin
     LLayer.Opacity := TrackBar1.Position / 10;
-  end;
 
   TMSFNCOpenLayers1.EndUpdate;
 end;
@@ -138,6 +146,11 @@ begin
   Self.ConfigBasicMaps;
 end;
 
+procedure TGeoTIFFMainView.btnClearTileLayersClick(Sender: TObject);
+begin
+  TMSFNCOpenLayers1.ClearTileLayers;
+end;
+
 procedure TGeoTIFFMainView.TMSFNCOpenLayers1MapDblClick(Sender: TObject; AEventData: TTMSFNCMapsEventData);
 begin
   if ckGetLinksClickMap.Checked then
@@ -145,31 +158,40 @@ begin
     var LParams: TSentinel2Params;
     LParams.Latitude := AEventData.Coordinate.Latitude;
     LParams.Longitude := AEventData.Coordinate.Longitude;
-    LParams.RadiusKM := 1;
-    LParams.Limit := 2;
-    LParams.CloudCover := 10;
+    LParams.RadiusKM := StrToIntDef(edtRadiusKM.Text, 1);
+    LParams.Limit := StrToIntDef(edtLimit.Text, 1);
+    LParams.CloudCover := StrToIntDef(edtCloudCover.Text, 1);;
     LParams.Results := mmLog.Lines;
     TSentinel2Utils.GetLinks(LParams);
   end;
 end;
 
-procedure TGeoTIFFMainView.Button2Click(Sender: TObject);
+procedure TGeoTIFFMainView.btnAddUrlClick(Sender: TObject);
 begin
-  TMSFNCOpenLayers1.ClearTileLayers;
+  if Trim(edtUrl.Text).IsEmpty then
+    raise Exception.Create('Please provide the desired URL');
+
+  Self.AddUrlLayer(edtUrl.Text);
 end;
 
-procedure TGeoTIFFMainView.btnAddUrlClick(Sender: TObject);
+procedure TGeoTIFFMainView.addFisrtItemToMapClick(Sender: TObject);
+begin
+  if mmLog.Lines.Count >= 1 then
+    Self.AddUrlLayer(mmLog.Lines[0]);
+end;
+
+procedure TGeoTIFFMainView.AddUrlLayer(const AURL: string);
 var
   LLayer: TTMSFNCOpenLayersTileLayer;
 begin
-  if Trim(edtUrl.Text).IsEmpty then
-    raise Exception.Create('Informe a URL desejada');
+  if AURL.Trim.IsEmpty then
+    Exit;
 
   TMSFNCOpenLayers1.BeginUpdate;
   LLayer := TMSFNCOpenLayers1.TileLayers.Add;
   LLayer.Source := tlsGeoTiff;
   LLayer.Opacity := TrackBar1.Position / 10;
-  LLayer.URL := edtUrl.Text;
+  LLayer.URL := AURL;
   TMSFNCOpenLayers1.EndUpdate;
 end;
 

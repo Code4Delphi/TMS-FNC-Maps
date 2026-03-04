@@ -7,6 +7,7 @@ uses
   System.Classes,
   System.Math,
   System.JSON,
+  System.Generics.Collections,
   VCL.TMSFNCCloudBase;
 
 type
@@ -22,7 +23,6 @@ type
   TSentinel2Utils = class
   private
     class var FSentinel2Params: TSentinel2Params;
-
     class function CalcBBox: string;
     class function ListarLinksTCI_NoMemo(const AJSON: string): string;
   public
@@ -33,7 +33,7 @@ implementation
 
 class procedure TSentinel2Utils.GetLinks(const ASentinel2Params: TSentinel2Params);
 var
-  JsonBody: string;
+  LJsonBody: string;
   LBbox: string;
 begin
   FSentinel2Params := ASentinel2Params;
@@ -44,13 +44,13 @@ begin
   HTTPClearHeaders;
   HTTPAddHeader('Content-Type', 'application/json');
   HTTPAddHeader('Accept', 'application/json');
-  JsonBody :=
+  LJsonBody :=
     '{"collections":["sentinel-2-l2a"],' +
       '"bbox":'+ LBbox +',' +
-      '"limit":2,'+
+      '"limit":'+ ASentinel2Params.Limit.ToString +','+
       '"query": {'+
       '  "eo:cloud_cover": {'+
-      '    "lt": 10'+
+      '    "lt": '+ ASentinel2Params.CloudCover.ToString +
       '  }'+
       '}'+
     '}';
@@ -59,7 +59,7 @@ begin
     'https://earth-search.aws.element84.com', // host
     '/v1/search',                              // path
     '',                                        // query
-    JsonBody,                                  // post data
+    LJsonBody,                                  // post data
     rrtString,
     rmPOST,
     procedure(const AReq: TTMSFNCCloudBaseRequestResult)
@@ -76,76 +76,73 @@ end;
 
 class function TSentinel2Utils.CalcBBox: string;
 var
-  DegLat, DegLon: Double;
+  LDegLat, LDegLon: Double;
   LatRad: Double;
-  MinLat, MaxLat, MinLon, MaxLon: Double;
+  LMinLat, LMaxLat, LMinLon, LMaxLon: Double;
 begin
   // km → graus latitude
-  DegLat := FSentinel2Params.RadiusKM / 110.574;
+  LDegLat := (FSentinel2Params.RadiusKM / 2) / 110.574;
 
   // km → graus longitude (depende da latitude)
-  LatRad := DegToRad(FSentinel2Params.Latitude);
-  DegLon := FSentinel2Params.RadiusKM / (111.320 * Cos(LatRad));
+  LatRad := FSentinel2Params.Latitude * (Pi / 180);
+  LDegLon := (FSentinel2Params.RadiusKM / 2) / (111.320 * Cos(LatRad));
 
-  MinLat := FSentinel2Params.Latitude - DegLat;
-  MaxLat := FSentinel2Params.Latitude + DegLat;
-  MinLon := FSentinel2Params.Longitude - DegLon;
-  MaxLon := FSentinel2Params.Longitude + DegLon;
+  LMinLat := FSentinel2Params.Latitude - LDegLat;
+  LMaxLat := FSentinel2Params.Latitude + LDegLat;
+  LMinLon := FSentinel2Params.Longitude - LDegLon;
+  LMaxLon := FSentinel2Params.Longitude + LDegLon;
 
   // Formato padrão bbox: [minLon, minLat, maxLon, maxLat]
-  Result := Format('[%.6f, %.6f, %.6f, %.6f]',
-    [MinLon, MinLat, MaxLon, MaxLat]);
+  Result := Format('[%.6f, %.6f, %.6f, %.6f]', [LMinLon, LMinLat, LMaxLon, LMaxLat]);
 end;
 
 class function TSentinel2Utils.ListarLinksTCI_NoMemo(const AJSON: string): string;
 var
-  Root: TJSONObject;
-  Features: TJSONArray;
-  Feature: TJSONObject;
-  Assets: TJSONObject;
-  Pair: TJSONPair;
-  Href: string;
+  LJsonRoot: TJSONObject;
+  LJsonFeatures: TJSONArray;
+  LJsonFeature: TJSONObject;
+  LJsonAssets: TJSONObject;
+  LJsonPair: TJSONPair;
+  LHref: string;
   I: Integer;
 begin
   FSentinel2Params.Results.BeginUpdate;
   try
     FSentinel2Params.Results.Clear;
 
-    Root := TJSONObject.ParseJSONValue(AJSON) as TJSONObject;
+    LJsonRoot := TJSONObject.ParseJSONValue(AJSON) as TJSONObject;
     try
-      if not Assigned(Root) then
+      if not Assigned(LJsonRoot) then
         Exit;
 
-      Features := Root.GetValue<TJSONArray>('features');
-      if not Assigned(Features) then
+      LJsonFeatures := LJsonRoot.GetValue<TJSONArray>('features');
+      if not Assigned(LJsonFeatures) then
         Exit;
 
-      for I := 0 to Features.Count - 1 do
+      for I := 0 to LJsonFeatures.Count - 1 do
       begin
-        Feature := Features.Items[I] as TJSONObject;
-        if not Assigned(Feature) then
+        LJsonFeature := LJsonFeatures.Items[I] as TJSONObject;
+        if not Assigned(LJsonFeature) then
           Continue;
 
-        Assets := Feature.GetValue<TJSONObject>('assets');
-        if not Assigned(Assets) then
+        LJsonAssets := LJsonFeature.GetValue<TJSONObject>('assets');
+        if not Assigned(LJsonAssets) then
           Continue;
 
-        // percorre todos assets e pega qualquer href que termine com TCI.tif
-        for Pair in Assets do
+        // percorre todos LJsonAssets e pega qualquer LHref que termine com TCI.tif
+        for LJsonPair in LJsonAssets do
         begin
-          if Pair.JsonValue is TJSONObject then
+          if LJsonPair.JsonValue is TJSONObject then
           begin
-            Href := (Pair.JsonValue as TJSONObject).GetValue<string>('href', '');
-            if (Href <> '') and Href.EndsWith('TCI.tif', True) then
-              FSentinel2Params.Results.Add(Href);
+            LHref := (LJsonPair.JsonValue as TJSONObject).GetValue<string>('href', '');
+            if (LHref <> '') and LHref.EndsWith('TCI.tif', True) then
+              FSentinel2Params.Results.Add(LHref);
           end;
         end;
       end;
-
     finally
-      Root.Free;
+      LJsonRoot.Free;
     end;
-
   finally
     FSentinel2Params.Results.EndUpdate;
   end;
