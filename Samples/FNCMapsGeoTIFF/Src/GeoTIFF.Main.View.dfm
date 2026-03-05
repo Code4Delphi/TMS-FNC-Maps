@@ -2,7 +2,7 @@ object GeoTIFFMainView: TGeoTIFFMainView
   Left = 0
   Top = 0
   Caption = 'TMS FNC Maps - GeoTIFF'
-  ClientHeight = 911
+  ClientHeight = 661
   ClientWidth = 1281
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -33,7 +33,6 @@ object GeoTIFFMainView: TGeoTIFFMainView
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1313
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -42,8 +41,6 @@ object GeoTIFFMainView: TGeoTIFFMainView
       Align = alLeft
       Caption = ' Configs '
       TabOrder = 0
-      ExplicitLeft = 3
-      ExplicitTop = 4
       object Label1: TLabel
         Left = 16
         Top = 61
@@ -81,8 +78,6 @@ object GeoTIFFMainView: TGeoTIFFMainView
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitWidth = 1088
-      ExplicitHeight = 217
       object GroupBox2: TGroupBox
         Left = 0
         Top = 0
@@ -91,7 +86,6 @@ object GeoTIFFMainView: TGeoTIFFMainView
         Align = alTop
         Caption = ' GeoTIFF '
         TabOrder = 0
-        ExplicitWidth = 1088
         object Label2: TLabel
           Left = 10
           Top = 45
@@ -110,7 +104,7 @@ object GeoTIFFMainView: TGeoTIFFMainView
         end
         object btnClearTileLayers: TButton
           Left = 10
-          Top = 16
+          Top = 14
           Width = 179
           Height = 25
           Caption = 'Clear Tile Layers'
@@ -118,9 +112,9 @@ object GeoTIFFMainView: TGeoTIFFMainView
           OnClick = btnClearTileLayersClick
         end
         object btnAddUrl: TButton
-          Left = 919
-          Top = 60
-          Width = 154
+          Left = 895
+          Top = 61
+          Width = 146
           Height = 25
           Caption = 'Add layer to map'
           TabOrder = 2
@@ -138,7 +132,7 @@ object GeoTIFFMainView: TGeoTIFFMainView
         object edtUrl: TEdit
           Left = 10
           Top = 61
-          Width = 903
+          Width = 879
           Height = 23
           TabOrder = 4
           Text = 
@@ -154,21 +148,13 @@ object GeoTIFFMainView: TGeoTIFFMainView
         Align = alClient
         Caption = ' Get image links (sentinel-2) '
         TabOrder = 1
-        ExplicitLeft = -2
-        ExplicitTop = 108
-        ExplicitWidth = 1088
-        ExplicitHeight = 137
         object mmLog: TMemo
           Left = 2
           Top = 49
-          Width = 880
+          Width = 887
           Height = 56
           Align = alClient
           TabOrder = 0
-          ExplicitLeft = 1
-          ExplicitTop = 48
-          ExplicitWidth = 912
-          ExplicitHeight = 62
         end
         object Panel1: TPanel
           Left = 2
@@ -178,9 +164,6 @@ object GeoTIFFMainView: TGeoTIFFMainView
           Align = alTop
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitLeft = 6
-          ExplicitTop = 11
-          ExplicitWidth = 1084
           object Label3: TLabel
             Left = 286
             Top = 6
@@ -249,15 +232,12 @@ object GeoTIFFMainView: TGeoTIFFMainView
           end
         end
         object Panel3: TPanel
-          Left = 882
+          Left = 889
           Top = 49
-          Width = 172
+          Width = 165
           Height = 56
           Align = alRight
           TabOrder = 2
-          ExplicitLeft = 920
-          ExplicitTop = 45
-          ExplicitHeight = 86
           object addFisrtItemToMap: TButton
             Left = 5
             Top = 8
@@ -273,7 +253,7 @@ object GeoTIFFMainView: TGeoTIFFMainView
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 892
+    Top = 642
     Width = 1281
     Height = 19
     Panels = <
@@ -284,15 +264,13 @@ object GeoTIFFMainView: TGeoTIFFMainView
           'lamente usado em GIS'
         Width = 1000
       end>
-    ExplicitLeft = -24
-    ExplicitTop = 689
-    ExplicitWidth = 1313
+    ExplicitTop = 892
   end
   object TMSFNCOpenLayers1: TTMSFNCOpenLayers
     Left = 0
     Top = 215
     Width = 1281
-    Height = 677
+    Height = 427
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -314,8 +292,6 @@ object GeoTIFFMainView: TGeoTIFFMainView
     HeadLinks = <>
     Clusters = <>
     HeatMaps = <>
-    ExplicitTop = 247
-    ExplicitWidth = 1313
-    ExplicitHeight = 497
+    ExplicitHeight = 677
   end
 end
