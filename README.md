@@ -3,16 +3,16 @@ Demos para utilização do TMS FNC Maps.
 
 O TMS FNC Maps é um conjunto de componentes para Delphi e C++Builder voltado a mapeamento, dados geográficos, visualização de fusos horários, cálculo de rotas e direções. Permite utilizar o serviço de mapeamento de sua preferência, como Google Maps, OpenStreetMap, Leaflet, Azure Maps e HERE Maps, em aplicações VCL, FMX e Web Core.
 
+## Links úteis
+- [Site oficial do TMS FNC Maps](https://www.tmssoftware.com/site/tmsfncmaps.asp)
+- [Documentação](https://download.tmssoftware.com/doc/tmsfncmaps/)
+- [Links para geração das API Key](https://www.tmssoftware.com/site/cloudkey.asp)
+
 ## 🏷️ Cupom de desconto
 - Use este cupom exclusivo e tenha 30% de desconto em qualquer produto da TMS:
 ```
 2026Code4Delphi30
 ```
-
-## Links úteis
-- [Site oficial do TMS FNC Maps](https://www.tmssoftware.com/site/tmsfncmaps.asp)
-- [Documentação](https://download.tmssoftware.com/doc/tmsfncmaps/)
-- [Links para geração das API Key](https://www.tmssoftware.com/site/cloudkey.asp)
 
 ## Vídeos de demonstração
 - [Playlist completa](https://www.youtube.com/playlist?list=PLLHSz4dOnnN2QChmOaodoI9TRg3iwTtSB)
